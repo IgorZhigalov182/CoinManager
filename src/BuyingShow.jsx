@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-function App() {
+const BuyingShow = () => {
   const [posts, setPosts] = useState([]);
 
   const getPosts = async () => {
@@ -15,7 +15,13 @@ function App() {
 
   console.log(posts);
 
-  return <div className="App">Hello World</div>;
-}
+  return (
+    <div>
+      {posts.map((item) => (
+        <h3>{item.sum}</h3>
+      ))}
+    </div>
+  );
+};
 
-export default App;
+export default BuyingShow;

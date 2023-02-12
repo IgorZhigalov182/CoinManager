@@ -4,23 +4,55 @@
       "id": 1,
       "title": "json-server",
       "author": "typicode"
+    },
+    {
+      "id": 2,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "name": "Наци",
+      "email": "wdqwd@mail.ru",
+      "password": "1232",
+      "id": 3
     }
   ],
   "comments": [
     {
       "id": 1,
-      "body": "some comment",
+      "sum": "12",
       "postId": 1
     },
     {
       "id": 2,
-      "body": "some comment",
+      "sum": "54",
       "postId": 2
     },
     {
       "id": 3,
-      "body": "some comment",
+      "sum": "6",
       "postId": 3
+    },
+    {
+      "sum": "120",
+      "category": "Sport",
+      "bankAccount": "Tinkoff",
+      "comment": "'buying a pi ball'",
+      "id": 4
+    },
+    {
+      "sum": "21",
+      "category": "",
+      "bankAccount": "",
+      "comment": "",
+      "id": 5
+    },
+    {
+      "sum": "213",
+      "category": "",
+      "bankAccount": "",
+      "comment": "",
+      "id": 6
     }
   ],
   "profile": {
