@@ -9,50 +9,43 @@
       "id": 2,
       "title": "json-server",
       "author": "typicode"
-    },
-    {
-      "name": "Наци",
-      "email": "wdqwd@mail.ru",
-      "password": "1232",
-      "id": 3
     }
   ],
   "comments": [
     {
-      "id": 1,
-      "sum": "12",
-      "postId": 1
-    },
-    {
-      "id": 2,
-      "sum": "54",
-      "postId": 2
-    },
-    {
-      "id": 3,
-      "sum": "6",
-      "postId": 3
-    },
-    {
       "sum": "120",
       "category": "Sport",
       "bankAccount": "Tinkoff",
-      "comment": "'buying a pi ball'",
-      "id": 4
+      "comment": "buying a pi ball",
+      "id": 1
     },
     {
       "sum": "21",
-      "category": "",
-      "bankAccount": "",
-      "comment": "",
-      "id": 5
+      "category": "Sport",
+      "bankAccount": "Tinkoff",
+      "comment": "buy a tennis",
+      "id": 2
     },
     {
-      "sum": "213",
-      "category": "",
-      "bankAccount": "",
-      "comment": "",
-      "id": 6
+      "sum": "1000",
+      "category": "Dinner",
+      "bankAccount": "Sber",
+      "comment": "Soup Rassolnik",
+      "id": 3
+    },
+    {
+      "sum": "890",
+      "category": "Dinner",
+      "bankAccount": "Alfa",
+      "comment": "Pizza",
+      "id": 4
+    },
+    {
+      "sum": "120",
+      "category": "Relax",
+      "bankAccount": "SPB",
+      "comment": "SPA",
+      "id": 5
     }
   ],
   "profile": {

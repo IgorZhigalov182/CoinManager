@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-const BuyingShow = () => {
+const Examples = () => {
   const [posts, setPosts] = useState([]);
 
   const getPosts = async () => {
@@ -13,15 +13,8 @@ const BuyingShow = () => {
     getPosts();
   }, []);
 
-  // console.log(posts);
-
-  return (
-    <div>
-      {posts.map((item) => (
-        <h3>{item.sum}</h3>
-      ))}
-    </div>
-  );
+  //   console.log(posts);
+  return <div>Examples</div>;
 };
 
-export default BuyingShow;
+export default Examples;

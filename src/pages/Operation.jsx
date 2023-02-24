@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import Chart from './Chart';
 
 const Operation = () => {
   const [data, setData] = useState({ sum: '', category: '', bankAccount: '', comment: '' });
@@ -39,21 +40,29 @@ const Operation = () => {
   return (
     <>
       <div>
+        <div>
+          <Chart data={data} />
+        </div>
         <h1>
           <form
             action=""
             onSubmit={handleSubmit}
             onChange={handleChange}
             style={{ textAlign: 'center' }}>
-            <input type="number" name="sum" placeholder="sum money" value={data.sum} />
+            <input type="number" name="sum" placeholder="sum money" defaultValue={data.sum} />
             {<br />}
-            <input type="text" name="category" placeholder="category" value={data.category} />
+            <input
+              type="text"
+              name="category"
+              placeholder="category"
+              defaultValue={data.category}
+            />
             {<br />}
             <input
               type="text"
               name="bankAccount"
               placeholder="choose bank account"
-              value={data.bankAccount}
+              defaultValue={data.bankAccount}
             />
             {<br />}
             <textarea
@@ -68,9 +77,7 @@ const Operation = () => {
         </h1>
       </div>
 
-      <div>
-        
-        {''}</div>
+      <div>{''}</div>
     </>
   );
 };
