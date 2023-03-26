@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import ChartJSs from '../ChartJS';
 import Chart from './Chart';
 
 const Operation = () => {
@@ -40,9 +41,13 @@ const Operation = () => {
   return (
     <>
       <div>
-        <div>
-          <Chart data={data} />
+        <div className="chartJS" style={{ width: '25rem' }}>
+          <ChartJSs data2={data} />
         </div>
+        {/* <div>
+          <Chart data={data} />
+        </div> */}
+
         <h1>
           <form
             action=""
