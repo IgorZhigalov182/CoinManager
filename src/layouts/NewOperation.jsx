@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import NumberField from '../components/forms/NumberField';
 import SelectField from '../components/forms/SelectField';
 import TextAreaFiled from '../components/forms/TextAreaFiled';
+import ChartJSs from '../ChartJS';
 
 const NewOperation = ({}) => {
   const [data, setData] = useState({
@@ -12,6 +13,8 @@ const NewOperation = ({}) => {
     id: '',
   });
 
+  const [operations, setOperations] = useState([]);
+
   const handleChange = ({ target }) => {
     setData((prevState) => ({
       ...prevState,
@@ -19,10 +22,28 @@ const NewOperation = ({}) => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     data.id = Date.now();
     console.log(data);
+    await addOperation(data);
+  };
+
+  const addOperation = async (operationData) => {
+    fetch('http://localhost:3000/operations', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify(operationData),
+    });
+  };
+
+  const getOperations = async () => {
+    const response = await fetch('http://localhost:3000/operations');
+    const oper = await response.json();
+    setOperations(oper);
+    console.log(operations);
   };
 
   return (
@@ -31,6 +52,7 @@ const NewOperation = ({}) => {
         <NumberField name="sum" onChange={handleChange} htmlFor="operationForm" label="Сумма" />
         <SelectField
           name="category"
+          defaultValue="выберите категорию"
           onChange={handleChange}
           htmlFor="operationForm"
           label="Категория"
@@ -44,6 +66,9 @@ const NewOperation = ({}) => {
 
         <button type="submit">Отправить</button>
       </form>
+
+      <button onClick={getOperations}>Получить операции из БД</button>
+      <ChartJSs someData={operations} />
     </div>
   );
 };

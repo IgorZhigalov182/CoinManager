@@ -57,6 +57,7 @@ const Chart = ({ data }) => {
       },
     ],
   });
+
   return (
     <div className="App">
       <ReactEcharts option={getOptions()} style={{ height: 400 }} />

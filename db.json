@@ -50,5 +50,28 @@
   ],
   "profile": {
     "name": "typicode"
-  }
+  },
+  "operations": [
+    {
+      "idBankAccount": "12345",
+      "sum": "1000",
+      "category": "shoes",
+      "comment": "ГУЧИ",
+      "id": 1680463063351
+    },
+    {
+      "idBankAccount": "12345",
+      "sum": "200",
+      "category": "eats",
+      "comment": "бАНАН",
+      "id": 1680463082953
+    },
+    {
+      "idBankAccount": "12345",
+      "sum": "2002",
+      "category": "shoes",
+      "comment": "Прада",
+      "id": 1680463092665
+    }
+  ]
 }
