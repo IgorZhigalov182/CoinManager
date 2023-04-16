@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
+import './styles/chartjs.css';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -32,7 +33,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 //   ],
 // };
 
-const ChartJSs = () => {
+const ChartJSs = (style) => {
   const [datas, setDatas] = useState([]);
   console.log(datas);
 
@@ -80,6 +81,8 @@ const ChartJSs = () => {
       {
         label: 'wq of Votes',
         data: sums,
+        height: ['100px'],
+        width: '100px',
         backgroundColor: [
           'rgba(255, 99, 132, 1)',
           'rgba(54, 162, 235, 1)',
@@ -101,11 +104,7 @@ const ChartJSs = () => {
     ],
   };
 
-  return (
-    <div>
-      <Pie data={newData} />
-    </div>
-  );
+  return <Pie data={newData} />;
 };
 
 export default ChartJSs;

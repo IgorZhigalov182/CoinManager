@@ -64,11 +64,13 @@ const NewOperation = ({}) => {
           label="Комментарий"
         />
 
-        <button type="submit">Отправить</button>
+        <button type="submit" className="btn btn-primary">
+          Отправить
+        </button>
       </form>
 
       <button onClick={getOperations}>Получить операции из БД</button>
-      <ChartJSs someData={operations} />
+      {/* <ChartJSs someData={operations} /> */}
     </div>
   );
 };

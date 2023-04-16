@@ -1,0 +1,15 @@
+/* canvas {
+    height: 30rem;
+  } */
+
+.widgetWrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-self: center;
+    border: 1px solid black;
+    position: relative;
+    margin: auto;
+    height: 80vh;
+    width: 80vw;
+}
