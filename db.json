@@ -69,6 +69,27 @@
       "category": "shoes",
       "comment": "Прада",
       "id": 1680463092665
+    },
+    {
+      "idBankAccount": "12345",
+      "sum": "1200",
+      "category": "shoes",
+      "comment": "Jeans",
+      "id": 1681674648897
+    },
+    {
+      "idBankAccount": "12345",
+      "sum": "4000",
+      "category": "",
+      "comment": "Бульмени",
+      "id": 1681676243315
+    },
+    {
+      "idBankAccount": "12345",
+      "sum": "2000",
+      "category": "eats",
+      "comment": "Бульмени",
+      "id": 1681676266897
     }
   ]
 }

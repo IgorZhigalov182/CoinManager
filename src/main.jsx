@@ -13,7 +13,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Header />
     {/* <NewOperation /> */}
-    <Widget />
+    <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '2rem' }}>
+      <Widget title={'Траты за жизнь'} />
+      {/* <Widget title={'Доходы за жизнь'} /> */}
+    </div>
+
     {/* <App /> */}
     {/* <Operation /> */}
     {/* <BuyingShow /> */}
