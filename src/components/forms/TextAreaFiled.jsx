@@ -5,7 +5,6 @@ const TextAreaFiled = ({ name, onChange, htmlFor, label }) => {
     <div>
       <label htmlFor={htmlFor}>{label}</label>
       <textarea name={name} onChange={onChange}></textarea>
-      {/* OR <input type="text" name={name} onChange={onChange} /> */}
     </div>
   );
 };

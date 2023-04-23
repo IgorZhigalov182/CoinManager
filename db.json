@@ -52,44 +52,44 @@
     {
       "idBankAccount": "12345",
       "sum": "1000",
-      "category": "shoes",
-      "comment": "ГУЧИ",
-      "id": 1680463063351
-    },
-    {
-      "idBankAccount": "12345",
-      "sum": "200",
-      "category": "eats",
-      "comment": "бАНАН",
-      "id": 1680463082953
-    },
-    {
-      "idBankAccount": "12345",
-      "sum": "2002",
-      "category": "shoes",
-      "comment": "Прада",
-      "id": 1680463092665
-    },
-    {
-      "idBankAccount": "12345",
-      "sum": "1200",
-      "category": "shoes",
-      "comment": "Jeans",
-      "id": 1681674648897
-    },
-    {
-      "idBankAccount": "12345",
-      "sum": "4000",
-      "category": "",
-      "comment": "Бульмени",
-      "id": 1681676243315
+      "category": "Продукты",
+      "comment": "",
+      "id": 1682199874661
     },
     {
       "idBankAccount": "12345",
       "sum": "2000",
-      "category": "eats",
-      "comment": "Бульмени",
-      "id": 1681676266897
+      "category": "Одежда",
+      "comment": "",
+      "id": 1682199881245
+    },
+    {
+      "idBankAccount": "12345",
+      "sum": "5000",
+      "category": "Спорт",
+      "comment": "",
+      "id": 1682199889714
+    },
+    {
+      "idBankAccount": "12345",
+      "sum": "1234",
+      "category": "Спорт",
+      "comment": "",
+      "id": 1682200360409
+    },
+    {
+      "idBankAccount": "12345",
+      "sum": "2345",
+      "category": "Продукты",
+      "comment": "",
+      "id": 1682200369285
+    },
+    {
+      "idBankAccount": "12345",
+      "sum": "234",
+      "category": "Одежда",
+      "comment": "",
+      "id": 1682200404823
     }
   ]
 }

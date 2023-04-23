@@ -1,4 +1,5 @@
 import React from 'react';
+import { categories } from '../../data/categories';
 
 const SelectField = ({ name, onChange, htmlFor, label, defaultValue }) => {
   return (
@@ -6,9 +7,13 @@ const SelectField = ({ name, onChange, htmlFor, label, defaultValue }) => {
       <label htmlFor={htmlFor}>
         {label}
         <select id={htmlFor} onChange={onChange} name={name}>
-          <option value="eats">Продукты</option>
-          <option value="shoes">Одежда</option>
-          <option value="newCategory">+ Новая категория</option>
+          {categories.map((category) => {
+            return (
+              <option value={category.name} key={category.id}>
+                {category.name}
+              </option>
+            );
+          })}
         </select>
       </label>
     </div>
