@@ -1,3 +1,5 @@
+import httpService from './http.services';
+
 export function sumByCategory(data) {
   const result = [];
   const categories = data.map((item) => item.category);
@@ -11,3 +13,13 @@ export function sumByCategory(data) {
   });
   return result;
 }
+
+const categoryEndpoint = 'category/';
+
+const categoryService = {
+  fetchAll: async () => {
+    const { data } = await httpService.get(categoryEndpoint);
+    return data;
+  },
+};
+export default categoryService;
