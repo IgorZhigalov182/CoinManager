@@ -10,15 +10,9 @@ import { createStore } from './store/store';
 const store = createStore();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  <>
     <Provider store={store}>
-      {/* <Header /> */}
-      {/* <NewOperation /> */}
-      <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '2rem' }}>
-        <Widget title={'Траты за жизнь'} />
-      </div>
-
       <App />
     </Provider>
-  </React.StrictMode>,
+  </>,
 );

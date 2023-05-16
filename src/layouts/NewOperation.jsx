@@ -43,7 +43,6 @@ const NewOperation = ({}) => {
     const response = await fetch('http://localhost:3000/operations');
     const oper = await response.json();
     setOperations(oper);
-    console.log(operations);
   };
 
   return (

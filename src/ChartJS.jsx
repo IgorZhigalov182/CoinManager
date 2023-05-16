@@ -4,11 +4,17 @@ import { sumByCategory } from './services/category.services';
 import { Pie } from 'react-chartjs-2';
 import './styles/chartjs.css';
 import { categories } from './data/categories';
+import { useSelector } from 'react-redux';
+import { getCategories, getCategoriesLoadingStatus } from './store/categories/categories.slice';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const ChartJSs = () => {
   const [datas, setDatas] = useState([]);
+  const defaultCategories = useSelector(getCategories());
+  const categoriesLoading = useSelector(getCategoriesLoadingStatus());
+
+  console.log(defaultCategories);
 
   const getDataOperations = async () => {
     const response = await fetch('http://localhost:3000/operations');
@@ -18,7 +24,7 @@ const ChartJSs = () => {
 
   useEffect(() => {
     getDataOperations();
-  }, [datas]);
+  }, []);
 
   const arrSumByCategory = sumByCategory(datas);
 

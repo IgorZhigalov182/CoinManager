@@ -2,8 +2,13 @@ import React, { useEffect, useState } from 'react';
 import AddCategory from './components/AddCategory';
 import { loadCategoriesList } from './store/categories/categories.slice';
 import { useDispatch } from 'react-redux';
+import NavBar from './components/ui/NavBar';
+import withRouter from './components/ui/hoc/withRouter';
+import { useRoutes } from 'react-router-dom';
+import routes from './routes';
 
 function App() {
+  const elements = useRoutes(routes);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -12,11 +17,13 @@ function App() {
 
   return (
     <div className="App">
-      <AddCategory item={{ name: 'Music', id: '1' }} />
-      <AddCategory item={{ name: 'Razvlechenia', id: '2' }} />
-      <AddCategory item={{ name: 'FastFood', id: '3' }} />
+      <NavBar />
+      {elements}
     </div>
   );
 }
 
-export default App;
+const AppWithRouter = withRouter(App);
+
+export default AppWithRouter;
+// export default App;

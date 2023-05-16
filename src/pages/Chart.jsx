@@ -60,7 +60,10 @@ const Chart = ({ data }) => {
 
   return (
     <div className="App">
-      <ReactEcharts option={getOptions()} style={{ height: 400 }} />
+      {/* <ReactEcharts option={getOptions()} style={{ height: 400 }} /> */}
+      <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '2rem' }}>
+        <Widget title={'Траты за жизнь'} />
+      </div>
     </div>
   );
 };

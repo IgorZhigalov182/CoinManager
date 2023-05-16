@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import httpService from '../../services/http.services';
 import categoryService from '../../services/category.services';
 
 // const initialState = [
@@ -32,6 +31,8 @@ export const categoriesSlice = createSlice({
   initialState: {
     entities: null,
     isLoading: true,
+    error: null,
+    lastFetch: null,
   },
 
   reducers: {
@@ -48,6 +49,7 @@ export const categoriesSlice = createSlice({
     categoriesReceived: (state, action) => {
       state.entities = action.payload;
       state.isLoading = false;
+      state.lastFetch = Date.now();
     },
     categoriesRequestFailed: (state, action) => {
       state.error = action.payload;
@@ -58,16 +60,30 @@ export const categoriesSlice = createSlice({
 const { reducer: categoriesReducer, actions } = categoriesSlice;
 const { categoriesRequested, categoriesReceived, categoriesRequestFailed } = actions;
 
-export const loadCategoriesList = () => async (dispatch) => {
-  dispatch(categoriesRequested());
-  try {
-    const { content } = await categoryService.fetchAll();
-    console.log(content);
-    dispatch(categoriesReceived(content));
-  } catch (error) {
-    dispatch(categoriesRequestFailed(error.message));
+// Функция для получения актуальных данных с сервера
+// например, при длительном бездействии пользователя на странице
+function isOutdated(date) {
+  if (Date.now() - date > 10 * 60 * 1000) {
+    return true;
+  }
+  return false;
+}
+
+export const loadCategoriesList = () => async (dispatch, getState) => {
+  const { lastFetch } = getState().categories;
+  if (isOutdated(lastFetch)) {
+    dispatch(categoriesRequested());
+    try {
+      const { content } = await categoryService.fetchAll();
+      dispatch(categoriesReceived(content));
+    } catch (error) {
+      dispatch(categoriesRequestFailed(error.message));
+    }
   }
 };
+
+export const getCategories = () => (state) => state.categories.entities;
+export const getCategoriesLoadingStatus = () => (state) => state.categories.isLoading;
 
 export default categoriesReducer;
 // 34.47 минута
