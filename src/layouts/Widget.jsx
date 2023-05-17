@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import ChartJSs from '../ChartJS';
-import Button from './Button';
+import ChartJS from '../ChartJS';
+import Button from '../components/Button';
 import '../styles/chartjs.css';
-import NewOperation from '../layouts/NewOperation';
+import NewOperation from './NewOperation';
 
 const Widget = ({ title }) => {
   const [state, setState] = useState(false);
@@ -15,10 +15,12 @@ const Widget = ({ title }) => {
     <>
       <div className="wrap">
         <p>{title}</p>
-        <div className="widgetWrapper">
-          <ChartJSs />
-        </div>
-        <Button onClick={handleAdd} title={'Добавить'} style={{ width: '100%' }} />
+        {
+          <div className="widgetWrapper">
+            <ChartJS />
+          </div>
+        }
+        <Button handler={handleAdd} title={'Добавить'} style={{ width: '100%' }} />
       </div>
       {state && (
         <div>

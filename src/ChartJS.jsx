@@ -14,12 +14,16 @@ const ChartJSs = () => {
   const defaultCategories = useSelector(getCategories());
   const categoriesLoading = useSelector(getCategoriesLoadingStatus());
 
-  console.log(defaultCategories);
+  // console.log(defaultCategories);
 
   const getDataOperations = async () => {
-    const response = await fetch('http://localhost:3000/operations');
-    const dataq = await response.json();
-    setDatas(dataq);
+    try {
+      const response = await fetch('http://localhost:3000/operations');
+      const dataq = await response.json();
+      setDatas(dataq);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -57,6 +61,11 @@ const ChartJSs = () => {
   };
 
   return <Pie data={newData} />;
+  // <Pie data={newData} />;
+  // if (!sumss) {
+  // } else {
+  //   return 'loading data..';
+  // }
 };
 
 export default ChartJSs;

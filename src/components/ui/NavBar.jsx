@@ -38,6 +38,11 @@ export default function NavBar() {
                 Auth/SignUp
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink to="/operations" className="nav-link">
+                Операции
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>

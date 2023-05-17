@@ -68,7 +68,7 @@ const NewOperation = ({}) => {
         </button>
       </form>
 
-      <button onClick={getOperations}>Получить операции из БД</button>
+      <button handler={getOperations}>Получить операции из БД</button>
       {/* <ChartJSs someData={operations} /> */}
     </div>
   );
