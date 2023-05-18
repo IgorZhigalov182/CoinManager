@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '../Button';
+import Button from './common/Button';
 import { useNavigate } from 'react-router-dom';
 
 const CardOperation = ({ idBankAccount, category, comment, id }) => {
   const navigate = useNavigate();
 
-  const handleGoToRecord = () => navigate(`/operation${id}`, { state: 'pathname' });
+  const handleGoToRecord = () => navigate(`operation`, { state: 'pathname' });
 
   return (
     <div className="card mb-2">
@@ -27,7 +27,4 @@ CardOperation.propTypes = {
   category: PropTypes.string,
   comment: PropTypes.string,
   id: PropTypes.number,
-
-  // changeHobby: PropTypes.func,
-  // index: PropTypes.number
 };

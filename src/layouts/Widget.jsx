@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import ChartJS from '../ChartJS';
-import Button from '../components/Button';
 import '../styles/chartjs.css';
 import NewOperation from './NewOperation';
+import Button from '../components/ui/common/Button';
 
 const Widget = ({ title }) => {
   const [state, setState] = useState(false);
@@ -10,7 +10,6 @@ const Widget = ({ title }) => {
   const handleAdd = () => {
     setState(!state);
   };
-
   return (
     <>
       <div className="wrap">

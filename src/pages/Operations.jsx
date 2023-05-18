@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CardOperation from '../components/ui/CardOperation';
+import ListOperations from '../components/ListOperations';
 
 const Operations = () => {
   const [operations, setOperations] = useState();
@@ -21,10 +22,7 @@ const Operations = () => {
 
   return (
     <div className="container">
-      {operations &&
-        operations.map((operation) => {
-          return <CardOperation key={operation.id} {...operation} />;
-        })}
+      <ListOperations operations={operations} />
     </div>
   );
 };

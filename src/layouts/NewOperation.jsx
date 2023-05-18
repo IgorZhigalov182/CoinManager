@@ -2,8 +2,6 @@ import React, { useState, useContext } from 'react';
 import NumberField from '../components/forms/NumberField';
 import SelectField from '../components/forms/SelectField';
 import TextAreaFiled from '../components/forms/TextAreaFiled';
-import ChartJSs from '../ChartJS';
-
 const NewOperation = ({}) => {
   const [data, setData] = useState({
     idBankAccount: '12345',
