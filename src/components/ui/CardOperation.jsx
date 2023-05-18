@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 import Button from './common/Button';
 import { useNavigate } from 'react-router-dom';
 
-const CardOperation = ({ idBankAccount, category, comment, id }) => {
+const CardOperation = ({ idBankAccount, category, comment, id, sum }) => {
   const navigate = useNavigate();
 
-  const handleGoToRecord = () => navigate(`operation`, { state: 'pathname' });
+  const handleGoToRecord = () => navigate(`${id}`, { state: 'pathname' });
 
   return (
     <div className="card mb-2">
       <div className="card-body">
+        <h3>{sum}Р</h3>
         <h4>Категория: {category}</h4>
         <h5 className="card-title">Банковский счёт: {idBankAccount}</h5>
         <p className="card-text">Комментарий: {comment}</p>
@@ -27,4 +28,5 @@ CardOperation.propTypes = {
   category: PropTypes.string,
   comment: PropTypes.string,
   id: PropTypes.number,
+  sum: PropTypes.number,
 };

@@ -104,6 +104,13 @@
       "category": "Спорт",
       "comment": "цй",
       "id": 1684268420690
+    },
+    {
+      "idBankAccount": "12345",
+      "sum": "10000",
+      "category": "Спорт",
+      "comment": "CNaw",
+      "id": 1684441704632
     }
   ]
 }

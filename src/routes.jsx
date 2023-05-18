@@ -18,7 +18,7 @@ const routes = [
     element: <OperationsLayout />,
     children: [
       { path: '', element: <Operations /> },
-      { path: 'operation', element: <Operation /> },
+      { path: ':operationId', element: <Operation /> },
       { path: '*', element: <Navigate to="/operations" /> },
     ],
   },
