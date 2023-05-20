@@ -1,15 +1,11 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import categoriesReducer from './categories/categories.slice';
+import operationReducer from './operations/operations.slice';
 
-// const reducers = combineReducers({
-//   categories: reducer,
-// });
-const rootReducer = combineReducers({ categories: categoriesReducer });
-
-// export const store = configureStore({
-//   reducer: rootReducer,
-//   devTools: true,
-// });
+const rootReducer = combineReducers({
+  categories: categoriesReducer,
+  operations: operationReducer,
+});
 
 export function createStore() {
   return configureStore({

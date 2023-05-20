@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import CardOperation from '../components/ui/CardOperation';
 import ListOperations from '../components/ListOperations';
-import { getDataOperationsd } from '../services/operations.services';
 import { useDispatch, useSelector } from 'react-redux';
-import { getOpetations } from '../store/operations/operations.slice';
+import { getOperationList, loadOperationList } from '../store/operations/operations.slice';
 import Button from '../components/ui/common/Button';
 
 const Operations = () => {
-  const [operations, setOperations] = useState();
-  const operS = useSelector(getOpetations());
-  // console.log(operS);
+  const dispatch = useDispatch();
+  const operations = useSelector(getOperationList());
+
+  useEffect(() => {
+    dispatch(loadOperationList());
+  }, []);
 
   const handleSort = (arr) => {
     const newArr = arr.sort((a, b) => {
@@ -19,25 +20,7 @@ const Operations = () => {
         return -1;
       }
     });
-    setOperations(newArr);
-    console.log(operations);
   };
-
-  useEffect(() => {
-    getDataOperations();
-    // setOperations(getDataOperations());
-  }, []);
-
-  const getDataOperations = async () => {
-    try {
-      const response = await fetch('http://localhost:3000/operations');
-      const operations = await response.json();
-      setOperations(operations);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  //   console.log(operations);
 
   return (
     <div className="container">

@@ -1,44 +1,61 @@
-import { createAction, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import { getDataOperations, getOperation } from '../../services/operations.services';
 
 export const operationsSlice = createSlice({
   name: 'operations',
   initialState: {
     entities: null,
-    isLoading: true,
+    isLoading: false,
     error: null,
     lastFetch: null,
   },
 
   reducers: {
     operationsRequested: (state) => {
+      state.isLoading = false;
+    },
+    operationRequested: (state) => {
+      state.isLoading = false;
+    },
+    operationsRecieved: (state, action) => {
+      state.entities = action.payload;
       state.isLoading = true;
     },
-    // addCategories: (state, { payload: category }) => {
-    //   const isExist = state.some((cat) => cat.id === category.id);
-
-    //   if (isExist) return;
-
-    //   state.push(category);
-    // },
-    // categoriesRequested: (state) => {
-    //   state.isLoading = true;
-    // },
-    // categoriesReceived: (state, action) => {
-    //   state.entities = action.payload;
-    //   state.isLoading = false;
-    //   state.lastFetch = Date.now();
-    // },
-    // categoriesRequestFailed: (state, action) => {
-    //   state.error = action.payload;
-    //   state.isLoading = false;
-    // },
+    operationRecieved: (state, action) => {
+      state.entities = action.payload;
+      state.isLoading = true;
+    },
   },
 });
 
 const { reducer: operationReducer, actions } = operationsSlice;
 
-const { operationsRequested } = actions;
+const { operationsRequested, operationRequested, operationsRecieved, operationRecieved } = actions;
 
-const operationCreateRequested = createAction('operations/operationsCreateRequested');
+export const loadOperationList = () => async (dispatch) => {
+  dispatch(operationsRequested());
 
-export const getOpetations = () => (state, action) => state;
+  try {
+    const operations = await getDataOperations();
+    dispatch(operationsRecieved(operations));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getOperationList = () => (state) => state.operations.entities;
+
+export const getOperationById = (id) => async (dispatch) => {
+  dispatch(operationRequested());
+
+  try {
+    const operation = await getOperation(id);
+    dispatch(operationRecieved(operation));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getOperationU = () => (state) => state.operations.entities;
+
+export default operationReducer;

@@ -1,33 +1,42 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import CardOperation from '../components/ui/CardOperation';
 import BackButton from '../components/ui/common/BackButton';
 import { useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getOperationById, getOperationU } from '../store/operations/operations.slice';
 
 const Operation = () => {
-  const [operations, setOperations] = useState();
   // const [operation, setOperation] = useState();
   const { pathname } = useLocation();
   const operationId = pathname.split('/')[2];
+  const dispatch = useDispatch();
+  const operation = useSelector(getOperationU());
 
+  console.log(operation);
   useEffect(() => {
-    setOperations(getDataOperations());
+    dispatch(getOperationById(operationId));
   }, []);
 
-  const getDataOperations = async () => {
-    try {
-      const response = await fetch('http://localhost:3000/operations');
-      const operations = await response.json();
-      setOperations(operations);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const operations = useSelector(getOperationList());
+
+  // useEffect(() => {
+  //   dispatch(loadOperationList());
+  // }, []);
+
+  // useEffect(() => {
+  //   setOperation(q);
+  // }, []);
+
+  // useEffect(() => {
+  // const state = dispatch(getOperationById(operationId));
+  // console.log(state);
+  // }, []);
 
   return (
     <div className="container">
       <BackButton />
       <h1>Хлебные крошки</h1>
-      <CardOperation />
+      <CardOperation operation={operation} />
     </div>
   );
 };

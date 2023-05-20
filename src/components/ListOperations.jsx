@@ -2,7 +2,6 @@ import React from 'react';
 import CardOperation from './ui/CardOperation';
 
 const ListOperations = ({ operations }) => {
-  // потом заменить на Redux operations
   return (
     <>
       {operations &&
