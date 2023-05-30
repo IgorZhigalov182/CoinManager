@@ -4,7 +4,7 @@ import Button from './common/Button';
 import { useNavigate } from 'react-router-dom';
 
 const CardOperation = ({ operation, idBankAccount, category, comment, id, sum }) => {
-  console.log(operation);
+  // console.log(operation);
   const navigate = useNavigate();
 
   const handleGoToRecord = () => navigate(`${id}`, { state: 'pathname' });

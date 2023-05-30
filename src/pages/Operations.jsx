@@ -6,11 +6,13 @@ import Button from '../components/ui/common/Button';
 
 const Operations = () => {
   const dispatch = useDispatch();
-  const operations = useSelector(getOperationList());
+  // console.log(operations);
 
   useEffect(() => {
     dispatch(loadOperationList());
   }, []);
+
+  let operations = useSelector(getOperationList());
 
   const handleSort = (arr) => {
     const newArr = arr.sort((a, b) => {
@@ -30,6 +32,7 @@ const Operations = () => {
         handler={() => handleSort(operations)}
         // handler={handleSort}
       />
+      {/* <ListOperations /> */}
       <ListOperations operations={operations} />
     </div>
   );

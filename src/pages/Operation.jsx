@@ -3,18 +3,18 @@ import CardOperation from '../components/ui/CardOperation';
 import BackButton from '../components/ui/common/BackButton';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getOperationById, getOperationU } from '../store/operations/operations.slice';
+import { getOperationU } from '../store/operations/operations.slice';
 
 const Operation = () => {
   // const [operation, setOperation] = useState();
   const { pathname } = useLocation();
   const operationId = pathname.split('/')[2];
   const dispatch = useDispatch();
-  const operation = useSelector(getOperationU());
+  const operation = useSelector(getOperationU(operationId));
 
-  console.log(operation);
+  // console.log(operation);
   useEffect(() => {
-    dispatch(getOperationById(operationId));
+    // dispatch(getOperationById(operationId));
   }, []);
 
   // const operations = useSelector(getOperationList());

@@ -45,17 +45,22 @@ export const loadOperationList = () => async (dispatch) => {
 
 export const getOperationList = () => (state) => state.operations.entities;
 
-export const getOperationById = (id) => async (dispatch) => {
-  dispatch(operationRequested());
+// export const getOperationById = (id) => async (dispatch) => {
+//   dispatch(operationRequested());
 
-  try {
-    const operation = await getOperation(id);
-    dispatch(operationRecieved(operation));
-  } catch (error) {
-    console.log(error);
+//   try {
+//     const operation = await getOperation(id);
+//     dispatch(operationRecieved(operation));
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+export const getOperationU = (id) => (state) => {
+  // state.operations.entities
+  if (state.operations.entities) {
+    return state.operations.entities.find((o) => o.id === id);
   }
 };
-
-export const getOperationU = () => (state) => state.operations.entities;
 
 export default operationReducer;
