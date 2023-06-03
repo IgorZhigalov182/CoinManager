@@ -6,7 +6,6 @@ import Button from '../components/ui/common/Button';
 
 const Operations = () => {
   const dispatch = useDispatch();
-  // console.log(operations);
 
   useEffect(() => {
     dispatch(loadOperationList());
@@ -14,14 +13,15 @@ const Operations = () => {
 
   let operations = useSelector(getOperationList());
 
-  const handleSort = (arr) => {
-    const newArr = arr.sort((a, b) => {
+  const handleSort = () => {
+    const newArr = [...operations].sort((a, b) => {
       if (+a.sum > +b.sum) {
         return 1;
       } else {
         return -1;
       }
     });
+    return newArr;
   };
 
   return (
@@ -29,10 +29,9 @@ const Operations = () => {
       <Button
         title={'Сортировка'}
         className={'btn btn-dark mb-2'}
-        handler={() => handleSort(operations)}
-        // handler={handleSort}
+        // handler={() => handleSort(operations)}
+        handler={handleSort}
       />
-      {/* <ListOperations /> */}
       <ListOperations operations={operations} />
     </div>
   );

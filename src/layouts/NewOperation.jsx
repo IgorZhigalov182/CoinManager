@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import NumberField from '../components/forms/NumberField';
 import SelectField from '../components/forms/SelectField';
 import TextAreaFiled from '../components/forms/TextAreaFiled';
+import Button from '../components/ui/common/Button';
 const NewOperation = ({}) => {
   const [data, setData] = useState({
     idBankAccount: '12345',
@@ -61,12 +62,14 @@ const NewOperation = ({}) => {
           label="Комментарий"
         />
 
-        <button type="submit" className="btn btn-primary">
-          Отправить
-        </button>
+        <Button title="Отправить" type={'submit'} className={'btn btn-primary mt-2'} />
       </form>
+      <Button
+        handler={getOperations}
+        className={'btn btn-primary mt-2'}
+        title={'Получить операции из БД'}
+      />
 
-      <button handler={getOperations}>Получить операции из БД</button>
       {/* <ChartJSs someData={operations} /> */}
     </div>
   );

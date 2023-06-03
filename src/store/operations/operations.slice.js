@@ -22,8 +22,7 @@ export const operationsSlice = createSlice({
       state.isLoading = true;
     },
     operationRecieved: (state, action) => {
-      state.entities = action.payload;
-      state.isLoading = true;
+      state.entities = state.entities.filter((obj) => obj.id == action.payload);
     },
   },
 });
@@ -45,21 +44,17 @@ export const loadOperationList = () => async (dispatch) => {
 
 export const getOperationList = () => (state) => state.operations.entities;
 
-// export const getOperationById = (id) => async (dispatch) => {
-//   dispatch(operationRequested());
-
+// export const getOperationById = (id) => (dispatch) => {
 //   try {
-//     const operation = await getOperation(id);
-//     dispatch(operationRecieved(operation));
+//     dispatch(operationRecieved(id));
 //   } catch (error) {
 //     console.log(error);
 //   }
 // };
 
-export const getOperationU = (id) => (state) => {
-  // state.operations.entities
+export const getOperationById = (id) => (state) => {
   if (state.operations.entities) {
-    return state.operations.entities.find((o) => o.id === id);
+    return state.operations.entities.find((o) => o.id == id);
   }
 };
 

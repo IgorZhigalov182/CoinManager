@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import Button from './common/Button';
 import { useNavigate } from 'react-router-dom';
 
-const CardOperation = ({ operation, idBankAccount, category, comment, id, sum }) => {
-  // console.log(operation);
+const CardOperation = ({ idBankAccount, category, comment, id, sum }) => {
   const navigate = useNavigate();
+  // console.log(operation);
+  // console.log(idBankAccount);
 
   const handleGoToRecord = () => navigate(`${id}`, { state: 'pathname' });
 
