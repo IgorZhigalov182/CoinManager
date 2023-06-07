@@ -3,6 +3,8 @@ import NumberField from '../components/forms/NumberField';
 import SelectField from '../components/forms/SelectField';
 import TextAreaFiled from '../components/forms/TextAreaFiled';
 import Button from '../components/ui/common/Button';
+import { nanoid } from '@reduxjs/toolkit';
+
 const NewOperation = ({}) => {
   const [data, setData] = useState({
     idBankAccount: '12345',
@@ -23,8 +25,8 @@ const NewOperation = ({}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    data.id = Date.now();
-    console.log(data);
+    data.id = nanoid();
+    data.date = Date.now();
     await addOperation(data);
   };
 

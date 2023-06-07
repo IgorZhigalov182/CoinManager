@@ -51,66 +51,27 @@
   "operations": [
     {
       "idBankAccount": "12345",
-      "sum": "1000",
+      "sum": "1405",
       "category": "Продукты",
-      "comment": "",
-      "id": 1682199874661
+      "comment": "Хлеб и молоко, картошка и гусь",
+      "id": "PW-Lahr5CM12CbHefyYvd",
+      "date": 1685869550733
     },
     {
       "idBankAccount": "12345",
-      "sum": "2000",
+      "sum": "2400",
       "category": "Одежда",
-      "comment": "",
-      "id": 1682199881245
+      "comment": "Очки солнцезащитные",
+      "id": "wUXQH-ym6F_jLZEibUYVf",
+      "date": 1685869614059
     },
     {
       "idBankAccount": "12345",
-      "sum": "5000",
+      "sum": "3000",
       "category": "Спорт",
-      "comment": "",
-      "id": 1682199889714
-    },
-    {
-      "idBankAccount": "12345",
-      "sum": "1234",
-      "category": "Спорт",
-      "comment": "",
-      "id": 1682200360409
-    },
-    {
-      "idBankAccount": "12345",
-      "sum": "2345",
-      "category": "Продукты",
-      "comment": "",
-      "id": 1682200369285
-    },
-    {
-      "idBankAccount": "12345",
-      "sum": "234",
-      "category": "Одежда",
-      "comment": "",
-      "id": 1682200404823
-    },
-    {
-      "idBankAccount": "12345",
-      "sum": "100",
-      "category": "Одежда",
-      "comment": "покупка трусов",
-      "id": 1684268405287
-    },
-    {
-      "idBankAccount": "12345",
-      "sum": "1000",
-      "category": "Спорт",
-      "comment": "цй",
-      "id": 1684268420690
-    },
-    {
-      "idBankAccount": "12345",
-      "sum": "10000",
-      "category": "Спорт",
-      "comment": "CNaw",
-      "id": 1684441704632
+      "comment": "Футбольный мяч",
+      "id": "VpZnq7OxEYQPXjMvWI9Pw",
+      "date": 1685869635672
     }
   ]
 }

@@ -5,24 +5,26 @@ export const operationsSlice = createSlice({
   name: 'operations',
   initialState: {
     entities: null,
-    isLoading: false,
+    isLoading: true,
     error: null,
     lastFetch: null,
   },
 
   reducers: {
     operationsRequested: (state) => {
-      state.isLoading = false;
+      state.isLoading = true;
     },
     operationRequested: (state) => {
-      state.isLoading = false;
+      state.isLoading = true;
     },
     operationsRecieved: (state, action) => {
       state.entities = action.payload;
-      state.isLoading = true;
+      state.isLoading = false;
     },
     operationRecieved: (state, action) => {
-      state.entities = state.entities.filter((obj) => obj.id == action.payload);
+      state.entities = action.payload;
+      state.isLoading = false;
+      // state.entities = state.entities.filter((obj) => obj.id == action.payload);
     },
   },
 });
@@ -42,15 +44,14 @@ export const loadOperationList = () => async (dispatch) => {
   }
 };
 
-export const getOperationList = () => (state) => state.operations.entities;
+export const getOperationList = (id) => (state) => state.operations.entities;
 
-// export const getOperationById = (id) => (dispatch) => {
-//   try {
-//     dispatch(operationRecieved(id));
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+export const sortOperations = () => (state) => {
+  console.log(state.operations.entities);
+};
+
+export const getOperationsLoadingStatus = () => (state) => state.operations.isLoading;
+// export const getMembersLoadingStatus = () => (state) => state.members.isLoading;
 
 export const getOperationById = (id) => (state) => {
   if (state.operations.entities) {

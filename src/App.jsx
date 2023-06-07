@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import AddCategory from './components/AddCategory';
+import React, { useEffect } from 'react';
 import { loadCategoriesList } from './store/categories/categories.slice';
 import { useDispatch } from 'react-redux';
 import NavBar from './components/ui/NavBar';
 import withRouter from './components/ui/hoc/withRouter';
 import { useRoutes } from 'react-router-dom';
 import routes from './routes';
+import OperationLoader from './components/ui/hoc/operationLoader';
 
 function App() {
   const elements = useRoutes(routes);
@@ -16,14 +16,15 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <NavBar />
-      {elements}
-    </div>
+    <>
+      <OperationLoader>
+        <NavBar />
+        {elements}
+      </OperationLoader>
+    </>
   );
 }
 
 const AppWithRouter = withRouter(App);
 
 export default AppWithRouter;
-// export default App;
