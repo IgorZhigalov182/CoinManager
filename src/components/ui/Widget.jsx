@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import ChartJS from '../ChartJS';
-import '../styles/chartjs.css';
+import ChartJS from '../../ChartJS';
+import '../../styles/chartjs.css';
 import NewOperation from './NewOperation';
-import Button from '../components/ui/common/Button';
+import Button from './common/Button';
 
 const Widget = ({ title }) => {
   const [state, setState] = useState(false);

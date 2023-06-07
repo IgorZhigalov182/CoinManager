@@ -1,5 +1,5 @@
 import React from 'react';
-import CardOperation from './ui/CardOperation';
+import CardOperation from './CardOperation';
 
 const ListOperations = ({ operations }) => {
   return (

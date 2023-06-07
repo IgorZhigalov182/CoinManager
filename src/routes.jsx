@@ -1,16 +1,16 @@
 import React from 'react';
 import MainPage from './pages/MainPage';
-import NewOperation from './layouts/NewOperation';
+import NewOperation from './components/ui/NewOperation';
 import Login from './Login';
-import Widget from './layouts/Widget';
+import Widget from './components/ui/Widget';
 import Operations from './pages/Operations';
 import Operation from './pages/Operation';
 import OperationsLayout from './layouts/OperationsLayout';
-import { Navigate } from 'react-router-dom';
+import NotFound from './pages/NotFound';
 
 const routes = [
-  { path: '/', element: <MainPage />, errorElement: <Operation /> },
-  { path: 'favorites', element: <Widget />, errorElement: <Operation /> },
+  { path: '/main', element: <MainPage />, errorElement: <NotFound /> },
+  { path: 'favorites', element: <Widget />, errorElement: <NotFound /> },
   { path: 'newOperation', element: <NewOperation /> },
   { path: 'login', element: <Login /> },
   {
@@ -19,9 +19,9 @@ const routes = [
     children: [
       { path: '', element: <Operations /> },
       { path: ':operationId', element: <Operation /> },
-      { path: '*', element: <Navigate to="/operations" /> },
     ],
   },
+  { path: '*', element: <NotFound /> },
 ];
 
 export default routes;

@@ -4,7 +4,7 @@ import Button from './common/Button';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getBuyDate, getBuyTime } from '../../services/date.services';
 
-const CardOperation = ({ idBankAccount, category, comment, id, sum, date }) => {
+const CardOperation = ({ idBankAccount, category, comment, id, sum, date, type }) => {
   const navigate = useNavigate();
   let { pathname } = useLocation();
 
@@ -17,6 +17,7 @@ const CardOperation = ({ idBankAccount, category, comment, id, sum, date }) => {
       <div className="card-body">
         <h3>{sum}Р</h3>
         <h4>Категория: {category}</h4>
+        <h4>{type}</h4>
         <h4>Дата покупки: {getBuyDate(date)}</h4>
         {!operationPage && <h5>Время покупки: {getBuyTime(date)}</h5>}
         {!operationPage && <h5 className="card-title">Банковский счёт: {idBankAccount}</h5>}
@@ -33,6 +34,6 @@ CardOperation.propTypes = {
   idBankAccount: PropTypes.string,
   category: PropTypes.string,
   comment: PropTypes.string,
-  id: PropTypes.number,
+  id: PropTypes.string,
   sum: PropTypes.string,
 };

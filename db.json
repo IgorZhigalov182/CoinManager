@@ -17,6 +17,7 @@
       "category": "Sport",
       "bankAccount": "Tinkoff",
       "comment": "buying a pi ball",
+      "type": "profit",
       "id": 1
     },
     {
@@ -24,6 +25,7 @@
       "category": "Sport",
       "bankAccount": "Tinkoff",
       "comment": "buy a tennis",
+      "type": "profit",
       "id": 2
     },
     {
@@ -31,6 +33,7 @@
       "category": "Dinner",
       "bankAccount": "Sber",
       "comment": "Soup Rassolnik",
+      "type": "profit",
       "id": 3
     },
     {
@@ -38,6 +41,7 @@
       "category": "Dinner",
       "bankAccount": "Alfa",
       "comment": "Pizza",
+      "type": "profit",
       "id": 4
     },
     {
@@ -55,6 +59,7 @@
       "category": "Продукты",
       "comment": "Хлеб и молоко, картошка и гусь",
       "id": "PW-Lahr5CM12CbHefyYvd",
+      "type": "profit",
       "date": 1685869550733
     },
     {
@@ -63,6 +68,7 @@
       "category": "Одежда",
       "comment": "Очки солнцезащитные",
       "id": "wUXQH-ym6F_jLZEibUYVf",
+      "type": "expense",
       "date": 1685869614059
     },
     {
@@ -71,7 +77,17 @@
       "category": "Спорт",
       "comment": "Футбольный мяч",
       "id": "VpZnq7OxEYQPXjMvWI9Pw",
+      "type": "expense",
       "date": 1685869635672
+    },
+    {
+      "idBankAccount": "12345",
+      "sum": "100",
+      "category": "Одежда",
+      "comment": "Шорты",
+      "id": "zbcH8nmmd0nPIDYNpk7r9",
+      "type": "expense",
+      "date": 1686136030149
     }
   ]
 }

@@ -14,7 +14,6 @@ const OperationLoader = ({ children }) => {
     dispatch(loadOperationList());
   }, []);
 
-  console.log(isLoading);
   if (isLoading) return <SpinnerLoader />;
   return children;
 };

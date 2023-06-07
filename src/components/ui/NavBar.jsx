@@ -15,12 +15,11 @@ export default function NavBar() {
           aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
-
         <div className="collapse navbar-collapse" id="navbarContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <NavLink to="/main" className="nav-link">
-                Ваша активность
+                Главная
               </NavLink>
             </li>
             <li className="nav-item">
@@ -34,13 +33,17 @@ export default function NavBar() {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/login" className="nav-link">
-                Auth/SignUp
-              </NavLink>
-            </li>
-            <li className="nav-item">
               <NavLink to="/operations" className="nav-link">
                 Операции
+              </NavLink>
+            </li>
+          </ul>
+        </div>
+        <div className="d-flex">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <NavLink to="/login" className="nav-link">
+                Auth/SignUp
               </NavLink>
             </li>
           </ul>

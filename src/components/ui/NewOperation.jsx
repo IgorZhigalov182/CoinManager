@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
-import NumberField from '../components/forms/NumberField';
-import SelectField from '../components/forms/SelectField';
-import TextAreaFiled from '../components/forms/TextAreaFiled';
-import Button from '../components/ui/common/Button';
+import NumberField from '../forms/NumberField';
+import SelectField from '../forms/SelectField';
+import TextAreaFiled from '../forms/TextAreaFiled';
+import Button from './common/Button';
 import { nanoid } from '@reduxjs/toolkit';
 
 const NewOperation = ({}) => {
@@ -63,6 +63,7 @@ const NewOperation = ({}) => {
           htmlFor="operationForm"
           label="Комментарий"
         />
+        <h3>ДОБАВИТЬ ТИП ОПЕРАЦИИ РАСХОД ИЛИ ДОХОД</h3>
 
         <Button title="Отправить" type={'submit'} className={'btn btn-primary mt-2'} />
       </form>
