@@ -4,7 +4,7 @@ const ListBankAccounts = () => {
   return (
     <>
       {' '}
-      <div className="col-4">
+      <div className="col-4 mt-4">
         <div className="list-group" id="list-tab" role="tablist">
           <a
             className="list-group-item list-group-item-action active"

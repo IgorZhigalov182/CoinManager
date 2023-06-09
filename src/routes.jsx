@@ -9,7 +9,7 @@ import OperationsLayout from './layouts/OperationsLayout';
 import NotFound from './pages/NotFound';
 
 const routes = [
-  { path: '/main', element: <MainPage />, errorElement: <NotFound /> },
+  { path: '/', element: <MainPage />, errorElement: <NotFound /> },
   { path: 'favorites', element: <Widget />, errorElement: <NotFound /> },
   { path: 'newOperation', element: <NewOperation /> },
   { path: 'login', element: <Login /> },

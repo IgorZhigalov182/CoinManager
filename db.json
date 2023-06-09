@@ -55,39 +55,12 @@
   "operations": [
     {
       "idBankAccount": "12345",
-      "sum": "1405",
-      "category": "Продукты",
-      "comment": "Хлеб и молоко, картошка и гусь",
-      "id": "PW-Lahr5CM12CbHefyYvd",
-      "type": "profit",
-      "date": 1685869550733
-    },
-    {
-      "idBankAccount": "12345",
-      "sum": "2400",
+      "sum": "213",
       "category": "Одежда",
-      "comment": "Очки солнцезащитные",
-      "id": "wUXQH-ym6F_jLZEibUYVf",
-      "type": "expense",
-      "date": 1685869614059
-    },
-    {
-      "idBankAccount": "12345",
-      "sum": "3000",
-      "category": "Спорт",
-      "comment": "Футбольный мяч",
-      "id": "VpZnq7OxEYQPXjMvWI9Pw",
-      "type": "expense",
-      "date": 1685869635672
-    },
-    {
-      "idBankAccount": "12345",
-      "sum": "100",
-      "category": "Одежда",
-      "comment": "Шорты",
-      "id": "zbcH8nmmd0nPIDYNpk7r9",
-      "type": "expense",
-      "date": 1686136030149
+      "comment": "43",
+      "id": "4X5SVRoeyvHfzD0augss-",
+      "date": 1686347037880,
+      "type": "expense"
     }
   ]
 }

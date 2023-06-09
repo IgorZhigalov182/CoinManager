@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { sumByCategory } from './services/category.services';
 import { Pie } from 'react-chartjs-2';
@@ -6,6 +6,7 @@ import './styles/chartjs.css';
 import { categories } from './data/categories';
 import { useSelector } from 'react-redux';
 import { getCategories, getCategoriesLoadingStatus } from './store/categories/categories.slice';
+import { getOperationList } from './store/operations/operations.slice';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -13,21 +14,10 @@ const ChartJSs = () => {
   const [datas, setDatas] = useState([]);
   const defaultCategories = useSelector(getCategories());
   const categoriesLoading = useSelector(getCategoriesLoadingStatus());
-
-  // console.log(defaultCategories);
-
-  const getDataOperations = async () => {
-    try {
-      const response = await fetch('http://localhost:3000/operations');
-      const dataq = await response.json();
-      setDatas(dataq);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const operations = useSelector(getOperationList());
 
   useEffect(() => {
-    getDataOperations();
+    setDatas(operations);
   }, []);
 
   const arrSumByCategory = sumByCategory(datas);
@@ -61,11 +51,6 @@ const ChartJSs = () => {
   };
 
   return <Pie data={newData} />;
-  // <Pie data={newData} />;
-  // if (!sumss) {
-  // } else {
-  //   return 'loading data..';
-  // }
 };
 
 export default ChartJSs;

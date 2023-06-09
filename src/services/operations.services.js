@@ -17,3 +17,13 @@ export const getOperation = async (id) => {
     console.log(error);
   }
 };
+
+export const deleteOperation = async (id) => {
+  try {
+    const response = await fetch(`http://localhost:3000/operations/${id}`, {
+      method: 'DELETE',
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};

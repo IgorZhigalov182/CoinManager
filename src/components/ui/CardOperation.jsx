@@ -3,14 +3,21 @@ import PropTypes from 'prop-types';
 import Button from './common/Button';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getBuyDate, getBuyTime } from '../../services/date.services';
+import { deleteOperationById } from '../../store/operations/operations.slice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const CardOperation = ({ idBankAccount, category, comment, id, sum, date, type }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   let { pathname } = useLocation();
 
   const operationPage = pathname.length < 12;
 
   const handleGoToRecord = () => navigate(`${id}`, { state: 'pathname' });
+
+  const handleDelete = () => {
+    dispatch(deleteOperationById(id));
+  };
 
   return (
     <div className="card mb-2">
@@ -22,7 +29,12 @@ const CardOperation = ({ idBankAccount, category, comment, id, sum, date, type }
         {!operationPage && <h5>Время покупки: {getBuyTime(date)}</h5>}
         {!operationPage && <h5 className="card-title">Банковский счёт: {idBankAccount}</h5>}
         <p className="card-text">Комментарий: {comment}</p>
-        {operationPage && <Button title={'Открыть запись'} handler={handleGoToRecord} />}
+        <div className="d-flex justify-content-between">
+          {operationPage && <Button title={'Открыть запись'} handler={handleGoToRecord} />}
+          {operationPage && (
+            <Button className={'btn btn-danger'} title={'Удалить'} handler={handleDelete} />
+          )}
+        </div>
       </div>
     </div>
   );

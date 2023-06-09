@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getDataOperations, getOperation } from '../../services/operations.services';
+import {
+  deleteOperation,
+  getDataOperations,
+  getOperation,
+} from '../../services/operations.services';
 
 export const operationsSlice = createSlice({
   name: 'operations',
@@ -26,12 +30,25 @@ export const operationsSlice = createSlice({
       state.isLoading = false;
       // state.entities = state.entities.filter((obj) => obj.id == action.payload);
     },
+    operationDeleted: (state, action) => {
+      // console.log('state', state.entities);
+      // console.log('action', action.payload);
+      state.entities = state.entities.filter((operation) => {
+        return operation.id !== action.payload;
+      });
+    },
   },
 });
 
 const { reducer: operationReducer, actions } = operationsSlice;
 
-const { operationsRequested, operationRequested, operationsRecieved, operationRecieved } = actions;
+const {
+  operationsRequested,
+  operationRequested,
+  operationsRecieved,
+  operationRecieved,
+  operationDeleted,
+} = actions;
 
 export const loadOperationList = () => async (dispatch) => {
   dispatch(operationsRequested());
@@ -56,6 +73,25 @@ export const getOperationsLoadingStatus = () => (state) => state.operations.isLo
 export const getOperationById = (id) => (state) => {
   if (state.operations.entities) {
     return state.operations.entities.find((o) => o.id == id);
+  }
+};
+
+export const deleteOperationById = (id) => (dispatch) => {
+  try {
+    deleteOperation(id);
+    dispatch(operationDeleted(id));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const filterTypeOperations = (type) => (state) => {
+  if (type === 'Все') {
+    return state.operations.entities;
+  }
+
+  if (state.operations.entities) {
+    return state.operations.entities.filter((o) => o.type === type);
   }
 };
 
