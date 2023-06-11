@@ -1,16 +1,16 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { sumByCategory } from './services/category.services';
+import { sumByCategory } from '../../services/category.services';
 import { Pie } from 'react-chartjs-2';
-import './styles/chartjs.css';
-import { categories } from './data/categories';
+import '../../styles/chartjs.css';
+import { categories } from '../../data/categories';
 import { useSelector } from 'react-redux';
-import { getCategories, getCategoriesLoadingStatus } from './store/categories/categories.slice';
-import { getOperationList } from './store/operations/operations.slice';
+import { getCategories, getCategoriesLoadingStatus } from '../../store/categories/categories.slice';
+import { getOperationList } from '../../store/operations/operations.slice';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const ChartJSs = () => {
+const ChartJSs = ({ style }) => {
   const [datas, setDatas] = useState([]);
   const defaultCategories = useSelector(getCategories());
   const categoriesLoading = useSelector(getCategoriesLoadingStatus());
@@ -50,7 +50,11 @@ const ChartJSs = () => {
     ],
   };
 
-  return <Pie data={newData} />;
+  return (
+    <div className="h-25" style={style}>
+      <Pie data={newData} />
+    </div>
+  );
 };
 
 export default ChartJSs;

@@ -4,6 +4,8 @@ import SelectField from '../forms/SelectField';
 import TextAreaFiled from '../forms/TextAreaFiled';
 import Button from './common/Button';
 import { nanoid } from '@reduxjs/toolkit';
+import '../../styles/modal.css';
+import ModalWindow from './Modal';
 
 const NewOperation = ({}) => {
   const [data, setData] = useState({
@@ -14,6 +16,7 @@ const NewOperation = ({}) => {
     id: '',
   });
 
+  const [modalActive, setModalActive] = useState(true);
   const [operations, setOperations] = useState([]);
 
   const handleChange = ({ target }) => {
@@ -46,6 +49,10 @@ const NewOperation = ({}) => {
     setOperations(oper);
   };
 
+  const handleModal = () => {
+    setModalActive(!modalActive);
+  };
+
   return (
     <div>
       <form id="operationForm" onSubmit={handleSubmit} action="">
@@ -72,8 +79,9 @@ const NewOperation = ({}) => {
         className={'btn btn-primary mt-2'}
         title={'Получить операции из БД'}
       />
-
-      {/* <ChartJSs someData={operations} /> */}
+      <ModalWindow active={modalActive} setActive={setModalActive}></ModalWindow>
+      {/* <button onClick={() => setModalActive(true)}>МОДАЛЬНОЕ</button> */}
+      <Button handler={handleModal} title={'Открыть модалку'} />
     </div>
   );
 };

@@ -9,8 +9,11 @@ const CardProfit = ({ title }) => {
     navigate('/operations', { state: title });
   };
 
+  // Добавить редирект на добавление новой операции (добавляя в state тип операции, чтобы)
+  // пользователю не пришлось выбирать вручную
+
   return (
-    <div className="col-sm-4 mt-4">
+    <div className="col-sm-4 mt-2">
       <div className="card">
         <div className="card-body">
           <h5 className="card-title">{title}</h5>

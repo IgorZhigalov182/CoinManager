@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import ChartJS from '../../ChartJS';
-import '../../styles/chartjs.css';
+import ChartJS from './ChartJS';
+// import '../../styles/chartjs.css';
 import NewOperation from './NewOperation';
 import Button from './common/Button';
+import Modal from './Modal';
 
 const Widget = ({ title }) => {
   const [state, setState] = useState(false);
@@ -10,6 +11,7 @@ const Widget = ({ title }) => {
   const handleAdd = () => {
     setState(!state);
   };
+
   return (
     <>
       <div className="wrap">

@@ -55,12 +55,27 @@
   "operations": [
     {
       "idBankAccount": "12345",
-      "sum": "213",
+      "sum": "1000",
       "category": "Одежда",
-      "comment": "43",
-      "id": "4X5SVRoeyvHfzD0augss-",
-      "date": 1686347037880,
-      "type": "expense"
+      "comment": "Shoes",
+      "id": "brLL_mdiX_u5zvEn_pZE0",
+      "date": 1686387193292
+    },
+    {
+      "idBankAccount": "12345",
+      "sum": "3000",
+      "category": "Спорт",
+      "comment": "Ball",
+      "id": "giN-CtWjmrf6W59Wi37U1",
+      "date": 1686387215137
+    },
+    {
+      "idBankAccount": "12345",
+      "sum": "",
+      "category": "",
+      "comment": "",
+      "id": "TWN0O5H2LMREryzSWTDzw",
+      "date": 1686431033785
     }
   ]
 }
