@@ -2,7 +2,6 @@ import React from 'react';
 import '../../styles/modal.css';
 
 const ModalWindow = ({ active, setActive, children }) => {
-  console.log(active);
   return (
     <div className={active ? 'modalWindow active' : 'modalWindow'} onClick={() => setActive(false)}>
       <div

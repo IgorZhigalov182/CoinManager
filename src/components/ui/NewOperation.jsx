@@ -5,7 +5,7 @@ import TextAreaFiled from '../forms/TextAreaFiled';
 import Button from './common/Button';
 import { nanoid } from '@reduxjs/toolkit';
 import '../../styles/modal.css';
-import ModalWindow from './Modal';
+import ModalWindow from './ModalWindow';
 
 const NewOperation = ({}) => {
   const [data, setData] = useState({
@@ -16,7 +16,7 @@ const NewOperation = ({}) => {
     id: '',
   });
 
-  const [modalActive, setModalActive] = useState(true);
+  const [modalActive, setModalActive] = useState(false);
   const [operations, setOperations] = useState([]);
 
   const handleChange = ({ target }) => {
@@ -56,7 +56,7 @@ const NewOperation = ({}) => {
   return (
     <div>
       <form id="operationForm" onSubmit={handleSubmit} action="">
-        <NumberField name="sum" onChange={handleChange} htmlFor="operationForm" label="Сумма" />
+        {/* <NumberField name="sum" onChange={handleChange} htmlFor="operationForm" label="Сумма" /> */}
         <SelectField
           name="category"
           defaultValue="выберите категорию"
@@ -79,9 +79,24 @@ const NewOperation = ({}) => {
         className={'btn btn-primary mt-2'}
         title={'Получить операции из БД'}
       />
-      <ModalWindow active={modalActive} setActive={setModalActive}></ModalWindow>
-      {/* <button onClick={() => setModalActive(true)}>МОДАЛЬНОЕ</button> */}
-      <Button handler={handleModal} title={'Открыть модалку'} />
+      <ModalWindow active={modalActive} setActive={setModalActive}>
+        <NumberField name="sum" onChange={handleChange} htmlFor="operationForm" label="Сумма" />
+        {/* <NumberField /> */}
+        <SelectField
+          name="category"
+          defaultValue="выберите категорию"
+          onChange={handleChange}
+          htmlFor="operationForm"
+          label="Категория"
+        />
+        <TextAreaFiled
+          name={'comment'}
+          onChange={handleChange}
+          htmlFor="operationForm"
+          label="Комментарий"
+        />
+      </ModalWindow>
+      <Button handler={handleModal} title={'Добавить операцию'} />
     </div>
   );
 };

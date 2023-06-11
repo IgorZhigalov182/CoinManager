@@ -3,7 +3,6 @@ import ChartJS from './ChartJS';
 // import '../../styles/chartjs.css';
 import NewOperation from './NewOperation';
 import Button from './common/Button';
-import Modal from './Modal';
 
 const Widget = ({ title }) => {
   const [state, setState] = useState(false);

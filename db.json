@@ -55,14 +55,6 @@
   "operations": [
     {
       "idBankAccount": "12345",
-      "sum": "1000",
-      "category": "Одежда",
-      "comment": "Shoes",
-      "id": "brLL_mdiX_u5zvEn_pZE0",
-      "date": 1686387193292
-    },
-    {
-      "idBankAccount": "12345",
       "sum": "3000",
       "category": "Спорт",
       "comment": "Ball",
@@ -71,11 +63,27 @@
     },
     {
       "idBankAccount": "12345",
+      "sum": "21",
+      "category": "Одежда",
+      "comment": "32",
+      "id": "cHR-enCG7_D6P2np0PAY5",
+      "date": 1686470219742
+    },
+    {
+      "idBankAccount": "12345",
+      "sum": "1",
+      "category": "Продукты",
+      "comment": "21",
+      "id": "ZhmYS3W_QcMYJDpStQrhT",
+      "date": 1686471241400
+    },
+    {
+      "idBankAccount": "12345",
       "sum": "",
-      "category": "",
-      "comment": "",
-      "id": "TWN0O5H2LMREryzSWTDzw",
-      "date": 1686431033785
+      "category": "Другая",
+      "comment": "1212",
+      "id": "uZO6pwMPJKjCDS_WAxwRb",
+      "date": 1686471254115
     }
   ]
 }
