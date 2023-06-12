@@ -8,6 +8,16 @@ export const getDataOperations = async () => {
   }
 };
 
+export const addOperation = async (operationData) => {
+  fetch('http://localhost:3000/operations', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+    },
+    body: JSON.stringify(operationData),
+  });
+};
+
 export const getOperation = async (id) => {
   try {
     const response = await fetch(`http://localhost:3000/operations/${id}`);

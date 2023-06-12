@@ -10,10 +10,10 @@ const TextAreaFiled = ({ name, onChange, htmlFor, label }) => {
       <textarea
         class="form-control"
         placeholder="Leave a comment here"
-        id="floatingTextarea"
+        id={htmlFor}
         name={name}
         onChange={onChange}></textarea>
-      <label for="floatingTextarea">{label}</label>
+      <label for={htmlFor}>{label}</label>
     </div>
   );
 };

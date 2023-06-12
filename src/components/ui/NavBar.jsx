@@ -24,7 +24,7 @@ export default function NavBar() {
             </li>
             <li className="nav-item">
               <NavLink to="/favorites" className="nav-link">
-                Favorites
+                Счета
               </NavLink>
             </li>
             <li className="nav-item">

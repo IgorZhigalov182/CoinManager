@@ -3,10 +3,9 @@ import React from 'react';
 const ListBankAccounts = () => {
   return (
     <>
-      {' '}
-      <div className="col-4 mt-4">
+      <div className="col-4 mt-2">
         <div className="list-group" id="list-tab" role="tablist">
-          <a
+          <div
             className="list-group-item list-group-item-action active"
             id="list-home-list"
             data-bs-toggle="list"
@@ -14,7 +13,7 @@ const ListBankAccounts = () => {
             role="tab"
             aria-controls="list-home">
             Home
-          </a>
+          </div>
           <a
             className="list-group-item list-group-item-action"
             id="list-profile-list"
@@ -65,6 +64,7 @@ const ListBankAccounts = () => {
             aria-labelledby="list-messages-list">
             ...
           </div>
+
           <div
             className="tab-pane fade"
             id="list-settings"

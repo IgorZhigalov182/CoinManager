@@ -1,35 +1,22 @@
 import React from 'react';
-import { categories } from '../../data/categories';
 
-const SelectField = ({ name, onChange, htmlFor, label, defaultValue }) => {
+const SelectField = ({ name, onChange, htmlFor, label, defaultValue, list }) => {
   return (
-    <div>
-      {/* <label htmlFor={htmlFor}>
-        {label}
-        <select id={htmlFor} onChange={onChange} name={name}>
-          {categories.map((category) => {
+    <div className="mt-3">
+      <select
+        id={htmlFor}
+        onChange={onChange}
+        name={name}
+        className="form-select form-select-lg mb-2"
+        aria-label=".form-select-lg example">
+        {list &&
+          list.map((item) => {
             return (
-              <option value={category.name} key={category.id}>
-                {category.name}
+              <option selected value={item.name} key={item.id}>
+                {item.name}
               </option>
             );
           })}
-        </select>
-      </label> */}
-      {label}
-      <select
-        onChange={onChange}
-        name={name}
-        class="form-select form-select-lg mb-3"
-        aria-label=".form-select-lg example">
-        <option selected>Другая</option>
-        {categories.map((category) => {
-          return (
-            <option value={category.name} key={category.id}>
-              {category.name}
-            </option>
-          );
-        })}
       </select>
     </div>
   );

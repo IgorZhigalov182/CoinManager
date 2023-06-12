@@ -6,6 +6,7 @@ import withRouter from './components/ui/hoc/withRouter';
 import { useRoutes } from 'react-router-dom';
 import routes from './routes';
 import OperationLoader from './components/ui/hoc/operationLoader';
+import { loadBankAccountList } from './store/bankAccounts/bankAccounts.slice';
 
 function App() {
   const elements = useRoutes(routes);
@@ -13,6 +14,7 @@ function App() {
 
   useEffect(() => {
     dispatch(loadCategoriesList());
+    dispatch(loadBankAccountList());
   }, []);
 
   return (

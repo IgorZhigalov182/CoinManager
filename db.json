@@ -1,14 +1,28 @@
 {
-  "posts": [
+  "bankAccounts": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "name": "Банковский тестовый",
+      "typeAccount": "кредитный",
+      "userId": "134232",
+      "bank": "Тинькофф",
+      "active": true
     },
     {
       "id": 2,
-      "title": "json-server",
-      "author": "typicode"
+      "name": "json-server",
+      "typeAccount": "дебетовый",
+      "userId": "13543",
+      "bank": "Альфа",
+      "active": false
+    },
+    {
+      "name": "Новый тестовый",
+      "typeAccount": "",
+      "comment": "Охх",
+      "bank": "Открытие",
+      "id": "0jZuclt-22jItloHkquQY",
+      "date": 1686598836807
     }
   ],
   "comments": [
@@ -71,19 +85,11 @@
     },
     {
       "idBankAccount": "12345",
-      "sum": "1",
-      "category": "Продукты",
+      "sum": "123",
+      "category": "Одежда",
       "comment": "21",
-      "id": "ZhmYS3W_QcMYJDpStQrhT",
-      "date": 1686471241400
-    },
-    {
-      "idBankAccount": "12345",
-      "sum": "",
-      "category": "Другая",
-      "comment": "1212",
-      "id": "uZO6pwMPJKjCDS_WAxwRb",
-      "date": 1686471254115
+      "id": "tUijw-zAPIPJEXzLDNHu1",
+      "date": 1686558455587
     }
   ]
 }
