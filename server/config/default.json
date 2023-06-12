@@ -1,4 +1,6 @@
 {
   "port": 8080,
-  "mongoUri": "mongodb+srv://Zhigalov_IA:xpkqJLDvnSIvJ1Rj@cluster1.srj8wiz.mongodb.net/?retryWrites=true&w=majority"
+  "mongoUri": "mongodb+srv://Zhigalov_IA:xpkqJLDvnSIvJ1Rj@cluster1.srj8wiz.mongodb.net/?retryWrites=true&w=majority",
+  "accessSecret": "super secret from coinManager",
+  "refreshSecret": "refresh from coinManager"
 }
