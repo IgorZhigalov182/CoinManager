@@ -66,6 +66,7 @@ export const getBankAccountsLoadingStatus = () => (state) => state.bankAccounts.
 // export const getMembersLoadingStatus = () => (state) => state.members.isLoading;
 
 export const getBankAccountById = (id) => (state) => {
+  console.log(id);
   if (state.bankAccounts.entities) {
     return state.bankAccounts.entities.find((o) => o.id == id);
   }

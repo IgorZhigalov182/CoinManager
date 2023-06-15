@@ -4,8 +4,8 @@ import Button from '../components/ui/common/Button';
 import ModalWindow from '../components/ui/ModalWindow';
 import TextAreaFiled from '../components/forms/TextAreaFiled';
 import TextField from '../components/forms/TextField';
-import { useSelector } from 'react-redux';
-import { getBankAccountList } from '../store/bankAccounts/bankAccounts.slice';
+import { useDispatch, useSelector } from 'react-redux';
+import { getBankAccountById, getBankAccountList } from '../store/bankAccounts/bankAccounts.slice';
 import SelectField from '../components/forms/SelectField';
 import { addBankAccount } from '../services/bankAccount.services';
 import { nanoid } from '@reduxjs/toolkit';
@@ -14,12 +14,26 @@ import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import ListBankAccounts from '../components/ui/ListBankAccounts';
 
+let bankAccountData = {
+  name: '',
+  bank: '',
+  comment: '',
+  active: false,
+  typeAccount: '',
+};
+
 const BankAccounts = () => {
   const [modalActive, setModalActive] = useState(false);
-  const handleModal = () => setModalActive(!modalActive);
+  const [initialValue, setInitialValue] = useState(bankAccountData);
 
   let bankAccounts = useSelector(getBankAccountList());
 
+  const handleModal = (id) => {
+    if (typeof id == 'string') {
+      setInitialValue([...bankAccounts].filter((account) => account.id == id)[0]);
+    }
+    setModalActive(!modalActive);
+  };
   // const handleChange = ({ target }) => {
   //   setData((prevState) => ({
   //     ...prevState,
@@ -49,12 +63,13 @@ const BankAccounts = () => {
   return (
     <div className="container">
       <Button title={'Добавить счёт'} className={'btn btn-dark mb-2'} handler={handleModal} />
-      <ListBankAccounts bankAccounts={bankAccounts} setModalActive={setModalActive} />
+      <ListBankAccounts bankAccounts={bankAccounts} setModalActive={handleModal} />
       <ModalWindow active={modalActive} setActive={setModalActive}>
         <Formik
           validationSchema={bankAccountSchema}
           onSubmit={async (values, actions) => handleSubmit(values)}
-          initialValues={{ name: '', bank: '', comment: '', active: false, typeAccount: '' }}>
+          enableReinitialize={true}
+          initialValues={initialValue}>
           {({ errors, touched }) => (
             <Form>
               <Field

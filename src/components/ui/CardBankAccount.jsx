@@ -53,7 +53,7 @@ const CardBankAccount = ({
             <Button
               className={'btn btn-secondary position-absolute bottom-0 end-0'}
               title={<i className="fa-solid fa-gear"></i>}
-              handler={setModalActive}
+              handler={() => setModalActive(id)}
             />
           </div>
         </div>

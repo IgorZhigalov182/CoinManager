@@ -1,14 +1,6 @@
 {
   "bankAccounts": [
     {
-      "id": 1,
-      "name": "Банковский тестовый",
-      "typeAccount": "credit",
-      "userId": "134232",
-      "bank": "Тинькофф",
-      "active": true
-    },
-    {
       "name": "Тестовый счёт",
       "bank": "Альфа-банк",
       "comment": "новый счет для теста",
