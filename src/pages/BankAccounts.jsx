@@ -16,9 +16,9 @@ import ListBankAccounts from '../components/ui/ListBankAccounts';
 
 const BankAccounts = () => {
   const [modalActive, setModalActive] = useState(false);
-  let bankAccounts = useSelector(getBankAccountList());
-
   const handleModal = () => setModalActive(!modalActive);
+
+  let bankAccounts = useSelector(getBankAccountList());
 
   // const handleChange = ({ target }) => {
   //   setData((prevState) => ({
@@ -49,12 +49,12 @@ const BankAccounts = () => {
   return (
     <div className="container">
       <Button title={'Добавить счёт'} className={'btn btn-dark mb-2'} handler={handleModal} />
-      <ListBankAccounts bankAccounts={bankAccounts} />
+      <ListBankAccounts bankAccounts={bankAccounts} setModalActive={setModalActive} />
       <ModalWindow active={modalActive} setActive={setModalActive}>
         <Formik
           validationSchema={bankAccountSchema}
           onSubmit={async (values, actions) => handleSubmit(values)}
-          initialValues={{ name: '' }}>
+          initialValues={{ name: '', bank: '', comment: '', active: false, typeAccount: '' }}>
           {({ errors, touched }) => (
             <Form>
               <Field

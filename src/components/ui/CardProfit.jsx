@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import Button from './common/Button';
 import { useNavigate } from 'react-router-dom';
+import ModalWindow from './ModalWindow';
 
 const CardProfit = ({ title }) => {
+  const [modalActive, setModalActive] = useState(false);
+  const handleModal = () => setModalActive(!modalActive);
+
   const navigate = useNavigate();
 
   const handleOperationList = () => {
@@ -22,11 +26,14 @@ const CardProfit = ({ title }) => {
             <p className="card-text">Общая сумма</p>
             <div className="d-flex justify-content-between">
               <Button title={'Открыть список'} handler={handleOperationList} />
-              <Button title={'Добавить'} />
+              <Button title={'Добавить'} handler={handleModal} />
             </div>
           </div>
         </div>
       </div>
+      <ModalWindow active={modalActive} setActive={setModalActive}>
+        <h1>s</h1>
+      </ModalWindow>
     </>
   );
 };

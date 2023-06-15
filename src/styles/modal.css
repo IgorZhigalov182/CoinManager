@@ -17,6 +17,7 @@
 .modalWindow.active {
     opacity: 1;
     pointer-events: all;
+    z-index: 4;
 }
 
 .modalWindow__content {
@@ -30,6 +31,6 @@
 
 .modalWindow__content.active {
     transform: scale(1);
-
+    transition: 0.5s;
 }
 

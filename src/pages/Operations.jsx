@@ -8,6 +8,8 @@ import {
 } from '../store/operations/operations.slice';
 import Button from '../components/ui/common/Button';
 import { useLocation } from 'react-router-dom';
+import NewOperation from '../components/ui/NewOperation';
+import ModalWindow from '../components/ui/ModalWindow';
 
 const Operations = ({ route }) => {
   const [state, setState] = useState(0);
@@ -39,6 +41,7 @@ const Operations = ({ route }) => {
   return (
     <div className="container">
       <Button title={'Сортировка'} className={'btn btn-dark mb-2'} handler={() => handleSort()} />
+      {/* <NewOperation /> */}
       <ListOperations operations={operations} />
     </div>
   );

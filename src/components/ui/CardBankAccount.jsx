@@ -1,38 +1,59 @@
 import React from 'react';
 import Button from './common/Button';
+import { setTitileTypeBankAccount } from '../../services/bankAccount.services';
 
-const CardBankAccount = ({ name, typeAccount, userId, bank, active }) => {
+const CardBankAccount = ({
+  setModalActive,
+  name,
+  typeAccount,
+  userId,
+  bank,
+  active,
+  comment,
+  id,
+}) => {
   return (
     <>
       <div
         className="card text-bg-info mb-3 me-3"
         style={{ maxWidth: '22rem', maxHeight: '30rem' }}>
-        {/* <div className="card-header"> */}
-        {/* {name} */}
         {active ? (
           <div className="position-absolute top-0 end-0">
-            <Button className={'btn btn-success'} title={<i class="fa-solid fa-star"></i>} />
+            <Button className={'btn btn-success'} title={<i className="fa-solid fa-star"></i>} />
           </div>
         ) : (
           <div className="position-absolute top-0 end-0">
-            <Button className={'btn btn-secondary'} title={<i class="fa-regular fa-star"></i>} />
+            <Button
+              className={'btn btn-secondary'}
+              title={<i className="fa-regular fa-star"></i>}
+            />
           </div>
         )}
-        {/* </div> */}
 
         <div className="card-body">
-          <h5 className="card-title w-75">{name}</h5>
+          <h3 className="card-title w-75">{name}</h3>
+          <h5 className="card-title">
+            <i className="fa-solid fa-building-columns me-2"></i>
+            {bank}
+          </h5>
+          <h5 className="card-title">
+            <i className="fa-solid fa-font-awesome me-2"></i>
+            {setTitileTypeBankAccount(typeAccount)}
+          </h5>
 
-          <h5 className="card-title">{typeAccount}</h5>
-          <h5 className="card-title">{bank}</h5>
-          {/* <p className="card-text">
-            Some quick example text to build on the card title and make up the bulk of the card's
-            content.
-          </p> */}
+          {/* {comment ? (
+            <h6 className="card-title">
+              <i class="fa-regular fa-comment me-2"></i>
+              {comment}
+            </h6>
+          ) : (
+            ''
+          )} */}
           <div>
             <Button
               className={'btn btn-secondary position-absolute bottom-0 end-0'}
-              title={<i class="fa-solid fa-gear"></i>}
+              title={<i className="fa-solid fa-gear"></i>}
+              handler={setModalActive}
             />
           </div>
         </div>

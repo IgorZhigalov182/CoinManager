@@ -37,3 +37,23 @@ export const deleteBankAccount = async (id) => {
     console.log(error);
   }
 };
+
+export const setTitileTypeBankAccount = (title) => {
+  let titleInTag = '';
+  switch (title) {
+    case 'current':
+      titleInTag = 'Текущий';
+      break;
+    case 'credit':
+      titleInTag = 'Кредитный';
+      break;
+    case 'estimated':
+      titleInTag = 'Расчётный (для ИП)';
+      break;
+    default:
+      titleInTag = '';
+      break;
+  }
+
+  return titleInTag;
+};

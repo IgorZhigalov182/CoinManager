@@ -3,42 +3,51 @@
     {
       "id": 1,
       "name": "Банковский тестовый",
-      "typeAccount": "кредитный",
+      "typeAccount": "credit",
       "userId": "134232",
       "bank": "Тинькофф",
       "active": true
     },
     {
-      "id": 2,
-      "name": "json-server",
-      "typeAccount": "дебетовый",
-      "userId": "13543",
-      "bank": "Альфа",
-      "active": false
-    },
-    {
-      "name": "21",
-      "active": true,
-      "bank": "21",
-      "comment": "21",
+      "name": "Тестовый счёт",
+      "bank": "Альфа-банк",
+      "comment": "новый счет для теста",
       "typeAccount": "estimated",
-      "id": "RUIi4FMqPmpDSJpmx7X2y",
-      "date": 1686826638530
+      "id": "c0GMSIfYbQyY_U1Jmvk3p",
+      "date": 1686831148416
     },
     {
-      "name": "ww",
-      "bank": "ww",
-      "id": "KcM2yLqXNW7SIXHRPNabM",
-      "date": 1686827423119
+      "name": "Счёт кредитный",
+      "typeAccount": "credit",
+      "active": true,
+      "bank": "Сбербанк",
+      "comment": "Новый кредитный счёт",
+      "id": "fDwX0gvxVPD9i3F_cyRSV",
+      "date": 1686831740543
     },
     {
-      "name": "ЦцвфцвЦцвфцвЦцвфцвЦцвфцвЦцвфцвЦцвфцв",
-      "bank": "ыфы",
-      "comment": "ыф",
+      "name": "вц",
+      "typeAccount": "credit",
+      "bank": "вц",
+      "id": "cVA8HCEDp4IH7dnu5bDjX",
+      "date": 1686831762498
+    },
+    {
+      "name": "2121",
+      "typeAccount": "estimated",
+      "bank": "2121",
+      "comment": "2",
+      "id": "L10s8Yf2om1njjneAuuyE",
+      "date": 1686832065927
+    },
+    {
+      "name": "вцфвфцвфцвфцвфцвфцвфцвфц",
+      "bank": "Титькоф",
+      "comment": "",
       "active": true,
       "typeAccount": "credit",
-      "id": "EUm9h81sCvsMMrj8c4mbG",
-      "date": 1686829993286
+      "id": "WapFp6ea2z4sNZe8b5EBJ",
+      "date": 1686832666523
     }
   ],
   "comments": [

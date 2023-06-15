@@ -72,6 +72,7 @@ const NewOperation = ({}) => {
         className={'btn btn-primary mt-2'}
         title={'Получить операции из БД'}
       /> */}
+
       <ModalWindow active={modalActive} setActive={setModalActive}>
         <form id="operationForm" onSubmit={handleSubmit} action="">
           <NumberField name="sum" onChange={handleChange} htmlFor="operationForm" label="Сумма" />
