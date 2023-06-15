@@ -12,31 +12,22 @@ import { nanoid } from '@reduxjs/toolkit';
 import CheckField from '../components/forms/CheckField';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
+import ListBankAccounts from '../components/ui/ListBankAccounts';
 
 const BankAccounts = () => {
   const [modalActive, setModalActive] = useState(false);
-  const [data, setData] = useState({
-    name: '',
-    typeAccount: '',
-    comment: '',
-    bank: '',
-  });
-
   let bankAccounts = useSelector(getBankAccountList());
 
-  const handleModal = () => {
-    setModalActive(!modalActive);
-  };
+  const handleModal = () => setModalActive(!modalActive);
 
-  const handleChange = ({ target }) => {
-    setData((prevState) => ({
-      ...prevState,
-      [target.name]: target.value,
-    }));
-  };
+  // const handleChange = ({ target }) => {
+  //   setData((prevState) => ({
+  //     ...prevState,
+  //     [target.name]: target.value,
+  //   }));
+  // };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (data) => {
     data.id = nanoid();
     data.date = Date.now();
     await addBankAccount(data);
@@ -58,18 +49,11 @@ const BankAccounts = () => {
   return (
     <div className="container">
       <Button title={'Добавить счёт'} className={'btn btn-dark mb-2'} handler={handleModal} />
-      {bankAccounts &&
-        bankAccounts.map((bankData) => {
-          return <CardBankAccount {...bankData} key={bankData.id} />;
-        })}
+      <ListBankAccounts bankAccounts={bankAccounts} />
       <ModalWindow active={modalActive} setActive={setModalActive}>
         <Formik
           validationSchema={bankAccountSchema}
-          onSubmit={async (values, actions) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-            }, 1000);
-          }}
+          onSubmit={async (values, actions) => handleSubmit(values)}
           initialValues={{ name: '' }}>
           {({ errors, touched }) => (
             <Form>
@@ -88,17 +72,50 @@ const BankAccounts = () => {
                 className="form-control mt-2"
                 placeholder="Комментарий"
               />
-              <Button
-                title="Добавить"
-                // handler={handleSubmit}
-                type={'submit'}
-                className={'btn btn-primary mt-2'}
-              />
+
+              <label className="mt-2 mb-2">
+                Основной счёт
+                <Field type="checkbox" name="active" className="form-check-input ms-2" />
+              </label>
+
+              <div>Тип счёта:</div>
+              <div role="group" aria-labelledby="my-radio-group" className="mt-1">
+                <div>
+                  <Field
+                    type="radio"
+                    className="form-check-input"
+                    name="typeAccount"
+                    value="current"
+                  />
+                  <span className="ms-2">Текущий</span>
+                </div>
+                <div>
+                  <Field
+                    type="radio"
+                    className="form-check-input"
+                    name="typeAccount"
+                    value="credit"
+                  />
+                  <span className="ms-2">Кредитный</span>
+                </div>
+                <div>
+                  <Field
+                    type="radio"
+                    className="form-check-input"
+                    name="typeAccount"
+                    value="estimated"
+                  />
+                  <span className="ms-2">Расчётный (для ИП)</span>
+                </div>
+              </div>
+
+              <div>
+                <Button title="Добавить" type={'submit'} className={'btn btn-primary mt-3'} />
+              </div>
             </Form>
           )}
         </Formik>
 
-        {/*  */}
         {/* <form id="bankAccountForm" onSubmit={handleSubmit} action=""> */}
         {/* <TextField
             name={'name'}

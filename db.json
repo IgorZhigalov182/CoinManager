@@ -17,20 +17,28 @@
       "active": false
     },
     {
-      "name": "Новый тестовый",
-      "typeAccount": "",
-      "comment": "Охх",
-      "bank": "Открытие",
-      "id": "0jZuclt-22jItloHkquQY",
-      "date": 1686598836807
+      "name": "21",
+      "active": true,
+      "bank": "21",
+      "comment": "21",
+      "typeAccount": "estimated",
+      "id": "RUIi4FMqPmpDSJpmx7X2y",
+      "date": 1686826638530
     },
     {
-      "name": "",
-      "typeAccount": "",
-      "comment": "",
-      "bank": "",
-      "id": "FoYA1wKtkI9xNQrqI4cI1",
-      "date": 1686687784286
+      "name": "ww",
+      "bank": "ww",
+      "id": "KcM2yLqXNW7SIXHRPNabM",
+      "date": 1686827423119
+    },
+    {
+      "name": "ЦцвфцвЦцвфцвЦцвфцвЦцвфцвЦцвфцвЦцвфцв",
+      "bank": "ыфы",
+      "comment": "ыф",
+      "active": true,
+      "typeAccount": "credit",
+      "id": "EUm9h81sCvsMMrj8c4mbG",
+      "date": 1686829993286
     }
   ],
   "comments": [
