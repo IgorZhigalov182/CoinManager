@@ -21,5 +21,25 @@ const categoryService = {
     const { data } = await httpService.get(categoryEndpoint);
     return data;
   },
+  getCategoriesFromDB: async () => {
+    try {
+      const response = await fetch('http://localhost:3000/categories');
+      const categories = await response.json();
+      return categories;
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };
+
+// export const getCategoriesFromDB = async () => {
+//   try {
+//     const response = await fetch('http://localhost:3000/categories');
+//     const categories = await response.json();
+//     return categories;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
 export default categoryService;

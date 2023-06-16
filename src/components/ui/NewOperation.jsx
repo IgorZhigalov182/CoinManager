@@ -8,6 +8,9 @@ import '../../styles/modal.css';
 import ModalWindow from './ModalWindow';
 import { categories } from '../../data/categories';
 import { addOperation } from '../../services/operations.services';
+import { Field, Form, Formik } from 'formik';
+import { useSelector } from 'react-redux';
+import { getCategories } from '../../store/categories/categories.slice';
 
 const NewOperation = ({}) => {
   const [data, setData] = useState({
@@ -20,6 +23,8 @@ const NewOperation = ({}) => {
 
   const [modalActive, setModalActive] = useState(false);
   const [operations, setOperations] = useState([]);
+
+  const categories = useSelector(getCategories());
 
   const handleChange = ({ target }) => {
     setData((prevState) => ({
@@ -74,7 +79,7 @@ const NewOperation = ({}) => {
       /> */}
 
       <ModalWindow active={modalActive} setActive={setModalActive}>
-        <form id="operationForm" onSubmit={handleSubmit} action="">
+        {/* <form id="operationForm" onSubmit={handleSubmit} action="">
           <NumberField name="sum" onChange={handleChange} htmlFor="operationForm" label="Сумма" />
           <SelectField
             name="category"
@@ -91,7 +96,22 @@ const NewOperation = ({}) => {
             label="Комментарий"
           />
           <Button title="Отправить" type={'submit'} className={'btn btn-primary mt-2'} />
-        </form>
+        </form> */}
+
+        <Formik>
+          {({ errors, touched }) => (
+            <Form>
+              <Field type="number" name="sum" className="form-control" placeholder="Сумма" />
+              {errors.name && touched.name ? <div>{errors.name}</div> : null}
+              <Field className="form-select form-select-lg mb-2 mt-2" as="select" name="color">
+                {categories &&
+                  categories.map((category) => {
+                    return <option value={category.name}>{category.name}</option>;
+                  })}
+              </Field>
+            </Form>
+          )}
+        </Formik>
       </ModalWindow>
       <Button
         handler={handleModal}

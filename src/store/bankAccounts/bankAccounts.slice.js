@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   deleteBankAccount,
   getDataBankAccounts,
-  getBankAccount,
   updateBankAccount,
   resetFavouritesBankAccount,
   addBankAccount,
@@ -32,7 +31,6 @@ export const bankAccountsSlice = createSlice({
     bankAccountRecieved: (state, action) => {
       state.entities = action.payload;
       state.isLoading = false;
-      // state.entities = state.entities.filter((obj) => obj.id == action.payload);
     },
     bankAccountUpdated: (state, action) => {
       const index = state.entities.findIndex((bankAccount) => bankAccount.id === action.payload.id);

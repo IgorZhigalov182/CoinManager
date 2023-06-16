@@ -74,7 +74,10 @@ export const loadCategoriesList = () => async (dispatch, getState) => {
   if (isOutdated(lastFetch)) {
     dispatch(categoriesRequested());
     try {
-      const { content } = await categoryService.fetchAll();
+      // const { content } = await categoryService.fetchAll(); //firebase
+      // const content = getCategoriesFromDB();
+      const content = await categoryService.getCategoriesFromDB();
+      // console.log(content);
       dispatch(categoriesReceived(content));
     } catch (error) {
       dispatch(categoriesRequestFailed(error.message));
