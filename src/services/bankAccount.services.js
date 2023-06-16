@@ -110,3 +110,17 @@ export const setTitileTypeBankAccount = (title) => {
 
   return titleInTag;
 };
+
+// export const assignAnotherActiveBankAccount = (bankAccounts) => {
+//   return console.log(bankAccounts);
+// };
+
+export const checkRemoveBankAccountForFavourite = (id, bankAccounts) => {
+  let state = '';
+  bankAccounts.forEach((bankAccount) => {
+    if (bankAccount.id === id) {
+      state = bankAccount.active;
+    }
+  });
+  return state;
+};

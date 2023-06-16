@@ -6,6 +6,7 @@ import TextAreaFiled from '../components/forms/TextAreaFiled';
 import TextField from '../components/forms/TextField';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  createBankAccount,
   deleteBankAccountById,
   favouritedBankAccountById,
   getBankAccountById,
@@ -58,7 +59,7 @@ const BankAccounts = () => {
     try {
       const dicision = confirm('Точно удалить?');
       if (dicision) {
-        dispatch(deleteBankAccountById(id));
+        dispatch(deleteBankAccountById(id, bankAccounts));
         setModalActive(!modalActive);
       }
     } catch (error) {
@@ -78,13 +79,13 @@ const BankAccounts = () => {
   const handleSubmit = async (data) => {
     if (data.id) {
       dispatch(updatedBankAccountById(data, bankAccounts));
-      // await updateBankAccount(data);
+      // Реализовать логику с обнулением формы Добавить при создании нового счёта
     } else {
       data.id = nanoid();
       data.date = Date.now();
-      await addBankAccount(data);
+      dispatch(createBankAccount(data, bankAccounts));
+      setInitialValue(bankAccountData);
     }
-
     setModalActive(!modalActive);
   };
 
@@ -119,7 +120,10 @@ const BankAccounts = () => {
       <ModalWindow active={modalActive} setActive={setModalActive}>
         <Formik
           validationSchema={bankAccountSchema}
-          onSubmit={async (values, actions) => handleSubmit(values)}
+          onSubmit={async (values, actions) => {
+            handleSubmit(values);
+            // setInitialValue(bankAccountData);
+          }}
           enableReinitialize={true}
           initialValues={initialValue}>
           {({ errors, touched }) => (

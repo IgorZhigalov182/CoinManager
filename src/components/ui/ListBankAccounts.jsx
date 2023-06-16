@@ -1,6 +1,5 @@
 import React from 'react';
 import CardBankAccount from './CardBankAccount';
-import Button from './common/Button';
 
 const ListBankAccounts = ({ bankAccounts, setModalActive, toggleFavourite }) => {
   return (
