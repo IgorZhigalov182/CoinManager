@@ -3,6 +3,8 @@ import {
   deleteBankAccount,
   getDataBankAccounts,
   getBankAccount,
+  updateBankAccount,
+  resetFavouritesBankAccount,
 } from '../../services/bankAccount.services';
 
 export const bankAccountsSlice = createSlice({
@@ -30,10 +32,27 @@ export const bankAccountsSlice = createSlice({
       state.isLoading = false;
       // state.entities = state.entities.filter((obj) => obj.id == action.payload);
     },
+    bankAccountUpdated: (state, action) => {
+      const index = state.entities.findIndex((bankAccount) => bankAccount.id === action.payload.id);
+      state.entities[index] = action.payload;
+    },
+    bankAccountFavourite: (state, action) => {
+      state.entities = [...state.entities].map((bankAccount) => {
+        if (bankAccount.id === action.payload) {
+          return { ...bankAccount, active: true };
+        }
+        return { ...bankAccount, active: false };
+      });
+    },
+    resetBankAccountFavourite: (state, action) => {
+      state.entities = [...state.entities].map((bankAccount) => {
+        return { ...bankAccount, active: false };
+      });
+    },
     bankAccountDeleted: (state, action) => {
       // console.log('state', state.entities);
       // console.log('action', action.payload);
-      state.entities = state.entities.filter((bankAccount) => {
+      state.entities = [...state.entities].filter((bankAccount) => {
         return bankAccount.id !== action.payload;
       });
     },
@@ -42,8 +61,15 @@ export const bankAccountsSlice = createSlice({
 
 const { reducer: bankAccountsReducer, actions } = bankAccountsSlice;
 
-const { bankAccountsRequested, bankAccountRequested, bankAccountRecieved, bankAccountDeleted } =
-  actions;
+const {
+  bankAccountsRequested,
+  bankAccountRequested,
+  bankAccountRecieved,
+  bankAccountDeleted,
+  bankAccountUpdated,
+  bankAccountFavourite,
+  resetBankAccountFavourite,
+} = actions;
 
 export const loadBankAccountList = () => async (dispatch) => {
   dispatch(bankAccountsRequested());
@@ -63,7 +89,6 @@ export const sortBankAccounts = () => (state) => {
 };
 
 export const getBankAccountsLoadingStatus = () => (state) => state.bankAccounts.isLoading;
-// export const getMembersLoadingStatus = () => (state) => state.members.isLoading;
 
 export const getBankAccountById = (id) => (state) => {
   console.log(id);
@@ -72,10 +97,32 @@ export const getBankAccountById = (id) => (state) => {
   }
 };
 
+export const updatedBankAccountById = (data, bankAccounts) => (dispatch) => {
+  try {
+    if (data.active) {
+      dispatch(resetBankAccountFavourite(bankAccounts));
+      resetFavouritesBankAccount(bankAccounts);
+    }
+    updateBankAccount(data);
+    return dispatch(bankAccountUpdated(data));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const favouritedBankAccountById = (id) => (dispatch) => {
+  try {
+    // updateBankAccount(data);
+    return dispatch(bankAccountFavourite(id));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const deleteBankAccountById = (id) => (dispatch) => {
   try {
     deleteBankAccount(id);
-    dispatch(bankAccountDeleted(id));
+    return dispatch(bankAccountDeleted(id));
   } catch (error) {
     console.log(error);
   }

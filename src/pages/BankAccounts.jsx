@@ -5,9 +5,21 @@ import ModalWindow from '../components/ui/ModalWindow';
 import TextAreaFiled from '../components/forms/TextAreaFiled';
 import TextField from '../components/forms/TextField';
 import { useDispatch, useSelector } from 'react-redux';
-import { getBankAccountById, getBankAccountList } from '../store/bankAccounts/bankAccounts.slice';
+import {
+  deleteBankAccountById,
+  favouritedBankAccountById,
+  getBankAccountById,
+  getBankAccountList,
+  updatedBankAccountById,
+} from '../store/bankAccounts/bankAccounts.slice';
 import SelectField from '../components/forms/SelectField';
-import { addBankAccount } from '../services/bankAccount.services';
+import {
+  addBankAccount,
+  deleteBankAccount,
+  doBankAccountFavourite,
+  resetFavouritesBankAccount,
+  updateBankAccount,
+} from '../services/bankAccount.services';
 import { nanoid } from '@reduxjs/toolkit';
 import CheckField from '../components/forms/CheckField';
 import { Field, Form, Formik } from 'formik';
@@ -27,6 +39,7 @@ const BankAccounts = () => {
   const [initialValue, setInitialValue] = useState(bankAccountData);
 
   let bankAccounts = useSelector(getBankAccountList());
+  const dispatch = useDispatch();
 
   const handleModal = (id) => {
     if (typeof id == 'string') {
@@ -34,17 +47,44 @@ const BankAccounts = () => {
     }
     setModalActive(!modalActive);
   };
+
   // const handleChange = ({ target }) => {
   //   setData((prevState) => ({
   //     ...prevState,
   //     [target.name]: target.value,
   //   }));
   // };
+  const handleDelete = async (id) => {
+    try {
+      const dicision = confirm('Точно удалить?');
+      if (dicision) {
+        dispatch(deleteBankAccountById(id));
+        setModalActive(!modalActive);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleFavourite = async (id) => {
+    try {
+      resetFavouritesBankAccount(bankAccounts);
+      doBankAccountFavourite(id, bankAccounts);
+      dispatch(favouritedBankAccountById(id));
+      // dispatch(updatedBankAccountById(data));
+    } catch (error) {}
+  };
 
   const handleSubmit = async (data) => {
-    data.id = nanoid();
-    data.date = Date.now();
-    await addBankAccount(data);
+    if (data.id) {
+      dispatch(updatedBankAccountById(data, bankAccounts));
+      // await updateBankAccount(data);
+    } else {
+      data.id = nanoid();
+      data.date = Date.now();
+      await addBankAccount(data);
+    }
+
     setModalActive(!modalActive);
   };
 
@@ -57,13 +97,25 @@ const BankAccounts = () => {
       .min(2, 'Минимум 2 буквы')
       .max(50, 'Максимум 50 букв')
       .required('Обязательное поле'),
+    typeAccount: Yup.string().required('Обязательное поле'),
     // email: Yup.string().email('Неверный email').required('Обязательное поле'),
   });
 
   return (
     <div className="container">
-      <Button title={'Добавить счёт'} className={'btn btn-dark mb-2'} handler={handleModal} />
-      <ListBankAccounts bankAccounts={bankAccounts} setModalActive={handleModal} />
+      <Button
+        title={'Добавить счёт'}
+        className={'btn btn-dark mb-2'}
+        handler={() => {
+          setModalActive(!modalActive);
+          setInitialValue(bankAccountData);
+        }}
+      />
+      <ListBankAccounts
+        bankAccounts={bankAccounts}
+        setModalActive={handleModal}
+        toggleFavourite={handleFavourite}
+      />
       <ModalWindow active={modalActive} setActive={setModalActive}>
         <Formik
           validationSchema={bankAccountSchema}
@@ -120,13 +172,27 @@ const BankAccounts = () => {
                     name="typeAccount"
                     value="estimated"
                   />
+
                   <span className="ms-2">Расчётный (для ИП)</span>
                 </div>
+                {errors.typeAccount && touched.typeAccount ? <div>{errors.typeAccount}</div> : null}
               </div>
 
-              <div>
-                <Button title="Добавить" type={'submit'} className={'btn btn-primary mt-3'} />
-              </div>
+              {initialValue.id ? (
+                <div className="d-flex justify-content-between">
+                  <Button title="Изменить" type={'submit'} className={'btn btn-primary mt-3'} />
+                  <Button
+                    title="Удалить"
+                    type={'button'}
+                    handler={() => handleDelete(initialValue.id)}
+                    className={'btn btn-danger mt-3 ms-3'}
+                  />
+                </div>
+              ) : (
+                <div>
+                  <Button title="Добавить" type={'submit'} className={'btn btn-primary mt-3'} />
+                </div>
+              )}
             </Form>
           )}
         </Formik>

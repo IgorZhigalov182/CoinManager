@@ -2,7 +2,7 @@ import React from 'react';
 import CardBankAccount from './CardBankAccount';
 import Button from './common/Button';
 
-const ListBankAccounts = ({ bankAccounts, setModalActive }) => {
+const ListBankAccounts = ({ bankAccounts, setModalActive, toggleFavourite }) => {
   return (
     <>
       <div className="container">
@@ -11,7 +11,12 @@ const ListBankAccounts = ({ bankAccounts, setModalActive }) => {
           {bankAccounts &&
             bankAccounts.map((bankData) => {
               return (
-                <CardBankAccount key={bankData.id} setModalActive={setModalActive} {...bankData} />
+                <CardBankAccount
+                  toggleFavourite={toggleFavourite}
+                  key={bankData.id}
+                  setModalActive={setModalActive}
+                  {...bankData}
+                />
               );
             })}
         </div>

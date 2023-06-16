@@ -9,13 +9,66 @@ export const getDataBankAccounts = async () => {
 };
 
 export const addBankAccount = async (bankAccountData) => {
-  fetch('http://localhost:3000/bankAccounts', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8',
-    },
-    body: JSON.stringify(bankAccountData),
+  try {
+    await fetch('http://localhost:3000/bankAccounts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify(bankAccountData),
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const resetFavouritesBankAccount = async (bankAccounts) => {
+  bankAccounts.forEach(async (bankAccount) => {
+    const updatedData = { ...bankAccount, active: false };
+
+    try {
+      await fetch(`http://localhost:3000/bankAccounts/${bankAccount.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+        body: JSON.stringify(updatedData),
+      });
+    } catch (error) {
+      console.log(error);
+    }
   });
+};
+
+export const doBankAccountFavourite = async (id, bankAccounts) => {
+  let favouriteBankAccount = bankAccounts.filter((bankAccount) => bankAccount.id === id)[0];
+  favouriteBankAccount = { ...favouriteBankAccount, active: true };
+
+  try {
+    await fetch(`http://localhost:3000/bankAccounts/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify(favouriteBankAccount),
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const updateBankAccount = async (bankAccountData) => {
+  try {
+    await fetch(`http://localhost:3000/bankAccounts/${bankAccountData.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify(bankAccountData),
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const getBankAccount = async (id) => {

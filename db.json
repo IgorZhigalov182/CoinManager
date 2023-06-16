@@ -1,45 +1,13 @@
 {
   "bankAccounts": [
     {
-      "name": "Тестовый счёт",
-      "bank": "Альфа-банк",
-      "comment": "новый счет для теста",
-      "typeAccount": "estimated",
-      "id": "c0GMSIfYbQyY_U1Jmvk3p",
-      "date": 1686831148416
-    },
-    {
-      "name": "Счёт кредитный",
-      "typeAccount": "credit",
-      "active": true,
-      "bank": "Сбербанк",
-      "comment": "Новый кредитный счёт",
-      "id": "fDwX0gvxVPD9i3F_cyRSV",
-      "date": 1686831740543
-    },
-    {
-      "name": "вц",
-      "typeAccount": "credit",
-      "bank": "вц",
-      "id": "cVA8HCEDp4IH7dnu5bDjX",
-      "date": 1686831762498
-    },
-    {
-      "name": "2121",
-      "typeAccount": "estimated",
-      "bank": "2121",
-      "comment": "2",
-      "id": "L10s8Yf2om1njjneAuuyE",
-      "date": 1686832065927
-    },
-    {
-      "name": "вцфвфцвфцвфцвфцвфцвфцвфц",
-      "bank": "Титькоф",
+      "name": "23",
+      "bank": "32",
       "comment": "",
       "active": true,
       "typeAccount": "credit",
-      "id": "WapFp6ea2z4sNZe8b5EBJ",
-      "date": 1686832666523
+      "id": "ADTeD4w7ZQVt-oBzzQ-6t",
+      "date": 1686922946208
     }
   ],
   "comments": [
@@ -107,6 +75,14 @@
       "comment": "21",
       "id": "tUijw-zAPIPJEXzLDNHu1",
       "date": 1686558455587
+    },
+    {
+      "idBankAccount": "12345",
+      "sum": "123",
+      "category": "Продукты",
+      "comment": "32",
+      "id": "lTGb98uocCdKwq4POPKJC",
+      "date": 1686922785689
     }
   ]
 }

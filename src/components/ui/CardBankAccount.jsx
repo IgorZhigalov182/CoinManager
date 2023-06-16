@@ -1,6 +1,8 @@
 import React from 'react';
 import Button from './common/Button';
 import { setTitileTypeBankAccount } from '../../services/bankAccount.services';
+import { useDispatch } from 'react-redux';
+import { favouritedBankAccountById } from '../../store/bankAccounts/bankAccounts.slice';
 
 const CardBankAccount = ({
   setModalActive,
@@ -11,7 +13,10 @@ const CardBankAccount = ({
   active,
   comment,
   id,
+  toggleFavourite,
 }) => {
+  const dispatch = useDispatch();
+
   return (
     <>
       <div
@@ -19,11 +24,16 @@ const CardBankAccount = ({
         style={{ maxWidth: '22rem', maxHeight: '30rem' }}>
         {active ? (
           <div className="position-absolute top-0 end-0">
-            <Button className={'btn btn-success'} title={<i className="fa-solid fa-star"></i>} />
+            <Button
+              handler={() => toggleFavourite(id)}
+              className={'btn btn-success'}
+              title={<i className="fa-solid fa-star"></i>}
+            />
           </div>
         ) : (
           <div className="position-absolute top-0 end-0">
             <Button
+              handler={() => toggleFavourite(id)}
               className={'btn btn-secondary'}
               title={<i className="fa-regular fa-star"></i>}
             />
