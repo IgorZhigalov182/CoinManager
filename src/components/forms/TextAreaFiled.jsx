@@ -6,9 +6,9 @@ const TextAreaFiled = ({ name, onChange, htmlFor, label }) => {
     //   <label htmlFor={htmlFor}>{label}</label>
     //   <textarea name={name} onChange={onChange}></textarea>
     // </div>
-    <div class="form-floating">
+    <div className="form-floating">
       <textarea
-        class="form-control"
+        className="form-control"
         placeholder="Leave a comment here"
         id={htmlFor}
         name={name}

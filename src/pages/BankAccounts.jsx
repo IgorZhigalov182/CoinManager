@@ -1,28 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import CardBankAccount from '../components/ui/CardBankAccount';
+import React, { useState } from 'react';
 import Button from '../components/ui/common/Button';
 import ModalWindow from '../components/ui/ModalWindow';
-import TextAreaFiled from '../components/forms/TextAreaFiled';
-import TextField from '../components/forms/TextField';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   createBankAccount,
   deleteBankAccountById,
   favouritedBankAccountById,
-  getBankAccountById,
   getBankAccountList,
   updatedBankAccountById,
 } from '../store/bankAccounts/bankAccounts.slice';
-import SelectField from '../components/forms/SelectField';
 import {
-  addBankAccount,
-  deleteBankAccount,
   doBankAccountFavourite,
   resetFavouritesBankAccount,
-  updateBankAccount,
 } from '../services/bankAccount.services';
 import { nanoid } from '@reduxjs/toolkit';
-import CheckField from '../components/forms/CheckField';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import ListBankAccounts from '../components/ui/ListBankAccounts';

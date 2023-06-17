@@ -152,6 +152,12 @@ export const deleteBankAccountById = (id, bankAccounts) => (dispatch) => {
   }
 };
 
+export const getActiveBankAccount = () => (state) => {
+  if (state.bankAccounts.entities) {
+    return state.bankAccounts.entities.filter((bankAccount) => bankAccount.active === true)[0].id;
+  }
+};
+
 // export const filterTypeBankAccounts = (type) => (state) => {
 //   if (type === 'Все') {
 //     return state.bankAccounts.entities;

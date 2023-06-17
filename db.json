@@ -4,10 +4,19 @@
       "name": "Главный",
       "bank": "Тинькофф",
       "comment": "",
-      "active": true,
+      "active": false,
       "typeAccount": "current",
       "id": "_-p1LqD4EPrWC4H5pgbaj",
       "date": 1686926490746
+    },
+    {
+      "name": "2132",
+      "bank": "2332",
+      "comment": "",
+      "active": true,
+      "typeAccount": "current",
+      "id": "R8R7RfRMurQQqYsztImX9",
+      "date": 1686993310079
     }
   ],
   "comments": [

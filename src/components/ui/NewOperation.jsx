@@ -1,25 +1,39 @@
 import React, { useState, useContext } from 'react';
-import NumberField from '../forms/NumberField';
-import SelectField from '../forms/SelectField';
-import TextAreaFiled from '../forms/TextAreaFiled';
 import Button from './common/Button';
 import { nanoid } from '@reduxjs/toolkit';
 import '../../styles/modal.css';
 import ModalWindow from './ModalWindow';
-import { categories } from '../../data/categories';
 import { addOperation } from '../../services/operations.services';
 import { Field, Form, Formik } from 'formik';
 import { useSelector } from 'react-redux';
 import { getCategories } from '../../store/categories/categories.slice';
+import * as Yup from 'yup';
+import { getActiveBankAccount } from '../../store/bankAccounts/bankAccounts.slice';
 
 const NewOperation = ({}) => {
-  const [data, setData] = useState({
-    idBankAccount: '12345',
-    sum: '',
-    category: '',
+  const actualBankAccount = useSelector(getActiveBankAccount());
+  // const formik = useFormik();
+
+  let operationData = {
+    idBankAccount: '',
     comment: '',
-    id: '',
-  });
+    category: '',
+    sum: '',
+    addNewCategory: false,
+    newCategory: '',
+  };
+
+  const [initialValue, setInitialValue] = useState(operationData);
+
+  // console.log(initialValue);
+  // console.log(actualBankAccount);
+  // const [data, setData] = useState({
+  //   idBankAccount: '12345',
+  //   sum: '',
+  //   category: '',
+  //   comment: '',
+  //   id: '',
+  // });
 
   const [modalActive, setModalActive] = useState(false);
   const [operations, setOperations] = useState([]);
@@ -33,11 +47,12 @@ const NewOperation = ({}) => {
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (data) => {
     data.id = nanoid();
     data.date = Date.now();
-    await addOperation(data);
+    data.idBankAccount = actualBankAccount;
+    console.log(data);
+    // await addOperation(data);
   };
 
   // const addOperation = async (operationData) => {
@@ -50,65 +65,82 @@ const NewOperation = ({}) => {
   //   });
   // };
 
+  const operationSchema = Yup.object().shape({
+    sum: Yup.string().required('Обязательное поле'),
+    category: Yup.string().required('Обязательное поле'),
+    // email: Yup.string().email('Неверный email').required('Обязательное поле'),
+  });
+
   const handleModal = () => {
     setModalActive(!modalActive);
   };
 
+  // const handleCheckboxChange = (event) => {
+  //   const { checked } = event.target;
+  //   formik.setFieldValue('showInput', checked);
+  // };
+
   return (
     <div>
-      {/* <form id="operationForm" onSubmit={handleSubmit} action="">
-        <SelectField
-          name="category"
-          defaultValue="выберите категорию"
-          onChange={handleChange}
-          htmlFor="operationForm"
-          label="Категория"
-        />
-        <TextAreaFiled
-          name={'comment'}
-          onChange={handleChange}
-          htmlFor="operationForm"
-          label="Комментарий"
-        />
-        <h3>ДОБАВИТЬ ТИП ОПЕРАЦИИ РАСХОД ИЛИ ДОХОД</h3>
-      </form> */}
-      {/* <Button
-        handler={getOperations}
-        className={'btn btn-primary mt-2'}
-        title={'Получить операции из БД'}
-      /> */}
-
       <ModalWindow active={modalActive} setActive={setModalActive}>
-        {/* <form id="operationForm" onSubmit={handleSubmit} action="">
-          <NumberField name="sum" onChange={handleChange} htmlFor="operationForm" label="Сумма" />
-          <SelectField
-            name="category"
-            defaultValue="выберите категорию"
-            onChange={handleChange}
-            htmlFor="operationForm"
-            label="Категория"
-            list={categories}
-          />
-          <TextAreaFiled
-            name={'comment'}
-            onChange={handleChange}
-            htmlFor="operationForm"
-            label="Комментарий"
-          />
-          <Button title="Отправить" type={'submit'} className={'btn btn-primary mt-2'} />
-        </form> */}
-
-        <Formik>
-          {({ errors, touched }) => (
+        <Formik
+          onSubmit={async (values, actions) => {
+            // alert(JSON.stringify(values, null, 2));
+            handleSubmit(values);
+            // setInitialValue(bankAccountData);
+          }}
+          validationSchema={operationSchema}
+          initialValues={initialValue}
+          enableReinitialize={true}>
+          {({ errors, touched, handleChange, values }) => (
             <Form>
               <Field type="number" name="sum" className="form-control" placeholder="Сумма" />
-              {errors.name && touched.name ? <div>{errors.name}</div> : null}
-              <Field className="form-select form-select-lg mb-2 mt-2" as="select" name="color">
+              {errors.sum && touched.sum ? <div>{errors.sum}</div> : null}
+              <span className="ms-1">Категория</span>
+              <Field className="form-select form-select-lg mb-2 mt-2" as="select" name="category">
                 {categories &&
                   categories.map((category) => {
-                    return <option value={category.name}>{category.name}</option>;
+                    return (
+                      <option key={category.name} value={category.name}>
+                        {category.name}
+                      </option>
+                    );
                   })}
               </Field>
+
+              <label className="ms-1 mb-2">
+                Добавить новую категорию
+                <Field
+                  type="checkbox"
+                  name="addNewCategory"
+                  checked={values.addNewCategory}
+                  onChange={handleChange}
+                  className="form-check-input ms-2"
+                />
+              </label>
+              {values.addNewCategory && (
+                <Field
+                  name="newCategory"
+                  type="text"
+                  className="form-control mb-3"
+                  placeholder="Новая категория">
+                  {/* {({ field }) => (
+                    <div>
+                      <label htmlFor="newCategory">Input field:</label>
+                      <input id="newCategory" {...field} />
+                    </div>
+                  )} */}
+                </Field>
+              )}
+              <Field
+                as="textarea"
+                className="form-control"
+                placeholder="Комментарий"
+                name="comment"
+              />
+              <div>
+                <Button title="Добавить" type={'submit'} className={'btn btn-primary mt-3'} />
+              </div>
             </Form>
           )}
         </Formik>
