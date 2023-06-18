@@ -4,7 +4,7 @@
       "name": "Главный",
       "bank": "Тинькофф",
       "comment": "",
-      "active": false,
+      "active": true,
       "typeAccount": "current",
       "id": "_-p1LqD4EPrWC4H5pgbaj",
       "date": 1686926490746
@@ -13,7 +13,7 @@
       "name": "2132",
       "bank": "2332",
       "comment": "",
-      "active": true,
+      "active": false,
       "typeAccount": "current",
       "id": "R8R7RfRMurQQqYsztImX9",
       "date": 1686993310079
@@ -62,36 +62,24 @@
   ],
   "operations": [
     {
-      "idBankAccount": "12345",
-      "sum": "3000",
-      "category": "Спорт",
-      "comment": "Ball",
-      "id": "giN-CtWjmrf6W59Wi37U1",
-      "date": 1686387215137
+      "idBankAccount": "R8R7RfRMurQQqYsztImX9",
+      "comment": "Жизнь",
+      "category": "87693ba7-5040-4657-8f19-add0402713d4",
+      "sum": 100,
+      "addNewCategory": false,
+      "newCategory": "",
+      "id": "Vvos--nfr5KiOieqdiUI8",
+      "date": 1687115739591
     },
     {
-      "idBankAccount": "12345",
-      "sum": "21",
-      "category": "Одежда",
-      "comment": "32",
-      "id": "cHR-enCG7_D6P2np0PAY5",
-      "date": 1686470219742
-    },
-    {
-      "idBankAccount": "12345",
-      "sum": "123",
-      "category": "Одежда",
-      "comment": "21",
-      "id": "tUijw-zAPIPJEXzLDNHu1",
-      "date": 1686558455587
-    },
-    {
-      "idBankAccount": "12345",
-      "sum": "123",
-      "category": "Продукты",
-      "comment": "32",
-      "id": "lTGb98uocCdKwq4POPKJC",
-      "date": 1686922785689
+      "idBankAccount": "R8R7RfRMurQQqYsztImX9",
+      "comment": "2",
+      "category": "702943f8-ea77-4101-ab5a-d451952fbe9a",
+      "sum": 2,
+      "addNewCategory": false,
+      "newCategory": "",
+      "id": "biTuTk5OV3llIj2iOv_JC",
+      "date": 1687115859008
     }
   ],
   "categories": [
@@ -136,6 +124,19 @@
       "id": "b59657db-49bf-47cd-a8c3-82a7369c3349",
       "idUser": 0,
       "name": "Домашние животные"
+    },
+    {
+      "color": "rgb(120, 182, 133)",
+      "icon": "",
+      "id": "b59657db-49bf-57cd-a2c3-82a7369c3349",
+      "idUser": 0,
+      "name": "Авто"
+    },
+    {
+      "name": "Сигареты",
+      "id": "ZkVL8aKgEFSXcWywQ0YBw",
+      "color": "rgba(255, 206, 86, 1)",
+      "icon": ""
     }
   ]
 }

@@ -30,6 +30,19 @@ const categoryService = {
       console.log(error);
     }
   },
+  createCategory: async (data) => {
+    try {
+      await fetch('http://localhost:3000/categories', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+        body: JSON.stringify(data),
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };
 
 // export const getCategoriesFromDB = async () => {

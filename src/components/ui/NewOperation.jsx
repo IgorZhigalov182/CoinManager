@@ -5,13 +5,15 @@ import '../../styles/modal.css';
 import ModalWindow from './ModalWindow';
 import { addOperation } from '../../services/operations.services';
 import { Field, Form, Formik } from 'formik';
-import { useSelector } from 'react-redux';
-import { getCategories } from '../../store/categories/categories.slice';
+import { useDispatch, useSelector } from 'react-redux';
+import { createCategory, getCategories } from '../../store/categories/categories.slice';
 import * as Yup from 'yup';
 import { getActiveBankAccount } from '../../store/bankAccounts/bankAccounts.slice';
+import categoryService from '../../services/category.services';
 
 const NewOperation = ({}) => {
   const actualBankAccount = useSelector(getActiveBankAccount());
+  const dispatch = useDispatch();
   // const formik = useFormik();
 
   let operationData = {
@@ -35,6 +37,13 @@ const NewOperation = ({}) => {
   //   id: '',
   // });
 
+  // const addNewCategory = (data) => {
+  //   if (data.addNewCategory && data.newCategory) {
+  //     dispatch(createCategory(data));
+  //     console.log('Новая категория готова для добавления');
+  //   }
+  // };
+
   const [modalActive, setModalActive] = useState(false);
   const [operations, setOperations] = useState([]);
 
@@ -48,11 +57,23 @@ const NewOperation = ({}) => {
   };
 
   const handleSubmit = async (data) => {
+    if (data.addNewCategory && data.newCategory) {
+      const categoryData = {
+        name: data.newCategory,
+        id: nanoid(),
+        color: 'rgba(255, 206, 86, 1)',
+        icon: '',
+        idUser: '',
+      };
+      dispatch(createCategory(categoryData));
+      data.category = categoryData.id;
+    }
     data.id = nanoid();
     data.date = Date.now();
     data.idBankAccount = actualBankAccount;
-    console.log(data);
-    // await addOperation(data);
+    // Добавить id user(а)
+
+    addOperation(data);
   };
 
   // const addOperation = async (operationData) => {
@@ -67,7 +88,7 @@ const NewOperation = ({}) => {
 
   const operationSchema = Yup.object().shape({
     sum: Yup.string().required('Обязательное поле'),
-    category: Yup.string().required('Обязательное поле'),
+    // category: Yup.string().required('Обязательное поле'),
     // email: Yup.string().email('Неверный email').required('Обязательное поле'),
   });
 
@@ -75,10 +96,20 @@ const NewOperation = ({}) => {
     setModalActive(!modalActive);
   };
 
-  // const handleCheckboxChange = (event) => {
-  //   const { checked } = event.target;
-  //   formik.setFieldValue('showInput', checked);
-  // };
+  const validateNewCategory = (addNewCategory, nameNewCategory) => {
+    if (addNewCategory && !nameNewCategory) {
+      return 'Обязательное поле';
+    }
+  };
+
+  const validateCategory = (addNewCategory, input) => {
+    // console.log(addNewCategory);
+    // console.log(input);
+
+    if (!addNewCategory && !input) {
+      return 'Обязательное поле';
+    }
+  };
 
   return (
     <div>
@@ -96,17 +127,30 @@ const NewOperation = ({}) => {
             <Form>
               <Field type="number" name="sum" className="form-control" placeholder="Сумма" />
               {errors.sum && touched.sum ? <div>{errors.sum}</div> : null}
-              <span className="ms-1">Категория</span>
-              <Field className="form-select form-select-lg mb-2 mt-2" as="select" name="category">
-                {categories &&
-                  categories.map((category) => {
-                    return (
-                      <option key={category.name} value={category.name}>
-                        {category.name}
-                      </option>
-                    );
-                  })}
-              </Field>
+              {/* <span className="ms-1">Категория</span> */}
+              {/* <Field className="form-select mb-2 mt-2" name="category"> */}
+              {errors.category && touched.category ? <div>{errors.category}</div> : null}
+              {!values.addNewCategory && (
+                <Field
+                  className="form-select mb-2 mt-2"
+                  as="select"
+                  name="category"
+                  validate={() => validateCategory(values.addNewCategory, values.category)}>
+                  {/* <select id="selectValue"> */}
+                  <option disabled value="">
+                    (Выберите категорию)
+                  </option>
+                  {categories &&
+                    categories.map((category) => {
+                      return (
+                        <option key={category.name} value={category.id}>
+                          {category.name}
+                        </option>
+                      );
+                    })}
+                  {/* </select> */}
+                </Field>
+              )}
 
               <label className="ms-1 mb-2">
                 Добавить новую категорию
@@ -118,8 +162,10 @@ const NewOperation = ({}) => {
                   className="form-check-input ms-2"
                 />
               </label>
+              {errors.newCategory && touched.newCategory ? <div>{errors.newCategory}</div> : null}
               {values.addNewCategory && (
                 <Field
+                  validate={() => validateNewCategory(values.addNewCategory, values.newCategory)}
                   name="newCategory"
                   type="text"
                   className="form-control mb-3"
@@ -132,6 +178,7 @@ const NewOperation = ({}) => {
                   )} */}
                 </Field>
               )}
+
               <Field
                 as="textarea"
                 className="form-control"

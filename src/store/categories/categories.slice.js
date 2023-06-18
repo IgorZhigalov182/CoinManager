@@ -1,30 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import categoryService from '../../services/category.services';
 
-// const initialState = [
-//   {
-//     id: '702943f8-ea77-4101-ab5a-d451952fbe9a',
-//     name: 'Продукты',
-//     color: 'rgba(255, 99, 132, 1)',
-//     icon: '',
-//     idUser: '0',
-//   },
-//   {
-//     id: '448226cd-1c1e-4ef3-9185-b871e775996d',
-//     name: 'Одежда',
-// color: 'rgba(54, 162, 235, 1)',
-//     icon: '',
-//     idUser: '0',
-//   },
-//   {
-//     id: '87693ba7-5040-4657-8f19-add0402713d4',
-//     name: 'Спорт',
-//     color: 'rgba(255, 206, 86, 1)',
-//     icon: '',
-//     idUser: '0',
-//   },
-// ];
-
 export const categoriesSlice = createSlice({
   name: 'categories',
   //   initialState,
@@ -55,10 +31,14 @@ export const categoriesSlice = createSlice({
       state.error = action.payload;
       state.isLoading = false;
     },
+    categoriesCreate: (state, action) => {
+      state.entities.push(action.payload);
+    },
   },
 });
 const { reducer: categoriesReducer, actions } = categoriesSlice;
-const { categoriesRequested, categoriesReceived, categoriesRequestFailed } = actions;
+const { categoriesRequested, categoriesReceived, categoriesRequestFailed, categoriesCreate } =
+  actions;
 
 // Функция для получения актуальных данных с сервера
 // например, при длительном бездействии пользователя на странице
@@ -68,6 +48,15 @@ function isOutdated(date) {
   }
   return false;
 }
+
+export const createCategory = (data) => async (dispatch) => {
+  try {
+    dispatch(categoriesCreate(data));
+    await categoryService.createCategory(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const loadCategoriesList = () => async (dispatch, getState) => {
   const { lastFetch } = getState().categories;
@@ -83,6 +72,18 @@ export const loadCategoriesList = () => async (dispatch, getState) => {
       dispatch(categoriesRequestFailed(error.message));
     }
   }
+};
+
+export const getCategoryDisplayNameById = (id) => (state) => {
+  let name = '';
+  if (state.categories.entities) {
+    state.categories.entities.filter((category) => {
+      if (category.id == id) {
+        name = category.name;
+      }
+    });
+  }
+  return name;
 };
 
 export const getCategories = () => (state) => state.categories.entities;
