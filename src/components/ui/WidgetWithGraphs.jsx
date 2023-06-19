@@ -4,22 +4,22 @@ import ChartJSs from './ChartJS';
 const WidgetWithGraphs = () => {
   return (
     <div className="container h-25 mt-3">
-      <div class="card text-center">
-        <div class="card-header">
-          <ul class="nav nav-tabs card-header-tabs">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="true" href="#">
+      <div className="card text-center">
+        <div className="card-header">
+          <ul className="nav nav-tabs card-header-tabs">
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="true" href="#">
                 Расходы
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link " href="#">
+            <li className="nav-item">
+              <a className="nav-link " href="#">
                 Доходы
               </a>
             </li>
           </ul>
         </div>
-        <div class="card-body ">
+        <div className="card-body ">
           <ChartJSs style={{ height: '10rem', width: '20rem' }} />
           {/* <h5 class="card-title">Special title treatment</h5>
           <p class="card-text">

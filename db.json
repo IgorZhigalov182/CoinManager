@@ -62,24 +62,37 @@
   ],
   "operations": [
     {
-      "idBankAccount": "R8R7RfRMurQQqYsztImX9",
-      "comment": "Жизнь",
-      "category": "87693ba7-5040-4657-8f19-add0402713d4",
-      "sum": 100,
+      "idBankAccount": "_-p1LqD4EPrWC4H5pgbaj",
+      "comment": "Метро",
+      "category": "82ed8a46-620e-4b10-bf5d-e02e988ecd70",
+      "sum": 1000,
       "addNewCategory": false,
       "newCategory": "",
-      "id": "Vvos--nfr5KiOieqdiUI8",
-      "date": 1687115739591
+      "typeOperation": "expense",
+      "id": "fQmX8DmfC2VgvQhFz-2-T",
+      "date": 1687203028327
     },
     {
-      "idBankAccount": "R8R7RfRMurQQqYsztImX9",
-      "comment": "2",
-      "category": "702943f8-ea77-4101-ab5a-d451952fbe9a",
-      "sum": 2,
+      "idBankAccount": "_-p1LqD4EPrWC4H5pgbaj",
+      "comment": "Шахматы",
+      "category": "jnPjBJXFfo5i0XqUONh8P",
+      "sum": 2000,
       "addNewCategory": false,
       "newCategory": "",
-      "id": "biTuTk5OV3llIj2iOv_JC",
-      "date": 1687115859008
+      "typeOperation": "profit",
+      "id": "1kKEiZ6sY2Ew61dWo6a1T",
+      "date": 1687203044317
+    },
+    {
+      "idBankAccount": "_-p1LqD4EPrWC4H5pgbaj",
+      "comment": "Бутсы",
+      "category": "87693ba7-5040-4657-8f19-add0402713d4",
+      "sum": 3000,
+      "addNewCategory": false,
+      "newCategory": "",
+      "typeOperation": "expense",
+      "id": "SKF8Jtq9OfMRCgj9TStE9",
+      "date": 1687203065993
     }
   ],
   "categories": [
@@ -137,6 +150,13 @@
       "id": "ZkVL8aKgEFSXcWywQ0YBw",
       "color": "rgba(255, 206, 86, 1)",
       "icon": ""
+    },
+    {
+      "name": "Авито",
+      "id": "jnPjBJXFfo5i0XqUONh8P",
+      "color": "rgba(255, 206, 86, 1)",
+      "icon": "",
+      "idUser": ""
     }
   ]
 }

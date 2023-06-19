@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
+  addOperation,
   deleteOperation,
   getDataOperations,
   getOperation,
@@ -12,6 +13,7 @@ export const operationsSlice = createSlice({
     isLoading: true,
     error: null,
     lastFetch: null,
+    sort: null,
   },
 
   reducers: {
@@ -30,6 +32,30 @@ export const operationsSlice = createSlice({
       state.isLoading = false;
       // state.entities = state.entities.filter((obj) => obj.id == action.payload);
     },
+    operationCreated: (state, action) => {
+      state.entities.push(action.payload);
+    },
+    operationSorted: (state) => {
+      if (!state.sort || state.sort === 'asc') {
+        state.entities.sort((a, b) => {
+          if (+a.sum < +b.sum) {
+            return 1;
+          } else {
+            return -1;
+          }
+        });
+        state.sort = 'desc';
+      } else {
+        state.entities.sort((a, b) => {
+          if (+a.sum < +b.sum) {
+            return -1;
+          } else {
+            return 1;
+          }
+        });
+        state.sort = 'asc';
+      }
+    },
     operationDeleted: (state, action) => {
       // console.log('state', state.entities);
       // console.log('action', action.payload);
@@ -47,7 +73,9 @@ const {
   operationRequested,
   operationsRecieved,
   operationRecieved,
+  operationCreated,
   operationDeleted,
+  operationSorted,
 } = actions;
 
 export const loadOperationList = () => async (dispatch) => {
@@ -63,8 +91,9 @@ export const loadOperationList = () => async (dispatch) => {
 
 export const getOperationList = (id) => (state) => state.operations.entities;
 
-export const sortOperations = () => (state) => {
-  console.log(state.operations.entities);
+export const sortOperations = () => (dispatch) => {
+  dispatch(operationSorted());
+  // console.log(state.operations.entities);
 };
 
 export const getOperationsLoadingStatus = () => (state) => state.operations.isLoading;
@@ -73,6 +102,15 @@ export const getOperationsLoadingStatus = () => (state) => state.operations.isLo
 export const getOperationById = (id) => (state) => {
   if (state.operations.entities) {
     return state.operations.entities.find((o) => o.id == id);
+  }
+};
+
+export const createOperation = (data) => async (dispatch) => {
+  try {
+    await addOperation(data);
+    dispatch(operationCreated(data));
+  } catch (error) {
+    console.log(error);
   }
 };
 

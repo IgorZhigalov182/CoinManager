@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import CardProfit from '../components/ui/CardProfit';
-import ListBankAccounts from '../components/ui/ListBankAccounts';
 import WidgetWithGraphs from '../components/ui/WidgetWithGraphs';
 import WidgetBankAccount from '../components/ui/WidgetBankAccount';
 import ModalWindow from '../components/ui/ModalWindow';
@@ -17,7 +16,7 @@ const MainPage = () => {
         <h1>w</h1>
       </ModalWindow>
       <div className="container">
-        <div class="row">
+        <div className="row">
           <CardProfit title={'Доходы'} />
           <CardProfit title={'Расходы'} />
           <WidgetBankAccount />

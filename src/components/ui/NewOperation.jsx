@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useRef } from 'react';
 import Button from './common/Button';
 import { nanoid } from '@reduxjs/toolkit';
 import '../../styles/modal.css';
@@ -10,11 +10,11 @@ import { createCategory, getCategories } from '../../store/categories/categories
 import * as Yup from 'yup';
 import { getActiveBankAccount } from '../../store/bankAccounts/bankAccounts.slice';
 import categoryService from '../../services/category.services';
+import { createOperation } from '../../store/operations/operations.slice';
 
-const NewOperation = ({}) => {
+const NewOperation = ({ modalActive, setModalActive }) => {
   const actualBankAccount = useSelector(getActiveBankAccount());
   const dispatch = useDispatch();
-  // const formik = useFormik();
 
   let operationData = {
     idBankAccount: '',
@@ -23,38 +23,23 @@ const NewOperation = ({}) => {
     sum: '',
     addNewCategory: false,
     newCategory: '',
+    typeOperation: 'expense',
   };
 
   const [initialValue, setInitialValue] = useState(operationData);
+  // const inputSum = React.createRef();
 
-  // console.log(initialValue);
-  // console.log(actualBankAccount);
-  // const [data, setData] = useState({
-  //   idBankAccount: '12345',
-  //   sum: '',
-  //   category: '',
-  //   comment: '',
-  //   id: '',
-  // });
-
-  // const addNewCategory = (data) => {
-  //   if (data.addNewCategory && data.newCategory) {
-  //     dispatch(createCategory(data));
-  //     console.log('Новая категория готова для добавления');
-  //   }
-  // };
-
-  const [modalActive, setModalActive] = useState(false);
+  // const [modalActive, setModalActive] = useState(false);
   const [operations, setOperations] = useState([]);
 
   const categories = useSelector(getCategories());
 
-  const handleChange = ({ target }) => {
-    setData((prevState) => ({
-      ...prevState,
-      [target.name]: target.value,
-    }));
-  };
+  // const handleChange = ({ target }) => {
+  //   setData((prevState) => ({
+  //     ...prevState,
+  //     [target.name]: target.value,
+  //   }));
+  // };
 
   const handleSubmit = async (data) => {
     if (data.addNewCategory && data.newCategory) {
@@ -73,18 +58,9 @@ const NewOperation = ({}) => {
     data.idBankAccount = actualBankAccount;
     // Добавить id user(а)
 
-    addOperation(data);
+    dispatch(createOperation(data));
+    setModalActive(false);
   };
-
-  // const addOperation = async (operationData) => {
-  //   fetch('http://localhost:3000/operations', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json;charset=utf-8',
-  //     },
-  //     body: JSON.stringify(operationData),
-  //   });
-  // };
 
   const operationSchema = Yup.object().shape({
     sum: Yup.string().required('Обязательное поле'),
@@ -92,9 +68,10 @@ const NewOperation = ({}) => {
     // email: Yup.string().email('Неверный email').required('Обязательное поле'),
   });
 
-  const handleModal = () => {
-    setModalActive(!modalActive);
-  };
+  // const handleModal = () => {
+  //   // inputSum.current.focus();
+  //   setModalActive(!modalActive);
+  // };
 
   const validateNewCategory = (addNewCategory, nameNewCategory) => {
     if (addNewCategory && !nameNewCategory) {
@@ -103,9 +80,6 @@ const NewOperation = ({}) => {
   };
 
   const validateCategory = (addNewCategory, input) => {
-    // console.log(addNewCategory);
-    // console.log(input);
-
     if (!addNewCategory && !input) {
       return 'Обязательное поле';
     }
@@ -125,11 +99,17 @@ const NewOperation = ({}) => {
           enableReinitialize={true}>
           {({ errors, touched, handleChange, values }) => (
             <Form>
-              <Field type="number" name="sum" className="form-control" placeholder="Сумма" />
+              <Field
+                // innerRef={inputSum}
+                type="number"
+                name="sum"
+                className="form-control"
+                placeholder="Сумма"
+              />
               {errors.sum && touched.sum ? <div>{errors.sum}</div> : null}
               {/* <span className="ms-1">Категория</span> */}
               {/* <Field className="form-select mb-2 mt-2" name="category"> */}
-              {errors.category && touched.category ? <div>{errors.category}</div> : null}
+
               {!values.addNewCategory && (
                 <Field
                   className="form-select mb-2 mt-2"
@@ -151,6 +131,8 @@ const NewOperation = ({}) => {
                   {/* </select> */}
                 </Field>
               )}
+              {errors.newCategory && touched.newCategory ? <div>{errors.newCategory}</div> : null}
+              {errors.category && touched.category ? <div>{errors.category}</div> : null}
 
               <label className="ms-1 mb-2">
                 Добавить новую категорию
@@ -162,7 +144,6 @@ const NewOperation = ({}) => {
                   className="form-check-input ms-2"
                 />
               </label>
-              {errors.newCategory && touched.newCategory ? <div>{errors.newCategory}</div> : null}
               {values.addNewCategory && (
                 <Field
                   validate={() => validateNewCategory(values.addNewCategory, values.newCategory)}
@@ -179,9 +160,33 @@ const NewOperation = ({}) => {
                 </Field>
               )}
 
+              <div>Тип операции</div>
+              <div role="group" aria-labelledby="my-radio-group" className="mt-1">
+                <div>
+                  <Field
+                    type="radio"
+                    className="form-check-input"
+                    name="typeOperation"
+                    value="expense"
+                  />
+                  <span className="ms-2">Расходы</span>
+                </div>
+                <div>
+                  <Field
+                    type="radio"
+                    className="form-check-input"
+                    name="typeOperation"
+                    value="profit"
+                  />
+                  <span className="ms-2">Доходы</span>
+                </div>
+
+                {errors.typeAccount && touched.typeAccount ? <div>{errors.typeAccount}</div> : null}
+              </div>
+
               <Field
                 as="textarea"
-                className="form-control"
+                className="form-control mt-3"
                 placeholder="Комментарий"
                 name="comment"
               />
@@ -192,11 +197,11 @@ const NewOperation = ({}) => {
           )}
         </Formik>
       </ModalWindow>
-      <Button
+      {/* <Button
         handler={handleModal}
         title={'Добавить операцию'}
         className={'btn btn-primary mt-2'}
-      />
+      /> */}
     </div>
   );
 };

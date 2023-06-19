@@ -6,8 +6,9 @@ import { getBuyDate, getBuyTime } from '../../services/date.services';
 import { deleteOperationById } from '../../store/operations/operations.slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCategoryDisplayNameById } from '../../store/categories/categories.slice';
+import Badge from './Badge';
 
-const CardOperation = ({ idBankAccount, category, comment, id, sum, date, type }) => {
+const CardOperation = ({ idBankAccount, category, comment, id, sum, date, typeOperation }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   let { pathname } = useLocation();
@@ -19,14 +20,18 @@ const CardOperation = ({ idBankAccount, category, comment, id, sum, date, type }
 
   const handleDelete = () => dispatch(deleteOperationById(id));
 
-  console.log(categoryName);
-
   return (
     <div className="card mb-2">
       <div className="card-body">
-        <h3>{sum}Р</h3>
-        <h4>Категория: {`${categoryName}`}</h4>
-        <h4>{type}</h4>
+        <h3>
+          {typeOperation === 'profit' ? (
+            <Badge title={sum} className="badge text-bg-success" />
+          ) : (
+            <Badge title={sum} className="badge text-bg-secondary" />
+          )}
+        </h3>
+        <h4>Категория: {categoryName}</h4>
+        <h4>Тип операции: {typeOperation === 'profit' ? 'Доходы' : 'Расходы'}</h4>
         <h4>Дата покупки: {getBuyDate(date)}</h4>
         {!operationPage && <h5>Время покупки: {getBuyTime(date)}</h5>}
         {!operationPage && <h5 className="card-title">Банковский счёт: {idBankAccount}</h5>}
