@@ -35,6 +35,26 @@ export const operationsSlice = createSlice({
     operationCreated: (state, action) => {
       state.entities.push(action.payload);
     },
+    operationCount: (state, action) => {
+      // console.log('state', state.entities);
+      // console.log('action', action.payload);
+      //   state.entities = state.entities.filter(
+      //     (c) => c._id !== action.payload
+      // );
+      if (state.entities.operations) {
+        let arr = state.entities.operations.filter((operation) => {
+          operation.typeOperation === action.payload;
+        });
+        return arr.length;
+      }
+      // state.entities.filter((operation) => {
+      //   operation.typeOperation === action.payload;
+      // });
+
+      // if (arr) {
+      //   return arr.length;
+      // }
+    },
     operationSorted: (state) => {
       if (!state.sort || state.sort === 'asc') {
         state.entities.sort((a, b) => {
@@ -76,6 +96,7 @@ const {
   operationCreated,
   operationDeleted,
   operationSorted,
+  operationCount,
 } = actions;
 
 export const loadOperationList = () => async (dispatch) => {
@@ -94,6 +115,16 @@ export const getOperationList = (id) => (state) => state.operations.entities;
 export const sortOperations = () => (dispatch) => {
   dispatch(operationSorted());
   // console.log(state.operations.entities);
+};
+
+export const getCountOperations = (title) => (dispatch) => {
+  if (title === 'Доходы') {
+    // console.log(dispatch(operationCount(title)));
+    dispatch(operationCount(title));
+  } else {
+    // console.log(dispatch(operationCount(title)));
+    dispatch(operationCount(title));
+  }
 };
 
 export const getOperationsLoadingStatus = () => (state) => state.operations.isLoading;

@@ -6,7 +6,7 @@ import { getBuyDate, getBuyTime } from '../../services/date.services';
 import { deleteOperationById } from '../../store/operations/operations.slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCategoryDisplayNameById } from '../../store/categories/categories.slice';
-import Badge from './Badge';
+import Badge from './common/Badge';
 
 const CardOperation = ({ idBankAccount, category, comment, id, sum, date, typeOperation }) => {
   const navigate = useNavigate();

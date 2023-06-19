@@ -28,11 +28,6 @@ export default function NavBar() {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/newOperation" className="nav-link">
-                Новая операция
-              </NavLink>
-            </li>
-            <li className="nav-item">
               <NavLink to="/operations" className="nav-link">
                 Операции
               </NavLink>

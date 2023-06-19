@@ -2,16 +2,23 @@ import React, { useState } from 'react';
 import Button from './common/Button';
 import { useNavigate } from 'react-router-dom';
 import ModalWindow from './ModalWindow';
+import { useDispatch } from 'react-redux';
+import { getCountOperations } from '../../store/operations/operations.slice';
 
 const CardProfit = ({ title }) => {
-  const [modalActive, setModalActive] = useState(false);
+  // const [modalActive, setModalActive] = useState(false);
   const handleModal = () => setModalActive(!modalActive);
+  const dispatch = useDispatch();
+  const countOperation = dispatch(getCountOperations(title));
+
+  console.log(countOperation);
 
   const navigate = useNavigate();
 
-  const handleOperationList = () => {
-    navigate('/operations', { state: title });
-  };
+  const modalActive = '';
+  const setModalActive = '';
+
+  const handleOperationList = () => navigate('/operations', { state: title });
 
   // Добавить редирект на добавление новой операции (добавляя в state тип операции, чтобы)
   // пользователю не пришлось выбирать вручную

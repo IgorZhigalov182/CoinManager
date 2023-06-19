@@ -11,7 +11,6 @@ import BankAccounts from './pages/BankAccounts';
 const routes = [
   { path: '/', element: <MainPage />, errorElement: <NotFound /> },
   { path: 'favorites', element: <BankAccounts />, errorElement: <NotFound /> },
-  { path: 'newOperation', element: <NewOperation /> },
   { path: 'login', element: <Login /> },
   {
     path: 'operations',
