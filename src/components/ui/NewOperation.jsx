@@ -12,7 +12,7 @@ import { getActiveBankAccount } from '../../store/bankAccounts/bankAccounts.slic
 import categoryService from '../../services/category.services';
 import { createOperation } from '../../store/operations/operations.slice';
 
-const NewOperation = ({ modalActive, setModalActive }) => {
+const NewOperation = ({ typeOperationForModal, modalActive, setModalActive }) => {
   const actualBankAccount = useSelector(getActiveBankAccount());
   const dispatch = useDispatch();
 
@@ -23,7 +23,7 @@ const NewOperation = ({ modalActive, setModalActive }) => {
     sum: '',
     addNewCategory: false,
     newCategory: '',
-    typeOperation: 'expense',
+    typeOperation: typeOperationForModal || 'expense',
   };
 
   const [initialValue, setInitialValue] = useState(operationData);
@@ -109,7 +109,7 @@ const NewOperation = ({ modalActive, setModalActive }) => {
               {errors.sum && touched.sum ? <div>{errors.sum}</div> : null}
               {/* <span className="ms-1">Категория</span> */}
               {/* <Field className="form-select mb-2 mt-2" name="category"> */}
-
+              {/* <div className="d-flex justify-content-between"> */}
               {!values.addNewCategory && (
                 <Field
                   className="form-select mb-2 mt-2"
@@ -123,17 +123,30 @@ const NewOperation = ({ modalActive, setModalActive }) => {
                   {categories &&
                     categories.map((category) => {
                       return (
-                        <option key={category.name} value={category.id}>
-                          {category.name}
-                        </option>
+                        <>
+                          <option key={category.name} value={category.id}>
+                            {category.name}
+                          </option>
+                        </>
                       );
                     })}
                   {/* </select> */}
                 </Field>
               )}
+              {/* <Button
+                  title={'Удалить категорию '}
+                  style={{
+                    height: '2.3rem',
+                    textAlign: 'center',
+                    marginTop: '0.45rem',
+                    marginLeft: '1rem',
+                    width: '15rem',
+                  }}
+                  className={'btn btn-danger'}
+                />
+              </div> */}
               {errors.newCategory && touched.newCategory ? <div>{errors.newCategory}</div> : null}
               {errors.category && touched.category ? <div>{errors.category}</div> : null}
-
               <label className="ms-1 mb-2">
                 Добавить новую категорию
                 <Field

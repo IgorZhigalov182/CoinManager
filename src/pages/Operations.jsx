@@ -17,18 +17,27 @@ const Operations = ({ route }) => {
   const [modalActive, setModalActive] = useState(false);
   let operations = useSelector(getOperationList());
   const location = useLocation();
-  const typeOperation = location.state;
+  const typeOperation = location.state?.title;
+  const typeHandler = location.state?.handle;
   const dispatch = useDispatch();
+  let typeOperationForModal = typeOperation === 'Доходы' ? 'profit' : 'expense';
 
   const handleModal = () => {
     // inputSum.current.focus();
     setModalActive(!modalActive);
   };
 
+  useEffect(() => {
+    if (typeHandler === 'addModal') {
+      typeOperationForModal = typeOperation;
+      handleModal();
+    }
+  }, []);
+
   // Вызов хуков в условии, но благодаря последнему else кол-во хуков будет всегда одинаковое и рендер не сломается
-  if (typeOperation === 'Доходы') {
+  if (typeOperation === 'Доходы' && typeHandler === 'show') {
     operations = useSelector(filterTypeOperations('profit'));
-  } else if (typeOperation === 'Расходы') {
+  } else if (typeOperation === 'Расходы' && typeHandler === 'show') {
     operations = useSelector(filterTypeOperations('expense'));
   } else {
     operations = useSelector(filterTypeOperations('Все'));
@@ -49,7 +58,11 @@ const Operations = ({ route }) => {
         handler={() => handleSort()}
       />
       <ListOperations operations={operations} />
-      <NewOperation modalActive={modalActive} setModalActive={setModalActive} />
+      <NewOperation
+        typeOperationForModal={typeOperationForModal}
+        modalActive={modalActive}
+        setModalActive={setModalActive}
+      />
     </div>
   );
 };

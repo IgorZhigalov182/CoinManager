@@ -160,7 +160,7 @@ export const filterTypeOperations = (type) => (state) => {
   }
 
   if (state.operations.entities) {
-    return state.operations.entities.filter((o) => o.type === type);
+    return state.operations.entities.filter((o) => o.typeOperation === type);
   }
 };
 

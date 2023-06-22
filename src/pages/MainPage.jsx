@@ -4,7 +4,6 @@ import WidgetWithGraphs from '../components/ui/WidgetWithGraphs';
 import WidgetBankAccount from '../components/ui/WidgetBankAccount';
 import ModalWindow from '../components/ui/ModalWindow';
 import Button from '../components/ui/common/Button';
-import { useDispatch } from 'react-redux';
 
 const MainPage = () => {
   const [modalActive, setModalActive] = useState(false);

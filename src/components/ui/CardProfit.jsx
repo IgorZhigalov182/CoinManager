@@ -11,14 +11,15 @@ const CardProfit = ({ title }) => {
   const dispatch = useDispatch();
   const countOperation = dispatch(getCountOperations(title));
 
-  console.log(countOperation);
-
   const navigate = useNavigate();
 
   const modalActive = '';
   const setModalActive = '';
 
-  const handleOperationList = () => navigate('/operations', { state: title });
+  const handleOperationList = () =>
+    navigate('/operations', { state: { title: title, handle: 'show' } });
+  const handleAddOperation = () =>
+    navigate('/operations', { state: { title: title, handle: 'addModal' } });
 
   // Добавить редирект на добавление новой операции (добавляя в state тип операции, чтобы)
   // пользователю не пришлось выбирать вручную
@@ -33,7 +34,7 @@ const CardProfit = ({ title }) => {
             <p className="card-text">Общая сумма</p>
             <div className="d-flex justify-content-between">
               <Button title={'Открыть список'} handler={handleOperationList} />
-              <Button title={'Добавить'} handler={handleModal} />
+              <Button title={'Добавить'} handler={handleAddOperation} />
             </div>
           </div>
         </div>
