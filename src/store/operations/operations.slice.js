@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 import {
   addOperation,
   deleteOperation,
@@ -34,26 +34,6 @@ export const operationsSlice = createSlice({
     },
     operationCreated: (state, action) => {
       state.entities.push(action.payload);
-    },
-    operationCount: (state, action) => {
-      // console.log('state', state.entities);
-      // console.log('action', action.payload);
-      //   state.entities = state.entities.filter(
-      //     (c) => c._id !== action.payload
-      // );
-      if (state.entities.operations) {
-        let arr = state.entities.operations.filter((operation) => {
-          operation.typeOperation === action.payload;
-        });
-        return arr.length;
-      }
-      // state.entities.filter((operation) => {
-      //   operation.typeOperation === action.payload;
-      // });
-
-      // if (arr) {
-      //   return arr.length;
-      // }
     },
     operationSorted: (state) => {
       if (!state.sort || state.sort === 'asc') {
@@ -114,16 +94,32 @@ export const getOperationList = (id) => (state) => state.operations.entities;
 
 export const sortOperations = () => (dispatch) => {
   dispatch(operationSorted());
-  // console.log(state.operations.entities);
 };
 
-export const getCountOperations = (title) => (dispatch) => {
-  if (title === 'Доходы') {
-    // console.log(dispatch(operationCount(title)));
-    dispatch(operationCount(title));
-  } else {
-    // console.log(dispatch(operationCount(title)));
-    dispatch(operationCount(title));
+export const getCountOperations = (title) => (state) => {
+  const typeOperation = title === 'Доходы' ? 'profit' : 'expense';
+  let length = 0;
+  if (state.operations.entities) {
+    let arr = [...state.operations.entities].filter((operation) => {
+      return operation.typeOperation === typeOperation;
+    });
+    length = arr.length;
+    // console.log(length);
+  }
+  return length;
+};
+
+export const getSumOperations = (title) => (state) => {
+  const typeOperation = title === 'Доходы' ? 'profit' : 'expense';
+  if (state.operations.entities) {
+    let sum = [...state.operations.entities]
+      .filter((operation) => {
+        return operation.typeOperation === typeOperation;
+      })
+      .map((operation) => operation.sum)
+      .reduce((prevVal, curVal) => prevVal + curVal, 0);
+
+    return sum;
   }
 };
 

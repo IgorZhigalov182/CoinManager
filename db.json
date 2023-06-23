@@ -4,7 +4,7 @@
       "name": "Главный",
       "bank": "Тинькофф",
       "comment": "",
-      "active": true,
+      "active": false,
       "typeAccount": "current",
       "id": "_-p1LqD4EPrWC4H5pgbaj",
       "date": 1686926490746
@@ -13,7 +13,7 @@
       "name": "2132",
       "bank": "2332",
       "comment": "",
-      "active": false,
+      "active": true,
       "typeAccount": "current",
       "id": "R8R7RfRMurQQqYsztImX9",
       "date": 1686993310079
@@ -93,6 +93,17 @@
       "typeOperation": "expense",
       "id": "SKF8Jtq9OfMRCgj9TStE9",
       "date": 1687203065993
+    },
+    {
+      "idBankAccount": "R8R7RfRMurQQqYsztImX9",
+      "comment": "Malboro",
+      "category": "ZkVL8aKgEFSXcWywQ0YBw",
+      "sum": 1000,
+      "addNewCategory": false,
+      "newCategory": "",
+      "typeOperation": "expense",
+      "id": "ShjczR2uAIqMBbG-VS_H_",
+      "date": 1687526437196
     }
   ],
   "categories": [

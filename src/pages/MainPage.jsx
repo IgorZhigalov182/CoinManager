@@ -11,7 +11,6 @@ const MainPage = () => {
 
   return (
     <>
-      <Button handler={handleModal} />
       <ModalWindow active={modalActive} setActive={setModalActive}>
         <h1>w</h1>
       </ModalWindow>
