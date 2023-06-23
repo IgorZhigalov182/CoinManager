@@ -31,7 +31,6 @@ const NewOperation = ({ typeOperationForModal, modalActive, setModalActive }) =>
 
   // const [modalActive, setModalActive] = useState(false);
   const [operations, setOperations] = useState([]);
-
   const categories = useSelector(getCategories());
 
   // const handleChange = ({ target }) => {
