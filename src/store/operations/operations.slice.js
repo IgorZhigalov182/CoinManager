@@ -104,7 +104,6 @@ export const getCountOperations = (title) => (state) => {
       return operation.typeOperation === typeOperation;
     });
     length = arr.length;
-    // console.log(length);
   }
   return length;
 };
@@ -122,6 +121,8 @@ export const getSumOperations = (title) => (state) => {
     return sum;
   }
 };
+
+// export const getOperationsLoadingStatus = () => (state) => state.operations.isLoading;
 
 export const getOperationsLoadingStatus = () => (state) => state.operations.isLoading;
 // export const getMembersLoadingStatus = () => (state) => state.members.isLoading;

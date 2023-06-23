@@ -7,12 +7,14 @@ import { deleteOperationById } from '../../store/operations/operations.slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCategoryDisplayNameById } from '../../store/categories/categories.slice';
 import Badge from './common/Badge';
+import { getBankAccountDisplayNameById } from '../../store/bankAccounts/bankAccounts.slice';
 
 const CardOperation = ({ idBankAccount, category, comment, id, sum, date, typeOperation }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   let { pathname } = useLocation();
   const categoryName = useSelector(getCategoryDisplayNameById(category));
+  const bankAccountName = useSelector(getBankAccountDisplayNameById(idBankAccount));
 
   const operationPage = pathname.length < 12;
 
@@ -34,7 +36,7 @@ const CardOperation = ({ idBankAccount, category, comment, id, sum, date, typeOp
         <h4>Тип операции: {typeOperation === 'profit' ? 'Доходы' : 'Расходы'}</h4>
         <h4>Дата покупки: {getBuyDate(date)}</h4>
         {!operationPage && <h5>Время покупки: {getBuyTime(date)}</h5>}
-        {!operationPage && <h5 className="card-title">Банковский счёт: {idBankAccount}</h5>}
+        {!operationPage && <h5 className="card-title">Банковский счёт: {bankAccountName}</h5>}
         <p className="card-text">Комментарий: {comment}</p>
         <div className="d-flex justify-content-between">
           {operationPage && <Button title={'Открыть запись'} handler={handleGoToRecord} />}

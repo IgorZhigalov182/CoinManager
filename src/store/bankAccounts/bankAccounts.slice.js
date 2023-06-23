@@ -158,6 +158,18 @@ export const getActiveBankAccount = () => (state) => {
   }
 };
 
+export const getBankAccountDisplayNameById = (id) => (state) => {
+  let name = '';
+  if (state.bankAccounts.entities) {
+    state.bankAccounts.entities.filter((bankAccount) => {
+      if (bankAccount.id == id) {
+        name = bankAccount.name;
+      }
+    });
+  }
+  return name;
+};
+
 // export const filterTypeBankAccounts = (type) => (state) => {
 //   if (type === 'Все') {
 //     return state.bankAccounts.entities;

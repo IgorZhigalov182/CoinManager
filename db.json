@@ -63,17 +63,6 @@
   "operations": [
     {
       "idBankAccount": "_-p1LqD4EPrWC4H5pgbaj",
-      "comment": "Метро",
-      "category": "82ed8a46-620e-4b10-bf5d-e02e988ecd70",
-      "sum": 1000,
-      "addNewCategory": false,
-      "newCategory": "",
-      "typeOperation": "expense",
-      "id": "fQmX8DmfC2VgvQhFz-2-T",
-      "date": 1687203028327
-    },
-    {
-      "idBankAccount": "_-p1LqD4EPrWC4H5pgbaj",
       "comment": "Шахматы",
       "category": "jnPjBJXFfo5i0XqUONh8P",
       "sum": 2000,
