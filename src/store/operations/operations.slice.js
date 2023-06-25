@@ -5,6 +5,7 @@ import {
   getDataOperations,
   getOperation,
 } from '../../services/operations.services';
+import { timeStampToMonth } from '../../services/date.services';
 
 export const operationsSlice = createSlice({
   name: 'operations',
@@ -122,10 +123,26 @@ export const getSumOperations = (title) => (state) => {
   }
 };
 
-// export const getOperationsLoadingStatus = () => (state) => state.operations.isLoading;
+export const getCountOperationByMounth = (title) => (state) => {
+  const typeOperation = title === 'Доходы' ? 'profit' : 'expense';
+
+  let resultArray = new Array(12).fill(0);
+
+  if (state.operations.entities) {
+    [...state.operations.entities]
+      .filter((operation) => {
+        return operation.typeOperation === typeOperation;
+      })
+      .map((operation) => {
+        const index = timeStampToMonth(operation.date);
+        resultArray[index - 1] += 1;
+      });
+
+    return resultArray;
+  }
+};
 
 export const getOperationsLoadingStatus = () => (state) => state.operations.isLoading;
-// export const getMembersLoadingStatus = () => (state) => state.members.isLoading;
 
 export const getOperationById = (id) => (state) => {
   if (state.operations.entities) {

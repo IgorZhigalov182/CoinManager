@@ -4,6 +4,9 @@ import WidgetWithGraphs from '../components/ui/WidgetWithGraphs';
 import WidgetBankAccount from '../components/ui/WidgetBankAccount';
 import ModalWindow from '../components/ui/ModalWindow';
 import Button from '../components/ui/common/Button';
+import { timeStampToMonth } from '../services/date.services';
+import { useSelector } from 'react-redux';
+import { getCountOperationByMounth } from '../store/operations/operations.slice';
 
 const MainPage = () => {
   const [modalActive, setModalActive] = useState(false);

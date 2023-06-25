@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import ChartJSs from './ChartJS';
 import Button from './common/Button';
 import LineChart from './LineChart';
+import { useSelector } from 'react-redux';
+import { getCountOperationByMounth } from '../../store/operations/operations.slice';
 
 const WidgetWithGraphs = () => {
   const [isProfitTypeOperation, setIsProfitTypeOperation] = useState(false);
@@ -16,7 +18,6 @@ const WidgetWithGraphs = () => {
             <li className="nav-item">
               <Button
                 title={'Расходы'}
-                // handler={() => handleChangeTypeOperation('Расходы')}
                 handler={handleChangeTypeOperation}
                 className={
                   isProfitTypeOperation ? 'btn ms-1 btn-secondary' : 'btn ms-1 btn-secondary active'
@@ -27,7 +28,6 @@ const WidgetWithGraphs = () => {
               <Button
                 title={'Доходы'}
                 handler={handleChangeTypeOperation}
-                // className={'btn ms-3 mb-2 btn-secondary '}
                 className={
                   isProfitTypeOperation
                     ? 'btn ms-3 mb-2 btn-secondary active'
@@ -40,21 +40,15 @@ const WidgetWithGraphs = () => {
         {!isProfitTypeOperation && (
           <div className="d-flex">
             <ChartJSs style={{ height: '10rem', width: '20rem' }} />
-            <LineChart style={{ height: '10rem', width: '20rem', border: '1px solid black' }} />
+            <LineChart title={'Расходы'} />
           </div>
         )}
 
         {isProfitTypeOperation && (
-          <div className="card-body ">
-            <h4>Доходный график</h4>
+          <div className="d-flex">
+            <h1>Доходы</h1>
             <ChartJSs style={{ height: '10rem', width: '20rem' }} />
-            {/* <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">
-            With supporting text below as a natural lead-in to additional content.
-          </p>
-          <a href="#" class="btn btn-primary">
-            Go somewhere
-          </a> */}
+            <LineChart title={'Доходы'} />
           </div>
         )}
       </div>

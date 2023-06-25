@@ -12,3 +12,7 @@ export const getBuyDate = (date) => {
     year: 'numeric',
   });
 };
+
+export const timeStampToMonth = (timeStamp) => {
+  return new Date(timeStamp).getMonth() + 1;
+};
