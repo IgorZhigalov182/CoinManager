@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import LoginForm from '../components/ui/LoginForm';
 import RegisterForm from '../components/ui/RegisterForm';
+import LineChart from '../components/ui/LineChart';
 
 const Auth = () => {
   const [isSingUp, setIsSingUp] = useState(false);
 
   return (
     <div className="">
-      {!isSingUp && <LoginForm setIsSingUp={setIsSingUp} />}
-      {isSingUp && <RegisterForm setIsSingUp={setIsSingUp} />}
+      {/* {!isSingUp && <LoginForm setIsSingUp={setIsSingUp} />}
+      {isSingUp && <RegisterForm setIsSingUp={setIsSingUp} />} */}
+
+      <LineChart />
 
       {/* <span className="container mt-2 ms-auto">
         <a

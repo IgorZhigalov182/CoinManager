@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ChartJSs from './ChartJS';
 import Button from './common/Button';
+import LineChart from './LineChart';
 
 const WidgetWithGraphs = () => {
   const [isProfitTypeOperation, setIsProfitTypeOperation] = useState(false);
@@ -37,16 +38,9 @@ const WidgetWithGraphs = () => {
           </ul>
         </div>
         {!isProfitTypeOperation && (
-          <div className="card-body ">
-            <h4>Расходный график</h4>
+          <div className="d-flex">
             <ChartJSs style={{ height: '10rem', width: '20rem' }} />
-            {/* <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">
-            With supporting text below as a natural lead-in to additional content.
-          </p>
-          <a href="#" class="btn btn-primary">
-            Go somewhere
-          </a> */}
+            <LineChart style={{ height: '10rem', width: '20rem', border: '1px solid black' }} />
           </div>
         )}
 
