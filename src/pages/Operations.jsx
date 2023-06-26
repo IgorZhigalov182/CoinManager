@@ -10,11 +10,13 @@ import {
 import Button from '../components/ui/common/Button';
 import { useLocation } from 'react-router-dom';
 import NewOperation from '../components/ui/NewOperation';
-import ModalWindow from '../components/ui/ModalWindow';
+import { paginate } from '../utils/paginate';
+import Pagination from '../components/ui/Pagination';
 
 const Operations = ({ route }) => {
-  const [state, setState] = useState(0);
   const [modalActive, setModalActive] = useState(false);
+  const pageSize = 2;
+  const [currentPage, setCurrentPage] = useState(1);
   let operations = useSelector(getOperationList());
   const location = useLocation();
   const typeOperation = location.state?.title;
@@ -43,6 +45,12 @@ const Operations = ({ route }) => {
     operations = useSelector(filterTypeOperations('Все'));
   }
 
+  const count = operations.length;
+
+  const operationsCrop = paginate(operations, currentPage, pageSize);
+
+  const handlePageChange = (pageIndex) => setCurrentPage(pageIndex);
+
   const handleSort = () => dispatch(sortOperations());
 
   return (
@@ -57,12 +65,27 @@ const Operations = ({ route }) => {
         className={'btn btn-dark mt-1 mb-2'}
         handler={() => handleSort()}
       />
-      <ListOperations operations={operations} />
+      {/* <ListOperations operations={operations} /> */}
+      <ListOperations operations={operationsCrop} />
       <NewOperation
         typeOperationForModal={typeOperationForModal}
         modalActive={modalActive}
         setModalActive={setModalActive}
       />
+      <div className="d-flex justify-content-center">
+        {/* <Pagination
+          itemsCount={4}
+          pageSize={4}
+          currentPage={4}
+          // onPageChange={handlePageChange}
+        /> */}
+        <Pagination
+          itemsCount={count}
+          pageSize={pageSize}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
+      </div>
     </div>
   );
 };

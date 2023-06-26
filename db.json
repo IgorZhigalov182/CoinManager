@@ -69,7 +69,7 @@
       "addNewCategory": false,
       "newCategory": "",
       "typeOperation": "expense",
-      "id": "1kKEiZ6sY2Ew61dWo6a1T",
+      "id": "1kKEiZ6sY2Ew61dWoh6a1T",
       "date": 1682203044317
     },
     {
@@ -80,7 +80,7 @@
       "addNewCategory": false,
       "newCategory": "",
       "typeOperation": "expense",
-      "id": "1kKEiZ6sY2Ew61dWo6a1T",
+      "id": "1kKEiZ6sY2Ew61dWo26a1T",
       "date": 1683203044317
     },
     {
@@ -91,7 +91,7 @@
       "addNewCategory": false,
       "newCategory": "",
       "typeOperation": "profit",
-      "id": "1kKEiZ6sY2Ew61dWo6a1T",
+      "id": "1kKEiZ6sY2Ew61dWo36a1T",
       "date": 1687203044317
     },
     {
@@ -102,18 +102,18 @@
       "addNewCategory": false,
       "newCategory": "",
       "typeOperation": "expense",
-      "id": "SKF8Jtq9OfMRCgj9TStE9",
+      "id": "SKF8Jtq9OfMRCgj9TStE89",
       "date": 1687203065993
     },
     {
-      "idBankAccount": "R8R7RfRMurQQqYsztImX9",
+      "idBankAccount": "R86R7RfRMurQQqYsztImX9",
       "comment": "Malboro",
       "category": "ZkVL8aKgEFSXcWywQ0YBw",
       "sum": 1000,
       "addNewCategory": false,
       "newCategory": "",
       "typeOperation": "expense",
-      "id": "ShjczR2uAIqMBbG-VS_H_",
+      "id": "ShjczR2uAIqMB4bG-VS_H_",
       "date": 1687526437196
     },
     {
@@ -124,7 +124,7 @@
       "addNewCategory": false,
       "newCategory": "",
       "typeOperation": "profit",
-      "id": "rgC8Q4Iw7LX4n4ijWwxXV",
+      "id": "rgC8Q4Iw73LX4n4ijWwxXV",
       "date": 1687723121552
     }
   ],
