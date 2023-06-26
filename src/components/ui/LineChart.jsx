@@ -15,7 +15,7 @@ import { useSelector } from 'react-redux';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-const LineChart = ({ title }) => {
+const LineChart = ({ borderColor, title, backgroundColor }) => {
   const countOperationByMounth = useSelector(getCountOperationByMounth(title));
 
   const options = {
@@ -52,8 +52,8 @@ const LineChart = ({ title }) => {
       {
         label: title,
         data: [...countOperationByMounth],
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        borderColor: borderColor,
+        backgroundColor: backgroundColor,
       },
     ],
   };

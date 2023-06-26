@@ -14,11 +14,15 @@ import { getOperationList } from '../../store/operations/operations.slice';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const PieChart = ({ style }) => {
+const PieChart = ({ typeOperation, style }) => {
   const defaultCategories = useSelector(getCategories());
   const categoriesLoading = useSelector(getCategoriesLoadingStatus());
-  const operations = useSelector(getOperationList());
+  const operationsArray = useSelector(getOperationList());
   const categories = useSelector(getCategories());
+
+  const operations = operationsArray.filter((operation) => {
+    return operation.typeOperation === typeOperation;
+  });
 
   const arrSumByCategory = sumByCategory(operations);
 
