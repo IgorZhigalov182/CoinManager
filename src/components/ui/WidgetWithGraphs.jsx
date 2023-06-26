@@ -47,8 +47,9 @@ const WidgetWithGraphs = () => {
 
         {isProfitTypeOperation && (
           <div className="d-flex">
-            <h1>Доходы</h1>
-            <PieChart style={{ height: '10rem', width: '20rem' }} />
+            <PieChart
+              style={{ height: '10rem', width: '20rem', margin: '1rem', marginLeft: '2rem' }}
+            />
             <LineChart title={'Доходы'} />
           </div>
         )}

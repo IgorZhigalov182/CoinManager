@@ -9,14 +9,8 @@ import { useSelector } from 'react-redux';
 import { getCountOperationByMounth } from '../store/operations/operations.slice';
 
 const MainPage = () => {
-  const [modalActive, setModalActive] = useState(false);
-  const handleModal = () => setModalActive(!modalActive);
-
   return (
     <>
-      <ModalWindow active={modalActive} setActive={setModalActive}>
-        <h1>w</h1>
-      </ModalWindow>
       <div className="container">
         <div className="row">
           <CardProfit title={'Доходы'} />

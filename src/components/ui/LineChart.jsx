@@ -58,7 +58,7 @@ const LineChart = ({ title }) => {
     ],
   };
   return (
-    <div style={{ width: '39rem', height: '20rem' }}>
+    <div style={{ width: '39rem', height: '20rem', margin: '1rem', marginLeft: '6rem' }}>
       <Line options={options} data={data} />
     </div>
   );

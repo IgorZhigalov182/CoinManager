@@ -200,7 +200,7 @@
       "name": "Транспорт"
     },
     {
-      "color": "rgba(255, 206, 86, 1)",
+      "color": "rgba(232, 22, 12, 1)",
       "icon": "",
       "id": "87693ba7-5040-4657-8f19-add0402713d4",
       "idUser": 0,
@@ -223,13 +223,13 @@
     {
       "name": "Сигареты",
       "id": "ZkVL8aKgEFSXcWywQ0YBw",
-      "color": "rgba(255, 206, 86, 1)",
+      "color": "rgba(255, 106, 86, 1)",
       "icon": ""
     },
     {
       "name": "Авито",
       "id": "jnPjBJXFfo5i0XqUONh8P",
-      "color": "rgba(255, 206, 86, 1)",
+      "color": "rgba(255, 206, 16, 1)",
       "icon": "",
       "idUser": ""
     }

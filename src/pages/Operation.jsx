@@ -8,6 +8,7 @@ import Button from '../components/ui/common/Button';
 import NotFound from './NotFound';
 import ModalWindow from '../components/ui/ModalWindow';
 import NewOperation from '../components/ui/ModalWindowOperation';
+import ModalWindowOperation from '../components/ui/ModalWindowOperation';
 
 const Operation = () => {
   const [modalActive, setModalActive] = useState(false);
@@ -37,7 +38,7 @@ const Operation = () => {
       ) : (
         <NotFound />
       )}
-      <NewOperation
+      <ModalWindowOperation
         operation={operation}
         modalActive={modalActive}
         setModalActive={setModalActive}

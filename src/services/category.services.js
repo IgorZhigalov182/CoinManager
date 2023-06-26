@@ -6,18 +6,15 @@ export function sumByCategory(data) {
   const categories = data.map((item) => item.category);
   const uniqueCategories = [...new Set(categories)];
 
-  // console.log(categories);
-  uniqueCategories.forEach((category) => {
+  uniqueCategories.forEach((id) => {
     const categorySum = data
-      .filter((item) => item.category === category)
+      .filter((item) => item.category === id)
       .reduce((acc, item) => acc + +item.sum, 0);
 
-    result.push({ category, sum: categorySum });
+    result.push({ id, sum: categorySum });
   });
 
-  console.log(result);
   return result;
-  // return result.forEach((category) => getCategoryDisplayNameById(category.category));
 }
 
 const categoryEndpoint = 'category/';
