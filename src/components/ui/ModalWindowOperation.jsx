@@ -10,21 +10,28 @@ import { createCategory, getCategories } from '../../store/categories/categories
 import * as Yup from 'yup';
 import { getActiveBankAccount } from '../../store/bankAccounts/bankAccounts.slice';
 import categoryService from '../../services/category.services';
-import { createOperation } from '../../store/operations/operations.slice';
+import { createOperation, updateOperationById } from '../../store/operations/operations.slice';
 
-const NewOperation = ({ typeOperationForModal, modalActive, setModalActive }) => {
+const ModalWindowOperation = ({
+  operation,
+  typeOperationForModal,
+  modalActive,
+  setModalActive,
+}) => {
   const actualBankAccount = useSelector(getActiveBankAccount());
   const dispatch = useDispatch();
 
-  let operationData = {
-    idBankAccount: '',
-    comment: '',
-    category: '',
-    sum: '',
-    addNewCategory: false,
-    newCategory: '',
-    typeOperation: typeOperationForModal || 'expense',
-  };
+  let operationData = operation
+    ? operation
+    : {
+        idBankAccount: '',
+        comment: '',
+        category: '',
+        sum: '',
+        addNewCategory: false,
+        newCategory: '',
+        typeOperation: typeOperationForModal || 'expense',
+      };
 
   const [initialValue, setInitialValue] = useState(operationData);
   // const inputSum = React.createRef();
@@ -39,6 +46,11 @@ const NewOperation = ({ typeOperationForModal, modalActive, setModalActive }) =>
   //     [target.name]: target.value,
   //   }));
   // };
+
+  const handleUpdate = (data) => {
+    dispatch(updateOperationById(data));
+    setModalActive(false);
+  };
 
   const handleSubmit = async (data) => {
     if (data.addNewCategory && data.newCategory) {
@@ -89,33 +101,21 @@ const NewOperation = ({ typeOperationForModal, modalActive, setModalActive }) =>
       <ModalWindow active={modalActive} setActive={setModalActive}>
         <Formik
           onSubmit={async (values, actions) => {
-            // alert(JSON.stringify(values, null, 2));
             handleSubmit(values);
-            // setInitialValue(bankAccountData);
           }}
           validationSchema={operationSchema}
           initialValues={initialValue}
           enableReinitialize={true}>
           {({ errors, touched, handleChange, values }) => (
             <Form>
-              <Field
-                // innerRef={inputSum}
-                type="number"
-                name="sum"
-                className="form-control"
-                placeholder="Сумма"
-              />
+              <Field type="number" name="sum" className="form-control" placeholder="Сумма" />
               {errors.sum && touched.sum ? <div>{errors.sum}</div> : null}
-              {/* <span className="ms-1">Категория</span> */}
-              {/* <Field className="form-select mb-2 mt-2" name="category"> */}
-              {/* <div className="d-flex justify-content-between"> */}
               {!values.addNewCategory && (
                 <Field
                   className="form-select mb-2 mt-2"
                   as="select"
                   name="category"
                   validate={() => validateCategory(values.addNewCategory, values.category)}>
-                  {/* <select id="selectValue"> */}
                   <option disabled value="">
                     (Выберите категорию)
                   </option>
@@ -129,21 +129,8 @@ const NewOperation = ({ typeOperationForModal, modalActive, setModalActive }) =>
                         </>
                       );
                     })}
-                  {/* </select> */}
                 </Field>
               )}
-              {/* <Button
-                  title={'Удалить категорию '}
-                  style={{
-                    height: '2.3rem',
-                    textAlign: 'center',
-                    marginTop: '0.45rem',
-                    marginLeft: '1rem',
-                    width: '15rem',
-                  }}
-                  className={'btn btn-danger'}
-                />
-              </div> */}
               {errors.newCategory && touched.newCategory ? <div>{errors.newCategory}</div> : null}
               {errors.category && touched.category ? <div>{errors.category}</div> : null}
               <label className="ms-1 mb-2">
@@ -162,16 +149,8 @@ const NewOperation = ({ typeOperationForModal, modalActive, setModalActive }) =>
                   name="newCategory"
                   type="text"
                   className="form-control mb-3"
-                  placeholder="Новая категория">
-                  {/* {({ field }) => (
-                    <div>
-                      <label htmlFor="newCategory">Input field:</label>
-                      <input id="newCategory" {...field} />
-                    </div>
-                  )} */}
-                </Field>
+                  placeholder="Новая категория"></Field>
               )}
-
               <div>Тип операции</div>
               <div role="group" aria-labelledby="my-radio-group" className="mt-1">
                 <div>
@@ -203,7 +182,17 @@ const NewOperation = ({ typeOperationForModal, modalActive, setModalActive }) =>
                 name="comment"
               />
               <div>
-                <Button title="Добавить" type={'submit'} className={'btn btn-primary mt-3'} />
+                {operation && (
+                  <Button
+                    title="Изменить"
+                    type={'button'}
+                    className={'btn btn-success mt-3'}
+                    handler={() => handleUpdate(values)}
+                  />
+                )}
+                {!operation && (
+                  <Button title="Добавить" type={'submit'} className={'btn btn-primary mt-3'} />
+                )}
               </div>
             </Form>
           )}
@@ -218,4 +207,4 @@ const NewOperation = ({ typeOperationForModal, modalActive, setModalActive }) =>
   );
 };
 
-export default NewOperation;
+export default ModalWindowOperation;

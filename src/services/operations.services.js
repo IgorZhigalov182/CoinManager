@@ -28,6 +28,16 @@ export const getOperation = async (id) => {
   }
 };
 
+export const updateOperation = async (operationData) => {
+  fetch(`http://localhost:3000/operations/${operationData.id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+    },
+    body: JSON.stringify(operationData),
+  });
+};
+
 export const deleteOperation = async (id) => {
   try {
     const response = await fetch(`http://localhost:3000/operations/${id}`, {

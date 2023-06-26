@@ -10,7 +10,7 @@ import { getOperationList } from '../../store/operations/operations.slice';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const ChartJSs = ({ style }) => {
+const PieChart = ({ style }) => {
   const [datas, setDatas] = useState([]);
   const defaultCategories = useSelector(getCategories());
   const categoriesLoading = useSelector(getCategoriesLoadingStatus());
@@ -20,7 +20,9 @@ const ChartJSs = ({ style }) => {
     setDatas(operations);
   }, []);
 
-  const arrSumByCategory = sumByCategory(datas);
+  const arrSumByCategory = sumByCategory(operations);
+
+  console.log(arrSumByCategory);
 
   let labels = arrSumByCategory.map((s) => s.category);
   let sumss = arrSumByCategory.map((s) => s.sum);
@@ -57,4 +59,4 @@ const ChartJSs = ({ style }) => {
   );
 };
 
-export default ChartJSs;
+export default PieChart;

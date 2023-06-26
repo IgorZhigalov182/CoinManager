@@ -74,6 +74,8 @@ export const loadCategoriesList = () => async (dispatch, getState) => {
   }
 };
 
+export const getCategoriesForPieChart = () => (state) => {};
+
 export const getCategoryDisplayNameById = (id) => (state) => {
   let name = '';
   if (state.categories.entities) {

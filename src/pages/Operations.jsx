@@ -5,17 +5,18 @@ import {
   filterTypeOperations,
   getOperationList,
   getOperationsLoadingStatus,
-  sortOperations,
+  sortOperationsByDate,
+  sortOperationsBySum,
 } from '../store/operations/operations.slice';
 import Button from '../components/ui/common/Button';
 import { useLocation } from 'react-router-dom';
-import NewOperation from '../components/ui/NewOperation';
+import NewOperation from '../components/ui/ModalWindowOperation';
 import { paginate } from '../utils/paginate';
 import Pagination from '../components/ui/Pagination';
 
-const Operations = ({ route }) => {
+const Operations = ({}) => {
   const [modalActive, setModalActive] = useState(false);
-  const pageSize = 2;
+  const pageSize = 3;
   const [currentPage, setCurrentPage] = useState(1);
   let operations = useSelector(getOperationList());
   const location = useLocation();
@@ -51,7 +52,8 @@ const Operations = ({ route }) => {
 
   const handlePageChange = (pageIndex) => setCurrentPage(pageIndex);
 
-  const handleSort = () => dispatch(sortOperations());
+  const handleSortBySum = () => dispatch(sortOperationsBySum());
+  const handleSortByDate = () => dispatch(sortOperationsByDate());
 
   return (
     <div className="container">
@@ -60,10 +62,16 @@ const Operations = ({ route }) => {
         title={'Добавить операцию'}
         className={'btn btn-primary mt-1 mb-2 me-2'}
       />
+      <span className="me-2">Cортировка по:</span>
       <Button
-        title={'Сортировка'}
-        className={'btn btn-dark mt-1 mb-2'}
-        handler={() => handleSort()}
+        title={'сумме'}
+        className={'btn btn-dark mt-1 mb-2 me-2'}
+        handler={() => handleSortBySum()}
+      />
+      <Button
+        title={'дате'}
+        className={'btn btn-dark me-2 mt-1 mb-2'}
+        handler={() => handleSortByDate()}
       />
       {/* <ListOperations operations={operations} /> */}
       <ListOperations operations={operationsCrop} />
@@ -73,12 +81,6 @@ const Operations = ({ route }) => {
         setModalActive={setModalActive}
       />
       <div className="d-flex justify-content-center">
-        {/* <Pagination
-          itemsCount={4}
-          pageSize={4}
-          currentPage={4}
-          // onPageChange={handlePageChange}
-        /> */}
         <Pagination
           itemsCount={count}
           pageSize={pageSize}

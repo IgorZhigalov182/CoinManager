@@ -2,6 +2,7 @@ import { createSlice, current } from '@reduxjs/toolkit';
 import {
   addOperation,
   deleteOperation,
+  updateOperation,
   getDataOperations,
   getOperation,
 } from '../../services/operations.services';
@@ -36,7 +37,14 @@ export const operationsSlice = createSlice({
     operationCreated: (state, action) => {
       state.entities.push(action.payload);
     },
-    operationSorted: (state) => {
+    operationUpdated: (state, action) => {
+      const index = state.entities.findIndex((operation) => {
+        return operation.id === action.payload.id;
+      });
+
+      state.entities[index] = action.payload;
+    },
+    operationSortedBySum: (state) => {
       if (!state.sort || state.sort === 'asc') {
         state.entities.sort((a, b) => {
           if (+a.sum < +b.sum) {
@@ -57,6 +65,27 @@ export const operationsSlice = createSlice({
         state.sort = 'asc';
       }
     },
+    operationSortedByDate: (state, action) => {
+      if (!state.sortByDate || state.sortByDate === 'asc') {
+        state.entities.sort((a, b) => {
+          if (+a.date < +b.date) {
+            return 1;
+          } else {
+            return -1;
+          }
+        });
+        state.sortByDate = 'desc';
+      } else {
+        state.entities.sort((a, b) => {
+          if (+a.date < +b.date) {
+            return -1;
+          } else {
+            return 1;
+          }
+        });
+        state.sortByDate = 'asc';
+      }
+    },
     operationDeleted: (state, action) => {
       // console.log('state', state.entities);
       // console.log('action', action.payload);
@@ -75,8 +104,10 @@ const {
   operationsRecieved,
   operationRecieved,
   operationCreated,
+  operationUpdated,
   operationDeleted,
-  operationSorted,
+  operationSortedBySum,
+  operationSortedByDate,
   operationCount,
 } = actions;
 
@@ -93,9 +124,9 @@ export const loadOperationList = () => async (dispatch) => {
 
 export const getOperationList = (id) => (state) => state.operations.entities;
 
-export const sortOperations = () => (dispatch) => {
-  dispatch(operationSorted());
-};
+export const sortOperationsBySum = () => (dispatch) => dispatch(operationSortedBySum());
+
+export const sortOperationsByDate = () => (dispatch) => dispatch(operationSortedByDate());
 
 export const getCountOperations = (title) => (state) => {
   const typeOperation = title === 'Доходы' ? 'profit' : 'expense';
@@ -154,6 +185,15 @@ export const createOperation = (data) => async (dispatch) => {
   try {
     await addOperation(data);
     dispatch(operationCreated(data));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const updateOperationById = (data) => async (dispatch) => {
+  try {
+    updateOperation(data);
+    dispatch(operationUpdated(data));
   } catch (error) {
     console.log(error);
   }

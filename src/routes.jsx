@@ -1,6 +1,6 @@
 import React from 'react';
 import MainPage from './pages/MainPage';
-import NewOperation from './components/ui/NewOperation';
+import NewOperation from './components/ui/ModalWindowOperation';
 import Operations from './pages/Operations';
 import Operation from './pages/Operation';
 import OperationsLayout from './layouts/OperationsLayout';

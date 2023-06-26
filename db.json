@@ -13,10 +13,19 @@
       "name": "2132",
       "bank": "2332",
       "comment": "",
-      "active": true,
+      "active": false,
       "typeAccount": "current",
       "id": "R8R7RfRMurQQqYsztImX9",
       "date": 1686993310079
+    },
+    {
+      "name": "Новый главный счёт",
+      "bank": "Альфа-Банк",
+      "comment": "",
+      "active": true,
+      "typeAccount": "credit",
+      "id": "a76HvLF0CMzWv-lpb6wGJ",
+      "date": 1687782715017
     }
   ],
   "comments": [
@@ -63,7 +72,7 @@
   "operations": [
     {
       "idBankAccount": "_12-p21LqD4EPrWC4H5pgbaj",
-      "comment": "Шахматы1",
+      "comment": "Шахматы12",
       "category": "jnPjBJXFfo5i0XqUONh8P",
       "sum": 2000,
       "addNewCategory": false,
@@ -85,7 +94,7 @@
     },
     {
       "idBankAccount": "_-p1LqD4EPrWC4H5pgbaj",
-      "comment": "Шахматы",
+      "comment": "Шахматы1925",
       "category": "jnPjBJXFfo5i0XqUONh8P",
       "sum": 2000,
       "addNewCategory": false,
@@ -126,6 +135,39 @@
       "typeOperation": "profit",
       "id": "rgC8Q4Iw73LX4n4ijWwxXV",
       "date": 1687723121552
+    },
+    {
+      "idBankAccount": "a76HvLF0CMzWv-lpb6wGJ",
+      "comment": "Добрался до бара",
+      "category": "82ed8a46-620e-4b10-bf5d-e02e988ecd70",
+      "sum": 250,
+      "addNewCategory": false,
+      "newCategory": "",
+      "typeOperation": "expense",
+      "id": "RzDVsvsycdNfbDlMW50GE",
+      "date": 1687782738952
+    },
+    {
+      "idBankAccount": "a76HvLF0CMzWv-lpb6wGJ",
+      "comment": "Шахматы23",
+      "category": "jnPjBJXFfo5i0XqUONh8P",
+      "sum": 2000,
+      "addNewCategory": false,
+      "newCategory": "",
+      "typeOperation": "expense",
+      "id": "aaBfSKCMvKwPktuhdJ7Nx",
+      "date": 1687785914616
+    },
+    {
+      "idBankAccount": "a76HvLF0CMzWv-lpb6wGJ",
+      "comment": "Шахматы1",
+      "category": "jnPjBJXFfo5i0XqUONh8P",
+      "sum": 2100,
+      "addNewCategory": false,
+      "newCategory": "",
+      "typeOperation": "expense",
+      "id": "M5e_cnP9aDVAgeRjk_xQe",
+      "date": 1687786145810
     }
   ],
   "categories": [

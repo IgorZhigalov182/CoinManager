@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import ChartJSs from './ChartJS';
+import ChartJSs from './PieChart';
 import Button from './common/Button';
 import LineChart from './LineChart';
 import { useSelector } from 'react-redux';
 import { getCountOperationByMounth } from '../../store/operations/operations.slice';
+import PieChart from './PieChart';
 
 const WidgetWithGraphs = () => {
   const [isProfitTypeOperation, setIsProfitTypeOperation] = useState(false);
@@ -39,7 +40,7 @@ const WidgetWithGraphs = () => {
         </div>
         {!isProfitTypeOperation && (
           <div className="d-flex">
-            <ChartJSs style={{ height: '10rem', width: '20rem' }} />
+            <PieChart style={{ height: '10rem', width: '20rem' }} />
             <LineChart title={'Расходы'} />
           </div>
         )}
@@ -47,7 +48,7 @@ const WidgetWithGraphs = () => {
         {isProfitTypeOperation && (
           <div className="d-flex">
             <h1>Доходы</h1>
-            <ChartJSs style={{ height: '10rem', width: '20rem' }} />
+            <PieChart style={{ height: '10rem', width: '20rem' }} />
             <LineChart title={'Доходы'} />
           </div>
         )}

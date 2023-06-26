@@ -32,12 +32,14 @@ const CardOperation = ({ idBankAccount, category, comment, id, sum, date, typeOp
             <Badge title={sum} className="badge text-bg-secondary" />
           )}
         </h3>
-        <h4>Категория: {categoryName}</h4>
-        <h4>Тип операции: {typeOperation === 'profit' ? 'Доходы' : 'Расходы'}</h4>
-        <h4>Дата покупки: {getBuyDate(date)}</h4>
+        <h5>Категория: {categoryName}</h5>
+        {!operationPage && (
+          <h5>Тип операции: {typeOperation === 'profit' ? 'Доходы' : 'Расходы'}</h5>
+        )}
+        <h6>Дата покупки: {getBuyDate(date)}</h6>
         {!operationPage && <h5>Время покупки: {getBuyTime(date)}</h5>}
         {!operationPage && <h5 className="card-title">Банковский счёт: {bankAccountName}</h5>}
-        <p className="card-text">Комментарий: {comment}</p>
+        {!operationPage && <p className="card-text">Комментарий: {comment}</p>}
         <div className="d-flex justify-content-between">
           {operationPage && <Button title={'Открыть запись'} handler={handleGoToRecord} />}
           {operationPage && (
