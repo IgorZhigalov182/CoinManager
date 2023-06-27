@@ -30,8 +30,8 @@ const Operation = () => {
     <>
       {operation ? (
         <div className="container">
-          <BackButton />
-          <h1>Хлебные крошки</h1>
+          <BackButton className={'btn btn-secondary mt-2 mb-2'} />
+          {/* <h1>Хлебные крошки</h1> */}
           <CardOperation {...operation} />
           <Button title={'Изменить запись'} className={'btn btn-dark'} handler={handleModal} />
         </div>

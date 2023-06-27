@@ -7,8 +7,6 @@ import { getRandomColor } from '../utils/getRandomColor';
 const Auth = () => {
   const [isSingUp, setIsSingUp] = useState(false);
 
-  console.log(getRandomColor());
-
   return (
     <div className="">
       <h1>test page</h1>
