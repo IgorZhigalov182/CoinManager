@@ -31,13 +31,10 @@ const PieChart = ({ typeOperation, style }) => {
 
   const bacColorForCat = [];
 
-  console.log(categories);
-
   if (categories) {
     labels.forEach((label) => {
       categories.forEach((category) => {
         if (label === category.name) {
-          console.log(category.color);
           bacColorForCat.push(category.color);
         }
       });

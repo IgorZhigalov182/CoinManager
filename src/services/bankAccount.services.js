@@ -124,3 +124,18 @@ export const checkRemoveBankAccountForFavourite = (id, bankAccounts) => {
   });
   return state;
 };
+
+export const getMostUsedBankAccount = (operations) => {
+  const counts = {};
+
+  for (let i = 0; i < operations.length; i++) {
+    const item = operations[i].idBankAccount;
+    counts[item] = counts[item] ? counts[item] + 1 : 1;
+  }
+
+  const pairs = Object.entries(counts);
+
+  const mostUsedBankAccountId = pairs.sort((a, b) => b[1] - a[1]).slice(0, 3);
+
+  return mostUsedBankAccountId;
+};

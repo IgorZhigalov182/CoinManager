@@ -15,8 +15,6 @@ const CardBankAccount = ({
   id,
   toggleFavourite,
 }) => {
-  const dispatch = useDispatch();
-
   return (
     <>
       <div
