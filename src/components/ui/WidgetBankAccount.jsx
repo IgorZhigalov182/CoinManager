@@ -39,13 +39,11 @@ const WidgetBankAccount = () => {
     } catch (error) {
       console.log(error);
     }
-    // };
   };
 
   return (
     <>
       <div className="col-4 mt-2">
-        {/* <h4 class="display-6">Банковские аккаунты:</h4> */}
         <h5>Активный банковский аккаунт</h5>
         <div className="list-group" id="list-tab" role="tablist">
           {namesMostUsedBankAccount.map((bankAccount) => {

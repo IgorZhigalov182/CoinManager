@@ -168,6 +168,17 @@
       "typeOperation": "expense",
       "id": "M5e_cnP9aDVAgeRjk_xQe",
       "date": 1687786145810
+    },
+    {
+      "idBankAccount": "a76HvLF0CMzWv-lpb6wGJ",
+      "comment": "Starfield",
+      "category": "6yLeePMxg8CJybBfrqU6j",
+      "sum": 3000,
+      "addNewCategory": true,
+      "newCategory": "Steam",
+      "typeOperation": "expense",
+      "id": "Wc4IdN0c5KnjjaxN8G8C3",
+      "date": 1687864163699
     }
   ],
   "categories": [
@@ -230,6 +241,13 @@
       "name": "Авито",
       "id": "jnPjBJXFfo5i0XqUONh8P",
       "color": "rgba(255, 206, 16, 1)",
+      "icon": "",
+      "idUser": ""
+    },
+    {
+      "name": "Steam",
+      "id": "6yLeePMxg8CJybBfrqU6j",
+      "color": "rgba(212,87,209,1)",
       "icon": "",
       "idUser": ""
     }

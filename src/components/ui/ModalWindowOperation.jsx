@@ -11,6 +11,7 @@ import * as Yup from 'yup';
 import { getActiveBankAccount } from '../../store/bankAccounts/bankAccounts.slice';
 import categoryService from '../../services/category.services';
 import { createOperation, updateOperationById } from '../../store/operations/operations.slice';
+import { getRandomColor } from '../../utils/getRandomColor';
 
 const ModalWindowOperation = ({
   operation,
@@ -57,7 +58,7 @@ const ModalWindowOperation = ({
       const categoryData = {
         name: data.newCategory,
         id: nanoid(),
-        color: 'rgba(255, 206, 86, 1)',
+        color: getRandomColor(),
         icon: '',
         idUser: '',
       };

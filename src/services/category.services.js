@@ -1,4 +1,3 @@
-import { getCategoryDisplayNameById } from '../store/categories/categories.slice';
 import httpService from './http.services';
 
 export function sumByCategory(data) {

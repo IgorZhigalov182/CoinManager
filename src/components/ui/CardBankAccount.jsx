@@ -1,17 +1,13 @@
 import React from 'react';
 import Button from './common/Button';
 import { setTitileTypeBankAccount } from '../../services/bankAccount.services';
-import { useDispatch } from 'react-redux';
-import { favouritedBankAccountById } from '../../store/bankAccounts/bankAccounts.slice';
 
 const CardBankAccount = ({
   setModalActive,
   name,
   typeAccount,
-  userId,
   bank,
   active,
-  comment,
   id,
   toggleFavourite,
 }) => {
