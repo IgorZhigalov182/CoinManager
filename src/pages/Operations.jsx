@@ -60,7 +60,7 @@ const Operations = ({}) => {
       <Button
         handler={handleModal}
         title={'Добавить операцию'}
-        className={'btn btn-primary mt-1 mb-2 me-2'}
+        className={'btn btn-primary mt-2 mb-2 me-2'}
       />
       <span className="me-2">Cортировка по:</span>
       <Button

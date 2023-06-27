@@ -97,7 +97,7 @@ const BankAccounts = () => {
     <div className="container">
       <Button
         title={'Добавить счёт'}
-        className={'btn btn-dark mb-2'}
+        className={'btn btn-dark mt-2 mb-2'}
         handler={() => {
           setModalActive(!modalActive);
           setInitialValue(bankAccountData);
