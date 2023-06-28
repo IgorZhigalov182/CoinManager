@@ -3,13 +3,11 @@ import Button from './common/Button';
 import { nanoid } from '@reduxjs/toolkit';
 import '../../styles/modal.css';
 import ModalWindow from './ModalWindow';
-import { addOperation } from '../../services/operations.services';
 import { Field, Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { createCategory, getCategories } from '../../store/categories/categories.slice';
 import * as Yup from 'yup';
 import { getActiveBankAccount } from '../../store/bankAccounts/bankAccounts.slice';
-import categoryService from '../../services/category.services';
 import { createOperation, updateOperationById } from '../../store/operations/operations.slice';
 import { getRandomColor } from '../../utils/getRandomColor';
 
@@ -67,7 +65,8 @@ const ModalWindowOperation = ({
     }
     data.id = nanoid();
     data.date = Date.now();
-    data.idBankAccount = actualBankAccount;
+    actualBankAccount ? (data.idBankAccount = actualBankAccount) : (data.idBankAccount = '');
+
     // Добавить id user(а)
 
     dispatch(createOperation(data));

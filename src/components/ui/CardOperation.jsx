@@ -27,9 +27,9 @@ const CardOperation = ({ idBankAccount, category, comment, id, sum, date, typeOp
       <div className="card-body">
         <h3>
           {typeOperation === 'profit' ? (
-            <Badge title={sum} className="badge text-bg-success" />
+            <Badge title={`${sum}Р`} className="badge text-bg-success" />
           ) : (
-            <Badge title={sum} className="badge text-bg-secondary" />
+            <Badge title={`${sum}Р`} className="badge text-bg-secondary" />
           )}
         </h3>
         <h5>Категория: {categoryName}</h5>

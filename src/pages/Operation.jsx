@@ -22,10 +22,6 @@ const Operation = () => {
     setModalActive(!modalActive);
   };
 
-  // modalActive, setModalActive
-
-  // console.log(operation);
-
   return (
     <>
       {operation ? (

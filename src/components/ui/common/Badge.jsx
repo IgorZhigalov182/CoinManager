@@ -1,9 +1,14 @@
 import React from 'react';
 
-const Badge = ({ title, className, style }) => {
+const Badge = ({ title, className, style, backgroundColor, color }) => {
+  const badgeStyle = {
+    color: color,
+    backgroundColor: backgroundColor,
+  };
+
   return (
-    <span className={className} style={style}>
-      {title}Р
+    <span className={className} style={badgeStyle}>
+      {title}
     </span>
   );
 };

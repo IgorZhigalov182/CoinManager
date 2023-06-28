@@ -9,11 +9,13 @@ import BankAccounts from './pages/BankAccounts';
 import Auth from './pages/Auth';
 import UserLayout from './layouts/UserLayout';
 import UserPage from './pages/UserPage';
+import Categories from './pages/Categories';
 
 const routes = [
   { path: '/', element: <MainPage />, errorElement: <NotFound /> },
-  { path: 'favorites', element: <BankAccounts />, errorElement: <NotFound /> },
+  { path: 'bankAccounts', element: <BankAccounts />, errorElement: <NotFound /> },
   { path: 'login', element: <Auth /> },
+  { path: 'categories', element: <Categories /> },
   {
     path: 'operations',
     element: <OperationsLayout />,

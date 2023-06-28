@@ -83,7 +83,12 @@ export default function NavBar() {
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink to="/favorites" className="nav-link">
+            <NavLink to="/categories" className="nav-link">
+              Категории
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink to="/bankAccounts" className="nav-link">
               Счета
             </NavLink>
           </li>

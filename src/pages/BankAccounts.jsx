@@ -17,6 +17,7 @@ import { nanoid } from '@reduxjs/toolkit';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import ListBankAccounts from '../components/ui/ListBankAccounts';
+import ModalWindowBankAccount from '../components/ui/ModalWindowBankAccount';
 
 let bankAccountData = {
   name: '',
@@ -46,6 +47,7 @@ const BankAccounts = () => {
   //     [target.name]: target.value,
   //   }));
   // };
+
   const handleDelete = async (id) => {
     try {
       const dicision = confirm('Точно удалить?');
@@ -108,6 +110,7 @@ const BankAccounts = () => {
         setModalActive={handleModal}
         toggleFavourite={handleFavourite}
       />
+      {/* <ModalWindowBankAccount active={modalActive} setActive={setModalActive} /> */}
       <ModalWindow active={modalActive} setActive={setModalActive}>
         <Formik
           validationSchema={bankAccountSchema}
@@ -191,26 +194,26 @@ const BankAccounts = () => {
             </Form>
           )}
         </Formik>
+      </ModalWindow>
 
-        {/* <form id="bankAccountForm" onSubmit={handleSubmit} action=""> */}
-        {/* <TextField
+      {/* <form id="bankAccountForm" onSubmit={handleSubmit} action=""> */}
+      {/* <TextField
             name={'name'}
             onChange={handleChange}
             label="Название счёта"
             htmlFor="bankAccountForm"
           /> */}
-        {/* <TextField name={'bank'} onChange={handleChange} label="Банк" htmlFor="bankAccountForm" /> */}
-        {/* <TextAreaFiled
+      {/* <TextField name={'bank'} onChange={handleChange} label="Банк" htmlFor="bankAccountForm" /> */}
+      {/* <TextAreaFiled
             name={'comment'}
             onChange={handleChange}
             htmlFor="bankAccountForm"
             label="Комментарий (не обязательно)"
           /> */}
-        {/* <CheckField /> */}
-        {/* <SelectField list={bankAccounts} /> */}
-        {/* <Button title="Добавить" type={'submit'} className={'btn btn-primary mt-2'} /> */}
-        {/* </form> */}
-      </ModalWindow>
+      {/* <CheckField /> */}
+      {/* <SelectField list={bankAccounts} /> */}
+      {/* <Button title="Добавить" type={'submit'} className={'btn btn-primary mt-2'} /> */}
+      {/* </form> */}
     </div>
   );
 };

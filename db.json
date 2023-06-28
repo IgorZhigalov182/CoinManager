@@ -1,24 +1,6 @@
 {
   "bankAccounts": [
     {
-      "name": "Главный",
-      "bank": "Тинькофф",
-      "comment": "",
-      "active": false,
-      "typeAccount": "current",
-      "id": "_-p1LqD4EPrWC4H5pgbaj",
-      "date": 1686926490746
-    },
-    {
-      "name": "2132",
-      "bank": "2332",
-      "comment": "",
-      "active": false,
-      "typeAccount": "current",
-      "id": "R8R7RfRMurQQqYsztImX9",
-      "date": 1686993310079
-    },
-    {
       "name": "Новый главный счёт",
       "bank": "Альфа-Банк",
       "comment": "",
@@ -171,51 +153,41 @@
     },
     {
       "idBankAccount": "a76HvLF0CMzWv-lpb6wGJ",
-      "comment": "Starfield",
+      "comment": "Продал скины",
       "category": "6yLeePMxg8CJybBfrqU6j",
-      "sum": 3000,
-      "addNewCategory": true,
-      "newCategory": "Steam",
+      "sum": 1500,
+      "addNewCategory": false,
+      "newCategory": "",
+      "typeOperation": "profit",
+      "id": "h9CX6_drMYonMP2wpUOaA",
+      "date": 1687960692430
+    },
+    {
+      "idBankAccount": "a76HvLF0CMzWv-lpb6wGJ",
+      "comment": "",
+      "category": "b59657db-49bf-47cd-a8c3-82a7369c3349",
+      "sum": 2000,
+      "addNewCategory": false,
+      "newCategory": "",
       "typeOperation": "expense",
-      "id": "Wc4IdN0c5KnjjaxN8G8C3",
-      "date": 1687864163699
+      "id": "HfzxXMhOHHbwXH8MIzsmL",
+      "date": 1687961940880
     }
   ],
   "categories": [
     {
-      "color": "rgb(54, 182, 235, 1)",
-      "icon": "",
-      "id": "0707965a-fd11-4e44-a0bc-8c88750b2ad1",
-      "idUser": 0,
-      "name": "Аптека"
-    },
-    {
-      "color": "rgba(54, 162, 235, 1)",
+      "color": "rgba(217,146,41,1)",
       "icon": "",
       "id": "448226cd-1c1e-4ef3-9185-b871e775996d",
       "idUser": 0,
       "name": "Одежда"
     },
     {
-      "color": "rgba(255, 99, 132, 1)",
+      "color": "rgba(147,36,126,1)",
       "icon": "",
       "id": "702943f8-ea77-4101-ab5a-d451952fbe9a",
       "idUser": 0,
       "name": "Продукты"
-    },
-    {
-      "color": "rgb(54, 182, 135)",
-      "icon": "",
-      "id": "82ed8a46-620e-4b10-bf5d-e02e988ecd70",
-      "idUser": 0,
-      "name": "Транспорт"
-    },
-    {
-      "color": "rgba(232, 22, 12, 1)",
-      "icon": "",
-      "id": "87693ba7-5040-4657-8f19-add0402713d4",
-      "idUser": 0,
-      "name": "Спорт"
     },
     {
       "color": "rgb(120, 182, 135)",
@@ -225,29 +197,16 @@
       "name": "Домашние животные"
     },
     {
-      "color": "rgb(120, 182, 133)",
-      "icon": "",
-      "id": "b59657db-49bf-57cd-a2c3-82a7369c3349",
-      "idUser": 0,
-      "name": "Авто"
-    },
-    {
-      "name": "Сигареты",
-      "id": "ZkVL8aKgEFSXcWywQ0YBw",
-      "color": "rgba(255, 106, 86, 1)",
-      "icon": ""
-    },
-    {
       "name": "Авито",
       "id": "jnPjBJXFfo5i0XqUONh8P",
-      "color": "rgba(255, 206, 16, 1)",
+      "color": "rgba(86,5,170,1)",
       "icon": "",
       "idUser": ""
     },
     {
       "name": "Steam",
       "id": "6yLeePMxg8CJybBfrqU6j",
-      "color": "rgba(212,87,209,1)",
+      "color": "rgba(88,212,227,1)",
       "icon": "",
       "idUser": ""
     }
