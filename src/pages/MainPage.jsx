@@ -17,7 +17,6 @@ const MainPage = () => {
           <CardProfit title={'Расходы'} />
           <WidgetBankAccount />
           <WidgetWithGraphs />
-          {/* Добавить адаптивную перезагрузку виджета при добавлении новой операции */}
         </div>
       </div>
     </>

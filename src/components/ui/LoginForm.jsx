@@ -40,7 +40,6 @@ const LoginForm = ({ setIsSingUp }) => {
       <Formik
         onSubmit={async (values, actions) => {
           handleSubmit(values);
-          // setInitialValue(bankAccountData);
         }}
         // validationSchema={operationSchema}
         initialValues={initialValue}
@@ -56,7 +55,6 @@ const LoginForm = ({ setIsSingUp }) => {
             />
             {errors.email && touched.email ? <div>{errors.email}</div> : null}
             <Field
-              // innerRef={inputPassword}
               type="password"
               className="form-control w-100 mt-3"
               placeholder="Пароль"
@@ -64,12 +62,7 @@ const LoginForm = ({ setIsSingUp }) => {
             />
             {errors.password && touched.password ? <div>{errors.password}</div> : null}
             <div className="d-flex flex-column">
-              <Button
-                title="Войти"
-                type={'submit'}
-                className={'btn btn-primary w-100 mt-3'}
-                // onSubmit={handleSubmit}
-              />
+              <Button title="Войти" type={'submit'} className={'btn btn-primary w-100 mt-3'} />
               <span className="mt-2 ms-auto">
                 <a
                   className="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"

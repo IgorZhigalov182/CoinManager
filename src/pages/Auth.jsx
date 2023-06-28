@@ -9,7 +9,11 @@ const Auth = () => {
 
   return (
     <div className="">
-      <h1>test page</h1>
+      {isSingUp ? (
+        <RegisterForm setIsSingUp={setIsSingUp} />
+      ) : (
+        <LoginForm setIsSingUp={setIsSingUp} />
+      )}
     </div>
   );
 };
