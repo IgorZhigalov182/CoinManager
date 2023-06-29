@@ -1,19 +1,33 @@
 import httpService from './http.services';
 
 export function sumByCategory(data) {
-  const result = [];
-  const categories = data.map((item) => item.category);
-  const uniqueCategories = [...new Set(categories)];
+  const categories = data.map((item) => ({
+    sum: item.sum,
+    id: item.category,
+    label: item.categoryLabel,
+    color: item.categoryColor,
+  }));
 
-  uniqueCategories.forEach((id) => {
-    const categorySum = data
-      .filter((item) => item.category === id)
-      .reduce((acc, item) => acc + +item.sum, 0);
+  const uniqueMap = new Map();
 
-    result.push({ id, sum: categorySum });
+  categories.forEach((obj) => {
+    if (!uniqueMap.has(obj.id)) {
+      uniqueMap.set(obj.id, obj);
+    }
   });
 
-  return result;
+  const uniqueCategoriesArray = Array.from(uniqueMap.values());
+
+  uniqueCategoriesArray.forEach((uniqCategory) => {
+    uniqCategory.sum = 0;
+    data.forEach((operation) => {
+      if (uniqCategory.id == operation.category) {
+        uniqCategory.sum += operation.sum;
+      }
+    });
+  });
+
+  return uniqueCategoriesArray;
 }
 
 const categoryEndpoint = 'category/';
