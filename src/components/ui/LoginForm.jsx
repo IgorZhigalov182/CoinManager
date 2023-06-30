@@ -83,7 +83,7 @@ const LoginForm = ({ setIsSingUp }) => {
           </Form>
         )}
       </Formik>
-      {isLoggedIn && <Navigate to="/user/1" />}
+      {isLoggedIn && <Navigate to="/" />}
     </div>
   );
 };

@@ -29,10 +29,10 @@ function App() {
 
   return (
     <>
-      {/* <OperationLoader> */}
-      <NavBar />
-      {elements}
-      {/* </OperationLoader> */}
+      <OperationLoader>
+        <NavBar />
+        {elements}
+      </OperationLoader>
     </>
   );
 }

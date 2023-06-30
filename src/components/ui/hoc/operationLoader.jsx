@@ -6,6 +6,8 @@ import {
 } from '../../../store/operations/operations.slice';
 import SpinnerLoader from '../SpinnerLoader';
 import { getIsLoggedIn } from '../../../store/users/users.slice';
+import { loadCategoriesList } from '../../../store/categories/categories.slice';
+import { loadBankAccountList } from '../../../store/bankAccounts/bankAccounts.slice';
 
 const OperationLoader = ({ children }) => {
   const isLoading = useSelector(getOperationsLoadingStatus());
@@ -16,11 +18,13 @@ const OperationLoader = ({ children }) => {
     // dispatch(loadOperationList());
   }
 
-  // useEffect(() => {
-  //   dispatch(loadOperationList());
-  // }, []);
+  useEffect(() => {
+    dispatch(loadOperationList());
+    dispatch(loadCategoriesList());
+    dispatch(loadBankAccountList());
+  }, []);
 
-  // if (isLoading) return <SpinnerLoader />;
+  if (isLoading) return <SpinnerLoader />;
   return children;
 };
 

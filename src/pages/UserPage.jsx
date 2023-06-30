@@ -1,21 +1,23 @@
 import React, { useEffect } from 'react';
 import Button from '../components/ui/common/Button';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loadCategoriesList } from '../store/categories/categories.slice';
 import { loadBankAccountList } from '../store/bankAccounts/bankAccounts.slice';
 import { loadOperationList } from '../store/operations/operations.slice';
-import { logOut } from '../store/users/users.slice';
+import { getUserById, logOut } from '../store/users/users.slice';
 import { useNavigate } from 'react-router-dom';
 
 const UserPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    dispatch(loadCategoriesList());
-    dispatch(loadBankAccountList());
-    dispatch(loadOperationList());
-  }, []);
+  // const user = useSelector(getUserById());
+
+  // useEffect(() => {
+  //   dispatch(loadCategoriesList());
+  //   dispatch(loadBankAccountList());
+  //   dispatch(loadOperationList());
+  // }, []);
 
   const handleLogout = () => {
     dispatch(logOut());

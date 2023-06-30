@@ -13,12 +13,14 @@ import { useLocation } from 'react-router-dom';
 import NewOperation from '../components/ui/ModalWindowOperation';
 import { paginate } from '../utils/paginate';
 import Pagination from '../components/ui/Pagination';
+import ModalWindowOperation from '../components/ui/ModalWindowOperation';
 
 const Operations = ({}) => {
   const [modalActive, setModalActive] = useState(false);
   const pageSize = 3;
   const [currentPage, setCurrentPage] = useState(1);
   let operations = useSelector(getOperationList());
+  console.log(operations);
   const location = useLocation();
   const typeOperation = location.state?.title;
   const typeHandler = location.state?.handle;
@@ -75,11 +77,16 @@ const Operations = ({}) => {
       />
       {/* <ListOperations operations={operations} /> */}
       <ListOperations operations={operationsCrop} />
-      <NewOperation
+      <ModalWindowOperation
         typeOperationForModal={typeOperationForModal}
         modalActive={modalActive}
         setModalActive={setModalActive}
       />
+      {/* <NewOperation
+        typeOperationForModal={typeOperationForModal}
+        modalActive={modalActive}
+        setModalActive={setModalActive}
+      /> */}
       <div className="d-flex justify-content-center">
         <Pagination
           itemsCount={count}

@@ -6,7 +6,9 @@ import Button from './common/Button';
 import chroma from 'chroma-js';
 import { getRandomColor } from '../../utils/getRandomColor';
 import { useDispatch } from 'react-redux';
-import { updateCategoryById } from '../../store/categories/categories.slice';
+import { createCategory, updateCategoryById } from '../../store/categories/categories.slice';
+import localStorageService from '../../services/localStorage.services';
+import { nanoid } from '@reduxjs/toolkit';
 
 const ModalWindowCategory = ({ categories, selectedCategory, modalActive, setModalActive }) => {
   const [initialValue, setInitialValue] = useState();
@@ -17,10 +19,10 @@ const ModalWindowCategory = ({ categories, selectedCategory, modalActive, setMod
     return category
       ? category
       : {
-          color: '',
+          color: getRandomColor(),
           icon: '',
           id: '',
-          idUser: '',
+          userId: '',
           name: '',
         };
   };
@@ -34,7 +36,13 @@ const ModalWindowCategory = ({ categories, selectedCategory, modalActive, setMod
   });
 
   const handleSubmit = async (data) => {
-    dispatch(updateCategoryById(data));
+    if (data.id) {
+      dispatch(updateCategoryById(data));
+    } else {
+      data.id = nanoid();
+      data.userId = localStorageService.getUserId();
+      dispatch(createCategory(data));
+    }
     setModalActive(!modalActive);
   };
 
@@ -79,7 +87,12 @@ const ModalWindowCategory = ({ categories, selectedCategory, modalActive, setMod
                   title={'Изменить цвет'}
                 />
               </div>
-              <Button type={'submit'} className={'btn btn-success mt-2'} title={'Изменить'} />
+              {!values?.id && (
+                <Button type={'submit'} className={'btn btn-success mt-2'} title={'Добавить'} />
+              )}
+              {values?.id && (
+                <Button type={'submit'} className={'btn btn-success mt-2'} title={'Изменить'} />
+              )}
             </Form>
           )}
         </Formik>

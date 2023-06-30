@@ -18,6 +18,7 @@ import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import ListBankAccounts from '../components/ui/ListBankAccounts';
 import ModalWindowBankAccount from '../components/ui/ModalWindowBankAccount';
+import localStorageService from '../services/localStorage.services';
 
 let bankAccountData = {
   name: '',
@@ -76,6 +77,7 @@ const BankAccounts = () => {
     } else {
       data.id = nanoid();
       data.date = Date.now();
+      data.userId = localStorageService.getUserId();
       dispatch(createBankAccount(data, bankAccounts));
       setInitialValue(bankAccountData);
     }

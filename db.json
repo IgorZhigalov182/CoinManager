@@ -7,7 +7,8 @@
       "active": true,
       "typeAccount": "credit",
       "id": "a76HvLF0CMzWv-lpb6wGJ",
-      "date": 1687782715017
+      "date": 1687782715017,
+      "userId": "649ef7c7069b508d39194d1a"
     }
   ],
   "comments": [
@@ -172,6 +173,40 @@
       "typeOperation": "expense",
       "id": "HfzxXMhOHHbwXH8MIzsmL",
       "date": 1687961940880
+    },
+    {
+      "idBankAccount": "a76HvLF0CMzWv-lpb6wGJ",
+      "comment": "",
+      "category": "6yLeePMxg8CJybBfrqU6j",
+      "sum": 333,
+      "addNewCategory": false,
+      "newCategory": "",
+      "typeOperation": "expense",
+      "id": "fJXDe9rJsaECxeYTUZRxs",
+      "date": 1688158816352
+    },
+    {
+      "idBankAccount": "a76HvLF0CMzWv-lpb6wGJ",
+      "comment": "",
+      "category": "b59657db-49bf-47cd-a8c3-82a7369c3349",
+      "sum": 200,
+      "addNewCategory": false,
+      "newCategory": "",
+      "typeOperation": "expense",
+      "id": "cVAnytN7CUKbcfblgiHJB",
+      "date": 1688158933124
+    },
+    {
+      "idBankAccount": "a76HvLF0CMzWv-lpb6wGJ",
+      "comment": "",
+      "category": "b59657db-49bf-47cd-a8c3-82a7369c3349",
+      "sum": 300,
+      "addNewCategory": false,
+      "newCategory": "",
+      "typeOperation": "expense",
+      "id": "g3hO7OQfFrrtv_TvHVgCp",
+      "date": 1688158995542,
+      "userId": "649ef7c7069b508d39194d1a"
     }
   ],
   "categories": [
@@ -209,6 +244,13 @@
       "color": "rgba(88,212,227,1)",
       "icon": "",
       "idUser": ""
+    },
+    {
+      "color": "rgba(45,115,69,1)",
+      "icon": "",
+      "id": "u9QPhnNqmRZvKBoYEfCa8",
+      "userId": "649ef7c7069b508d39194d1a",
+      "name": "New"
     }
   ],
   "users": []

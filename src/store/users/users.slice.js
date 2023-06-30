@@ -110,7 +110,6 @@ export const signUp = (payload) => async (dispatch) => {
     localStorageService.setTokens(data);
     dispatch(authRequestSuccess({ userId: data.userId }));
     // Добавить редирект
-    history.push('user/1');
   } catch (error) {
     dispatch(authRequestFailed(error.message));
   }

@@ -10,6 +10,7 @@ import * as Yup from 'yup';
 import { getActiveBankAccount } from '../../store/bankAccounts/bankAccounts.slice';
 import { createOperation, updateOperationById } from '../../store/operations/operations.slice';
 import { getRandomColor } from '../../utils/getRandomColor';
+import localStorageService from '../../services/localStorage.services';
 
 const ModalWindowOperation = ({
   operation,
@@ -29,6 +30,7 @@ const ModalWindowOperation = ({
         sum: '',
         addNewCategory: false,
         newCategory: '',
+        userId: localStorageService.getUserId(),
         typeOperation: typeOperationForModal || 'expense',
       };
 
@@ -58,14 +60,14 @@ const ModalWindowOperation = ({
         id: nanoid(),
         color: getRandomColor(),
         icon: '',
-        idUser: '',
       };
       dispatch(createCategory(categoryData));
       data.category = categoryData.id;
     }
     data.id = nanoid();
     data.date = Date.now();
-    actualBankAccount ? (data.idBankAccount = actualBankAccount) : (data.idBankAccount = '');
+    (data.userId = localStorageService.getUserId()),
+      actualBankAccount ? (data.idBankAccount = actualBankAccount) : (data.idBankAccount = '');
 
     // Добавить id user(а)
 
