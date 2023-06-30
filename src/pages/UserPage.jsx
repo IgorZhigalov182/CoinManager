@@ -1,7 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Button from '../components/ui/common/Button';
+import { useDispatch } from 'react-redux';
+import { loadCategoriesList } from '../store/categories/categories.slice';
+import { loadBankAccountList } from '../store/bankAccounts/bankAccounts.slice';
+import { loadOperationList } from '../store/operations/operations.slice';
+import { logOut } from '../store/users/users.slice';
+import { useNavigate } from 'react-router-dom';
 
 const UserPage = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch(loadCategoriesList());
+    dispatch(loadBankAccountList());
+    dispatch(loadOperationList());
+  }, []);
+
+  const handleLogout = () => {
+    dispatch(logOut());
+    navigate('/login');
+  };
+
   return (
     <div className="container">
       <div className="card mt-2 mb-3" style={{ maxWidth: '540px' }}>
@@ -32,6 +52,11 @@ const UserPage = () => {
                 <small className="text-body-secondary">Last updated 3 mins ago</small>
               </p>
               <Button className={'btn btn-dark'} title={'Редактировать'} />
+              <Button
+                handler={handleLogout}
+                className={'btn btn-dark ms-3'}
+                title={'Выйти из аккаунта'}
+              />
             </div>
           </div>
         </div>

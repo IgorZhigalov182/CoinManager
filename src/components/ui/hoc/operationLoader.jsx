@@ -5,16 +5,22 @@ import {
   loadOperationList,
 } from '../../../store/operations/operations.slice';
 import SpinnerLoader from '../SpinnerLoader';
+import { getIsLoggedIn } from '../../../store/users/users.slice';
 
 const OperationLoader = ({ children }) => {
   const isLoading = useSelector(getOperationsLoadingStatus());
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector(getIsLoggedIn());
 
-  useEffect(() => {
-    dispatch(loadOperationList());
-  }, []);
+  if (isLoggedIn) {
+    // dispatch(loadOperationList());
+  }
 
-  if (isLoading) return <SpinnerLoader />;
+  // useEffect(() => {
+  //   dispatch(loadOperationList());
+  // }, []);
+
+  // if (isLoading) return <SpinnerLoader />;
   return children;
 };
 

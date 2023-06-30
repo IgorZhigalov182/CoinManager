@@ -83,6 +83,11 @@ export default function NavBar() {
         {isLoggedIn && (
           <ul className="navbar-nav">
             <li className="nav-item">
+              <NavLink to="/user/1" className="nav-link">
+                Профиль
+              </NavLink>
+            </li>
+            <li className="nav-item">
               <NavLink to="/" className="nav-link">
                 Главная
               </NavLink>
@@ -100,11 +105,6 @@ export default function NavBar() {
             <li className="nav-item">
               <NavLink to="/operations" className="nav-link">
                 Операции
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink to="/user/1" className="nav-link">
-                Мой профиль
               </NavLink>
             </li>
           </ul>
