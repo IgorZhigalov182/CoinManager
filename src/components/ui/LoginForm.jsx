@@ -1,9 +1,10 @@
 import { Field, Form, Formik } from 'formik';
 import React, { useEffect, useRef } from 'react';
 import Button from './common/Button';
-import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { login } from '../../store/users/users.slice';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getIsLoggedIn, login } from '../../store/users/users.slice';
+import { Navigate } from 'react-router-dom';
 
 const initialValue = { email: '', password: '' };
 
@@ -11,6 +12,7 @@ const LoginForm = ({ setIsSingUp }) => {
   const dispatch = useDispatch();
   const inputEmail = useRef(null);
   // const inputPassword = useRef(null);
+  const isLoggedIn = useSelector(getIsLoggedIn());
 
   // const enter = document.querySelector('html');
   // enter.addEventListener('keydown', function focusPassword(e) {
@@ -25,7 +27,7 @@ const LoginForm = ({ setIsSingUp }) => {
   };
 
   const handleSubmit = (values) => {
-    console.log(values);
+    // console.log(values);
     const redirect = '/categories';
     dispatch(login({ payload: values, redirect }));
   };
@@ -81,6 +83,7 @@ const LoginForm = ({ setIsSingUp }) => {
           </Form>
         )}
       </Formik>
+      {isLoggedIn && <Navigate to="/user/1" />}
     </div>
   );
 };

@@ -89,11 +89,10 @@ export const login =
     dispatch(authRequested());
     try {
       const data = await authService.login({ email, password });
-      dispatch(authRequestSuccess({ userId: data.localId }));
+      dispatch(authRequestSuccess({ userId: data.userId }));
       localStorageService.setTokens(data);
-      history.push(redirect);
     } catch (error) {
-      const { code, message } = error.response.data.error;
+      const { code, message } = error?.response?.data?.error;
       if (code === 400) {
         const errorMessage = '400 error';
         // const errorMessage = generateAuthError(message);

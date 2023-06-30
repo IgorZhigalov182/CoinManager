@@ -2,14 +2,16 @@ import { Field, Form, Formik } from 'formik';
 import React, { useEffect, useRef } from 'react';
 import Button from './common/Button';
 import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
-import { signUp } from '../../store/users/users.slice';
+import { useDispatch, useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+import { getIsLoggedIn, signUp } from '../../store/users/users.slice';
 
 const initialValue = { email: '', password: '', confirmPassword: '', firstName: '', lastName: '' };
 
 const RegisterForm = ({ setIsSingUp }) => {
   const inputName = useRef(null);
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector(getIsLoggedIn());
 
   const handleSubmit = (values) => {
     console.log(values);
@@ -107,6 +109,7 @@ const RegisterForm = ({ setIsSingUp }) => {
           </Form>
         )}
       </Formik>
+      {isLoggedIn && <Navigate to="/user/1" />}
     </div>
   );
 };

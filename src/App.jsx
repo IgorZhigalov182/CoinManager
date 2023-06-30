@@ -3,7 +3,7 @@ import { loadCategoriesList } from './store/categories/categories.slice';
 import { useDispatch } from 'react-redux';
 import NavBar from './components/ui/NavBar';
 import withRouter from './components/ui/hoc/withRouter';
-import { useRoutes } from 'react-router-dom';
+import { BrowserRouter, useRoutes } from 'react-router-dom';
 import routes from './routes';
 import OperationLoader from './components/ui/hoc/operationLoader';
 import { loadBankAccountList } from './store/bankAccounts/bankAccounts.slice';
