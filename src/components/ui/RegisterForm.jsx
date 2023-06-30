@@ -2,14 +2,18 @@ import { Field, Form, Formik } from 'formik';
 import React, { useEffect, useRef } from 'react';
 import Button from './common/Button';
 import * as Yup from 'yup';
+import { useDispatch } from 'react-redux';
+import { signUp } from '../../store/users/users.slice';
 
 const initialValue = { email: '', password: '', confirmPassword: '', firstName: '', lastName: '' };
 
 const RegisterForm = ({ setIsSingUp }) => {
   const inputName = useRef(null);
+  const dispatch = useDispatch();
 
   const handleSubmit = (values) => {
     console.log(values);
+    dispatch(signUp(values));
   };
 
   const handleRegister = () => {

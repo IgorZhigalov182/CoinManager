@@ -1,10 +1,14 @@
 import { Field, Form, Formik } from 'formik';
 import React, { useEffect, useRef } from 'react';
 import Button from './common/Button';
+import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { login } from '../../store/users/users.slice';
 
 const initialValue = { email: '', password: '' };
 
 const LoginForm = ({ setIsSingUp }) => {
+  const dispatch = useDispatch();
   const inputEmail = useRef(null);
   // const inputPassword = useRef(null);
 
@@ -17,12 +21,13 @@ const LoginForm = ({ setIsSingUp }) => {
   // });
 
   const handleRegister = () => {
-    console.log('click');
     setIsSingUp(true);
   };
 
   const handleSubmit = (values) => {
     console.log(values);
+    const redirect = '/categories';
+    dispatch(login({ payload: values, redirect }));
   };
 
   useEffect(() => {

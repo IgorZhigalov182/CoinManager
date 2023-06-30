@@ -56,11 +56,11 @@ export default function NavBar() {
           {!isAuth ? (
             <NavLink to="/login" className="nav-link navbar ms-2">
               Авторизация
-              <i class="fa-solid fa-right-to-bracket ms-2"></i>
+              <i className="fa-solid fa-right-to-bracket ms-2"></i>
             </NavLink>
           ) : (
             <NavLink to="/login" className="nav-link navbar ms-3">
-              <i class="fa-solid fa-user"></i>
+              <i className="fa-solid fa-user"></i>
             </NavLink>
           )}
         </li>
@@ -95,6 +95,11 @@ export default function NavBar() {
           <li className="nav-item">
             <NavLink to="/operations" className="nav-link">
               Операции
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink to="/user/1" className="nav-link">
+              Мой профиль
             </NavLink>
           </li>
         </ul>

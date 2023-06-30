@@ -15,13 +15,13 @@ const CategoryCard = ({ handleModal, name, color, id }) => {
         <Button
           style={{ width: '3rem' }}
           className={'btn btn-danger  mt-1'}
-          title={<i class="fa-solid fa-trash"></i>}
+          title={<i className="fa-solid fa-trash"></i>}
           handler={() => handleDelete(id)}
         />
         <Button
           style={{ width: '3rem' }}
           className={'btn btn-secondary mt-2 '}
-          title={<i class="fa-solid fa-gear"></i>}
+          title={<i className="fa-solid fa-gear"></i>}
           handler={() => handleModal(id)}
         />
       </div>

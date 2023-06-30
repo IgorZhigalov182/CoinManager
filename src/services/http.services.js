@@ -1,22 +1,23 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import localStorageService from './localStorage.services';
-
-const apiEndpoint = 'https://coin-manager-firebase-default-rtdb.europe-west1.firebasedatabase.app/';
-const isFireBase = true;
+import config from '../config.json';
 
 const http = axios.create({
-  baseURL: apiEndpoint,
+  baseURL: config.apiEndpoint,
 });
 
 http.interceptors.request.use(
   async function (config) {
-    if (isFireBase) {
+    const expiresDate = localStorageService.getTokenExpiresDate();
+    const refreshToken = localStorageService.getRefreshToken();
+    const isExpired = refreshToken && expiresDate < Date.now();
+
+    if (config.isFireBase) {
       const containSlash = /\/$/gi.test(config.url);
       config.url = (containSlash ? config.url.slice(0, -1) : config.url) + '.json';
-      const expiresDate = localStorageService.getTokenExpiresDate();
-      const refreshToken = localStorageService.getRefreshToken();
-      if (refreshToken && expiresDate < Date.now()) {
+
+      if (isExpired) {
         const { data } = await httpAuth.post('token', {
           grant_type: 'refresh_token',
           refresh_token: refreshToken,
@@ -33,6 +34,18 @@ http.interceptors.request.use(
       if (accessToken) {
         config.params = { ...config.params, auth: accessToken };
       }
+    } else {
+      if (isExpired) {
+        const data = await authService.refresh();
+        localStorageService.setTokens(data);
+      }
+      const accessToken = localStorageService.getAccessToken();
+      if (accessToken) {
+        config.headers = {
+          ...config.headers,
+          Authorization: `Bearer ${accessToken}`,
+        };
+      }
     }
     return config;
   },
@@ -42,7 +55,7 @@ http.interceptors.request.use(
 );
 
 function transformData(data) {
-  return data && !data._id
+  return data && !data.id
     ? Object.keys(data).map((key) => ({
         ...data[key],
       }))
@@ -51,9 +64,10 @@ function transformData(data) {
 
 http.interceptors.response.use(
   (res) => {
-    if (isFireBase) {
+    if (config.isFireBase) {
       res.data = { content: transformData(res.data) };
     }
+    res.data = { content: res.data };
     return res;
   },
   function (error) {
