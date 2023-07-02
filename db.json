@@ -9,6 +9,16 @@
       "id": "a76HvLF0CMzWv-lpb6wGJ",
       "date": 1687782715017,
       "userId": "649ef7c7069b508d39194d1a"
+    },
+    {
+      "name": "Не наш",
+      "bank": "Альфа-Банк",
+      "comment": "",
+      "active": false,
+      "typeAccount": "credit",
+      "id": "a71HvLF0CMzWv-lpb6wGJ",
+      "date": 1687782715087,
+      "userId": "619ef7c7069b508d39194d1a"
     }
   ],
   "comments": [
@@ -207,6 +217,18 @@
       "id": "g3hO7OQfFrrtv_TvHVgCp",
       "date": 1688158995542,
       "userId": "649ef7c7069b508d39194d1a"
+    },
+    {
+      "idBankAccount": "",
+      "comment": "",
+      "category": "b59657db-49bf-47cd-a8c3-82a7369c3349",
+      "sum": 100,
+      "addNewCategory": false,
+      "newCategory": "",
+      "userId": "649ef7c7069b508d39194d1a",
+      "typeOperation": "expense",
+      "id": "2HEQTXwWicfMJDrwMMGpr",
+      "date": 1688308314389
     }
   ],
   "categories": [

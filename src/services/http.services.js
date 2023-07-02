@@ -2,6 +2,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import localStorageService from './localStorage.services';
 import config from '../config.json';
+import authService from './auth.services';
 
 const http = axios.create({
   baseURL: config.apiEndpoint,

@@ -9,10 +9,7 @@ import {
   getBankAccountList,
   updatedBankAccountById,
 } from '../store/bankAccounts/bankAccounts.slice';
-import {
-  doBankAccountFavourite,
-  resetFavouritesBankAccount,
-} from '../services/bankAccount.services';
+import bankAccountService from '../services/bankAccount.services';
 import { nanoid } from '@reduxjs/toolkit';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
@@ -23,7 +20,6 @@ import localStorageService from '../services/localStorage.services';
 let bankAccountData = {
   name: '',
   bank: '',
-  comment: '',
   active: false,
   typeAccount: '',
 };
@@ -37,17 +33,10 @@ const BankAccounts = () => {
 
   const handleModal = (id) => {
     if (typeof id == 'string') {
-      setInitialValue([...bankAccounts].filter((account) => account.id == id)[0]);
+      setInitialValue([...bankAccounts].filter((account) => account._id == id)[0]);
     }
     setModalActive(!modalActive);
   };
-
-  // const handleChange = ({ target }) => {
-  //   setData((prevState) => ({
-  //     ...prevState,
-  //     [target.name]: target.value,
-  //   }));
-  // };
 
   const handleDelete = async (id) => {
     try {
@@ -63,21 +52,21 @@ const BankAccounts = () => {
 
   const handleFavourite = async (id) => {
     try {
-      resetFavouritesBankAccount(bankAccounts);
-      doBankAccountFavourite(id, bankAccounts);
+      bankAccountService.resetFavouritesBankAccount(bankAccounts);
+      bankAccountService.doBankAccountFavourite(id, bankAccounts);
       dispatch(favouritedBankAccountById(id));
-      // dispatch(updatedBankAccountById(data));
+      // dispatch(updatedBankAccountById(data, bankAccounts));
     } catch (error) {}
   };
 
   const handleSubmit = async (data) => {
-    if (data.id) {
+    if (data._id) {
       dispatch(updatedBankAccountById(data, bankAccounts));
       // Реализовать логику с обнулением формы Добавить при создании нового счёта
     } else {
-      data.id = nanoid();
-      data.date = Date.now();
-      data.userId = localStorageService.getUserId();
+      // data.id = nanoid();
+      // data.date = Date.now();
+      // data.userId = localStorageService.getUserId();
       dispatch(createBankAccount(data, bankAccounts));
       setInitialValue(bankAccountData);
     }
@@ -118,7 +107,6 @@ const BankAccounts = () => {
           validationSchema={bankAccountSchema}
           onSubmit={async (values, actions) => {
             handleSubmit(values);
-            // setInitialValue(bankAccountData);
           }}
           enableReinitialize={true}
           initialValues={initialValue}>
@@ -133,13 +121,6 @@ const BankAccounts = () => {
               {errors.name && touched.name ? <div>{errors.name}</div> : null}
               <Field type="text" name="bank" className="form-control mt-2" placeholder="Банк" />
               {errors.bank && touched.bank ? <div>{errors.bank}</div> : null}
-              <Field
-                type="textarea"
-                name="comment"
-                className="form-control mt-2"
-                placeholder="Комментарий"
-              />
-
               <label className="mt-2 mb-2">
                 Основной счёт
                 <Field type="checkbox" name="active" className="form-check-input ms-2" />
@@ -178,13 +159,13 @@ const BankAccounts = () => {
                 {errors.typeAccount && touched.typeAccount ? <div>{errors.typeAccount}</div> : null}
               </div>
 
-              {initialValue.id ? (
+              {initialValue._id ? (
                 <div className="d-flex justify-content-between">
                   <Button title="Изменить" type={'submit'} className={'btn btn-primary mt-3'} />
                   <Button
                     title="Удалить"
                     type={'button'}
-                    handler={() => handleDelete(initialValue.id)}
+                    handler={() => handleDelete(initialValue._id)}
                     className={'btn btn-danger mt-3 ms-3'}
                   />
                 </div>
@@ -197,25 +178,6 @@ const BankAccounts = () => {
           )}
         </Formik>
       </ModalWindow>
-
-      {/* <form id="bankAccountForm" onSubmit={handleSubmit} action=""> */}
-      {/* <TextField
-            name={'name'}
-            onChange={handleChange}
-            label="Название счёта"
-            htmlFor="bankAccountForm"
-          /> */}
-      {/* <TextField name={'bank'} onChange={handleChange} label="Банк" htmlFor="bankAccountForm" /> */}
-      {/* <TextAreaFiled
-            name={'comment'}
-            onChange={handleChange}
-            htmlFor="bankAccountForm"
-            label="Комментарий (не обязательно)"
-          /> */}
-      {/* <CheckField /> */}
-      {/* <SelectField list={bankAccounts} /> */}
-      {/* <Button title="Добавить" type={'submit'} className={'btn btn-primary mt-2'} /> */}
-      {/* </form> */}
     </div>
   );
 };

@@ -11,7 +11,7 @@ const ListBankAccounts = ({ bankAccounts, setModalActive, toggleFavourite }) => 
               return (
                 <CardBankAccount
                   toggleFavourite={toggleFavourite}
-                  key={bankData.id}
+                  key={bankData._id}
                   setModalActive={setModalActive}
                   {...bankData}
                 />

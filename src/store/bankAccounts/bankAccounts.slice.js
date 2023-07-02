@@ -1,12 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  deleteBankAccount,
-  getDataBankAccounts,
-  updateBankAccount,
-  resetFavouritesBankAccount,
-  addBankAccount,
+import bankAccountService, {
   checkRemoveBankAccountForFavourite,
-} from '../../services/bankAccount.services';
+} from '../../services/bankAccount.services'; // checkRemoveBankAccountForFavourite,
 
 export const bankAccountsSlice = createSlice({
   name: 'bankAccounts',
@@ -37,11 +32,12 @@ export const bankAccountsSlice = createSlice({
       state.entities[index] = action.payload;
     },
     bankAccountCreated: (state, action) => {
+      // console.log(state.entities); null
       state.entities.push(action.payload);
     },
     bankAccountFavourited: (state, action) => {
       state.entities = [...state.entities].map((bankAccount) => {
-        if (bankAccount.id === action.payload) {
+        if (bankAccount._id === action.payload) {
           return { ...bankAccount, active: true };
         }
         return { ...bankAccount, active: false };
@@ -66,7 +62,6 @@ const { reducer: bankAccountsReducer, actions } = bankAccountsSlice;
 
 const {
   bankAccountsRequested,
-  bankAccountRequested,
   bankAccountRecieved,
   bankAccountDeleted,
   bankAccountUpdated,
@@ -75,12 +70,12 @@ const {
   bankAccountCreated,
 } = actions;
 
-export const loadBankAccountList = () => async (dispatch) => {
+export const loadBankAccountList = (userId) => async (dispatch) => {
   dispatch(bankAccountsRequested());
 
   try {
-    const bankAccounts = await getDataBankAccounts();
-    dispatch(bankAccountRecieved(bankAccounts));
+    const { content } = await bankAccountService.getBankAccounts(userId);
+    dispatch(bankAccountRecieved(content));
   } catch (error) {
     console.log(error);
   }
@@ -90,20 +85,22 @@ export const createBankAccount = (data, bankAccounts) => async (dispatch) => {
   try {
     if (data.active) {
       dispatch(resetBankAccountFavourite(bankAccounts));
-      resetFavouritesBankAccount(bankAccounts);
+      bankAccountService.resetFavouritesBankAccount(bankAccounts);
     }
-    addBankAccount(data);
-    return dispatch(bankAccountCreated(data));
+    const response = await bankAccountService.createBankAccount(data);
+    if (response) {
+      return dispatch(bankAccountCreated(data));
+    }
   } catch (error) {
     console.log(error);
   }
 };
 
-export const getBankAccountList = (id) => (state) => state.bankAccounts.entities;
+export const getBankAccountList = () => (state) => state.bankAccounts.entities;
 
-export const sortBankAccounts = () => (state) => {
-  console.log(state.bankAccounts.entities);
-};
+// export const sortBankAccounts = () => (state) => {
+//   console.log(state.bankAccounts.entities);
+// };
 
 export const getBankAccountsLoadingStatus = () => (state) => state.bankAccounts.isLoading;
 
@@ -113,20 +110,24 @@ export const getBankAccountById = (id) => (state) => {
   }
 };
 
-export const updatedBankAccountById = (data, bankAccounts) => (dispatch) => {
+export const updatedBankAccountById = (data, bankAccounts) => async (dispatch) => {
   try {
     if (data.active) {
       dispatch(resetBankAccountFavourite(bankAccounts));
-      resetFavouritesBankAccount(bankAccounts);
+      bankAccountService.resetFavouritesBankAccount(bankAccounts);
     }
-    updateBankAccount(data);
-    return dispatch(bankAccountUpdated(data));
+
+    const response = await bankAccountService.updateBankAccount(data);
+
+    if (response) {
+      return dispatch(bankAccountUpdated(data));
+    }
   } catch (error) {
     console.log(error);
   }
 };
 
-export const favouritedBankAccountById = (id) => (dispatch) => {
+export const favouritedBankAccountById = (id) => async (dispatch) => {
   try {
     return dispatch(bankAccountFavourited(id));
   } catch (error) {
@@ -134,14 +135,14 @@ export const favouritedBankAccountById = (id) => (dispatch) => {
   }
 };
 
-export const deleteBankAccountById = (id, bankAccounts) => (dispatch) => {
+export const deleteBankAccountById = (id, bankAccounts) => async (dispatch) => {
   try {
-    deleteBankAccount(id);
+    await bankAccountService.removeBankAccount(id);
     dispatch(bankAccountDeleted(id));
 
     if (checkRemoveBankAccountForFavourite(id, bankAccounts)) {
       const arrWithoutRemovedFavouriteBankAccount = [...bankAccounts].filter((bankAccount) => {
-        return bankAccount.id !== id;
+        return bankAccount._id !== id;
       });
 
       const anotherId = arrWithoutRemovedFavouriteBankAccount[0].id;
@@ -170,14 +171,14 @@ export const getBankAccountDisplayNameById = (id) => (state) => {
   return name;
 };
 
-// export const filterTypeBankAccounts = (type) => (state) => {
-//   if (type === 'Все') {
-//     return state.bankAccounts.entities;
-//   }
+export const filterTypeBankAccounts = (type) => (state) => {
+  if (type === 'Все') {
+    return state.bankAccounts.entities;
+  }
 
-//   if (state.bankAccounts.entities) {
-//     return state.bankAccounts.entities.filter((o) => o.type === type);
-//   }
-// };
+  if (state.bankAccounts.entities) {
+    return state.bankAccounts.entities.filter((o) => o.type === type);
+  }
+};
 
 export default bankAccountsReducer;

@@ -8,7 +8,7 @@ const CardBankAccount = ({
   typeAccount,
   bank,
   active,
-  id,
+  _id,
   toggleFavourite,
 }) => {
   return (
@@ -19,7 +19,7 @@ const CardBankAccount = ({
         {active ? (
           <div className="position-absolute top-0 end-0">
             <Button
-              handler={() => toggleFavourite(id)}
+              handler={() => toggleFavourite(_id)}
               className={'btn btn-success'}
               title={<i className="fa-solid fa-star"></i>}
             />
@@ -27,7 +27,7 @@ const CardBankAccount = ({
         ) : (
           <div className="position-absolute top-0 end-0">
             <Button
-              handler={() => toggleFavourite(id)}
+              handler={() => toggleFavourite(_id)}
               className={'btn btn-secondary'}
               title={<i className="fa-regular fa-star"></i>}
             />
@@ -44,20 +44,11 @@ const CardBankAccount = ({
             <i className="fa-solid fa-font-awesome me-2"></i>
             {setTitileTypeBankAccount(typeAccount)}
           </h5>
-
-          {/* {comment ? (
-            <h6 className="card-title">
-              <i class="fa-regular fa-comment me-2"></i>
-              {comment}
-            </h6>
-          ) : (
-            ''
-          )} */}
           <div>
             <Button
               className={'btn btn-secondary position-absolute bottom-0 end-0'}
               title={<i className="fa-solid fa-gear"></i>}
-              handler={() => setModalActive(id)}
+              handler={() => setModalActive(_id)}
             />
           </div>
         </div>

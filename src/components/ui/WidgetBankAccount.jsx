@@ -7,11 +7,7 @@ import {
   getBankAccountDisplayNameById,
   getBankAccountList,
 } from '../../store/bankAccounts/bankAccounts.slice';
-import {
-  doBankAccountFavourite,
-  getMostUsedBankAccount,
-  resetFavouritesBankAccount,
-} from '../../services/bankAccount.services';
+import bankAccountService, { getMostUsedBankAccount } from '../../services/bankAccount.services';
 
 const WidgetBankAccount = () => {
   const dispatch = useDispatch();
@@ -31,10 +27,12 @@ const WidgetBankAccount = () => {
     })
     .filter((bankAccount) => bankAccount);
 
+  console.log(namesMostUsedBankAccount);
+
   const handleActiveBankAccount = async (bankAccountId) => {
     try {
-      resetFavouritesBankAccount(bankAccounts);
-      doBankAccountFavourite(bankAccountId, bankAccounts);
+      bankAccountService.resetFavouritesBankAccount(bankAccounts);
+      bankAccountService.doBankAccountFavourite(bankAccountId, bankAccounts);
       dispatch(favouritedBankAccountById(bankAccountId));
     } catch (error) {
       console.log(error);
@@ -49,7 +47,7 @@ const WidgetBankAccount = () => {
           {namesMostUsedBankAccount.map((bankAccount) => {
             return (
               <a
-                key={bankAccount.id}
+                key={bankAccount._id}
                 className={
                   bankAccount.name === activeBankAccountName
                     ? 'list-group-item list-group-item-action active'
@@ -58,7 +56,7 @@ const WidgetBankAccount = () => {
                 id="list-home-list"
                 data-bs-toggle="list"
                 role="button"
-                onClick={() => handleActiveBankAccount(bankAccount.id)}
+                onClick={() => handleActiveBankAccount(bankAccount._id)}
                 aria-controls="list-home">
                 {bankAccount.name}
               </a>

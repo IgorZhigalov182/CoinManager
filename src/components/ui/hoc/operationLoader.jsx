@@ -8,6 +8,7 @@ import SpinnerLoader from '../SpinnerLoader';
 import { getIsLoggedIn } from '../../../store/users/users.slice';
 import { loadCategoriesList } from '../../../store/categories/categories.slice';
 import { loadBankAccountList } from '../../../store/bankAccounts/bankAccounts.slice';
+import localStorageService from '../../../services/localStorage.services';
 
 const OperationLoader = ({ children }) => {
   const isLoading = useSelector(getOperationsLoadingStatus());
@@ -17,11 +18,12 @@ const OperationLoader = ({ children }) => {
   if (isLoggedIn) {
     // dispatch(loadOperationList());
   }
+  const userId = localStorageService.getUserId();
 
   useEffect(() => {
     dispatch(loadOperationList());
     dispatch(loadCategoriesList());
-    dispatch(loadBankAccountList());
+    dispatch(loadBankAccountList(userId));
   }, []);
 
   if (isLoading) return <SpinnerLoader />;
