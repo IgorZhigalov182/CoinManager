@@ -28,7 +28,9 @@ export const bankAccountsSlice = createSlice({
       state.isLoading = false;
     },
     bankAccountUpdated: (state, action) => {
-      const index = state.entities.findIndex((bankAccount) => bankAccount.id === action.payload.id);
+      const index = state.entities.findIndex(
+        (bankAccount) => bankAccount._id === action.payload._id,
+      );
       state.entities[index] = action.payload;
     },
     bankAccountCreated: (state, action) => {
@@ -111,17 +113,15 @@ export const getBankAccountById = (id) => (state) => {
 };
 
 export const updatedBankAccountById = (data, bankAccounts) => async (dispatch) => {
+  console.log(data);
   try {
     if (data.active) {
       dispatch(resetBankAccountFavourite(bankAccounts));
       bankAccountService.resetFavouritesBankAccount(bankAccounts);
     }
 
-    const response = await bankAccountService.updateBankAccount(data);
-
-    if (response) {
-      return dispatch(bankAccountUpdated(data));
-    }
+    await bankAccountService.updateBankAccount(data);
+    return dispatch(bankAccountUpdated(data));
   } catch (error) {
     console.log(error);
   }

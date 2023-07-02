@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getCategories } from '../store/categories/categories.slice';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../components/ui/common/Button';
 import ModalWindow from '../components/ui/ModalWindow';
 import CategoryCard from '../components/ui/CategoryCard';
 import ModalWindowCategory from '../components/ui/ModalWindowCategory';
+import categoryService from '../services/category.services';
 
 // let categoriesData = {
 //   color: '',
@@ -32,6 +33,12 @@ const Categories = () => {
     // setSelectedId('');
   };
 
+  // async function getData() {
+  //   const res = await categoryService.getCategories();
+  //   console.log(res);
+  // }
+  // getData();
+
   //   color: 'rgb(54, 182, 235, 1)';
   //   icon: '';
   //   id: '0707965a-fd11-4e44-a0bc-8c88750b2ad1';
@@ -49,18 +56,18 @@ const Categories = () => {
           {categories &&
             categories.map((category) => {
               return (
-                <div className="col-sm-6 mt-2" key={category.id}>
-                  <div className="card" key={category.id}>
-                    <div className="card-body" key={category.id}>
-                      <div className="d-flex justify-content-between" key={category.id}>
+                <div className="col-sm-6 mt-2" key={category._id}>
+                  <div className="card" key={category._id}>
+                    <div className="card-body" key={category._id}>
+                      <div className="d-flex justify-content-between" key={category._id}>
                         <CategoryCard
                           category={category}
                           handleModal={handleModal}
                           modalActive={modalActive}
                           setModalActive={setModalActive}
                           color={category.color}
-                          id={category.id}
-                          key={category.id}
+                          id={category._id}
+                          key={category._id}
                           name={category.name}
                         />
                       </div>

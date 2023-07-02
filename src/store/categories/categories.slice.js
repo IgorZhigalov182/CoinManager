@@ -36,14 +36,14 @@ export const categoriesSlice = createSlice({
     },
     categoryUpdated: (state, action) => {
       const index = state.entities.findIndex((category) => {
-        return category.id === action.payload.id;
+        return category._id === action.payload._id;
       });
 
       state.entities[index] = action.payload;
     },
     categoriesDeleted: (state, action) => {
       state.entities = state.entities.filter((category) => {
-        return category.id !== action.payload;
+        return category._id !== action.payload;
       });
     },
   },
@@ -69,22 +69,20 @@ function isOutdated(date) {
 
 export const createCategory = (data) => async (dispatch) => {
   try {
-    dispatch(categoriesCreated(data));
     await categoryService.createCategory(data);
+    dispatch(categoriesCreated(data));
   } catch (error) {
     console.log(error);
   }
 };
 
-export const loadCategoriesList = () => async (dispatch, getState) => {
+export const loadCategoriesList = (userId) => async (dispatch, getState) => {
   const { lastFetch } = getState().categories;
   if (isOutdated(lastFetch)) {
     dispatch(categoriesRequested());
     try {
-      // const { content } = await categoryService.fetchAll(); //firebase
-      const content = await categoryService.getCategoriesFromDB();
-      // console.log(content);
-      dispatch(categoriesReceived(content));
+      const { data } = await categoryService.getCategories(userId);
+      dispatch(categoriesReceived(data.content));
     } catch (error) {
       dispatch(categoriesRequestFailed(error.message));
     }
@@ -98,7 +96,7 @@ export const getCategoryById = (id) => (state) => {
   if (state.categories.entities) {
     state.categories.entities.filter((category) => {
       return category;
-      if (category.id == id) {
+      if (category._id == id) {
         name = category.name;
       }
     });
@@ -110,7 +108,7 @@ export const getCategoryDisplayNameById = (id) => (state) => {
   let name = '';
   if (state.categories.entities) {
     state.categories.entities.filter((category) => {
-      if (category.id == id) {
+      if (category._id == id) {
         name = category.name;
       }
     });
@@ -122,7 +120,7 @@ export const getCategoryColorById = (id) => (state) => {
   let name = '';
   if (state.categories.entities) {
     state.categories.entities.filter((category) => {
-      if (category.id == id) {
+      if (category._id == id) {
         name = category.color;
       }
     });
@@ -136,7 +134,7 @@ export const getCategoryColorById = (id) => (state) => {
 
 export const deleteCategory = (id) => async (dispatch) => {
   try {
-    await categoryService.deleteCategory(id);
+    await categoryService.removeCategory(id);
     dispatch(categoriesDeleted(id));
   } catch (error) {
     console.log(error);
@@ -147,8 +145,8 @@ export const getCategories = () => (state) => state.categories.entities;
 
 export const updateCategoryById = (data) => async (dispatch) => {
   try {
+    await categoryService.updateCategory(data);
     dispatch(categoryUpdated(data));
-    categoryService.updateCategory(data);
   } catch (error) {
     console.log(error);
   }

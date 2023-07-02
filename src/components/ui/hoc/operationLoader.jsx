@@ -15,14 +15,14 @@ const OperationLoader = ({ children }) => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsLoggedIn());
 
-  if (isLoggedIn) {
+  if (!isLoggedIn) {
     // dispatch(loadOperationList());
   }
   const userId = localStorageService.getUserId();
 
   useEffect(() => {
     dispatch(loadOperationList());
-    dispatch(loadCategoriesList());
+    dispatch(loadCategoriesList(userId));
     dispatch(loadBankAccountList(userId));
   }, []);
 

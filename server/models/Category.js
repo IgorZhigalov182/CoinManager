@@ -9,9 +9,7 @@ const schema = new Schema(
     color: {
       type: String,
     },
-    icon: {
-      type: String,
-    },
+    userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   },
   {
     timestamps: true,

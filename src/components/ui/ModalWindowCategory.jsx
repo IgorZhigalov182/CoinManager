@@ -14,14 +14,14 @@ const ModalWindowCategory = ({ categories, selectedCategory, modalActive, setMod
   const [initialValue, setInitialValue] = useState();
   const dispatch = useDispatch();
 
-  let category = categories?.filter((category) => category.id === selectedCategory)[0];
+  let category = categories?.filter((category) => category._id === selectedCategory)[0];
   const findTargetCategory = () => {
     return category
       ? category
       : {
           color: getRandomColor(),
-          icon: '',
-          id: '',
+          // icon: '',
+          // id: '',
           userId: '',
           name: '',
         };
@@ -36,10 +36,10 @@ const ModalWindowCategory = ({ categories, selectedCategory, modalActive, setMod
   });
 
   const handleSubmit = async (data) => {
-    if (data.id) {
+    if (data._id) {
       dispatch(updateCategoryById(data));
     } else {
-      data.id = nanoid();
+      // data.id = nanoid();
       data.userId = localStorageService.getUserId();
       dispatch(createCategory(data));
     }
@@ -87,10 +87,10 @@ const ModalWindowCategory = ({ categories, selectedCategory, modalActive, setMod
                   title={'Изменить цвет'}
                 />
               </div>
-              {!values?.id && (
+              {!values?._id && (
                 <Button type={'submit'} className={'btn btn-success mt-2'} title={'Добавить'} />
               )}
-              {values?.id && (
+              {values?._id && (
                 <Button type={'submit'} className={'btn btn-success mt-2'} title={'Изменить'} />
               )}
             </Form>
