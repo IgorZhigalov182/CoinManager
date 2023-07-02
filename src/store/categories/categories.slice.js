@@ -69,8 +69,10 @@ function isOutdated(date) {
 
 export const createCategory = (data) => async (dispatch) => {
   try {
-    await categoryService.createCategory(data);
-    dispatch(categoriesCreated(data));
+    const content = await categoryService.createCategory(data);
+    console.log(data);
+    console.log(content);
+    dispatch(categoriesCreated(content));
   } catch (error) {
     console.log(error);
   }
@@ -108,7 +110,7 @@ export const getCategoryDisplayNameById = (id) => (state) => {
   let name = '';
   if (state.categories.entities) {
     state.categories.entities.filter((category) => {
-      if (category._id == id) {
+      if (category._id === id) {
         name = category.name;
       }
     });

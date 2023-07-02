@@ -1,11 +1,5 @@
-import { createSlice, current } from '@reduxjs/toolkit';
-import {
-  addOperation,
-  deleteOperation,
-  updateOperation,
-  getDataOperations,
-  getOperation,
-} from '../../services/operations.services';
+import { createSlice } from '@reduxjs/toolkit';
+import operationService from '../../services/operations.services';
 import { timeStampToMonth } from '../../services/date.services';
 
 export const operationsSlice = createSlice({
@@ -39,7 +33,7 @@ export const operationsSlice = createSlice({
     },
     operationUpdated: (state, action) => {
       const index = state.entities.findIndex((operation) => {
-        return operation.id === action.payload.id;
+        return operation._id === action.payload._id;
       });
 
       state.entities[index] = action.payload;
@@ -90,7 +84,7 @@ export const operationsSlice = createSlice({
       // console.log('state', state.entities);
       // console.log('action', action.payload);
       state.entities = state.entities.filter((operation) => {
-        return operation.id !== action.payload;
+        return operation._id !== action.payload;
       });
     },
   },
@@ -100,29 +94,27 @@ const { reducer: operationReducer, actions } = operationsSlice;
 
 const {
   operationsRequested,
-  operationRequested,
   operationsRecieved,
-  operationRecieved,
   operationCreated,
   operationUpdated,
   operationDeleted,
   operationSortedBySum,
   operationSortedByDate,
-  operationCount,
 } = actions;
 
-export const loadOperationList = () => async (dispatch) => {
+export const loadOperationList = (userId) => async (dispatch) => {
   dispatch(operationsRequested());
 
   try {
-    const operations = await getDataOperations();
+    const operations = await operationService.getOperations(userId);
+    // const operations = await getDataOperations();
     dispatch(operationsRecieved(operations));
   } catch (error) {
     console.log(error);
   }
 };
 
-export const getOperationList = (id) => (state) => state.operations.entities;
+export const getOperationList = () => (state) => state.operations.entities;
 
 export const sortOperationsBySum = () => (dispatch) => dispatch(operationSortedBySum());
 
@@ -132,7 +124,7 @@ export const getCountOperations = (title) => (state) => {
   const typeOperation = title === 'Доходы' ? 'profit' : 'expense';
   let length = 0;
   if (state.operations.entities) {
-    let arr = [...state.operations.entities].filter((operation) => {
+    let arr = [...state?.operations?.entities].filter((operation) => {
       return operation.typeOperation === typeOperation;
     });
     length = arr.length;
@@ -177,14 +169,15 @@ export const getOperationsLoadingStatus = () => (state) => state.operations.isLo
 
 export const getOperationById = (id) => (state) => {
   if (state.operations.entities) {
-    return state.operations.entities.find((o) => o.id == id);
+    return state.operations.entities.find((o) => o._id == id);
   }
 };
 
 export const createOperation = (data) => async (dispatch) => {
   try {
-    await addOperation(data);
-    dispatch(operationCreated(data));
+    // await addOperation(data);
+    await operationService.createOperation(data);
+    return dispatch(operationCreated(data));
   } catch (error) {
     console.log(error);
   }
@@ -192,16 +185,16 @@ export const createOperation = (data) => async (dispatch) => {
 
 export const updateOperationById = (data) => async (dispatch) => {
   try {
-    updateOperation(data);
+    await operationService.updateOperation(data);
     dispatch(operationUpdated(data));
   } catch (error) {
     console.log(error);
   }
 };
 
-export const deleteOperationById = (id) => (dispatch) => {
+export const deleteOperationById = (id) => async (dispatch) => {
   try {
-    deleteOperation(id);
+    await operationService.removeOperation(id);
     dispatch(operationDeleted(id));
   } catch (error) {
     console.log(error);

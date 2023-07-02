@@ -1,3 +1,35 @@
+import httpService from './http.services';
+
+const operationEndpoint = 'operation/';
+
+const operationService = {
+  getOperations: async (userId) => {
+    const { data } = await httpService.get(operationEndpoint, {
+      params: {
+        orderBy: 'userId',
+        equalTo: `${userId}`,
+      },
+    });
+    return data.content;
+  },
+  createOperation: async (payload) => {
+    const { content } = await httpService.post(operationEndpoint, payload);
+    return content;
+  },
+  removeOperation: async (operationId) => {
+    const { content } = await httpService.delete(operationEndpoint + operationId);
+    return content;
+  },
+  fetchAll: async () => {
+    const { data } = await httpService.get(operationEndpoint);
+    return data;
+  },
+  updateOperation: async (operationData) => {
+    const { data } = await httpService.patch(operationEndpoint + operationData._id, operationData);
+    return data;
+  },
+};
+
 export const getDataOperations = async () => {
   try {
     const response = await fetch('http://localhost:3000/operations');
@@ -47,3 +79,5 @@ export const deleteOperation = async (id) => {
     console.log(error);
   }
 };
+
+export default operationService;

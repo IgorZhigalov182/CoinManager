@@ -5,6 +5,7 @@ import {
   filterTypeOperations,
   getOperationList,
   getOperationsLoadingStatus,
+  loadOperationList,
   sortOperationsByDate,
   sortOperationsBySum,
 } from '../store/operations/operations.slice';
@@ -14,23 +15,33 @@ import NewOperation from '../components/ui/ModalWindowOperation';
 import { paginate } from '../utils/paginate';
 import Pagination from '../components/ui/Pagination';
 import ModalWindowOperation from '../components/ui/ModalWindowOperation';
+import localStorageService from '../services/localStorage.services';
 
 const Operations = ({}) => {
   const [modalActive, setModalActive] = useState(false);
   const pageSize = 3;
   const [currentPage, setCurrentPage] = useState(1);
   let operations = useSelector(getOperationList());
-  console.log(operations);
+  // console.log(operations);
   const location = useLocation();
   const typeOperation = location.state?.title;
   const typeHandler = location.state?.handle;
   const dispatch = useDispatch();
+  const userId = localStorageService.getUserId();
   let typeOperationForModal = typeOperation === 'Доходы' ? 'profit' : 'expense';
 
   const handleModal = () => {
     // inputSum.current.focus();
     setModalActive(!modalActive);
   };
+
+  // useEffect(() => {
+  // dispatch(loadOperationList(userId));
+  // }, [handleModal]);
+
+  // useEffect(() => {
+  //   dispatch(loadOperationList(userId));
+  // }, []);
 
   useEffect(() => {
     if (typeHandler === 'addModal') {

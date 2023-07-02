@@ -35,9 +35,6 @@ const ModalWindowOperation = ({
       };
 
   const [initialValue, setInitialValue] = useState(operationData);
-  // const inputSum = React.createRef();
-
-  // const [modalActive, setModalActive] = useState(false);
   const [operations, setOperations] = useState([]);
   const categories = useSelector(getCategories());
 
@@ -57,19 +54,17 @@ const ModalWindowOperation = ({
     if (data.addNewCategory && data.newCategory) {
       const categoryData = {
         name: data.newCategory,
-        id: nanoid(),
+        // id: nanoid(),
         color: getRandomColor(),
-        icon: '',
+        userId: localStorageService.getUserId(),
       };
       dispatch(createCategory(categoryData));
       data.category = categoryData.id;
     }
-    data.id = nanoid();
+    // data.id = nanoid();
     data.date = Date.now();
     (data.userId = localStorageService.getUserId()),
       actualBankAccount ? (data.idBankAccount = actualBankAccount) : (data.idBankAccount = '');
-
-    // Добавить id user(а)
 
     dispatch(createOperation(data));
     setModalActive(false);
@@ -125,7 +120,7 @@ const ModalWindowOperation = ({
                     categories.map((category) => {
                       return (
                         <>
-                          <option key={category.name} value={category.id}>
+                          <option key={category.name} value={category._id}>
                             {category.name}
                           </option>
                         </>

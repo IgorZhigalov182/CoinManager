@@ -54,7 +54,7 @@ export const bankAccountsSlice = createSlice({
       // console.log('state', state.entities);
       // console.log('action', action.payload);
       state.entities = [...state.entities].filter((bankAccount) => {
-        return bankAccount.id !== action.payload;
+        return bankAccount._id !== action.payload;
       });
     },
   },
@@ -155,7 +155,7 @@ export const deleteBankAccountById = (id, bankAccounts) => async (dispatch) => {
 
 export const getActiveBankAccount = () => (state) => {
   if (state.bankAccounts.entities && state.bankAccounts.entities.length != 0) {
-    return state.bankAccounts.entities.filter((bankAccount) => bankAccount.active === true)[0].id;
+    return state.bankAccounts.entities.filter((bankAccount) => bankAccount.active === true)[0]._id;
   }
 };
 
@@ -163,7 +163,7 @@ export const getBankAccountDisplayNameById = (id) => (state) => {
   let name = '';
   if (state.bankAccounts.entities) {
     state.bankAccounts.entities.filter((bankAccount) => {
-      if (bankAccount.id == id) {
+      if (bankAccount._id == id) {
         name = bankAccount.name;
       }
     });

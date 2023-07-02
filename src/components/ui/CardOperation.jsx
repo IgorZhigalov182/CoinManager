@@ -9,7 +9,7 @@ import { getCategoryDisplayNameById } from '../../store/categories/categories.sl
 import Badge from './common/Badge';
 import { getBankAccountDisplayNameById } from '../../store/bankAccounts/bankAccounts.slice';
 
-const CardOperation = ({ idBankAccount, category, comment, id, sum, date, typeOperation }) => {
+const CardOperation = ({ idBankAccount, category, comment, _id, sum, date, typeOperation }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   let { pathname } = useLocation();
@@ -18,9 +18,10 @@ const CardOperation = ({ idBankAccount, category, comment, id, sum, date, typeOp
 
   const operationPage = pathname.length < 12;
 
-  const handleGoToRecord = () => navigate(`${id}`, { state: 'pathname' });
+  console.log(_id);
+  const handleGoToRecord = () => navigate(`${_id}`, { state: 'pathname' });
 
-  const handleDelete = () => dispatch(deleteOperationById(id));
+  const handleDelete = () => dispatch(deleteOperationById(_id));
 
   return (
     <div className="card mb-2">

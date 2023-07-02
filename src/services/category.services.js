@@ -63,30 +63,31 @@ const categoryService = {
   //     console.log(error);
   //   }
   // },
-  deleteCategory: async (id) => {
-    try {
-      await fetch(`http://localhost:3000/categories/${id}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-        },
-        // body: JSON.stringify(data),
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  },
-};
+  //   deleteCategory: async (id) => {
+  //     try {
+  //       await fetch(`http://localhost:3000/categories/${id}`, {
+  //         method: 'DELETE',
+  //         headers: {
+  //           'Content-Type': 'application/json;charset=utf-8',
+  //         },
+  //         // body: JSON.stringify(data),
+  //       });
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   },
+  // };
 
-// export const getCategoriesFromDB = async () => {
-//   try {
-//     const response = await fetch('http://localhost:3000/categories');
-//     const categories = await response.json();
-//     return categories;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+  // export const getCategoriesFromDB = async () => {
+  //   try {
+  //     const response = await fetch('http://localhost:3000/categories');
+  //     const categories = await response.json();
+  //     return categories;
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };\
+};
 
 export function sumByCategory(data) {
   const categories = data.map((item) => ({

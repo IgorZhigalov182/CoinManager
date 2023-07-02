@@ -21,9 +21,9 @@ const OperationLoader = ({ children }) => {
   const userId = localStorageService.getUserId();
 
   useEffect(() => {
-    dispatch(loadOperationList());
     dispatch(loadCategoriesList(userId));
     dispatch(loadBankAccountList(userId));
+    dispatch(loadOperationList(userId));
   }, []);
 
   if (isLoading) return <SpinnerLoader />;

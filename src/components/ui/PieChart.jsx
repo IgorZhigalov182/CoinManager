@@ -21,16 +21,18 @@ const PieChart = ({ typeOperation, style }) => {
   const navigate = useNavigate();
   const categories = useSelector(getCategories());
   const operationsArray = useSelector(getOperationList());
-
-  const operations = operationsArray.filter((operation) => {
-    return operation.typeOperation === typeOperation;
-  });
+  let operations = '';
+  if (operationsArray.length !== 0) {
+    operations = operationsArray.filter((operation) => {
+      return operation.typeOperation === typeOperation;
+    });
+  }
 
   const operationsWithCategories = [];
-  if (categories) {
+  if (categories && operations.length !== 0) {
     operations.forEach((operation) => {
       categories.forEach((category) => {
-        if (operation.category === category.id) {
+        if (operation?.category === category._id) {
           operationsWithCategories.push({
             ...operation,
             categoryLabel: category.name,

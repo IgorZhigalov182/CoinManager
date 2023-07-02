@@ -17,6 +17,8 @@ const WidgetBankAccount = () => {
   const activeBankAccountName = useSelector(getBankAccountDisplayNameById(activeBankAccountId));
   const mostUsedBankAccountId = getMostUsedBankAccount(operations);
 
+  console.log(mostUsedBankAccountId);
+
   const namesMostUsedBankAccount = mostUsedBankAccountId
     .map((bankAccount) => {
       let name = useSelector(getBankAccountDisplayNameById(bankAccount[0]));
@@ -26,8 +28,6 @@ const WidgetBankAccount = () => {
       }
     })
     .filter((bankAccount) => bankAccount);
-
-  console.log(namesMostUsedBankAccount);
 
   const handleActiveBankAccount = async (bankAccountId) => {
     try {
