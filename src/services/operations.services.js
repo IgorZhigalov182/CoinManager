@@ -26,7 +26,6 @@ const operationService = {
   },
   updateOperation: async (operationData) => {
     const { data } = await httpService.patch(operationEndpoint + operationData._id, operationData);
-    console.log(data.content);
     return data.content;
   },
 };

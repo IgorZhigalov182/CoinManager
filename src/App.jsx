@@ -11,9 +11,9 @@ import { getIsLoggedIn } from './store/users/users.slice';
 import { loadOperationList } from './store/operations/operations.slice';
 
 function App() {
-  const elements = useRoutes(routes);
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsLoggedIn());
+  const elements = useRoutes(routes(isLoggedIn));
 
   // if (isLoggedIn) {
   //   dispatch(loadCategoriesList());

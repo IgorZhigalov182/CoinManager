@@ -1,15 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Button from './Button';
 import { useNavigate } from 'react-router-dom';
 
 const BackButton = ({ className }) => {
   const navigate = useNavigate();
 
-  const handleBack = () => navigate(-1);
-
   return (
-    <Button className={className || 'btn btn-secondary'} title={'Назад'} handler={handleBack} />
+    <Button
+      className={className || 'btn btn-secondary'}
+      title={'Назад'}
+      handler={() => navigate(-1)}
+    />
   );
 };
 
 export default BackButton;
+
+BackButton.propTypes = {
+  className: PropTypes.string,
+};

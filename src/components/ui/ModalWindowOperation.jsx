@@ -56,14 +56,12 @@ const ModalWindowOperation = ({
     if (data.addNewCategory && data.newCategory) {
       const categoryData = {
         name: data.newCategory,
-        // id: nanoid(),
         color: getRandomColor(),
         userId: localStorageService.getUserId(),
       };
       const response = await dispatch(createCategory(categoryData));
       data.category = response._id;
     }
-    // data.id = nanoid();
     data.userId = userId;
     data.date = Date.now();
     actualBankAccount ? (data.idBankAccount = actualBankAccount) : (data.idBankAccount = '');
@@ -116,11 +114,9 @@ const ModalWindowOperation = ({
                   {categories &&
                     categories.map((category) => {
                       return (
-                        <>
-                          <option key={category.name} value={category._id}>
-                            {category.name}
-                          </option>
-                        </>
+                        <option key={category._id} value={category._id}>
+                          {category.name}
+                        </option>
                       );
                     })}
                 </Field>

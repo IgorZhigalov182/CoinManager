@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from './common/Button';
+import PropTypes from 'prop-types';
 import { setTitileTypeBankAccount } from '../../services/bankAccount.services';
 
 const CardBankAccount = ({
@@ -58,3 +59,13 @@ const CardBankAccount = ({
 };
 
 export default CardBankAccount;
+
+CardBankAccount.propTypes = {
+  setModalActive: PropTypes.func,
+  name: PropTypes.string,
+  typeAccount: PropTypes.string,
+  bank: PropTypes.string,
+  active: PropTypes.bool,
+  _id: PropTypes.string,
+  toggleFavourite: PropTypes.func,
+};

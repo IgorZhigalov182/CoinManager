@@ -3,18 +3,20 @@ import ModalWindow from './ModalWindow';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import Button from './common/Button';
-import chroma from 'chroma-js';
 import { getRandomColor } from '../../utils/getRandomColor';
 import { useDispatch } from 'react-redux';
 import { createCategory, updateCategoryById } from '../../store/categories/categories.slice';
 import localStorageService from '../../services/localStorage.services';
-import { nanoid } from '@reduxjs/toolkit';
 
 const ModalWindowCategory = ({ categories, selectedCategory, modalActive, setModalActive }) => {
-  const [initialValue, setInitialValue] = useState();
   const dispatch = useDispatch();
 
   let category = categories?.filter((category) => category._id === selectedCategory)[0];
+  const [initialValue, setInitialValue] = useState({
+    color: getRandomColor(),
+    userId: '',
+    name: '',
+  });
   const findTargetCategory = () => {
     return category
       ? category

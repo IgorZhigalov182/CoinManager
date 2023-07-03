@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Button from './common/Button';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -57,6 +57,8 @@ CardOperation.propTypes = {
   idBankAccount: PropTypes.string,
   category: PropTypes.string,
   comment: PropTypes.string,
-  id: PropTypes.string,
+  _id: PropTypes.string,
   sum: PropTypes.number,
+  date: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  typeOperation: PropTypes.string,
 };

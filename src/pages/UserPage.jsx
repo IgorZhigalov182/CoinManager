@@ -17,9 +17,12 @@ const UserPage = () => {
   const userData = useSelector(getUser())[0];
   const registerDate = getBuyDate(new Date(userData.createdAt));
 
-  const countOfOperations = useSelector(getOperationList()).length || 0;
-  const countOfCategories = useSelector(getCategories()).length || 0;
-  const countOfBankAccount = useSelector(getBankAccountList()).length || 0;
+  let countOfOperations = useSelector(getOperationList()) || 0;
+  countOfOperations ? (countOfOperations = countOfOperations.length) : 0;
+  let countOfCategories = useSelector(getCategories()) || 0;
+  countOfCategories ? (countOfCategories = countOfCategories.length) : 0;
+  let countOfBankAccount = useSelector(getBankAccountList()) || 0;
+  countOfBankAccount ? (countOfBankAccount = countOfBankAccount.length) : 0;
 
   const handleLogout = () => {
     dispatch(logOut());
@@ -47,18 +50,24 @@ const UserPage = () => {
                 <h5 className="card-title">
                   {userData.firstName} {userData.lastName}
                 </h5>
-                <p className="card-text">Всего банковских аккаунтов: {countOfBankAccount}</p>
-                <p className="card-text">Всего категорий: {countOfCategories}</p>
-                <p className="card-text">Всего операций: {countOfOperations}</p>
+                <p className="card-text">Всего банковских аккаунтов: {countOfBankAccount || 0}</p>
+                <p className="card-text">Всего категорий: {countOfCategories || 0}</p>
+                <p className="card-text">Всего операций: {countOfOperations || 0}</p>
                 <p className="card-text">
                   <small className="text-body-secondary">Дата регистрации: {registerDate}</small>
                 </p>
-                <Button handler={handleModal} className={'btn btn-dark'} title={'Редактировать'} />
-                <Button
-                  handler={handleLogout}
-                  className={'btn btn-dark ms-3'}
-                  title={'Выйти из аккаунта'}
-                />
+                <div className="d-flex justify-content-between">
+                  <Button
+                    handler={handleModal}
+                    className={'btn btn-dark'}
+                    title={'Редактировать'}
+                  />
+                  <Button
+                    handler={handleLogout}
+                    className={'btn btn-dark ms-3'}
+                    title={'Выйти из аккаунта'}
+                  />
+                </div>
               </div>
             </div>
           </div>

@@ -9,10 +9,9 @@ import { createCategory, updateCategoryById } from '../../store/categories/categ
 import localStorageService from '../../services/localStorage.services';
 import { getUser, updateUserData } from '../../store/users/users.slice';
 
-const ModalWindowUser = ({ categories, selectedCategory, modalActive, setModalActive }) => {
+const ModalWindowUser = ({ modalActive, setModalActive }) => {
   const userData = useSelector(getUser())[0];
-
-  const [initialValue, setInitialValue] = useState(userData);
+  const [initialValue, setInitialValue] = useState({ ...userData });
   const dispatch = useDispatch();
 
   const userSchema = Yup.object().shape({
@@ -49,25 +48,6 @@ const ModalWindowUser = ({ categories, selectedCategory, modalActive, setModalAc
                 className="form-control mt-2"
                 placeholder="Фамилия"></Field>
               {errors.lastName && touched.lastName ? <div>{errors.lastName}</div> : null}
-              {/* <div
-                style={{
-                  width: '4rem',
-                  height: '4rem',
-                  marginTop: '0.5rem',
-                  // marginBottom: '-1rem',
-                  // marginRight: '-1rem',
-                  borderRadius: '0.3rem',
-                  background: values?.color,
-                }}
-                className=""></div> */}
-              <div className="">
-                {/* <Button
-                  type={'button'}
-                  handler={() => changeColor(values)}
-                  className={'btn btn-dark mt-2'}
-                  title={'Изменить цвет'}
-                /> */}
-              </div>
               <Button type={'submit'} className={'btn btn-success mt-2'} title={'Изменить'} />
             </Form>
           )}

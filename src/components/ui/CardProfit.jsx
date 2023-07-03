@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from './common/Button';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getCountOperations, getSumOperations } from '../../store/operations/operations.slice';
+import PropTypes from 'prop-types';
 
 const CardProfit = ({ title }) => {
-  const dispatch = useDispatch();
   const countOperation = useSelector(getCountOperations(title));
   const sumOperation = useSelector(getSumOperations(title));
 
@@ -13,6 +13,7 @@ const CardProfit = ({ title }) => {
 
   const handleOperationList = () =>
     navigate('/operations', { state: { title: title, handle: 'show' } });
+
   const handleAddOperation = () =>
     navigate('/operations', { state: { title: title, handle: 'addModal' } });
 
@@ -36,3 +37,7 @@ const CardProfit = ({ title }) => {
 };
 
 export default CardProfit;
+
+CardProfit.propTypes = {
+  title: PropTypes.string,
+};

@@ -9,21 +9,24 @@ import { getIsLoggedIn, loadUserById } from '../../../store/users/users.slice';
 import { loadCategoriesList } from '../../../store/categories/categories.slice';
 import { loadBankAccountList } from '../../../store/bankAccounts/bankAccounts.slice';
 import localStorageService from '../../../services/localStorage.services';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const OperationLoader = ({ children }) => {
-  const isLoading = useSelector(getOperationsLoadingStatus());
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isLoading = useSelector(getOperationsLoadingStatus());
   const isLoggedIn = useSelector(getIsLoggedIn());
 
-  const navigate = useNavigate();
+  // if (!isLoggedIn) {
+  //   return <Navigate to={'/login'} replace />;
+  // }
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      // dispatch(loadOperationList());
-      return;
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!isLoggedIn) {
+  //     return;
+  //   }
+  // }, []);
 
   const userId = localStorageService.getUserId();
 
@@ -43,3 +46,7 @@ const OperationLoader = ({ children }) => {
 };
 
 export default OperationLoader;
+
+OperationLoader.propTypes = {
+  title: PropTypes.any,
+};

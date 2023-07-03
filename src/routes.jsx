@@ -1,6 +1,5 @@
 import React from 'react';
 import MainPage from './pages/MainPage';
-import NewOperation from './components/ui/ModalWindowOperation';
 import Operations from './pages/Operations';
 import Operation from './pages/Operation';
 import OperationsLayout from './layouts/OperationsLayout';
@@ -10,8 +9,9 @@ import Auth from './pages/Auth';
 import UserLayout from './layouts/UserLayout';
 import UserPage from './pages/UserPage';
 import Categories from './pages/Categories';
+import { Navigate, Route } from 'react-router-dom';
 
-const routes = [
+const routes = (isLoggedIn, location) => [
   { path: '/', element: <MainPage />, errorElement: <NotFound /> },
   { path: 'bankAccounts', element: <BankAccounts />, errorElement: <NotFound /> },
   { path: 'login', element: <Auth /> },
@@ -24,16 +24,13 @@ const routes = [
       { path: ':operationId', element: <Operation /> },
     ],
   },
-  //
   {
-    path: 'user',
-    element: <UserLayout />,
-    children: [
-      { path: 'login', element: <Auth /> },
-      { path: ':userId', element: <UserPage /> },
-    ],
+    path: 'user/',
+    element: isLoggedIn ? <UserLayout /> : <Navigate to="/login" />,
+    children: [{ path: ':userId', element: <UserPage /> }],
   },
   { path: '*', element: <NotFound /> },
 ];
 
 export default routes;
+// export default routes;

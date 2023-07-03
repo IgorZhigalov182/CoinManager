@@ -95,7 +95,11 @@ export const getMostUsedBankAccount = (operations) => {
       counts[item] = counts[item] ? counts[item] + 1 : 1;
     }
 
+    // let activeAccount = {};
+    // activeBankAccountId ? (activeAccount = [activeBankAccountId, 0]) : activeAccount;
+    // console.log(activeAccount);
     const pairs = Object.entries(counts);
+    // console.log(pairs);
 
     const mostUsedBankAccountId = pairs.sort((a, b) => b[1] - a[1]).slice(0, 3);
     return mostUsedBankAccountId;

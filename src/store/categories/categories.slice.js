@@ -71,7 +71,6 @@ export const createCategory = (data) => async (dispatch) => {
   try {
     const content = await categoryService.createCategory(data);
     dispatch(categoriesCreated(content));
-    console.log(content);
     return content;
   } catch (error) {
     console.log(error);
