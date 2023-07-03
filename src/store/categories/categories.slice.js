@@ -70,9 +70,9 @@ function isOutdated(date) {
 export const createCategory = (data) => async (dispatch) => {
   try {
     const content = await categoryService.createCategory(data);
-    console.log(data);
-    console.log(content);
     dispatch(categoriesCreated(content));
+    console.log(content);
+    return content;
   } catch (error) {
     console.log(error);
   }
@@ -109,12 +109,14 @@ export const getCategoryById = (id) => (state) => {
 export const getCategoryDisplayNameById = (id) => (state) => {
   let name = '';
   if (state.categories.entities) {
+    // console.log(state.categories.entities);
     state.categories.entities.filter((category) => {
       if (category._id === id) {
         name = category.name;
       }
     });
   }
+  // console.log(name);
   return name;
 };
 

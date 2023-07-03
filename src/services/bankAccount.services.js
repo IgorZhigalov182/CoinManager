@@ -38,7 +38,7 @@ const bankAccountService = {
       const updatedData = { ...bankAccount, active: false };
 
       try {
-        bankAccountService.updateBankAccount(updatedData);
+        await bankAccountService.updateBankAccount(updatedData);
       } catch (error) {
         console.log(error);
       }
@@ -90,6 +90,7 @@ export const getMostUsedBankAccount = (operations) => {
   const counts = {};
 
   if (operations) {
+    console.log(operations);
     for (let i = 0; i < operations.length; i++) {
       const item = operations[i].idBankAccount;
       counts[item] = counts[item] ? counts[item] + 1 : 1;

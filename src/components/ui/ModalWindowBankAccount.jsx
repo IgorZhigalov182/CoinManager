@@ -10,7 +10,6 @@ import {
   updatedBankAccountById,
 } from '../../store/bankAccounts/bankAccounts.slice';
 import { useDispatch, useSelector } from 'react-redux';
-import { nanoid } from '@reduxjs/toolkit';
 
 let bankAccountData = {
   name: '',
@@ -38,11 +37,12 @@ const ModalWindowBankAccount = ({ active, setActive }) => {
   };
 
   const handleSubmit = async (data) => {
-    if (data.id) {
+    console.log(data);
+    if (data._id) {
       dispatch(updatedBankAccountById(data, bankAccounts));
       // Реализовать логику с обнулением формы Добавить при создании нового счёта
     } else {
-      data.id = nanoid();
+      // data.id = nanoid();
       data.date = Date.now();
       dispatch(createBankAccount(data, bankAccounts));
       setInitialValue(bankAccountData);

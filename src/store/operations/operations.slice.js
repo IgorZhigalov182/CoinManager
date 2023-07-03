@@ -175,9 +175,8 @@ export const getOperationById = (id) => (state) => {
 
 export const createOperation = (data) => async (dispatch) => {
   try {
-    // await addOperation(data);
-    await operationService.createOperation(data);
-    return dispatch(operationCreated(data));
+    const content = await operationService.createOperation(data);
+    dispatch(operationCreated(content));
   } catch (error) {
     console.log(error);
   }

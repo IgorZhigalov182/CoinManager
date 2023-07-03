@@ -35,15 +35,8 @@ const ModalWindowOperation = ({
       };
 
   const [initialValue, setInitialValue] = useState(operationData);
-  const [operations, setOperations] = useState([]);
   const categories = useSelector(getCategories());
-
-  // const handleChange = ({ target }) => {
-  //   setData((prevState) => ({
-  //     ...prevState,
-  //     [target.name]: target.value,
-  //   }));
-  // };
+  const userId = localStorageService.getUserId();
 
   const handleUpdate = (data) => {
     dispatch(updateOperationById(data));
@@ -58,13 +51,13 @@ const ModalWindowOperation = ({
         color: getRandomColor(),
         userId: localStorageService.getUserId(),
       };
-      dispatch(createCategory(categoryData));
-      data.category = categoryData.id;
+      const response = await dispatch(createCategory(categoryData));
+      data.category = response._id;
     }
     // data.id = nanoid();
+    data.userId = userId;
     data.date = Date.now();
-    (data.userId = localStorageService.getUserId()),
-      actualBankAccount ? (data.idBankAccount = actualBankAccount) : (data.idBankAccount = '');
+    actualBankAccount ? (data.idBankAccount = actualBankAccount) : (data.idBankAccount = '');
 
     dispatch(createOperation(data));
     setModalActive(false);
@@ -75,11 +68,6 @@ const ModalWindowOperation = ({
     // category: Yup.string().required('Обязательное поле'),
     // email: Yup.string().email('Неверный email').required('Обязательное поле'),
   });
-
-  // const handleModal = () => {
-  //   // inputSum.current.focus();
-  //   setModalActive(!modalActive);
-  // };
 
   const validateNewCategory = (addNewCategory, nameNewCategory) => {
     if (addNewCategory && !nameNewCategory) {
@@ -195,11 +183,6 @@ const ModalWindowOperation = ({
           )}
         </Formik>
       </ModalWindow>
-      {/* <Button
-        handler={handleModal}
-        title={'Добавить операцию'}
-        className={'btn btn-primary mt-2'}
-      /> */}
     </div>
   );
 };

@@ -6,7 +6,6 @@ const ListOperations = ({ operations }) => {
     <>
       {operations &&
         operations.map((operation) => {
-          console.log(operation);
           return <CardOperation key={operation._id} {...operation} />;
         })}
     </>

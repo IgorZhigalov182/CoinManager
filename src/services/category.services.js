@@ -13,8 +13,8 @@ const categoryService = {
     return content;
   },
   createCategory: async (payload) => {
-    const { content } = await httpService.post(categoryEndpoint, payload);
-    return content;
+    const { data } = await httpService.post(categoryEndpoint, payload);
+    return data.content;
   },
   removeCategory: async (categoryId) => {
     const { content } = await httpService.delete(categoryEndpoint + categoryId);

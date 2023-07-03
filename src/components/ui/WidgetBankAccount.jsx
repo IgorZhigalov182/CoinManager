@@ -16,7 +16,6 @@ const WidgetBankAccount = () => {
   const activeBankAccountId = useSelector(getActiveBankAccount());
   const activeBankAccountName = useSelector(getBankAccountDisplayNameById(activeBankAccountId));
   const mostUsedBankAccountId = getMostUsedBankAccount(operations);
-
   console.log(mostUsedBankAccountId);
 
   const namesMostUsedBankAccount = mostUsedBankAccountId
@@ -24,7 +23,7 @@ const WidgetBankAccount = () => {
       let name = useSelector(getBankAccountDisplayNameById(bankAccount[0]));
 
       if (name != '') {
-        return { name: name, id: bankAccount[0] };
+        return { name: name, _id: bankAccount[0] };
       }
     })
     .filter((bankAccount) => bankAccount);

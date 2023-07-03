@@ -13,8 +13,8 @@ const operationService = {
     return data.content;
   },
   createOperation: async (payload) => {
-    const { content } = await httpService.post(operationEndpoint, payload);
-    return content;
+    const { data } = await httpService.post(operationEndpoint, payload);
+    return data.content;
   },
   removeOperation: async (operationId) => {
     const { content } = await httpService.delete(operationEndpoint + operationId);
@@ -26,6 +26,7 @@ const operationService = {
   },
   updateOperation: async (operationData) => {
     const { data } = await httpService.patch(operationEndpoint + operationData._id, operationData);
+    console.log(data);
     return data;
   },
 };

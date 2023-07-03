@@ -51,8 +51,6 @@ export const bankAccountsSlice = createSlice({
       });
     },
     bankAccountDeleted: (state, action) => {
-      // console.log('state', state.entities);
-      // console.log('action', action.payload);
       state.entities = [...state.entities].filter((bankAccount) => {
         return bankAccount._id !== action.payload;
       });
@@ -90,8 +88,9 @@ export const createBankAccount = (data, bankAccounts) => async (dispatch) => {
       bankAccountService.resetFavouritesBankAccount(bankAccounts);
     }
     const response = await bankAccountService.createBankAccount(data);
+    // console.log(response.content);
     if (response) {
-      return dispatch(bankAccountCreated(data));
+      return dispatch(bankAccountCreated(response.content));
     }
   } catch (error) {
     console.log(error);
@@ -155,7 +154,7 @@ export const deleteBankAccountById = (id, bankAccounts) => async (dispatch) => {
 
 export const getActiveBankAccount = () => (state) => {
   if (state.bankAccounts.entities && state.bankAccounts.entities.length != 0) {
-    return state.bankAccounts.entities.filter((bankAccount) => bankAccount.active === true)[0]._id;
+    return state.bankAccounts.entities.filter((bankAccount) => bankAccount.active === true)[0]?._id;
   }
 };
 

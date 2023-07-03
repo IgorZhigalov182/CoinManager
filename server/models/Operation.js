@@ -13,8 +13,15 @@ const schema = new Schema(
       required: true,
     },
     userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    bankAccountId: { type: Schema.Types.ObjectId, ref: 'BankAccount' },
+    // idBankAccount: { type: Schema.Types.ObjectId, ref: 'BankAccount' },
+    // bankAccountId: { type: Schema.Types.ObjectId, ref: 'BankAccount' },
     // category: { type: Schema.Types.ObjectId, ref: 'Category' },
+    idBankAccount: {
+      type: String,
+    },
+    date: {
+      type: Date,
+    },
     category: {
       type: String,
     },

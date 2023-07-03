@@ -18,7 +18,6 @@ const CardOperation = ({ idBankAccount, category, comment, _id, sum, date, typeO
 
   const operationPage = pathname.length < 12;
 
-  console.log(_id);
   const handleGoToRecord = () => navigate(`${_id}`, { state: 'pathname' });
 
   const handleDelete = () => dispatch(deleteOperationById(_id));
