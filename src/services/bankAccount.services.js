@@ -1,10 +1,4 @@
-import axios from 'axios';
-import config from '../config.json';
 import httpService from './http.services';
-
-// const httpAuth = axios.create({
-//   baseURL: config.apiEndpoint + '/bankAccount',
-// });
 
 const bankAccountEndpoint = '/bankAccount';
 
@@ -95,12 +89,7 @@ export const getMostUsedBankAccount = (operations) => {
       counts[item] = counts[item] ? counts[item] + 1 : 1;
     }
 
-    // let activeAccount = {};
-    // activeBankAccountId ? (activeAccount = [activeBankAccountId, 0]) : activeAccount;
-    // console.log(activeAccount);
     const pairs = Object.entries(counts);
-    // console.log(pairs);
-
     const mostUsedBankAccountId = pairs.sort((a, b) => b[1] - a[1]).slice(0, 3);
     return mostUsedBankAccountId;
   }
@@ -193,12 +182,12 @@ export default bankAccountService;
 //   }
 // };
 
-export const getBankAccount = async (id) => {
-  try {
-    const response = await fetch(`http://localhost:3000/bankAccounts/${id}`);
-    const bankAccount = await response.json();
-    return bankAccount;
-  } catch (error) {
-    console.log(error);
-  }
-};
+// export const getBankAccount = async (id) => {
+//   try {
+//     const response = await fetch(`http://localhost:3000/bankAccounts/${id}`);
+//     const bankAccount = await response.json();
+//     return bankAccount;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };

@@ -4,6 +4,7 @@ import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import Button from './common/Button';
 import { getRandomColor } from '../../utils/getRandomColor';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { createCategory, updateCategoryById } from '../../store/categories/categories.slice';
 import localStorageService from '../../services/localStorage.services';
@@ -17,13 +18,12 @@ const ModalWindowCategory = ({ categories, selectedCategory, modalActive, setMod
     userId: '',
     name: '',
   });
+
   const findTargetCategory = () => {
     return category
       ? category
       : {
           color: getRandomColor(),
-          // icon: '',
-          // id: '',
           userId: '',
           name: '',
         };
@@ -41,16 +41,13 @@ const ModalWindowCategory = ({ categories, selectedCategory, modalActive, setMod
     if (data._id) {
       dispatch(updateCategoryById(data));
     } else {
-      // data.id = nanoid();
       data.userId = localStorageService.getUserId();
       dispatch(createCategory(data));
     }
     setModalActive(!modalActive);
   };
 
-  const changeColor = (values) => {
-    setInitialValue(() => ({ ...values, color: getRandomColor() }));
-  };
+  const changeColor = (values) => setInitialValue(() => ({ ...values, color: getRandomColor() }));
 
   return (
     <div className="">
@@ -101,6 +98,13 @@ const ModalWindowCategory = ({ categories, selectedCategory, modalActive, setMod
       </ModalWindow>
     </div>
   );
+};
+
+ModalWindowCategory.propTypes = {
+  categories: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  selectedCategory: PropTypes.string,
+  modalActive: PropTypes.bool,
+  setModalActive: PropTypes.func,
 };
 
 export default ModalWindowCategory;

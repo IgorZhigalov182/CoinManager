@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import CardBankAccount from './CardBankAccount';
 
 const ListBankAccounts = ({ bankAccounts, setModalActive, toggleFavourite }) => {
@@ -21,6 +22,12 @@ const ListBankAccounts = ({ bankAccounts, setModalActive, toggleFavourite }) => 
       </div>
     </>
   );
+};
+
+ListBankAccounts.propTypes = {
+  bankAccounts: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  setModalActive: PropTypes.func,
+  toggleFavourite: PropTypes.func,
 };
 
 export default ListBankAccounts;

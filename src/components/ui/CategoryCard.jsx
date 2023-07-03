@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from './common/Button';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { deleteCategory } from '../../store/categories/categories.slice';
 
@@ -31,12 +32,18 @@ const CategoryCard = ({ handleModal, name, color, id }) => {
           width: '4rem',
           marginTop: '-1rem',
           marginBottom: '-1rem',
-          // marginRight: '-1rem',
           borderRadius: '0.3rem',
           background: color,
         }}></div>
     </>
   );
+};
+
+CategoryCard.propTypes = {
+  id: PropTypes.string,
+  name: PropTypes.string,
+  color: PropTypes.string,
+  handleModal: PropTypes.func,
 };
 
 export default CategoryCard;

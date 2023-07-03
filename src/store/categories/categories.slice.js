@@ -3,7 +3,6 @@ import categoryService from '../../services/category.services';
 
 export const categoriesSlice = createSlice({
   name: 'categories',
-  //   initialState,
   initialState: {
     entities: null,
     isLoading: true,
@@ -12,13 +11,6 @@ export const categoriesSlice = createSlice({
   },
 
   reducers: {
-    //   addCategories: (state, { payload: category }) => {
-    //     const isExist = state.some((cat) => cat.id === category.id);
-
-    //     if (isExist) return;
-
-    //     state.push(category);
-    //   },
     categoriesRequested: (state) => {
       state.isLoading = true;
     },
@@ -58,15 +50,6 @@ const {
   categoryUpdated,
 } = actions;
 
-// Функция для получения актуальных данных с сервера
-// например, при длительном бездействии пользователя на странице
-function isOutdated(date) {
-  if (Date.now() - date > 10 * 60 * 1000) {
-    return true;
-  }
-  return false;
-}
-
 export const createCategory = (data) => async (dispatch) => {
   try {
     const content = await categoryService.createCategory(data);
@@ -79,29 +62,19 @@ export const createCategory = (data) => async (dispatch) => {
 
 export const loadCategoriesList = (userId) => async (dispatch, getState) => {
   dispatch(categoriesRequested());
-
-  // const { lastFetch } = getState().categories;
-  // if (isOutdated(lastFetch)) {
-  // dispatch(categoriesRequested());
   try {
     const categories = await categoryService.getCategories(userId);
     dispatch(categoriesReceived(categories));
   } catch (error) {
     dispatch(categoriesRequestFailed(error.message));
   }
-  // }
 };
-
-export const getCategoriesForPieChart = () => (state) => {};
 
 export const getCategoryById = (id) => (state) => {
   let name = '';
   if (state.categories.entities) {
     state.categories.entities.filter((category) => {
       return category;
-      if (category._id == id) {
-        name = category.name;
-      }
     });
   }
   return name;
@@ -110,14 +83,12 @@ export const getCategoryById = (id) => (state) => {
 export const getCategoryDisplayNameById = (id) => (state) => {
   let name = '';
   if (state.categories.entities) {
-    // console.log(state.categories.entities);
     state.categories.entities.filter((category) => {
       if (category._id === id) {
         name = category.name;
       }
     });
   }
-  // console.log(name);
   return name;
 };
 

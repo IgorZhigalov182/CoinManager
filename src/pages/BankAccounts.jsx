@@ -10,12 +10,9 @@ import {
   updatedBankAccountById,
 } from '../store/bankAccounts/bankAccounts.slice';
 import bankAccountService from '../services/bankAccount.services';
-import { nanoid } from '@reduxjs/toolkit';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import ListBankAccounts from '../components/ui/ListBankAccounts';
-import ModalWindowBankAccount from '../components/ui/ModalWindowBankAccount';
-import localStorageService from '../services/localStorage.services';
 
 let bankAccountData = {
   name: '',
@@ -55,18 +52,13 @@ const BankAccounts = () => {
       bankAccountService.resetFavouritesBankAccount(bankAccounts);
       bankAccountService.doBankAccountFavourite(id, bankAccounts);
       dispatch(favouritedBankAccountById(id));
-      // dispatch(updatedBankAccountById(data, bankAccounts));
     } catch (error) {}
   };
 
   const handleSubmit = async (data) => {
     if (data._id) {
       dispatch(updatedBankAccountById(data, bankAccounts));
-      // Реализовать логику с обнулением формы Добавить при создании нового счёта
     } else {
-      // data.id = nanoid();
-      // data.date = Date.now();
-      // data.userId = localStorageService.getUserId();
       dispatch(createBankAccount(data, bankAccounts));
       setInitialValue(bankAccountData);
     }
@@ -83,7 +75,6 @@ const BankAccounts = () => {
       .max(50, 'Максимум 50 букв')
       .required('Обязательное поле'),
     typeAccount: Yup.string().required('Обязательное поле'),
-    // email: Yup.string().email('Неверный email').required('Обязательное поле'),
   });
 
   return (
@@ -101,7 +92,6 @@ const BankAccounts = () => {
         setModalActive={handleModal}
         toggleFavourite={handleFavourite}
       />
-      {/* <ModalWindowBankAccount active={modalActive} setActive={setModalActive} /> */}
       <ModalWindow active={modalActive} setActive={setModalActive}>
         <Formik
           validationSchema={bankAccountSchema}

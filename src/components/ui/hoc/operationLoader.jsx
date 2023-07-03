@@ -18,10 +18,6 @@ const OperationLoader = ({ children }) => {
   const isLoading = useSelector(getOperationsLoadingStatus());
   const isLoggedIn = useSelector(getIsLoggedIn());
 
-  // if (!isLoggedIn) {
-  //   return <Navigate to={'/login'} replace />;
-  // }
-
   // useEffect(() => {
   //   if (!isLoggedIn) {
   //     return;

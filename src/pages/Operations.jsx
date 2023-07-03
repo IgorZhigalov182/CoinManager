@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   filterTypeOperations,
   getOperationList,
-  getOperationsLoadingStatus,
-  loadOperationList,
   sortOperationsByDate,
   sortOperationsBySum,
 } from '../store/operations/operations.slice';
@@ -19,21 +17,17 @@ import localStorageService from '../services/localStorage.services';
 
 const Operations = ({}) => {
   const [modalActive, setModalActive] = useState(false);
-  const pageSize = 3;
   const [currentPage, setCurrentPage] = useState(1);
   let operations = useSelector(getOperationList());
-  // console.log(operations);
   const location = useLocation();
+  const dispatch = useDispatch();
+  const pageSize = 3;
   const typeOperation = location.state?.title;
   const typeHandler = location.state?.handle;
-  const dispatch = useDispatch();
   const userId = localStorageService.getUserId();
   let typeOperationForModal = typeOperation === 'Доходы' ? 'profit' : 'expense';
 
-  const handleModal = () => {
-    // inputSum.current.focus();
-    setModalActive(!modalActive);
-  };
+  const handleModal = () => setModalActive(!modalActive);
 
   useEffect(() => {
     if (typeHandler === 'addModal') {
@@ -42,7 +36,6 @@ const Operations = ({}) => {
     }
   }, []);
 
-  // Вызов хуков в условии, но благодаря последнему else кол-во хуков будет всегда одинаковое и рендер не сломается
   if (typeOperation === 'Доходы' && typeHandler === 'show') {
     operations = useSelector(filterTypeOperations('profit'));
   } else if (typeOperation === 'Расходы' && typeHandler === 'show') {
@@ -51,12 +44,9 @@ const Operations = ({}) => {
     operations = useSelector(filterTypeOperations('Все'));
   }
 
-  const count = operations.length;
-
   const operationsCrop = paginate(operations, currentPage, pageSize);
 
   const handlePageChange = (pageIndex) => setCurrentPage(pageIndex);
-
   const handleSortBySum = () => dispatch(sortOperationsBySum());
   const handleSortByDate = () => dispatch(sortOperationsByDate());
 
@@ -78,21 +68,15 @@ const Operations = ({}) => {
         className={'btn btn-dark me-2 mt-1 mb-2'}
         handler={() => handleSortByDate()}
       />
-      {/* <ListOperations operations={operations} /> */}
       <ListOperations operations={operationsCrop} />
       <ModalWindowOperation
         typeOperationForModal={typeOperationForModal}
         modalActive={modalActive}
         setModalActive={setModalActive}
       />
-      {/* <NewOperation
-        typeOperationForModal={typeOperationForModal}
-        modalActive={modalActive}
-        setModalActive={setModalActive}
-      /> */}
       <div className="d-flex justify-content-center">
         <Pagination
-          itemsCount={count}
+          itemsCount={operations.length}
           pageSize={pageSize}
           currentPage={currentPage}
           onPageChange={handlePageChange}

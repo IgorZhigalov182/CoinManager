@@ -9,6 +9,7 @@ import {
   getBankAccountList,
   updatedBankAccountById,
 } from '../../store/bankAccounts/bankAccounts.slice';
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 
 let bankAccountData = {
@@ -37,12 +38,9 @@ const ModalWindowBankAccount = ({ active, setActive }) => {
   };
 
   const handleSubmit = async (data) => {
-    console.log(data);
     if (data._id) {
       dispatch(updatedBankAccountById(data, bankAccounts));
-      // Реализовать логику с обнулением формы Добавить при создании нового счёта
     } else {
-      // data.id = nanoid();
       data.date = Date.now();
       dispatch(createBankAccount(data, bankAccounts));
       setInitialValue(bankAccountData);
@@ -60,7 +58,6 @@ const ModalWindowBankAccount = ({ active, setActive }) => {
       .max(50, 'Максимум 50 букв')
       .required('Обязательное поле'),
     typeAccount: Yup.string().required('Обязательное поле'),
-    // email: Yup.string().email('Неверный email').required('Обязательное поле'),
   });
 
   return (
@@ -69,7 +66,6 @@ const ModalWindowBankAccount = ({ active, setActive }) => {
         validationSchema={bankAccountSchema}
         onSubmit={async (values, actions) => {
           handleSubmit(values);
-          // setInitialValue(bankAccountData);
         }}
         enableReinitialize={true}
         initialValues={initialValue}>
@@ -118,7 +114,6 @@ const ModalWindowBankAccount = ({ active, setActive }) => {
                   name="typeAccount"
                   value="estimated"
                 />
-
                 <span className="ms-2">Расчётный (для ИП)</span>
               </div>
               {errors.typeAccount && touched.typeAccount ? <div>{errors.typeAccount}</div> : null}
@@ -142,27 +137,13 @@ const ModalWindowBankAccount = ({ active, setActive }) => {
           </Form>
         )}
       </Formik>
-
-      {/* <form id="bankAccountForm" onSubmit={handleSubmit} action=""> */}
-      {/* <TextField
-        name={'name'}
-        onChange={handleChange}
-        label="Название счёта"
-        htmlFor="bankAccountForm"
-      /> */}
-      {/* <TextField name={'bank'} onChange={handleChange} label="Банк" htmlFor="bankAccountForm" /> */}
-      {/* <TextAreaFiled
-        name={'comment'}
-        onChange={handleChange}
-        htmlFor="bankAccountForm"
-        label="Комментарий (не обязательно)"
-      /> */}
-      {/* <CheckField /> */}
-      {/* <SelectField list={bankAccounts} /> */}
-      {/* <Button title="Добавить" type={'submit'} className={'btn btn-primary mt-2'} /> */}
-      {/* </form> */}
     </ModalWindow>
   );
+};
+
+ModalWindowBankAccount.propTypes = {
+  setActive: PropTypes.func,
+  active: PropTypes.bool,
 };
 
 export default ModalWindowBankAccount;

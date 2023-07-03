@@ -6,7 +6,6 @@ import { getIsLoggedIn } from '../../store/users/users.slice';
 import { getUserId } from '../../services/localStorage.services';
 
 export default function NavBar() {
-  const isAuth = false;
   const isLoggedIn = useSelector(getIsLoggedIn());
   const userId = getUserId();
 

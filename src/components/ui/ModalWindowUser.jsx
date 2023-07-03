@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ModalWindow from './ModalWindow';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import Button from './common/Button';
-import { getRandomColor } from '../../utils/getRandomColor';
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { createCategory, updateCategoryById } from '../../store/categories/categories.slice';
-import localStorageService from '../../services/localStorage.services';
 import { getUser, updateUserData } from '../../store/users/users.slice';
 
 const ModalWindowUser = ({ modalActive, setModalActive }) => {
@@ -55,6 +53,11 @@ const ModalWindowUser = ({ modalActive, setModalActive }) => {
       </ModalWindow>
     </div>
   );
+};
+
+ModalWindowUser.propTypes = {
+  modalActive: PropTypes.bool,
+  setModalActive: PropTypes.func,
 };
 
 export default ModalWindowUser;

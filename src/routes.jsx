@@ -9,7 +9,7 @@ import Auth from './pages/Auth';
 import UserLayout from './layouts/UserLayout';
 import UserPage from './pages/UserPage';
 import Categories from './pages/Categories';
-import { Navigate, Route } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 const routes = (isLoggedIn, location) => [
   { path: '/', element: <MainPage />, errorElement: <NotFound /> },
@@ -33,4 +33,3 @@ const routes = (isLoggedIn, location) => [
 ];
 
 export default routes;
-// export default routes;

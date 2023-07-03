@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Button from '../components/ui/common/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCategories, loadCategoriesList } from '../store/categories/categories.slice';
-import { getBankAccountList, loadBankAccountList } from '../store/bankAccounts/bankAccounts.slice';
-import { getOperationList, loadOperationList } from '../store/operations/operations.slice';
-import { getUser, loadUserById, logOut } from '../store/users/users.slice';
+import { getCategories } from '../store/categories/categories.slice';
+import { getBankAccountList } from '../store/bankAccounts/bankAccounts.slice';
+import { getOperationList } from '../store/operations/operations.slice';
+import { getUser, logOut } from '../store/users/users.slice';
 import { useNavigate } from 'react-router-dom';
-import localStorageService from '../services/localStorage.services';
 import { getBuyDate } from '../services/date.services';
 import ModalWindowUser from '../components/ui/ModalWindowUser';
 
@@ -29,9 +28,7 @@ const UserPage = () => {
     navigate('/login');
   };
 
-  const handleModal = () => {
-    setModalActive(!modalActive);
-  };
+  const handleModal = () => setModalActive(!modalActive);
 
   return (
     <>

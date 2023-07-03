@@ -2,7 +2,6 @@ import { createAction, createSlice } from '@reduxjs/toolkit';
 import userService from '../../services/user.services';
 import localStorageService from '../../services/localStorage.services';
 import authService from '../../services/auth.services';
-import history from '../../utils/history';
 
 const initialState = localStorageService.getAccessToken()
   ? {
@@ -95,7 +94,6 @@ export const login =
       const { code, message } = error?.response?.data?.error;
       if (code === 400) {
         const errorMessage = '400 error';
-        // const errorMessage = generateAuthError(message);
         dispatch(authRequestFailed(error.message));
       } else {
         dispatch(authRequestFailed(error.message));
@@ -109,7 +107,6 @@ export const signUp = (payload) => async (dispatch) => {
     const data = await authService.register(payload);
     localStorageService.setTokens(data);
     dispatch(authRequestSuccess({ userId: data.userId }));
-    // Добавить редирект
   } catch (error) {
     dispatch(authRequestFailed(error.message));
   }

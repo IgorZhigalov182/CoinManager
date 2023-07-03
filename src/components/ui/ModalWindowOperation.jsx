@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import Button from './common/Button';
-import { nanoid } from '@reduxjs/toolkit';
+import PropTypes from 'prop-types';
 import '../../styles/modal.css';
 import ModalWindow from './ModalWindow';
 import { Field, Form, Formik } from 'formik';
@@ -72,8 +72,6 @@ const ModalWindowOperation = ({
 
   const operationSchema = Yup.object().shape({
     sum: Yup.string().required('Обязательное поле'),
-    // category: Yup.string().required('Обязательное поле'),
-    // email: Yup.string().email('Неверный email').required('Обязательное поле'),
   });
 
   const validateNewCategory = (addNewCategory, nameNewCategory) => {
@@ -190,6 +188,13 @@ const ModalWindowOperation = ({
       </ModalWindow>
     </div>
   );
+};
+
+ModalWindowOperation.propTypes = {
+  operation: PropTypes.object,
+  typeOperationForModal: PropTypes.string,
+  modalActive: PropTypes.bool,
+  ModalWindowOperation: PropTypes.func,
 };
 
 export default ModalWindowOperation;

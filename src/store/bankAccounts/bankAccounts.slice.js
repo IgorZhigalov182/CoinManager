@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import bankAccountService, {
   checkRemoveBankAccountForFavourite,
-} from '../../services/bankAccount.services'; // checkRemoveBankAccountForFavourite,
+} from '../../services/bankAccount.services';
 
 export const bankAccountsSlice = createSlice({
   name: 'bankAccounts',
@@ -34,7 +34,6 @@ export const bankAccountsSlice = createSlice({
       state.entities[index] = action.payload;
     },
     bankAccountCreated: (state, action) => {
-      // console.log(state.entities); null
       state.entities.push(action.payload);
     },
     bankAccountFavourited: (state, action) => {
@@ -88,7 +87,6 @@ export const createBankAccount = (data, bankAccounts) => async (dispatch) => {
       bankAccountService.resetFavouritesBankAccount(bankAccounts);
     }
     const response = await bankAccountService.createBankAccount(data);
-    // console.log(response.content);
     if (response) {
       return dispatch(bankAccountCreated(response.content));
     }
@@ -98,10 +96,6 @@ export const createBankAccount = (data, bankAccounts) => async (dispatch) => {
 };
 
 export const getBankAccountList = () => (state) => state.bankAccounts.entities;
-
-// export const sortBankAccounts = () => (state) => {
-//   console.log(state.bankAccounts.entities);
-// };
 
 export const getBankAccountsLoadingStatus = () => (state) => state.bankAccounts.isLoading;
 

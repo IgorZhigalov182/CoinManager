@@ -11,6 +11,7 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { getCountOperationByMounth } from '../../store/operations/operations.slice';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
@@ -62,6 +63,12 @@ const LineChart = ({ borderColor, title, backgroundColor }) => {
       <Line options={options} data={data} />
     </div>
   );
+};
+
+LineChart.propTypes = {
+  title: PropTypes.string,
+  borderColor: PropTypes.string,
+  handler: PropTypes.string,
 };
 
 export default LineChart;

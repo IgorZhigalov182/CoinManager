@@ -1,33 +1,23 @@
 import { Field, Form, Formik } from 'formik';
 import React, { useEffect, useRef } from 'react';
 import Button from './common/Button';
-import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getIsLoggedIn, login } from '../../store/users/users.slice';
+import { getAuthErrors, getIsLoggedIn, login } from '../../store/users/users.slice';
+import * as Yup from 'yup';
 import { Navigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const initialValue = { email: '', password: '' };
 
 const LoginForm = ({ setIsSingUp }) => {
   const dispatch = useDispatch();
   const inputEmail = useRef(null);
-  // const inputPassword = useRef(null);
   const isLoggedIn = useSelector(getIsLoggedIn());
+  const authError = useSelector(getAuthErrors());
 
-  // const enter = document.querySelector('html');
-  // enter.addEventListener('keydown', function focusPassword(e) {
-  //   if (e.code === 'Enter') {
-  //     inputPassword.current.focus();
-  //     enter.removeEventListener('keydown', focusPassword);
-  //   }
-  // });
-
-  const handleRegister = () => {
-    setIsSingUp(true);
-  };
+  const handleRegister = () => setIsSingUp(true);
 
   const handleSubmit = (values) => {
-    // console.log(values);
     const redirect = '/categories';
     dispatch(login({ payload: values, redirect }));
   };
@@ -35,6 +25,11 @@ const LoginForm = ({ setIsSingUp }) => {
   useEffect(() => {
     inputEmail.current.focus();
   }, []);
+
+  const loginSchema = Yup.object().shape({
+    password: Yup.string().required('Обязательное поле'),
+    email: Yup.string().required('Обязательное поле'),
+  });
 
   return (
     <div
@@ -48,7 +43,7 @@ const LoginForm = ({ setIsSingUp }) => {
         onSubmit={async (values, actions) => {
           handleSubmit(values);
         }}
-        // validationSchema={operationSchema}
+        validationSchema={loginSchema}
         initialValues={initialValue}
         enableReinitialize={true}>
         {({ errors, touched, values }) => (
@@ -68,6 +63,11 @@ const LoginForm = ({ setIsSingUp }) => {
               name="password"
             />
             {errors.password && touched.password ? <div>{errors.password}</div> : null}
+            {authError === 'Request failed with status code 400' ? (
+              <div>Неверный логин или пароль</div>
+            ) : (
+              ''
+            )}
             <div className="d-flex flex-column">
               <Button title="Войти" type={'submit'} className={'btn btn-primary w-100 mt-3'} />
               <span className="mt-2 ms-auto">
@@ -86,6 +86,10 @@ const LoginForm = ({ setIsSingUp }) => {
       {isLoggedIn && <Navigate to="/" />}
     </div>
   );
+};
+
+LoginForm.propTypes = {
+  setIsSingUp: PropTypes.func,
 };
 
 export default LoginForm;

@@ -1,5 +1,6 @@
 import { Field, Form, Formik } from 'formik';
 import React, { useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import Button from './common/Button';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,6 +10,7 @@ import { getIsLoggedIn, signUp } from '../../store/users/users.slice';
 const initialValue = { email: '', password: '', confirmPassword: '', firstName: '', lastName: '' };
 
 const RegisterForm = ({ setIsSingUp }) => {
+  console.log(typeof setIsSingUp);
   const inputName = useRef(null);
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsLoggedIn());
@@ -32,7 +34,6 @@ const RegisterForm = ({ setIsSingUp }) => {
     password: Yup.string().required('Обязательное поле'),
     confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Пароли не совпадают'),
     email: Yup.string().required('Обязательное поле'),
-    // category: Yup.string().required('Обязательное поле'),
   });
 
   return (
@@ -47,7 +48,6 @@ const RegisterForm = ({ setIsSingUp }) => {
         className=""
         onSubmit={async (values, actions) => {
           handleSubmit(values);
-          // setInitialValue(bankAccountData);
         }}
         validationSchema={registerSchema}
         initialValues={initialValue}
@@ -72,7 +72,6 @@ const RegisterForm = ({ setIsSingUp }) => {
             <Field type="email" name="email" className="form-control mt-3" placeholder="Email" />
             {errors.email && touched.email ? <div>{errors.email}</div> : null}
             <Field
-              // innerRef={inputPassword}
               type="password"
               className="form-control w-100 mt-3"
               placeholder="Пароль"
@@ -80,7 +79,6 @@ const RegisterForm = ({ setIsSingUp }) => {
             />
             {errors.password && touched.password ? <div>{errors.password}</div> : null}
             <Field
-              // innerRef={inputPassword}
               type="password"
               className="form-control w-100 mt-3"
               placeholder="Повторите пароль"
@@ -94,7 +92,6 @@ const RegisterForm = ({ setIsSingUp }) => {
                 title="Зарегистрироваться"
                 type={'submit'}
                 className={'btn btn-primary w-100 mt-3'}
-                // onSubmit={handleSubmit}
               />
               <span className="mt-2 ms-auto">
                 <a
@@ -112,6 +109,10 @@ const RegisterForm = ({ setIsSingUp }) => {
       {isLoggedIn && <Navigate to="/user/1" />}
     </div>
   );
+};
+
+RegisterForm.propTypes = {
+  setIsSingUp: PropTypes.func,
 };
 
 export default RegisterForm;

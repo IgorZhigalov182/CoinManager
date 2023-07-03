@@ -26,7 +26,6 @@ export const operationsSlice = createSlice({
     operationRecieved: (state, action) => {
       state.entities = action.payload;
       state.isLoading = false;
-      // state.entities = state.entities.filter((obj) => obj.id == action.payload);
     },
     operationCreated: (state, action) => {
       state.entities.push(action.payload);
@@ -81,8 +80,6 @@ export const operationsSlice = createSlice({
       }
     },
     operationDeleted: (state, action) => {
-      // console.log('state', state.entities);
-      // console.log('action', action.payload);
       state.entities = state.entities.filter((operation) => {
         return operation._id !== action.payload;
       });
@@ -107,7 +104,6 @@ export const loadOperationList = (userId) => async (dispatch) => {
 
   try {
     const operations = await operationService.getOperations(userId);
-    // const operations = await getDataOperations();
     dispatch(operationsRecieved(operations));
   } catch (error) {
     console.log(error);

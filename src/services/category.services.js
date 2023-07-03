@@ -37,6 +37,7 @@ const categoryService = {
       console.log(error);
     }
   },
+  /*****for JSON-server******/
   // createCategory: async (data) => {
   //   try {
   //     await fetch('http://localhost:3000/categories', {

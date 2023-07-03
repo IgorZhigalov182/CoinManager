@@ -1,16 +1,11 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { sumByCategory } from '../../services/category.services';
+import PropTypes from 'prop-types';
 import { Pie } from 'react-chartjs-2';
 import '../../styles/chartjs.css';
-// import { categories } from '../../data/categories';
 import { useSelector } from 'react-redux';
-import {
-  getCategories,
-  getCategoryById,
-  getCategoryColorById,
-  getCategoryDisplayNameById,
-} from '../../store/categories/categories.slice';
+import { getCategories } from '../../store/categories/categories.slice';
 import { getOperationList } from '../../store/operations/operations.slice';
 import Button from './common/Button';
 import { useNavigate } from 'react-router-dom';
@@ -82,6 +77,11 @@ const PieChart = ({ typeOperation, style }) => {
       <Pie data={newData} />
     </div>
   );
+};
+
+Button.propTypes = {
+  typeOperation: PropTypes.string,
+  style: PropTypes.object,
 };
 
 export default PieChart;

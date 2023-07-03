@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../styles/modal.css';
+import PropTypes from 'prop-types';
 
 const ModalWindow = ({ active, setActive, children }) => {
   return (
@@ -11,6 +12,12 @@ const ModalWindow = ({ active, setActive, children }) => {
       </div>
     </div>
   );
+};
+
+ModalWindow.propTypes = {
+  active: PropTypes.bool,
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  setActive: PropTypes.func,
 };
 
 export default ModalWindow;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import CardOperation from './CardOperation';
 
 const ListOperations = ({ operations }) => {
@@ -10,6 +11,10 @@ const ListOperations = ({ operations }) => {
         })}
     </>
   );
+};
+
+ListOperations.propTypes = {
+  operations: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
 };
 
 export default ListOperations;
