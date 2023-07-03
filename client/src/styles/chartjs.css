@@ -1,0 +1,17 @@
+.widgetWrapper {
+    position: relative;
+    margin: auto;
+    height: 55vh;
+    width: 55vw;
+    margin-bottom: 1rem;
+    
+}
+.wrap{
+    border-radius: 1.3rem;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+    height: 75vh;
+    width: 35%;
+    margin: 0 auto;
+    padding: 2rem;
+    align-items: center;
+}

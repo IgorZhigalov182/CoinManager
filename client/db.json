@@ -1,0 +1,279 @@
+{
+  "bankAccounts": [
+    {
+      "name": "Новый главный счёт",
+      "bank": "Альфа-Банк",
+      "comment": "",
+      "active": true,
+      "typeAccount": "credit",
+      "id": "a76HvLF0CMzWv-lpb6wGJ",
+      "date": 1687782715017,
+      "userId": "649ef7c7069b508d39194d1a"
+    },
+    {
+      "name": "Не наш",
+      "bank": "Альфа-Банк",
+      "comment": "",
+      "active": false,
+      "typeAccount": "credit",
+      "id": "a71HvLF0CMzWv-lpb6wGJ",
+      "date": 1687782715087,
+      "userId": "619ef7c7069b508d39194d1a"
+    }
+  ],
+  "comments": [
+    {
+      "sum": "120",
+      "category": "Sport",
+      "bankAccount": "Tinkoff",
+      "comment": "buying a pi ball",
+      "type": "profit",
+      "id": 1
+    },
+    {
+      "sum": "21",
+      "category": "Sport",
+      "bankAccount": "Tinkoff",
+      "comment": "buy a tennis",
+      "type": "profit",
+      "id": 2
+    },
+    {
+      "sum": "1000",
+      "category": "Dinner",
+      "bankAccount": "Sber",
+      "comment": "Soup Rassolnik",
+      "type": "profit",
+      "id": 3
+    },
+    {
+      "sum": "890",
+      "category": "Dinner",
+      "bankAccount": "Alfa",
+      "comment": "Pizza",
+      "type": "profit",
+      "id": 4
+    },
+    {
+      "sum": "120",
+      "category": "Relax",
+      "bankAccount": "SPB",
+      "comment": "SPA",
+      "id": 5
+    }
+  ],
+  "operations": [
+    {
+      "idBankAccount": "_12-p21LqD4EPrWC4H5pgbaj",
+      "comment": "Шахматы12",
+      "category": "jnPjBJXFfo5i0XqUONh8P",
+      "sum": 2000,
+      "addNewCategory": false,
+      "newCategory": "",
+      "typeOperation": "expense",
+      "id": "1kKEiZ6sY2Ew61dWoh6a1T",
+      "date": 1682203044317
+    },
+    {
+      "idBankAccount": "_12-p1LqD4EPrWC4H5pgbaj",
+      "comment": "Шахматы1",
+      "category": "jnPjBJXFfo5i0XqUONh8P",
+      "sum": 2000,
+      "addNewCategory": false,
+      "newCategory": "",
+      "typeOperation": "expense",
+      "id": "1kKEiZ6sY2Ew61dWo26a1T",
+      "date": 1683203044317
+    },
+    {
+      "idBankAccount": "_-p1LqD4EPrWC4H5pgbaj",
+      "comment": "Шахматы1925",
+      "category": "jnPjBJXFfo5i0XqUONh8P",
+      "sum": 2000,
+      "addNewCategory": false,
+      "newCategory": "",
+      "typeOperation": "profit",
+      "id": "1kKEiZ6sY2Ew61dWo36a1T",
+      "date": 1687203044317
+    },
+    {
+      "idBankAccount": "_-p1LqD4EPrWC4H5pgbaj",
+      "comment": "Бутсы",
+      "category": "87693ba7-5040-4657-8f19-add0402713d4",
+      "sum": 3000,
+      "addNewCategory": false,
+      "newCategory": "",
+      "typeOperation": "expense",
+      "id": "SKF8Jtq9OfMRCgj9TStE89",
+      "date": 1687203065993
+    },
+    {
+      "idBankAccount": "R86R7RfRMurQQqYsztImX9",
+      "comment": "Malboro",
+      "category": "b59657db-49bf-47cd-a8c3-82a7369c3349",
+      "sum": 1000,
+      "addNewCategory": false,
+      "newCategory": "",
+      "typeOperation": "expense",
+      "id": "ShjczR2uAIqMB4bG-VS_H_",
+      "date": 1687526437196
+    },
+    {
+      "idBankAccount": "R8R7RfRMurQQqYsztImX9",
+      "comment": "",
+      "category": "jnPjBJXFfo5i0XqUONh8P",
+      "sum": 3000,
+      "addNewCategory": false,
+      "newCategory": "",
+      "typeOperation": "profit",
+      "id": "rgC8Q4Iw73LX4n4ijWwxXV",
+      "date": 1687723121552
+    },
+    {
+      "idBankAccount": "a76HvLF0CMzWv-lpb6wGJ",
+      "comment": "Добрался до бара",
+      "category": "702943f8-ea77-4101-ab5a-d451952fbe9a",
+      "sum": 250,
+      "addNewCategory": false,
+      "newCategory": "",
+      "typeOperation": "expense",
+      "id": "RzDVsvsycdNfbDlMW50GE",
+      "date": 1687782738952
+    },
+    {
+      "idBankAccount": "a76HvLF0CMzWv-lpb6wGJ",
+      "comment": "Шахматы23",
+      "category": "jnPjBJXFfo5i0XqUONh8P",
+      "sum": 2000,
+      "addNewCategory": false,
+      "newCategory": "",
+      "typeOperation": "expense",
+      "id": "aaBfSKCMvKwPktuhdJ7Nx",
+      "date": 1687785914616
+    },
+    {
+      "idBankAccount": "a76HvLF0CMzWv-lpb6wGJ",
+      "comment": "Шахматы1",
+      "category": "jnPjBJXFfo5i0XqUONh8P",
+      "sum": 2100,
+      "addNewCategory": false,
+      "newCategory": "",
+      "typeOperation": "expense",
+      "id": "M5e_cnP9aDVAgeRjk_xQe",
+      "date": 1687786145810
+    },
+    {
+      "idBankAccount": "a76HvLF0CMzWv-lpb6wGJ",
+      "comment": "Продал скины",
+      "category": "6yLeePMxg8CJybBfrqU6j",
+      "sum": 1500,
+      "addNewCategory": false,
+      "newCategory": "",
+      "typeOperation": "profit",
+      "id": "h9CX6_drMYonMP2wpUOaA",
+      "date": 1687960692430
+    },
+    {
+      "idBankAccount": "a76HvLF0CMzWv-lpb6wGJ",
+      "comment": "",
+      "category": "b59657db-49bf-47cd-a8c3-82a7369c3349",
+      "sum": 2000,
+      "addNewCategory": false,
+      "newCategory": "",
+      "typeOperation": "expense",
+      "id": "HfzxXMhOHHbwXH8MIzsmL",
+      "date": 1687961940880
+    },
+    {
+      "idBankAccount": "a76HvLF0CMzWv-lpb6wGJ",
+      "comment": "",
+      "category": "6yLeePMxg8CJybBfrqU6j",
+      "sum": 333,
+      "addNewCategory": false,
+      "newCategory": "",
+      "typeOperation": "expense",
+      "id": "fJXDe9rJsaECxeYTUZRxs",
+      "date": 1688158816352
+    },
+    {
+      "idBankAccount": "a76HvLF0CMzWv-lpb6wGJ",
+      "comment": "",
+      "category": "b59657db-49bf-47cd-a8c3-82a7369c3349",
+      "sum": 200,
+      "addNewCategory": false,
+      "newCategory": "",
+      "typeOperation": "expense",
+      "id": "cVAnytN7CUKbcfblgiHJB",
+      "date": 1688158933124
+    },
+    {
+      "idBankAccount": "a76HvLF0CMzWv-lpb6wGJ",
+      "comment": "",
+      "category": "b59657db-49bf-47cd-a8c3-82a7369c3349",
+      "sum": 300,
+      "addNewCategory": false,
+      "newCategory": "",
+      "typeOperation": "expense",
+      "id": "g3hO7OQfFrrtv_TvHVgCp",
+      "date": 1688158995542,
+      "userId": "649ef7c7069b508d39194d1a"
+    },
+    {
+      "idBankAccount": "",
+      "comment": "",
+      "category": "b59657db-49bf-47cd-a8c3-82a7369c3349",
+      "sum": 100,
+      "addNewCategory": false,
+      "newCategory": "",
+      "userId": "649ef7c7069b508d39194d1a",
+      "typeOperation": "expense",
+      "id": "2HEQTXwWicfMJDrwMMGpr",
+      "date": 1688308314389
+    }
+  ],
+  "categories": [
+    {
+      "color": "rgba(217,146,41,1)",
+      "icon": "",
+      "id": "448226cd-1c1e-4ef3-9185-b871e775996d",
+      "idUser": 0,
+      "name": "Одежда"
+    },
+    {
+      "color": "rgba(147,36,126,1)",
+      "icon": "",
+      "id": "702943f8-ea77-4101-ab5a-d451952fbe9a",
+      "idUser": 0,
+      "name": "Продукты"
+    },
+    {
+      "color": "rgb(120, 182, 135)",
+      "icon": "",
+      "id": "b59657db-49bf-47cd-a8c3-82a7369c3349",
+      "idUser": 0,
+      "name": "Домашние животные"
+    },
+    {
+      "name": "Авито",
+      "id": "jnPjBJXFfo5i0XqUONh8P",
+      "color": "rgba(86,5,170,1)",
+      "icon": "",
+      "idUser": ""
+    },
+    {
+      "name": "Steam",
+      "id": "6yLeePMxg8CJybBfrqU6j",
+      "color": "rgba(88,212,227,1)",
+      "icon": "",
+      "idUser": ""
+    },
+    {
+      "color": "rgba(45,115,69,1)",
+      "icon": "",
+      "id": "u9QPhnNqmRZvKBoYEfCa8",
+      "userId": "649ef7c7069b508d39194d1a",
+      "name": "New"
+    }
+  ],
+  "users": []
+}
