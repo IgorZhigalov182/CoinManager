@@ -79,16 +79,18 @@ export const createCategory = (data) => async (dispatch) => {
 };
 
 export const loadCategoriesList = (userId) => async (dispatch, getState) => {
-  const { lastFetch } = getState().categories;
-  if (isOutdated(lastFetch)) {
-    dispatch(categoriesRequested());
-    try {
-      const { data } = await categoryService.getCategories(userId);
-      dispatch(categoriesReceived(data.content));
-    } catch (error) {
-      dispatch(categoriesRequestFailed(error.message));
-    }
+  dispatch(categoriesRequested());
+
+  // const { lastFetch } = getState().categories;
+  // if (isOutdated(lastFetch)) {
+  // dispatch(categoriesRequested());
+  try {
+    const categories = await categoryService.getCategories(userId);
+    dispatch(categoriesReceived(categories));
+  } catch (error) {
+    dispatch(categoriesRequestFailed(error.message));
   }
+  // }
 };
 
 export const getCategoriesForPieChart = () => (state) => {};

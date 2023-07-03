@@ -5,7 +5,11 @@ import '../../styles/modal.css';
 import ModalWindow from './ModalWindow';
 import { Field, Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { createCategory, getCategories } from '../../store/categories/categories.slice';
+import {
+  createCategory,
+  getCategories,
+  getCategoryDisplayNameById,
+} from '../../store/categories/categories.slice';
 import * as Yup from 'yup';
 import { getActiveBankAccount } from '../../store/bankAccounts/bankAccounts.slice';
 import { createOperation, updateOperationById } from '../../store/operations/operations.slice';
@@ -20,6 +24,11 @@ const ModalWindowOperation = ({
 }) => {
   const actualBankAccount = useSelector(getActiveBankAccount());
   const dispatch = useDispatch();
+  const categoryName = useSelector(getCategoryDisplayNameById(operation?.category));
+
+  if (!categoryName && operation?._id) {
+    operation = { ...operation, category: '' };
+  }
 
   let operationData = operation
     ? operation

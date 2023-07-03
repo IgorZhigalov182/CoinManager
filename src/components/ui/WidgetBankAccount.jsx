@@ -16,17 +16,14 @@ const WidgetBankAccount = () => {
   const activeBankAccountId = useSelector(getActiveBankAccount());
   const activeBankAccountName = useSelector(getBankAccountDisplayNameById(activeBankAccountId));
   const mostUsedBankAccountId = getMostUsedBankAccount(operations);
-  console.log(mostUsedBankAccountId);
 
-  const namesMostUsedBankAccount = mostUsedBankAccountId
-    .map((bankAccount) => {
-      let name = useSelector(getBankAccountDisplayNameById(bankAccount[0]));
+  const namesMostUsedBankAccount = mostUsedBankAccountId.map((bankAccount) => {
+    let name = useSelector(getBankAccountDisplayNameById(bankAccount[0]));
 
-      if (name != '') {
-        return { name: name, _id: bankAccount[0] };
-      }
-    })
-    .filter((bankAccount) => bankAccount);
+    if (name != '') {
+      return { name: name, _id: bankAccount[0] };
+    }
+  });
 
   const handleActiveBankAccount = async (bankAccountId) => {
     try {

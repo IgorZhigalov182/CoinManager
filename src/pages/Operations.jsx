@@ -35,14 +35,6 @@ const Operations = ({}) => {
     setModalActive(!modalActive);
   };
 
-  // useEffect(() => {
-  // dispatch(loadOperationList(userId));
-  // }, [handleModal]);
-
-  // useEffect(() => {
-  //   dispatch(loadOperationList(userId));
-  // }, []);
-
   useEffect(() => {
     if (typeHandler === 'addModal') {
       typeOperationForModal = typeOperation;

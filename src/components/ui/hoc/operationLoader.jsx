@@ -5,7 +5,7 @@ import {
   loadOperationList,
 } from '../../../store/operations/operations.slice';
 import SpinnerLoader from '../SpinnerLoader';
-import { getIsLoggedIn } from '../../../store/users/users.slice';
+import { getIsLoggedIn, loadUserById } from '../../../store/users/users.slice';
 import { loadCategoriesList } from '../../../store/categories/categories.slice';
 import { loadBankAccountList } from '../../../store/bankAccounts/bankAccounts.slice';
 import localStorageService from '../../../services/localStorage.services';
@@ -31,14 +31,12 @@ const OperationLoader = ({ children }) => {
     if (!isLoggedIn) {
       navigate('/login');
     } else {
-      dispatch(loadCategoriesList(userId));
+      dispatch(loadUserById(userId));
       dispatch(loadBankAccountList(userId));
+      dispatch(loadCategoriesList(userId));
       dispatch(loadOperationList(userId));
     }
   }, [isLoggedIn]);
-
-  console.log(isLoggedIn);
-  console.log(isLoading);
 
   if (isLoggedIn && isLoading) return <SpinnerLoader />;
   return children;

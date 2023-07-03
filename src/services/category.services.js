@@ -4,13 +4,13 @@ const categoryEndpoint = 'category/';
 
 const categoryService = {
   getCategories: async (userId) => {
-    const content = await httpService.get(categoryEndpoint, {
+    const { data } = await httpService.get(categoryEndpoint, {
       params: {
         orderBy: 'userId',
         equalTo: `${userId}`,
       },
     });
-    return content;
+    return data.content;
   },
   createCategory: async (payload) => {
     const { data } = await httpService.post(categoryEndpoint, payload);

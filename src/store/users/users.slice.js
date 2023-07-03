@@ -118,13 +118,12 @@ export const signUp = (payload) => async (dispatch) => {
 export const logOut = () => (dispatch) => {
   localStorageService.removeAuthData();
   dispatch(userLoggedOut());
-  history.push('/login');
 };
 
 export const updateUserData = (payload) => async (dispatch) => {
   dispatch(userUpdateRequested());
   try {
-    const { content } = await userService.update(payload);
+    const { content } = await userService.updateUser(payload);
     dispatch(userUpdateSuccess(content));
   } catch (error) {
     dispatch(userUpdateFailed(error));
@@ -149,11 +148,17 @@ export const getCurrentUserData = () => (state) => {
     : null;
 };
 
-export const getUserById = (userId) => (state) => {
-  if (state.users.entities) {
-    return state.users.entities.find((u) => u.id === userId);
+export const loadUserById = (userId) => async (dispatch) => {
+  dispatch(usersRequested());
+
+  try {
+    const data = await userService.getUser(userId);
+    dispatch(usersReceived(data));
+  } catch (error) {
+    console.log(error);
   }
 };
+export const getUser = () => (state) => state.users.entities;
 
 export const getIsLoggedIn = () => (state) => state.users.isLoggedIn;
 export const getDataStatus = () => (state) => state.users.dataLoaded;

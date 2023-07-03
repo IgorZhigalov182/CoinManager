@@ -7,7 +7,9 @@ router.patch('/:userId', auth, async (req, res) => {
   try {
     const { userId } = req.params;
 
-    if (userId === req.user.id) {
+    console.log(userId);
+
+    if (userId === req.user._id) {
       const updatedUser = await User.findByIdAndUpdate(userId, req.body, { new: true });
       res.send(updatedUser);
     } else {
@@ -22,7 +24,8 @@ router.patch('/:userId', auth, async (req, res) => {
 
 router.get('/', auth, async (req, res) => {
   try {
-    const list = await User.find();
+    const { orderBy, equalTo } = req.query;
+    const list = await User.find({ [orderBy]: equalTo });
     res.send(list); //по умолчанию 200
   } catch (error) {
     res.status(500).json({

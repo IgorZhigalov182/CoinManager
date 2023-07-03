@@ -31,8 +31,8 @@ const RegisterForm = ({ setIsSingUp }) => {
     lastName: Yup.string().required('Обязательное поле'),
     password: Yup.string().required('Обязательное поле'),
     confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Пароли не совпадают'),
+    email: Yup.string().required('Обязательное поле'),
     // category: Yup.string().required('Обязательное поле'),
-    // email: Yup.string().email('Неверный email').required('Обязательное поле'),
   });
 
   return (

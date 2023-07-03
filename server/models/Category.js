@@ -9,7 +9,10 @@ const schema = new Schema(
     color: {
       type: String,
     },
-    userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+    userId: {
+      type: String,
+    },
+    // userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   },
   {
     timestamps: true,
