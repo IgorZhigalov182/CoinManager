@@ -12,7 +12,7 @@ import Categories from './pages/Categories';
 import { Navigate } from 'react-router-dom';
 
 const routes = (isLoggedIn, location) => [
-  { path: '/', element: <MainPage />, errorElement: <NotFound /> },
+  { path: '/', element: isLoggedIn ? <MainPage /> : <Navigate to="/login" /> },
   { path: 'bankAccounts', element: <BankAccounts />, errorElement: <NotFound /> },
   { path: 'login', element: <Auth /> },
   { path: 'categories', element: <Categories /> },
