@@ -95,8 +95,9 @@ const BankAccounts = () => {
       <ModalWindow active={modalActive} setActive={setModalActive}>
         <Formik
           validationSchema={bankAccountSchema}
-          onSubmit={async (values, actions) => {
+          onSubmit={async (values, { resetForm }) => {
             handleSubmit(values);
+            resetForm();
           }}
           enableReinitialize={true}
           initialValues={initialValue}>

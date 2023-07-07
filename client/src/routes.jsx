@@ -13,12 +13,16 @@ import { Navigate } from 'react-router-dom';
 
 const routes = (isLoggedIn, location) => [
   { path: '/', element: isLoggedIn ? <MainPage /> : <Navigate to="/login" /> },
-  { path: 'bankAccounts', element: <BankAccounts />, errorElement: <NotFound /> },
+  {
+    path: 'bankAccounts',
+    element: isLoggedIn ? <BankAccounts /> : <Navigate to="/login" />,
+    errorElement: <NotFound />,
+  },
   { path: 'login', element: <Auth /> },
-  { path: 'categories', element: <Categories /> },
+  { path: 'categories', element: isLoggedIn ? <Categories /> : <Navigate to="/login" /> },
   {
     path: 'operations',
-    element: <OperationsLayout />,
+    element: isLoggedIn ? <OperationsLayout /> : <Navigate to="/login" />,
     children: [
       { path: '', element: <Operations /> },
       { path: ':operationId', element: <Operation /> },

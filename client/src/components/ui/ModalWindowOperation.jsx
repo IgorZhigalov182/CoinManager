@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Button from './common/Button';
 import PropTypes from 'prop-types';
 import '../../styles/modal.css';
@@ -30,20 +30,32 @@ const ModalWindowOperation = ({
     operation = { ...operation, category: '' };
   }
 
-  let operationData = operation
-    ? operation
-    : {
-        idBankAccount: '',
-        comment: '',
-        category: '',
-        sum: '',
-        addNewCategory: false,
-        newCategory: '',
-        userId: localStorageService.getUserId(),
-        typeOperation: typeOperationForModal || 'expense',
-      };
+  const [initialValue, setInitialValue] = useState({
+    idBankAccount: '',
+    comment: '',
+    category: '',
+    sum: '',
+    addNewCategory: false,
+    newCategory: '',
+    userId: localStorageService.getUserId(),
+    typeOperation: typeOperationForModal || 'expense',
+  });
 
-  const [initialValue, setInitialValue] = useState(operationData);
+  const findTargetOperation = () => {
+    return operation
+      ? operation
+      : {
+          idBankAccount: '',
+          comment: '',
+          category: '',
+          sum: '',
+          addNewCategory: false,
+          newCategory: '',
+          userId: localStorageService.getUserId(),
+          typeOperation: typeOperationForModal || 'expense',
+        };
+  };
+
   const categories = useSelector(getCategories());
   const userId = localStorageService.getUserId();
 
@@ -86,12 +98,17 @@ const ModalWindowOperation = ({
     }
   };
 
+  useEffect(() => {
+    setInitialValue(findTargetOperation());
+  }, [modalActive]);
+
   return (
     <div>
       <ModalWindow active={modalActive} setActive={setModalActive}>
         <Formik
-          onSubmit={async (values, actions) => {
+          onSubmit={async (values, { resetForm }) => {
             handleSubmit(values);
+            resetForm();
           }}
           validationSchema={operationSchema}
           initialValues={initialValue}
