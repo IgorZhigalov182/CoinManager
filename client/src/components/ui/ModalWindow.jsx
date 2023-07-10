@@ -7,8 +7,6 @@ const ModalWindow = ({ active, setActive, children }) => {
     <div
       className={active ? 'modalWindow active' : 'modalWindow'}
       onClick={(e) => {
-        console.log(e);
-        // console.log(e.mousedown);
         setActive(false);
       }}>
       <div

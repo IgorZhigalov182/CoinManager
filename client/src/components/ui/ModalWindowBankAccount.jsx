@@ -23,17 +23,17 @@
 //   const dispatch = useDispatch();
 //   let bankAccounts = useSelector(getBankAccountList());
 
-//   const findTargetBankAccount = () => {
-//     return operation
-//       ? operation
-//       : {
-//           name: '',
-//           bank: '',
-//           comment: '',
-//           active: false,
-//           typeAccount: '',
-//         };
-//   };
+//   //   const findTargetBankAccount = () => {
+//   //     return operation
+//   //       ? operation
+//   //       : {
+//   //           name: '',
+//   //           bank: '',
+//   //           comment: '',
+//   //           active: false,
+//   //           typeAccount: '',
+//   //         };
+//   //   };
 
 //   const handleDelete = async (id) => {
 //     try {
@@ -70,9 +70,9 @@
 //     typeAccount: Yup.string().required('Обязательное поле'),
 //   });
 
-//   useEffect(() => {
-//     setInitialValue(findTargetBankAccount());
-//   }, [modalActive]);
+//   //   useEffect(() => {
+//   //     setInitialValue(findTargetBankAccount());
+//   //   }, [active]);
 
 //   return (
 //     <ModalWindow active={active} setActive={setActive}>

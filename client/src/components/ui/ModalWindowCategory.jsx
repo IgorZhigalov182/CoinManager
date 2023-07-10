@@ -3,7 +3,7 @@ import ModalWindow from './ModalWindow';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import Button from './common/Button';
-import { getRandomColor } from '../../utils/getRandomColor';
+// import { getRandomColor } from '../../utils/getRandomColor';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { createCategory, updateCategoryById } from '../../store/categories/categories.slice';
@@ -14,7 +14,8 @@ const ModalWindowCategory = ({ categories, selectedCategory, modalActive, setMod
 
   let category = categories?.filter((category) => category._id === selectedCategory)[0];
   const [initialValue, setInitialValue] = useState({
-    color: getRandomColor(),
+    // color: getRandomColor(),
+    color: '#000000',
     userId: '',
     name: '',
   });
@@ -23,7 +24,8 @@ const ModalWindowCategory = ({ categories, selectedCategory, modalActive, setMod
     return category
       ? category
       : {
-          color: getRandomColor(),
+          // color: getRandomColor(),
+          color: '#000000',
           userId: '',
           name: '',
         };
@@ -47,7 +49,7 @@ const ModalWindowCategory = ({ categories, selectedCategory, modalActive, setMod
     setModalActive(!modalActive);
   };
 
-  const changeColor = (values) => setInitialValue(() => ({ ...values, color: getRandomColor() }));
+  // const changeColor = (values) => setInitialValue(() => ({ ...values, color: getRandomColor() }));
 
   return (
     <div className="">
@@ -67,31 +69,15 @@ const ModalWindowCategory = ({ categories, selectedCategory, modalActive, setMod
                 className="form-control"
                 placeholder="Наименование"></Field>
               {errors.name && touched.name ? <div>{errors.name}</div> : null}
-              <div
-                style={{
-                  width: '4rem',
-                  height: '4rem',
-                  marginTop: '0.5rem',
-                  // marginBottom: '-1rem',
-                  // marginRight: '-1rem',
-                  borderRadius: '0.3rem',
-                  background: values?.color,
-                }}
-                className=""></div>
-              <div className="">
-                <Button
-                  type={'button'}
-                  handler={() => changeColor(values)}
-                  className={'btn btn-dark mt-2'}
-                  title={'Изменить цвет'}
-                />
-              </div>
-              {!values?._id && (
-                <Button type={'submit'} className={'btn btn-success mt-2'} title={'Добавить'} />
-              )}
-              {values?._id && (
-                <Button type={'submit'} className={'btn btn-success mt-2'} title={'Изменить'} />
-              )}
+              <Field
+                type="color"
+                name="color"
+                className="form-control form-control-color mt-2"></Field>
+              <Button
+                type={'submit'}
+                className={'btn btn-success mt-2'}
+                title={!values?._id ? 'Добавить' : 'Изменить'}
+              />
             </Form>
           )}
         </Formik>
