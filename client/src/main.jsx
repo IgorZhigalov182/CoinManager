@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.css';
+// import '../src/index.css';
 import { Provider } from 'react-redux';
 import { createStore } from './store/store';
 

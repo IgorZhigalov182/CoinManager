@@ -13,6 +13,7 @@ const ModalWindowCategory = ({ categories, selectedCategory, modalActive, setMod
   const dispatch = useDispatch();
 
   let category = categories?.filter((category) => category._id === selectedCategory)[0];
+  
   const [initialValue, setInitialValue] = useState({
     // color: getRandomColor(),
     color: '#000000',

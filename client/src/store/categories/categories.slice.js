@@ -56,7 +56,7 @@ export const createCategory = (data) => async (dispatch) => {
     dispatch(categoriesCreated(content));
     return content;
   } catch (error) {
-    console.log(error);
+    dispatch(categoriesRequestFailed(error.message));
   }
 };
 
@@ -113,7 +113,7 @@ export const deleteCategory = (id) => async (dispatch) => {
     await categoryService.removeCategory(id);
     dispatch(categoriesDeleted(id));
   } catch (error) {
-    console.log(error);
+    dispatch(categoriesRequestFailed(error.message));
   }
 };
 
@@ -124,7 +124,7 @@ export const updateCategoryById = (data) => async (dispatch) => {
     await categoryService.updateCategory(data);
     dispatch(categoryUpdated(data));
   } catch (error) {
-    console.log(error);
+    dispatch(categoriesRequestFailed(error.message));
   }
 };
 

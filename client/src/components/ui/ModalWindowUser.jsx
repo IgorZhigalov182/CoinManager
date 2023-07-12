@@ -46,6 +46,7 @@ const ModalWindowUser = ({ modalActive, setModalActive }) => {
                 className="form-control mt-2"
                 placeholder="Фамилия"></Field>
               {errors.lastName && touched.lastName ? <div>{errors.lastName}</div> : null}
+              <Field as="input" type="file" className="form-control mt-2" name="logo"></Field>
               <Button type={'submit'} className={'btn btn-success mt-2'} title={'Изменить'} />
             </Form>
           )}

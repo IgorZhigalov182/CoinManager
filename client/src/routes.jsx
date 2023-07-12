@@ -11,7 +11,7 @@ import UserPage from './pages/UserPage';
 import Categories from './pages/Categories';
 import { Navigate } from 'react-router-dom';
 
-const routes = (isLoggedIn, location) => [
+const routes = (isLoggedIn) => [
   { path: '/', element: isLoggedIn ? <MainPage /> : <Navigate to="/login" /> },
   {
     path: 'bankAccounts',

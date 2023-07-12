@@ -23,6 +23,10 @@ export const operationsSlice = createSlice({
       state.entities = action.payload;
       state.isLoading = false;
     },
+    operationsRequestFailed: (state, action) => {
+      state.error = action.payload;
+      state.isLoading = false;
+    },
     operationRecieved: (state, action) => {
       state.entities = action.payload;
       state.isLoading = false;
@@ -91,6 +95,7 @@ const { reducer: operationReducer, actions } = operationsSlice;
 
 const {
   operationsRequested,
+  operationsRequestFailed,
   operationsRecieved,
   operationCreated,
   operationUpdated,
@@ -174,7 +179,7 @@ export const createOperation = (data) => async (dispatch) => {
     const content = await operationService.createOperation(data);
     dispatch(operationCreated(content));
   } catch (error) {
-    console.log(error);
+    dispatch(operationsRequestFailed(error.message));
   }
 };
 
@@ -183,7 +188,7 @@ export const updateOperationById = (data) => async (dispatch) => {
     await operationService.updateOperation(data);
     dispatch(operationUpdated(data));
   } catch (error) {
-    console.log(error);
+    dispatch(operationsRequestFailed(error.message));
   }
 };
 
@@ -192,7 +197,7 @@ export const deleteOperationById = (id) => async (dispatch) => {
     await operationService.removeOperation(id);
     dispatch(operationDeleted(id));
   } catch (error) {
-    console.log(error);
+    dispatch(operationsRequestFailed(error.message));
   }
 };
 

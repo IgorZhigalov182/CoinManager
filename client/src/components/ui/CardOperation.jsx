@@ -32,19 +32,21 @@ const CardOperation = ({ idBankAccount, category, comment, _id, sum, date, typeO
             <Badge title={`${sum}Р`} className="badge text-bg-secondary" />
           )}
         </h3>
-        <h5>Категория: {categoryName}</h5>
-        {!operationPage && (
-          <h5>Тип операции: {typeOperation === 'profit' ? 'Доходы' : 'Расходы'}</h5>
-        )}
-        <h6>Дата покупки: {getBuyDate(date)}</h6>
-        {!operationPage && <h5>Время покупки: {getBuyTime(date)}</h5>}
-        {!operationPage && <h5 className="card-title">Банковский счёт: {bankAccountName}</h5>}
-        {!operationPage && <p className="card-text">Комментарий: {comment}</p>}
-        <div className="d-flex justify-content-between">
-          {operationPage && <Button title={'Открыть запись'} handler={handleGoToRecord} />}
-          {operationPage && (
-            <Button className={'btn btn-danger'} title={'Удалить'} handler={handleDelete} />
+        <div>
+          <h5>Категория: {categoryName}</h5>
+          {!operationPage && (
+            <h5>Тип операции: {typeOperation === 'profit' ? 'Доходы' : 'Расходы'}</h5>
           )}
+          <h6>Дата покупки: {getBuyDate(date)}</h6>
+          {!operationPage && <h5>Время покупки: {getBuyTime(date)}</h5>}
+          {!operationPage && <h5 className="card-title">Банковский счёт: {bankAccountName}</h5>}
+          {!operationPage && <p className="card-text">Комментарий: {comment}</p>}
+          <div className="d-flex justify-content-between">
+            {operationPage && <Button title={'Открыть запись'} handler={handleGoToRecord} />}
+            {operationPage && (
+              <Button className={'btn btn-danger'} title={'Удалить'} handler={handleDelete} />
+            )}
+          </div>
         </div>
       </div>
     </div>

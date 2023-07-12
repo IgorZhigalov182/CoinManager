@@ -19,6 +19,10 @@ export const bankAccountsSlice = createSlice({
     bankAccountRequested: (state) => {
       state.isLoading = true;
     },
+    bankAccountRequestFailed: (state, action) => {
+      state.error = action.payload;
+      state.isLoading = false;
+    },
     bankAccountsRecieved: (state, action) => {
       state.entities = action.payload;
       state.isLoading = false;
@@ -61,6 +65,7 @@ const { reducer: bankAccountsReducer, actions } = bankAccountsSlice;
 
 const {
   bankAccountsRequested,
+  bankAccountRequestFailed,
   bankAccountRecieved,
   bankAccountDeleted,
   bankAccountUpdated,
@@ -76,7 +81,7 @@ export const loadBankAccountList = (userId) => async (dispatch) => {
     const { content } = await bankAccountService.getBankAccounts(userId);
     dispatch(bankAccountRecieved(content));
   } catch (error) {
-    console.log(error);
+    dispatch(bankAccountRequestFailed(error.message));
   }
 };
 
@@ -91,7 +96,7 @@ export const createBankAccount = (data, bankAccounts) => async (dispatch) => {
       return dispatch(bankAccountCreated(response.content));
     }
   } catch (error) {
-    console.log(error);
+    dispatch(bankAccountRequestFailed(error.message));
   }
 };
 
@@ -116,7 +121,7 @@ export const updatedBankAccountById = (data, bankAccounts) => async (dispatch) =
     await bankAccountService.updateBankAccount(data);
     return dispatch(bankAccountUpdated(data));
   } catch (error) {
-    console.log(error);
+    dispatch(bankAccountRequestFailed(error.message));
   }
 };
 
@@ -124,7 +129,7 @@ export const favouritedBankAccountById = (id) => async (dispatch) => {
   try {
     return dispatch(bankAccountFavourited(id));
   } catch (error) {
-    console.log(error);
+    dispatch(bankAccountRequestFailed(error.message));
   }
 };
 
@@ -142,7 +147,7 @@ export const deleteBankAccountById = (id, bankAccounts) => async (dispatch) => {
       dispatch(bankAccountFavourited(anotherId));
     }
   } catch (error) {
-    console.log(error);
+    dispatch(bankAccountRequestFailed(error.message));
   }
 };
 

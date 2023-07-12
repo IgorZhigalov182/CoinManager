@@ -35,7 +35,7 @@ const UserPage = () => {
       <div className="container">
         <div className="card mt-2 mb-3" style={{ maxWidth: '540px' }}>
           <div className="row g-0">
-            <div className="col-md-4">
+            <div className="col-md-4 ">
               <img
                 src="https://t4.ftcdn.net/jpg/04/10/42/63/360_F_410426381_YKYcz1SyGZXRWOYU63yddK02hb70yJTM.jpg"
                 className="img-fluid rounded-start"

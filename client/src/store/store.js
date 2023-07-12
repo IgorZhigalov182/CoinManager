@@ -1,4 +1,4 @@
-import { applyMiddleware, combineReducers, configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import categoriesReducer from './categories/categories.slice';
 import operationReducer from './operations/operations.slice';
 import bankAccountsReducer from './bankAccounts/bankAccounts.slice';
