@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { getCategories } from '../store/categories/categories.slice';
+import { getCategories } from '../../store/categories/categories.slice';
 import { useSelector } from 'react-redux';
-import Button from '../components/ui/common/Button';
-import CategoryCard from '../components/ui/CategoryCard';
-import ModalWindowCategory from '../components/ui/ModalWindowCategory';
+import Button from '../../components/ui/common/Button';
+import CategoryCard from '../../components/ui/CategoryCard';
+import ModalWindowCategory from '../../components/ui/ModalWindowCategory';
 
 const Categories = () => {
   const categories = useSelector(getCategories());

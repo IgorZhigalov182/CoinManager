@@ -1,0 +1,9 @@
+@import 'variables.scss';
+
+html[data-theme='dark'] {
+    background-color: $backgroundDark
+}
+
+html[data-theme='light'] {
+    background-color: $backgroundLight
+}

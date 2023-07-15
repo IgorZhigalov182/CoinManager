@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Button from '../components/ui/common/Button';
-import ModalWindow from '../components/ui/ModalWindow';
+import Button from '../../components/ui/common/Button';
+import ModalWindow from '../../components/ui/ModalWindow';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   createBankAccount,
@@ -8,11 +8,11 @@ import {
   favouritedBankAccountById,
   getBankAccountList,
   updatedBankAccountById,
-} from '../store/bankAccounts/bankAccounts.slice';
-import bankAccountService from '../services/bankAccount.services';
+} from '../../store/bankAccounts/bankAccounts.slice';
+import bankAccountService from '../../services/bankAccount.services';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import ListBankAccounts from '../components/ui/ListBankAccounts';
+import ListBankAccounts from '../../components/ui/ListBankAccounts';
 
 let bankAccountData = {
   name: '',

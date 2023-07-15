@@ -1,7 +1,7 @@
 import React from 'react';
-import CardProfit from '../components/ui/CardProfit';
-import WidgetWithGraphs from '../components/ui/WidgetWithGraphs';
-import WidgetBankAccount from '../components/ui/WidgetBankAccount';
+import CardProfit from '../../components/ui/CardProfit';
+import WidgetWithGraphs from '../../components/ui/WidgetWithGraphs';
+import WidgetBankAccount from '../../components/ui/WidgetBankAccount';
 
 const MainPage = () => {
   return (

@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import ListOperations from '../components/ui/ListOperations';
+import ListOperations from '../../components/ui/ListOperations';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   filterTypeOperations,
   getOperationList,
   sortOperationsByDate,
   sortOperationsBySum,
-} from '../store/operations/operations.slice';
-import Button from '../components/ui/common/Button';
+} from '../../store/operations/operations.slice';
+import Button from '../../components/ui/common/Button';
 import { useLocation } from 'react-router-dom';
-import NewOperation from '../components/ui/ModalWindowOperation';
-import { paginate } from '../utils/paginate';
-import Pagination from '../components/ui/Pagination';
-import ModalWindowOperation from '../components/ui/ModalWindowOperation';
-import localStorageService from '../services/localStorage.services';
+import NewOperation from '../../components/ui/ModalWindowOperation';
+import { paginate } from '../../utils/paginate';
+import Pagination from '../../components/ui/Pagination';
+import ModalWindowOperation from '../../components/ui/ModalWindowOperation';
+import localStorageService from '../../services/localStorage.services';
 
 const Operations = ({}) => {
   const [modalActive, setModalActive] = useState(false);

@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
-import Button from '../components/ui/common/Button';
+import Button from '../../components/ui/common/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCategories } from '../store/categories/categories.slice';
-import { getBankAccountList } from '../store/bankAccounts/bankAccounts.slice';
-import { getOperationList } from '../store/operations/operations.slice';
-import { getUser, logOut } from '../store/users/users.slice';
+import { getCategories } from '../../store/categories/categories.slice';
+import { getBankAccountList } from '../../store/bankAccounts/bankAccounts.slice';
+import { getOperationList } from '../../store/operations/operations.slice';
+import { getUser, logOut } from '../../store/users/users.slice';
 import { useNavigate } from 'react-router-dom';
-import { getBuyDate } from '../services/date.services';
-import ModalWindowUser from '../components/ui/ModalWindowUser';
+import { getBuyDate } from '../../services/date.services';
+import ModalWindowUser from '../../components/ui/ModalWindowUser';
+import style from './UserPage.module.scss';
+import classNames from 'classnames/bind';
+import mainStyle from '../../styles/app.module.scss';
 
 const UserPage = () => {
   const [modalActive, setModalActive] = useState(false);
@@ -30,8 +33,12 @@ const UserPage = () => {
 
   const handleModal = () => setModalActive(!modalActive);
 
+  // const [darkTheme, setDarkTheme] = useState(false);
+  // const theme = classNames(darkTheme ? mainStyle.dark_theme : mainStyle.white_theme);
+
   return (
     <>
+      <div className={style}>SCSS</div>
       <div className="container">
         <div className="card mt-2 mb-3" style={{ maxWidth: '540px' }}>
           <div className="row g-0">
