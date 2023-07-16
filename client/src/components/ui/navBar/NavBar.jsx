@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import 'bootstrap/js/src/collapse.js';
 import { useSelector } from 'react-redux';
@@ -9,26 +9,29 @@ import classNames from 'classnames/bind';
 import PropTypes from 'prop-types';
 import Button from '../common/Button';
 import ThemeSwitcher from '../themeSwitcher/ThemeSwitcher';
+import Burger from '../burger/Burger';
+import BurgerMenu from '../burgerMenu/BurgerMenu';
 
 function NavBar() {
   const isLoggedIn = useSelector(getIsLoggedIn());
   const userId = getUserId();
+  const [activeBurgerMenu, setActiveBurgerMenu] = useState(false);
+
+  const toggleBurger = () => setActiveBurgerMenu(!activeBurgerMenu);
 
   return (
     // <nav className="navbar navbar-dark bg-primary navbar-expand-md">
     <header className={style.header}>
-      <div className={''}>
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/584/584052.png"
-          alt="logo"
-          className={style.logo}
-        />
-      </div>
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/584/584052.png"
+        alt="logo"
+        className={style.logo}
+      />
       <nav className={style.nav}>
         <ul className={style.navbar_ul}>
           {isLoggedIn ? (
             <>
-              <li className="nav-item">
+              <li className={style.nav_item}>
                 <NavLink to="/" className="nav-link">
                   Главная
                 </NavLink>
@@ -48,7 +51,6 @@ function NavBar() {
                   Операции
                 </NavLink>
               </li>
-              {/* <div className={style.logo_switch}> */}
               <li className="nav-item">
                 <ThemeSwitcher />
               </li>
@@ -57,7 +59,6 @@ function NavBar() {
                   <i className="fa-solid fa-user"></i>
                 </NavLink>
               </li>
-              {/* </div> */}
             </>
           ) : (
             <li>
@@ -69,6 +70,10 @@ function NavBar() {
           )}
         </ul>
       </nav>
+      <div className={style.burger}>
+        <Burger setActiveBurgerMenu={toggleBurger} />
+        {activeBurgerMenu && <BurgerMenu />}
+      </div>
     </header>
   );
 }
