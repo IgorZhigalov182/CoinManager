@@ -1,0 +1,62 @@
+@import '../../../styles/variables.scss';
+
+html[data-theme='dark'] {
+    .header {
+        background-color: #0D0D2B;
+        // background-color: $colorDark;
+        transition: 700ms;
+    }
+}
+
+html[data-theme='light'] {
+    .header {
+        // background-color: #7b7bb3;
+        background-color: $colorLight;
+        transition: 700ms;
+
+    }
+}
+
+// .logo_switch {
+//     display: flex;
+//     width: 7rem;
+//     justify-content: space-between;
+// }
+
+
+
+.header {
+    height: 10vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.logo {
+    padding: 0.3rem;
+    width: 4rem;
+    height: 4rem;
+}
+
+.nav {
+    height: 100%;
+}
+
+.navbar_ul {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    flex-direction: row;
+    list-style-type:  none;
+    width: 50vw;
+    justify-content: space-around;
+}
+
+
+
+.navbar_ul >:last-child {
+    // margin-left: auto;
+    // margin-right: 1rem;
+    font-size: 30px; 
+}

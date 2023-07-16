@@ -1,9 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,900;1,300;1,400&display=swap');
 @import 'variables.scss';
 
+// font-family: 'Source Code Pro', monospace;
+
+html {
+    transition: background-color 200ms linear; // для изменения цветовой схемы
+}
+
 html[data-theme='dark'] {
-    background-color: $backgroundDark
+    background-color: $backgroundDark;
+    h1,h2,h3,h4,h5,h6,li {
+        color: $colorLight;
+        font-family: 'Sora', sans-serif;
+    }
 }
 
 html[data-theme='light'] {
-    background-color: $backgroundLight
+    color: $colorLight;
+    h1,h2,h3,h4,h5,h6,li {
+        color: $colorDark;
+        font-family: 'Sora', sans-serif;
+    }
+}
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+} 
+@media (min-width: 576px) {
+    .container {
+        width: 540px;
+    }
+}
+@media (min-width: 768px) {
+    .container {
+        width: 720px;
+    }
+}
+@media (min-width: 992px) {
+    .container {
+        width: 960px;
+    }
+}
+@media (min-width: 1200px) {
+    .container {
+        width: 1140px;
+    }
 }

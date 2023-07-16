@@ -38,7 +38,7 @@ const UserPage = () => {
 
   return (
     <>
-      <div className={style}>SCSS</div>
+      {/* <div className={style}>SCSS</div> */}
       <div className="container">
         <div className="card mt-2 mb-3" style={{ maxWidth: '540px' }}>
           <div className="row g-0">
