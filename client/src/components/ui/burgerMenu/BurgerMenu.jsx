@@ -1,8 +1,27 @@
 import React from 'react';
-import stylef from './burgerMenu.module.scss';
+import style from './burgerMenu.module.scss';
+import { CSSTransition } from 'react-transition-group';
+import Burger from '../burger/Burger';
+import NavBar from '../navBar/NavBar';
 
-const BurgerMenu = () => {
-  return <div>BurgerMenu</div>;
+const BurgerMenu = ({ activeBurgerMenu, setActiveBurgerMenu }) => {
+  return (
+    <>
+      <Burger activeBurgerMenu={activeBurgerMenu} setActiveBurgerMenu={setActiveBurgerMenu} />
+      <CSSTransition
+        in={activeBurgerMenu}
+        timeout={500}
+        unmountOnExit
+        classNames={{
+          enter: style.my_node_enter,
+          enterActive: style.my_node_enter_active,
+          exit: style.node_exit,
+          exitActive: style.my_node_exit_active,
+        }}>
+        <div className={style.wrapper}>{/* <NavBar /> */}</div>
+      </CSSTransition>
+    </>
+  );
 };
 
 export default BurgerMenu;

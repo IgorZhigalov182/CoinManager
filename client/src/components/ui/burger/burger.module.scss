@@ -4,12 +4,20 @@ input[type = "checkbox"] {
     visibility: hidden;
   }
   
+.burgerWrapper {
+  position: absolute;
+        top: 1.5rem;
+        right: 10vw;
+        display: flex;
+}
+
   .bar {
     display: block;
     position: relative;
     cursor: pointer;
     width: 29px;
     height: 23px;
+    z-index: 10;
   }
   
   html[data-theme='dark'] {

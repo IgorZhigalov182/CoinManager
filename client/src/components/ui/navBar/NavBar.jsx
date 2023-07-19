@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import 'bootstrap/js/src/collapse.js';
 import { useSelector } from 'react-redux';
 import { getIsLoggedIn } from '../../../store/users/users.slice';
 import { getUserId } from '../../../services/localStorage.services';
@@ -13,21 +12,20 @@ import Burger from '../burger/Burger';
 import BurgerMenu from '../burgerMenu/BurgerMenu';
 
 function NavBar() {
+  const [activeBurgerMenu, setActiveBurgerMenu] = useState(false);
   const isLoggedIn = useSelector(getIsLoggedIn());
   const userId = getUserId();
-  const [activeBurgerMenu, setActiveBurgerMenu] = useState(false);
-
   const toggleBurger = () => setActiveBurgerMenu(!activeBurgerMenu);
+  const burgerActive = classNames(activeBurgerMenu ? style.nav_active : style.nav);
 
   return (
-    // <nav className="navbar navbar-dark bg-primary navbar-expand-md">
     <header className={style.header}>
       <img
         src="https://cdn-icons-png.flaticon.com/512/584/584052.png"
         alt="logo"
         className={style.logo}
       />
-      <nav className={style.nav}>
+      <nav className={burgerActive}>
         <ul className={style.navbar_ul}>
           {isLoggedIn ? (
             <>
@@ -36,25 +34,25 @@ function NavBar() {
                   Главная
                 </NavLink>
               </li>
-              <li className="nav-item">
+              <li className={style.nav_item}>
                 <NavLink to="/categories" className="nav-link">
                   Категории
                 </NavLink>
               </li>
-              <li className="nav-item">
+              <li className={style.nav_item}>
                 <NavLink to="/bankAccounts" className="nav-link">
                   Счета
                 </NavLink>
               </li>
-              <li className="nav-item">
+              <li className={style.nav_item}>
                 <NavLink to="/operations" className="nav-link">
                   Операции
                 </NavLink>
               </li>
-              <li className="nav-item">
+              <li className={style.nav_item}>
                 <ThemeSwitcher />
               </li>
-              <li className="nav-item">
+              <li className={style.nav_item}>
                 <NavLink to={`/user/${userId}`} className="nav-link">
                   <i className="fa-solid fa-user"></i>
                 </NavLink>
@@ -71,8 +69,7 @@ function NavBar() {
         </ul>
       </nav>
       <div className={style.burger}>
-        <Burger setActiveBurgerMenu={toggleBurger} />
-        {activeBurgerMenu && <BurgerMenu />}
+        <BurgerMenu activeBurgerMenu={activeBurgerMenu} setActiveBurgerMenu={toggleBurger} />
       </div>
     </header>
   );

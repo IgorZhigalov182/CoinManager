@@ -18,9 +18,6 @@ function App() {
         <NavBar />
         {elements}
       </OperationLoader>
-      <h1 className="containerr" style={{ border: '1px solid black' }}>
-        Text
-      </h1>
     </>
   );
 }

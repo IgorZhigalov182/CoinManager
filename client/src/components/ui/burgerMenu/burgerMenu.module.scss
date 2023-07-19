@@ -1,0 +1,45 @@
+@import '../../../styles/variables.scss';
+
+  html[data-theme='dark'] {
+      .wrapper  {
+        background:  $backgroundDark;
+        transition: 700ms ; 
+      } 
+    }
+
+  html[data-theme='light'] {
+      .wrapper  {
+          background: $backgroundLight;
+          transition: 700ms ; 
+      }
+  }
+
+.wrapper {
+    position: absolute;
+    right: 0;
+    top: 10vh;
+    height: 90vh;
+    width: 60vw;
+    z-index: 5;
+    opacity: 1;
+    transition: 700ms ; 
+}
+
+.wrapper.my_node_enter {
+  opacity: 0;
+}
+
+.wrapper.my_node_enter_active {
+  opacity: 1;
+  transition: opacity 700ms;
+}
+
+.wrapper.my_node_exit {
+  opacity: 1;
+}
+
+.wrapper.my_node_exit_active {
+  opacity: 0;
+  transition: opacity 700ms;
+}
+
