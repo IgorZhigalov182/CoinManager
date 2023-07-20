@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,900;1,300;1,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;600;700&display=swap');
 
-
 html[data-theme='dark'] {
     .header {
         background-color: #0D0D2B;
@@ -22,7 +21,7 @@ html[data-theme='light'] {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    align-items: center;
+    // align-items: center;
 }
 
 .logo {
@@ -82,7 +81,7 @@ html[data-theme='light'] {
 @media (max-width: 576px) {
     li {
         display: block;
-        border: 1px solid green;
+        font-size: 1.25rem;
     }
     .logo{
         position: absolute;
@@ -91,7 +90,7 @@ html[data-theme='light'] {
     }
     .burger {
         display: flex;
-        position: absolute;
+        // position: absolute;
         top: 0;
         right: 5rem;
     }
@@ -105,13 +104,12 @@ html[data-theme='light'] {
     .navbar_ul {
         position: absolute; 
         top: 10vh;
-        right: 0;
+        right: 1rem;
         width: 30vw;
         height: 90vh;
         // margin-top: 10vh;
         display: flex;
         flex-direction: column;
-        border: 1px solid green;
         z-index: 20;
     }
 }

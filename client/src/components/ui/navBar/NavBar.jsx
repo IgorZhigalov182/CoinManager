@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getIsLoggedIn } from '../../../store/users/users.slice';
 import { getUserId } from '../../../services/localStorage.services';
@@ -12,11 +12,27 @@ import Burger from '../burger/Burger';
 import BurgerMenu from '../burgerMenu/BurgerMenu';
 
 function NavBar() {
+  const { pathname } = useLocation();
   const [activeBurgerMenu, setActiveBurgerMenu] = useState(false);
+  const [actualLocation, setActualLocaion] = useState(pathname);
   const isLoggedIn = useSelector(getIsLoggedIn());
   const userId = getUserId();
   const toggleBurger = () => setActiveBurgerMenu(!activeBurgerMenu);
   const burgerActive = classNames(activeBurgerMenu ? style.nav_active : style.nav);
+  const prevLocation = useRef(actualLocation);
+
+  useEffect(() => {
+    if (prevLocation !== activeBurgerMenu) {
+      setActiveBurgerMenu(!activeBurgerMenu);
+    }
+  }, [pathname]);
+
+  if (activeBurgerMenu) {
+    document.querySelector('body').style.overflow = 'hidden';
+    document.querySelector('.container').style.backdropFilter = 'blur(5px)';
+  } else {
+    document.querySelector('body').style.overflow = 'auto';
+  }
 
   return (
     <header className={style.header}>
