@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useSelector } from 'react-redux';
 import NavBar from './components/ui/navBar/NavBar';
 import withRouter from './components/ui/hoc/withRouter';

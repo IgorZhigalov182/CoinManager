@@ -4,10 +4,10 @@ import { CSSTransition } from 'react-transition-group';
 import Burger from '../burger/Burger';
 import NavBar from '../navBar/NavBar';
 
-const BurgerMenu = ({ activeBurgerMenu, setActiveBurgerMenu }) => {
+const BurgerMenu = ({ activeBurgerMenu }) => {
   return (
     <>
-      <Burger activeBurgerMenu={activeBurgerMenu} setActiveBurgerMenu={setActiveBurgerMenu} />
+      <Burger />
       <CSSTransition
         in={activeBurgerMenu}
         timeout={500}
