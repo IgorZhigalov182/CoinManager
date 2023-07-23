@@ -9,20 +9,31 @@ html {
 }
 
 html[data-theme='dark'] {
-    background-color: $backgroundDark;
-    h1,h2,h3,h4,h5,h6,li {
+    >body, .card-body{
+        transition: 700ms;
+        background-color: $backgroundDark;
+    }
+    
+    h1,h2,h3,h4,h5,h6,li,p,a, span, button, small  {
         color: $colorLight;
         font-family: 'Sora', sans-serif;
     }
 }
 
 html[data-theme='light'] {
+    >body, .card-body{
+        transition: 700ms;
+        background-color: $backgroundLight;
+    }
     color: $colorLight;
-    h1,h2,h3,h4,h5,h6,li {
+    h1,h2,h3,h4,h5,h6,li,p,a, span, button, small  {
         color: $colorDark;
         font-family: 'Sora', sans-serif;
         // font-family: 'Source Code Pro', monospace;
     }
+}
+.col-sm-4{
+    border: 2px, solid, burlywood;
 }
 
 .container {

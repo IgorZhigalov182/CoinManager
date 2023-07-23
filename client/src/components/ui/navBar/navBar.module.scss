@@ -42,6 +42,10 @@ html[data-theme='light'] {
     list-style-type:  none;
     width: 50vw;
     justify-content: space-around;
+
+    >li:hover{
+        color: #979595
+    }
 }
 
 .burger {
@@ -107,9 +111,8 @@ html[data-theme='light'] {
         display: flex;
         flex-direction: column;
         z-index: 20;
-        >li:hover{
-            color: #979595
-        }
+
+        
     }
 }
 
