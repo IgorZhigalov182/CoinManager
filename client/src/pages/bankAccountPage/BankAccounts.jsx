@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Button from '../../components/ui/common/Button';
+import Button from '../../components/ui/common/button/Button';
 import ModalWindow from '../../components/ui/ModalWindow';
 import { useDispatch, useSelector } from 'react-redux';
 import {

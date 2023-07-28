@@ -1,7 +1,7 @@
 import { Field, Form, Formik } from 'formik';
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import Button from './common/Button';
+import Button from './common/button/Button';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';

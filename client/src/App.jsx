@@ -1,3 +1,4 @@
+import './styles/reset.scss';
 import React, { useContext } from 'react';
 import { useSelector } from 'react-redux';
 import NavBar from './components/ui/navBar/NavBar';
@@ -16,7 +17,7 @@ function App() {
     <>
       <OperationLoader>
         <NavBar />
-        {elements}
+        <div className="container">{elements}</div>
       </OperationLoader>
     </>
   );

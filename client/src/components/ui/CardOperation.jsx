@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from './common/Button';
+import Button from './common/button/Button';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getBuyDate, getBuyTime } from '../../services/date.services';
 import { deleteOperationById } from '../../store/operations/operations.slice';

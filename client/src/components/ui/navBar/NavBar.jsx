@@ -15,10 +15,10 @@ function NavBar() {
   const isLoggedIn = useSelector(getIsLoggedIn());
   const userId = getUserId();
   const burgerActive = classNames(activeBurgerMenu ? style.nav_active : style.nav);
-  const toggleBurger = () => setActiveBurgerMenu(!activeBurgerMenu);
-
   const handleGoPage = (e) => {
-    if (e) {
+    console.log(e);
+    console.log(activeBurgerMenu);
+    if (e && !activeBurgerMenu) {
       const burgerMenu = document.querySelector('#check');
       burgerMenu.checked = !burgerMenu.checked;
     }
@@ -28,8 +28,6 @@ function NavBar() {
   if (activeBurgerMenu) {
     document.querySelector('body').style.overflow = 'hidden';
     document.querySelector('.container').style.backdropFilter = 'blur(5px)';
-  } else {
-    document.querySelector('body').style.overflow = 'auto';
   }
 
   return (
@@ -84,7 +82,7 @@ function NavBar() {
           </ul>
         </nav>
         <div className={style.burger}>
-          <BurgerMenu activeBurgerMenu={activeBurgerMenu} setActiveBurgerMenu={toggleBurger} />
+          <BurgerMenu activeBurgerMenu={activeBurgerMenu} />
         </div>
       </header>
     </Context.Provider>

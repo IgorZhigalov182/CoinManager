@@ -4,6 +4,8 @@
       .wrapper  {
         background:  $backgroundDark;
         transition: 700ms ; 
+        border-left: 1px solid rgb(52, 52, 52) ;
+
       } 
     }
 
@@ -11,6 +13,7 @@
       .wrapper  {
           background: $backgroundLight;
           transition: 700ms ; 
+          border-left: 1px solid rgb(199, 198, 198) ;
       }
   }
 

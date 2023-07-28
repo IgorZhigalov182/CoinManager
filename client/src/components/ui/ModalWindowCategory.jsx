@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ModalWindow from './ModalWindow';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import Button from './common/Button';
+import Button from './common/button/Button';
 // import { getRandomColor } from '../../utils/getRandomColor';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
@@ -13,7 +13,7 @@ const ModalWindowCategory = ({ categories, selectedCategory, modalActive, setMod
   const dispatch = useDispatch();
 
   let category = categories?.filter((category) => category._id === selectedCategory)[0];
-  
+
   const [initialValue, setInitialValue] = useState({
     // color: getRandomColor(),
     color: '#000000',

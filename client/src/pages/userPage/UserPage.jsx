@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Button from '../../components/ui/common/Button';
+import Button from '../../components/ui/common/button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCategories } from '../../store/categories/categories.slice';
 import { getBankAccountList } from '../../store/bankAccounts/bankAccounts.slice';
@@ -61,11 +61,7 @@ const UserPage = () => {
                   <small className="text-body-secondary">Дата регистрации: {registerDate}</small>
                 </p>
                 <div className="d-flex justify-content-between">
-                  <Button
-                    handler={handleModal}
-                    className={'btn btn-dark'}
-                    title={'Редактировать'}
-                  />
+                  <Button handler={handleModal} className={'btn_dark'} title={'Редактировать'} />
                   <Button
                     handler={handleLogout}
                     className={'btn btn-dark ms-3'}

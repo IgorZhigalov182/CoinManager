@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from './common/Button';
+import Button from './common/button/Button';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getCountOperations, getSumOperations } from '../../store/operations/operations.slice';

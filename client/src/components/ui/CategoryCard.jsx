@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from './common/Button';
+import Button from './common/button/Button';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { deleteCategory } from '../../store/categories/categories.slice';

@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import Button from './common/Button';
+import React, { useState, useEffect } from 'react';
+import Button from './common/button/Button';
 import PropTypes from 'prop-types';
 import '../../styles/modal.css';
 import ModalWindow from './ModalWindow';

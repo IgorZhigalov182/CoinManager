@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ModalWindow from './ModalWindow';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import Button from './common/Button';
+import Button from './common/button/Button';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser, updateUserData } from '../../store/users/users.slice';

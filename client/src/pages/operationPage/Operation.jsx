@@ -4,7 +4,7 @@ import BackButton from '../../components/ui/common/BackButton';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getOperationById } from '../../store/operations/operations.slice';
-import Button from '../../components/ui/common/Button';
+import Button from '../../components/ui/common/button/Button';
 import NotFound from '../notFoundPage/NotFound';
 import ModalWindowOperation from '../../components/ui/ModalWindowOperation';
 

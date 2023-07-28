@@ -7,7 +7,7 @@ import {
   sortOperationsByDate,
   sortOperationsBySum,
 } from '../../store/operations/operations.slice';
-import Button from '../../components/ui/common/Button';
+import Button from '../../components/ui/common/button/Button';
 import { useLocation } from 'react-router-dom';
 import NewOperation from '../../components/ui/ModalWindowOperation';
 import { paginate } from '../../utils/paginate';

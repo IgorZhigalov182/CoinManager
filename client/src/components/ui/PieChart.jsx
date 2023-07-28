@@ -7,7 +7,7 @@ import '../../styles/chartjs.css';
 import { useSelector } from 'react-redux';
 import { getCategories } from '../../store/categories/categories.slice';
 import { getOperationList } from '../../store/operations/operations.slice';
-import Button from './common/Button';
+import Button from './common/button/Button';
 import { useNavigate } from 'react-router-dom';
 
 ChartJS.register(ArcElement, Tooltip, Legend);

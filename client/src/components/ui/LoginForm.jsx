@@ -1,6 +1,6 @@
 import { Field, Form, Formik } from 'formik';
 import React, { useEffect, useRef } from 'react';
-import Button from './common/Button';
+import Button from './common/button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAuthErrors, getIsLoggedIn, login } from '../../store/users/users.slice';
 import * as Yup from 'yup';
