@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { getCategories } from '../../store/categories/categories.slice';
 import { useSelector } from 'react-redux';
 import Button from '../../components/ui/common/button/Button';
-import CategoryCard from '../../components/ui/CategoryCard';
+import CategoryCard from '../../components/ui/categoryCard/CategoryCard';
 import ModalWindowCategory from '../../components/ui/ModalWindowCategory';
+import style from './categories.module.scss';
 
 const Categories = () => {
   const categories = useSelector(getCategories());
@@ -27,7 +28,7 @@ const Categories = () => {
           className={'btn btn-dark mt-2'}
           handler={handleModal}
         />
-        <div className="row">
+        <div className={style.grid_container}>
           {categories &&
             categories.map((category) => {
               return (

@@ -16,7 +16,7 @@ const Button = ({ title, className, handler, type }) => {
     //   {title}
     // </button>
 
-    <button onClick={handler}>
+    <button onClick={handler} style={style}>
       <span className="text">{title}</span>
     </button>
   );

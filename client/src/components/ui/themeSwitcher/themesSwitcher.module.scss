@@ -1,3 +1,5 @@
+@import '../../../styles/variables.scss';
+
 .toggle_switch {
     position: relative;
     width: 50px;
@@ -30,6 +32,7 @@
     border-radius: 12.5px;
     -webkit-transition: 0.3s;
     transition: 0.3s;
+    background-color: $colorDark;
   }
   
   .checkbox:checked ~ .slider {

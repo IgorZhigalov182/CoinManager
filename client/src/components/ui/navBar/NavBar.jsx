@@ -16,8 +16,6 @@ function NavBar() {
   const userId = getUserId();
   const burgerActive = classNames(activeBurgerMenu ? style.nav_active : style.nav);
   const handleGoPage = (e) => {
-    console.log(e);
-    console.log(activeBurgerMenu);
     if (e && !activeBurgerMenu) {
       const burgerMenu = document.querySelector('#check');
       burgerMenu.checked = !burgerMenu.checked;
@@ -27,7 +25,7 @@ function NavBar() {
 
   if (activeBurgerMenu) {
     document.querySelector('body').style.overflow = 'hidden';
-    document.querySelector('.container').style.backdropFilter = 'blur(5px)';
+    // document.querySelector('.container').style.backdropFilter = 'blur(5px)';
   }
 
   return (
