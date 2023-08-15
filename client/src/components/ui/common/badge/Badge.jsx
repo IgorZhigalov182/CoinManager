@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './badge.scss';
 
 const Badge = ({ title, className, backgroundColor, color }) => {
   const badgeStyle = {
@@ -7,11 +8,7 @@ const Badge = ({ title, className, backgroundColor, color }) => {
     backgroundColor: backgroundColor,
   };
 
-  return (
-    <span className={className} style={badgeStyle}>
-      {title}
-    </span>
-  );
+  return <span style={badgeStyle}>{title}</span>;
 };
 
 export default Badge;

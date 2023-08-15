@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import style from './button.module.scss';
 import classNames from 'classnames';
 
-const Button = ({ title, className, handler, type }) => {
+const Button = ({ title, className, handler }) => {
   const buttonStyle = classNames(style[className]);
 
   return (
@@ -16,7 +16,7 @@ const Button = ({ title, className, handler, type }) => {
     //   {title}
     // </button>
 
-    <button onClick={handler} style={style}>
+    <button onClick={handler}>
       <span className="text">{title}</span>
     </button>
   );

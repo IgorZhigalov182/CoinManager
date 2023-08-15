@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { deleteCategory } from '../../../store/categories/categories.slice';
 import style from './categoryCard.module.scss';
+import Badge from '../common/badge/Badge';
 
 const CategoryCard = ({ handleModal, name, color, id }) => {
   const dispatch = useDispatch();
@@ -11,9 +12,18 @@ const CategoryCard = ({ handleModal, name, color, id }) => {
 
   return (
     <>
-      {/* <div className={style.grid_container}> */}
       <div className={style.d_flex}>
         <h2 className={style.categoryName}>{name}</h2>
+        <div
+          style={{
+            height: '2.5rem',
+            width: '2.5rem',
+            borderRadius: '50%',
+            background: color,
+            marginLeft: '1rem',
+            marginTop: '1rem',
+            boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px',
+          }}></div>
         <div className={style.button_wrap}>
           <Button
             style={{ width: '3rem' }}
@@ -29,16 +39,6 @@ const CategoryCard = ({ handleModal, name, color, id }) => {
           />
         </div>
       </div>
-      <div
-        className="rounded-start-pill"
-        style={{
-          width: '4rem',
-          marginTop: '-1rem',
-          marginBottom: '-1rem',
-          borderRadius: '0.3rem',
-          background: color,
-        }}></div>
-      {/* </div> */}
     </>
   );
 };

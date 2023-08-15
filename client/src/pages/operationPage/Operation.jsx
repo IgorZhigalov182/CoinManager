@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import CardOperation from '../../components/ui/CardOperation';
+import CardOperation from '../../components/ui/cardOperation/CardOperation';
 import BackButton from '../../components/ui/common/BackButton';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CardOperation from './CardOperation';
+import CardOperation from './cardOperation/CardOperation';
 
 const ListOperations = ({ operations }) => {
   return (
