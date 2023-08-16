@@ -1,0 +1,6 @@
+@import '../../../styles/mixins.scss';
+
+.card_wrapper{
+    @include cardWrap;
+    margin-top: 1rem;
+}

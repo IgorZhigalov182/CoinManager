@@ -1,7 +1,8 @@
 import React from 'react';
-import Button from './common/button/Button';
+import Button from '../common/button/Button';
 import PropTypes from 'prop-types';
-import { setTitileTypeBankAccount } from '../../services/bankAccount.services';
+import { setTitileTypeBankAccount } from '../../../services/bankAccount.services';
+import style from './cardBankAccount.module.scss';
 
 const CardBankAccount = ({
   setModalActive,
@@ -14,9 +15,7 @@ const CardBankAccount = ({
 }) => {
   return (
     <>
-      <div
-        className="card text-bg-info mb-3 me-3"
-        style={{ maxWidth: '22rem', maxHeight: '30rem' }}>
+      <div className={style.card_wrapper} style={{ maxWidth: '22rem', maxHeight: '30rem' }}>
         {active ? (
           <div className="position-absolute top-0 end-0">
             <Button

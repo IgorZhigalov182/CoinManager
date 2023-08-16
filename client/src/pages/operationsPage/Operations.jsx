@@ -14,6 +14,8 @@ import { paginate } from '../../utils/paginate';
 import Pagination from '../../components/ui/Pagination';
 import ModalWindowOperation from '../../components/ui/ModalWindowOperation';
 import localStorageService from '../../services/localStorage.services';
+import style from './opertaions.module.scss';
+import classNames from 'classnames';
 
 const Operations = ({}) => {
   const [modalActive, setModalActive] = useState(false);
@@ -52,35 +54,39 @@ const Operations = ({}) => {
 
   return (
     <div className="container">
-      <Button
-        handler={handleModal}
-        title={'Добавить операцию'}
-        className={'btn btn-primary mt-2 mb-2 me-2'}
-      />
-      <span className="me-2">Cортировка по:</span>
-      <Button
-        title={'сумме'}
-        className={'btn btn-dark mt-1 mb-2 me-2'}
-        handler={() => handleSortBySum()}
-      />
-      <Button
-        title={'дате'}
-        className={'btn btn-dark me-2 mt-1 mb-2'}
-        handler={() => handleSortByDate()}
-      />
-      <ListOperations operations={operationsCrop} />
-      <ModalWindowOperation
-        typeOperationForModal={typeOperationForModal}
-        modalActive={modalActive}
-        setModalActive={setModalActive}
-      />
-      <div className="d-flex justify-content-center">
-        <Pagination
-          itemsCount={operations.length}
-          pageSize={pageSize}
-          currentPage={currentPage}
-          onPageChange={handlePageChange}
+      <div className={style.operationWrap}>
+        <Button
+          handler={handleModal}
+          title={'Добавить операцию'}
+          className={'btn btn-primary mt-2 mb-2 me-2'}
         />
+        <span className="me-2">Cортировка по:</span>
+        <div className={style.operationButtonsWrap}>
+          <Button
+            title={'сумме'}
+            className={'btn btn-dark mt-1 mb-2 me-2'}
+            handler={() => handleSortBySum()}
+          />
+          <Button
+            title={'дате'}
+            className={'btn btn-dark me-2 mt-1 mb-2'}
+            handler={() => handleSortByDate()}
+          />
+        </div>
+        <ListOperations operations={operationsCrop} />
+        <ModalWindowOperation
+          typeOperationForModal={typeOperationForModal}
+          modalActive={modalActive}
+          setModalActive={setModalActive}
+        />
+        <div className="d-flex justify-content-center">
+          <Pagination
+            itemsCount={operations.length}
+            pageSize={pageSize}
+            currentPage={currentPage}
+            onPageChange={handlePageChange}
+          />
+        </div>
       </div>
     </div>
   );

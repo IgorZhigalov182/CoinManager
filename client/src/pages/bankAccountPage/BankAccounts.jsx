@@ -12,7 +12,8 @@ import {
 import bankAccountService from '../../services/bankAccount.services';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import ListBankAccounts from '../../components/ui/ListBankAccounts';
+import ListBankAccounts from '../../components/ui/listBankAccounts/ListBankAccounts';
+import style from './bankAccount.module.scss';
 
 let bankAccountData = {
   name: '',
@@ -78,7 +79,7 @@ const BankAccounts = () => {
   });
 
   return (
-    <div className="container">
+    <div className={'a'}>
       <Button
         title={'Добавить счёт'}
         className={'btn btn-dark mt-2 mb-2'}

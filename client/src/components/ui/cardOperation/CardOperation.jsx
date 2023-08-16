@@ -43,7 +43,7 @@ const CardOperation = ({ idBankAccount, category, comment, _id, sum, date, typeO
             {!operationPage && <h5>Время покупки: {getBuyTime(date)}</h5>}
             {!operationPage && <h5 className="card-title">Банковский счёт: {bankAccountName}</h5>}
             {!operationPage && <p className="card-text">Комментарий: {comment}</p>}
-            <div className="d-flex justify-content-between">
+            <div className={style.cardOperationButtonWraper}>
               {operationPage && <Button title={'Открыть запись'} handler={handleGoToRecord} />}
               {operationPage && (
                 <Button className={'btn btn-danger'} title={'Удалить'} handler={handleDelete} />

@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CardBankAccount from './CardBankAccount';
+import CardBankAccount from '../cardBankAccount/CardBankAccount';
+import style from './listBankAccount.module.scss';
 
 const ListBankAccounts = ({ bankAccounts, setModalActive, toggleFavourite }) => {
   return (
     <>
-      <div className="container">
+      <div className="a">
         <div className="row row-cols-3">
           {bankAccounts &&
             bankAccounts.map((bankData) => {

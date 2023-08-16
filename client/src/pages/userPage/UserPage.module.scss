@@ -1,4 +1,33 @@
+@import '../../styles/mixins.scss';
+
 .foo {
     background-color: var(--background-color);
 }
 
+.logo {
+    width: 15rem;
+    height: 15rem;
+    border-radius: 50%;
+}
+
+.userCardWrap {
+    margin-top: 1.5rem;
+    @include cardWrap;
+    display: flex;
+    justify-content: space-around;
+    >.userCardInfo {
+        margin-top: 1rem;
+        >.userCardButtonWrapper {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+        >.paragraphUserPage {
+            font-size: 1.125rem;
+            margin-top: 0.5rem;
+        }
+        >.headerUserPage {
+            font-size: 1.3rem;
+        }
+    }
+}

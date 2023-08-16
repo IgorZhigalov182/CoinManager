@@ -39,37 +39,31 @@ const UserPage = () => {
   return (
     <>
       {/* <div className={style}>SCSS</div> */}
-      <div className="container">
-        <div className="card mt-2 mb-3" style={{ maxWidth: '540px' }}>
-          <div className="row g-0">
-            <div className="col-md-4 ">
-              <img
-                src="https://t4.ftcdn.net/jpg/04/10/42/63/360_F_410426381_YKYcz1SyGZXRWOYU63yddK02hb70yJTM.jpg"
-                className="img-fluid rounded-start"
-                alt="..."
-              />
-            </div>
-            <div className="col-md-8">
-              <div className="card-body">
-                <h5 className="card-title">
-                  {userData.firstName} {userData.lastName}
-                </h5>
-                <p className="card-text">Всего банковских аккаунтов: {countOfBankAccount || 0}</p>
-                <p className="card-text">Всего категорий: {countOfCategories || 0}</p>
-                <p className="card-text">Всего операций: {countOfOperations || 0}</p>
-                <p className="card-text">
-                  <small className="text-body-secondary">Дата регистрации: {registerDate}</small>
-                </p>
-                <div className="d-flex justify-content-between">
-                  <Button handler={handleModal} className={'btn_dark'} title={'Редактировать'} />
-                  <Button
-                    handler={handleLogout}
-                    className={'btn btn-dark ms-3'}
-                    title={'Выйти из аккаунта'}
-                  />
-                </div>
-              </div>
-            </div>
+      <div className={style.userCardWrap}>
+        <img
+          src="https://t4.ftcdn.net/jpg/04/10/42/63/360_F_410426381_YKYcz1SyGZXRWOYU63yddK02hb70yJTM.jpg"
+          className={style.logo}
+          alt="..."
+        />
+        <div className={style.userCardInfo}>
+          <h5 className={style.headerUserPage}>
+            {userData.firstName} {userData.lastName}
+          </h5>
+          <p className={style.paragraphUserPage}>
+            Всего банковских аккаунтов: {countOfBankAccount || 0}
+          </p>
+          <p className={style.paragraphUserPage}>Всего категорий: {countOfCategories || 0}</p>
+          <p className={style.paragraphUserPage}>Всего операций: {countOfOperations || 0}</p>
+          <p className={style.paragraphUserPage}>
+            <small className="text-body-secondary">Дата регистрации: {registerDate}</small>
+          </p>
+          <div className={style.userCardButtonWrapper}>
+            <Button handler={handleModal} className={'btn_dark'} title={'Редактировать'} />
+            <Button
+              handler={handleLogout}
+              className={'btn btn-dark ms-3'}
+              title={'Выйти из аккаунта'}
+            />
           </div>
         </div>
       </div>
