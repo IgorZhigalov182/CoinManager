@@ -1,0 +1,36 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/variables.scss';
+
+.widgetBankAccountWrapper{
+    @include cardWrap;
+    width: 20rem;
+}
+
+.listWrapper {
+    display:flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.activeBankAccountName {
+    transition: .9s;
+    font-size: 1.05rem;
+    margin-top: 5px;
+}
+
+.noActiveBankAccountName {
+    transition: .9s;
+    margin-top: 5px;
+    font-size: 1rem;
+}
+
+.activeBankAccountName:hover , .noActiveBankAccountName:hover {
+    cursor: pointer;
+    color: $hoverColorLight;
+    transition: .9s;
+}
+
+
+.activeBankAccountWrapper {
+    display: flex;
+}

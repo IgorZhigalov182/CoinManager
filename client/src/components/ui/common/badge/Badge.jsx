@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './badge.scss';
+import styles from './badge.module.scss';
 
 const Badge = ({ title, className, backgroundColor, color }) => {
   const badgeStyle = {

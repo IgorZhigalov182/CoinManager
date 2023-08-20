@@ -7,6 +7,7 @@ import { getOperationById } from '../../store/operations/operations.slice';
 import Button from '../../components/ui/common/button/Button';
 import NotFound from '../notFoundPage/NotFound';
 import ModalWindowOperation from '../../components/ui/ModalWindowOperation';
+import style from './operation.module.scss';
 
 const Operation = () => {
   const [modalActive, setModalActive] = useState(false);

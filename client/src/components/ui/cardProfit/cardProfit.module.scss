@@ -1,0 +1,16 @@
+@import '../../../styles/mixins.scss';
+
+.cardProfitWrapper {
+    @include cardWrap;
+    width: 20rem;
+    height: 11rem;
+}
+
+.cardProfitTitle {
+    font-size: 1.25rem;
+}
+
+.cardProfitButtonsWrapper {
+    display: flex;
+    justify-content: space-between;
+}
