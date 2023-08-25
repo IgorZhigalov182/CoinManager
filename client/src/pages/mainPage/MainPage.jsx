@@ -1,6 +1,6 @@
 import React from 'react';
 import CardProfit from '../../components/ui/cardProfit/CardProfit';
-import WidgetWithGraphs from '../../components/ui/WidgetWithGraphs';
+import WidgetWithGraphs from '../../components/ui/WidgetWithGraphs/WidgetWithGraphs';
 import WidgetBankAccount from '../../components/ui/widgetBankAccount/WidgetBankAccount';
 import styles from './main.module.scss';
 

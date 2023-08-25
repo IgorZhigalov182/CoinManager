@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import Button from './common/button/Button';
+import Button from '../common/button/Button';
 import PropTypes from 'prop-types';
-import '../../styles/modal.css';
-import ModalWindow from './ModalWindow';
+import '../../../styles/modal.css';
+import ModalWindow from '../ModalWindow';
 import { Field, Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   createCategory,
   getCategories,
   getCategoryDisplayNameById,
-} from '../../store/categories/categories.slice';
+} from '../../../store/categories/categories.slice';
 import * as Yup from 'yup';
-import { getActiveBankAccount } from '../../store/bankAccounts/bankAccounts.slice';
-import { createOperation, updateOperationById } from '../../store/operations/operations.slice';
-import { getRandomColor } from '../../utils/getRandomColor';
-import localStorageService from '../../services/localStorage.services';
+import { getActiveBankAccount } from '../../../store/bankAccounts/bankAccounts.slice';
+import { createOperation, updateOperationById } from '../../../store/operations/operations.slice';
+import { getRandomColor } from '../../../utils/getRandomColor';
+import localStorageService from '../../../services/localStorage.services';
+import styles from './ModalWindowOperation.module.scss';
 
 const ModalWindowOperation = ({
   operation,
@@ -115,7 +116,7 @@ const ModalWindowOperation = ({
           enableReinitialize={true}>
           {({ errors, touched, handleChange, values }) => (
             <Form>
-              <Field type="number" name="sum" className="form-control" placeholder="Сумма" />
+              <Field type="number" name="sum" className={styles.input} placeholder="Сумма" />
               {errors.sum && touched.sum ? <div>{errors.sum}</div> : null}
               {!values.addNewCategory && (
                 <Field

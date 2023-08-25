@@ -1,18 +1,19 @@
 import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { sumByCategory } from '../../services/category.services';
+import { sumByCategory } from '../../../services/category.services';
 import PropTypes from 'prop-types';
 import { Pie } from 'react-chartjs-2';
-import '../../styles/chartjs.css';
+import '../../../styles/chartjs.css';
 import { useSelector } from 'react-redux';
-import { getCategories } from '../../store/categories/categories.slice';
-import { getOperationList } from '../../store/operations/operations.slice';
-import Button from './common/button/Button';
+import { getCategories } from '../../../store/categories/categories.slice';
+import { getOperationList } from '../../../store/operations/operations.slice';
+import Button from '../common/button/Button';
 import { useNavigate } from 'react-router-dom';
+import styles from './PieChart.module.scss';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const PieChart = ({ typeOperation, style }) => {
+const PieChart = ({ typeOperation }) => {
   const navigate = useNavigate();
   const categories = useSelector(getCategories());
   const operationsArray = useSelector(getOperationList());
@@ -73,7 +74,7 @@ const PieChart = ({ typeOperation, style }) => {
   }
 
   return (
-    <div className="h-25" style={style}>
+    <div className={styles.pieChartWrapper}>
       <Pie data={newData} />
     </div>
   );
@@ -81,7 +82,6 @@ const PieChart = ({ typeOperation, style }) => {
 
 Button.propTypes = {
   typeOperation: PropTypes.string,
-  style: PropTypes.object,
 };
 
 export default PieChart;
