@@ -25,31 +25,37 @@ const CardOperation = ({ idBankAccount, category, comment, _id, sum, date, typeO
 
   return (
     <div className={style.card_wrapper}>
-      <div className="card mb-2">
-        <div className="card-body">
-          <h3>
-            {typeOperation === 'profit' ? (
-              <Badge title={`${sum}Р`} className="badge text-bg-success" />
-            ) : (
-              <Badge title={`${sum}Р`} className="badge text-bg-secondary" />
-            )}
-          </h3>
-          <div>
-            <h5>Категория: {categoryName}</h5>
-            {!operationPage && (
-              <h5>Тип операции: {typeOperation === 'profit' ? 'Доходы' : 'Расходы'}</h5>
-            )}
-            <h6>Дата покупки: {getBuyDate(date)}</h6>
-            {!operationPage && <h5>Время покупки: {getBuyTime(date)}</h5>}
-            {!operationPage && <h5 className="card-title">Банковский счёт: {bankAccountName}</h5>}
-            {!operationPage && <p className="card-text">Комментарий: {comment}</p>}
-            <div className={style.cardOperationButtonWraper}>
-              {operationPage && <Button title={'Открыть запись'} handler={handleGoToRecord} />}
-              {operationPage && (
-                <Button className={'btn btn-danger'} title={'Удалить'} handler={handleDelete} />
-              )}
-            </div>
-          </div>
+      {typeOperation === 'profit' ? (
+        <Badge title={`${sum}Р`} className={style.profitBadge} />
+      ) : (
+        <Badge title={`${sum}Р`} className={style.expanseBadge} />
+      )}
+      <div>
+        <h5 className={style.profitH5}>Категория: {categoryName}</h5>
+        {!operationPage && (
+          <h5>Тип операции: {typeOperation === 'profit' ? 'Доходы' : 'Расходы'}</h5>
+        )}
+        <h6>Дата операции: {getBuyDate(date)}</h6>
+        {!operationPage && <h5>Время покупки: {getBuyTime(date)}</h5>}
+        {!operationPage && <h5 className="card-title">Банковский счёт: {bankAccountName}</h5>}
+        {!operationPage && <p className="card-text">Комментарий: {comment}</p>}
+        <div className={style.cardOperationButtonWraper}>
+          {operationPage && (
+            <Button
+              spanStyle={style.spanGoToRecord}
+              className={style.btnGoToRecord}
+              title={'Открыть запись'}
+              handler={handleGoToRecord}
+            />
+          )}
+          {operationPage && (
+            <Button
+              className={style.btnDeleteRecord}
+              spanStyle={style.spanDeleteRecord}
+              title={<i className="fa-solid fa-trash"></i>}
+              handler={handleDelete}
+            />
+          )}
         </div>
       </div>
     </div>

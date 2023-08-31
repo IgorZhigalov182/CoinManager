@@ -58,18 +58,21 @@ const Operations = ({}) => {
         <Button
           handler={handleModal}
           title={'Добавить операцию'}
-          className={'btn btn-primary mt-2 mb-2 me-2'}
+          spanStyle={style.spanAddOperation}
+          className={style.btnAddOperation}
         />
         <span className="me-2">Cортировка по:</span>
         <div className={style.operationButtonsWrap}>
           <Button
             title={'сумме'}
-            className={'btn btn-dark mt-1 mb-2 me-2'}
+            spanStyle={style.spanSortBy}
+            className={style.btnSortBy}
             handler={() => handleSortBySum()}
           />
           <Button
             title={'дате'}
-            className={'btn btn-dark me-2 mt-1 mb-2'}
+            spanStyle={style.spanSortBy}
+            className={style.btnSortBy}
             handler={() => handleSortByDate()}
           />
         </div>

@@ -1,14 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './badge.module.scss';
+// import classNames from 'classnames';
 
 const Badge = ({ title, className, backgroundColor, color }) => {
+  // const spanStyles = classNames(className);
+
   const badgeStyle = {
     color: color,
     backgroundColor: backgroundColor,
   };
 
-  return <span style={badgeStyle}>{title}</span>;
+  return <span className={className}>{title}</span>;
 };
 
 export default Badge;

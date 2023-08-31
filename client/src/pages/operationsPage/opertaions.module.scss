@@ -2,7 +2,7 @@
 
 .operationWrap {
     margin-top: 1rem;
-
+    
     .operationButtonsWrap {
         display: flex;
         justify-content: space-between;
@@ -10,9 +10,18 @@
         margin-top: 0.5rem;
     }
 
+    .spanSortBy {
+        width: 9rem;
+        line-height: 0rem; 
+    }
+
     .btnAddOperation {
-        width: 5rem;
-        height: 10rem;
-        border: 1px solid green;
+        width: 15rem;
+        height: 2.5rem;
+    }
+
+    .spanAddOperation {
+        padding: 0;
+        line-height: 35px;
     }
 }
