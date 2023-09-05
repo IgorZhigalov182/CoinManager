@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,900;1,300;1,400&display=swap');
 @import 'variables.scss';
+@import 'mixins.scss';
 
 // font-family: 'Source Code Pro', monospace;
 
@@ -18,6 +19,11 @@ html[data-theme='dark'] {
         color: $colorLight;
         font-family: 'Sora', sans-serif;
     }
+
+    input {
+        @include inputText;
+        background-color: $backgroundLight;
+    }
 }
 
 html[data-theme='light'] {
@@ -31,6 +37,12 @@ html[data-theme='light'] {
         font-family: 'Sora', sans-serif;
         // font-family: 'Source Code Pro', monospace;
     }
+
+    input {
+        @include inputText;
+        background-color: $inputLightBackground;
+        color: $colorDark;
+    }
 }
 .col-sm-4{
     border: 2px, solid, burlywood;
@@ -38,6 +50,7 @@ html[data-theme='light'] {
 
 .container {
     width: 100%;
+    height: 100%;
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;

@@ -1,22 +1,21 @@
 import { Field, Form, Formik } from 'formik';
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import Button from './common/button/Button';
+import Button from '../common/button/Button';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import { getIsLoggedIn, signUp } from '../../store/users/users.slice';
+import { getIsLoggedIn, signUp } from '../../../store/users/users.slice';
+import styles from './loginRegisterForm.module.scss';
 
 const initialValue = { email: '', password: '', confirmPassword: '', firstName: '', lastName: '' };
 
 const RegisterForm = ({ setIsSingUp }) => {
-  console.log(typeof setIsSingUp);
   const inputName = useRef(null);
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsLoggedIn());
 
   const handleSubmit = (values) => {
-    console.log(values);
     dispatch(signUp(values));
   };
 
@@ -37,13 +36,7 @@ const RegisterForm = ({ setIsSingUp }) => {
   });
 
   return (
-    <div
-      style={{
-        height: '90%',
-        position: 'absolute',
-        alignItems: 'center',
-      }}
-      className="container-fluid d-flex justify-content-center align-middle">
+    <div className={styles.formWrapper}>
       <Formik
         className=""
         onSubmit={async (values, actions) => {

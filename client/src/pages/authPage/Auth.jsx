@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
-import LoginForm from '../../components/ui/LoginForm';
-import RegisterForm from '../../components/ui/RegisterForm';
+import React, { useEffect, useState } from 'react';
+import LoginForm from '../../components/ui/loginRegisterForm/LoginForm';
+import RegisterForm from '../../components/ui/loginRegisterForm/RegisterForm';
+import { useTheme } from '../../hooks/useTheme';
 
 const Auth = () => {
   const [isSingUp, setIsSingUp] = useState(false);
+  useTheme();
 
   return (
-    <div className="">
+    <>
       {isSingUp ? (
         <RegisterForm setIsSingUp={setIsSingUp} />
       ) : (
         <LoginForm setIsSingUp={setIsSingUp} />
       )}
-    </div>
+    </>
   );
 };
 

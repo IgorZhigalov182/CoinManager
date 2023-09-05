@@ -1,0 +1,39 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/variables.scss';
+
+html[data-theme='dark'] {
+    .inputError {
+        color: $backgroundLight;
+    }
+
+
+    .spanToggleRegister {
+        right: 0;
+    }
+}
+
+html[data-theme='light'] {
+    .inputError {
+        color: $backgroundDark;
+    }
+}
+
+.spanToggleRegister {
+    margin: 10px 0px 0px 60px;
+}
+
+.formWrapper {
+    display: flex;
+    justify-content: space-around;
+    height: 38rem;
+}
+
+.formInner {
+    margin-top: 15rem;
+}
+
+.submitButton {
+    line-height: 2px;
+    width: 100%;
+    margin-top: 1rem;
+}

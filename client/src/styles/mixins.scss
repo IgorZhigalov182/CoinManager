@@ -1,6 +1,16 @@
+@import './variables.scss';
+
 @mixin cardWrap {
     border: 1px solid rgb(200, 197, 197);
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     border-radius: 10px;
     padding: 1rem;
+}
+
+@mixin inputText {
+    display: flex;   
+    height: 2rem;
+    border-radius: 0.3rem;
+    margin-top: 10px;
+    padding: 0.5rem;
 }
