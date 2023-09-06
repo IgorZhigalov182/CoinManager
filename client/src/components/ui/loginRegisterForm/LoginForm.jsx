@@ -68,24 +68,15 @@ const LoginForm = ({ setIsSingUp }) => {
               ) : (
                 ''
               )}
-              <div className="d-flex flex-column">
-                <Button
-                  title="Войти"
-                  type={'submit'}
-                  spanStyles={styles.spanStyles}
-                  className={styles.submitButton}
-                />
-                <span className={styles.spanToggleRegister}>
-                  <a
-                    // className="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
-                    role="button"
-                    className={styles.toggleRegister}
-                    style={{ userSelect: 'none', marginTop: '1rem' }}
-                    onClick={handleRegister}>
-                    Зарегистрироваться
-                  </a>
-                </span>
-              </div>
+              <Button
+                title="Войти"
+                type={'submit'}
+                spanStyles={styles.spanStyles}
+                className={styles.submitButton}
+              />
+              <a role="button" className={styles.toggleRegister} onClick={handleRegister}>
+                Зарегистрироваться
+              </a>
             </Form>
           )}
         </Formik>

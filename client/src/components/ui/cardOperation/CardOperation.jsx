@@ -9,6 +9,7 @@ import { getCategoryDisplayNameById } from '../../../store/categories/categories
 import Badge from '../common/badge/Badge';
 import { getBankAccountDisplayNameById } from '../../../store/bankAccounts/bankAccounts.slice';
 import style from './cardOperation.module.scss';
+import classNames from 'classnames';
 
 const CardOperation = ({ idBankAccount, category, comment, _id, sum, date, typeOperation }) => {
   const navigate = useNavigate();
@@ -17,14 +18,17 @@ const CardOperation = ({ idBankAccount, category, comment, _id, sum, date, typeO
   const categoryName = useSelector(getCategoryDisplayNameById(category));
   const bankAccountName = useSelector(getBankAccountDisplayNameById(idBankAccount));
 
-  const operationPage = pathname.length < 12;
+  const isOperationPage = pathname.length < 12;
+  const styleCardWrapper = classNames(
+    isOperationPage ? style.card_wrapper : style.card_wrapperOperationPage,
+  );
 
   const handleGoToRecord = () => navigate(`${_id}`, { state: 'pathname' });
 
   const handleDelete = () => dispatch(deleteOperationById(_id));
 
   return (
-    <div className={style.card_wrapper}>
+    <div className={styleCardWrapper}>
       {typeOperation === 'profit' ? (
         <Badge title={`${sum}Р`} className={style.profitBadge} />
       ) : (
@@ -32,15 +36,15 @@ const CardOperation = ({ idBankAccount, category, comment, _id, sum, date, typeO
       )}
       <div>
         <h5 className={style.profitH5}>Категория: {categoryName}</h5>
-        {!operationPage && (
+        {!isOperationPage && (
           <h5>Тип операции: {typeOperation === 'profit' ? 'Доходы' : 'Расходы'}</h5>
         )}
         <h6>Дата операции: {getBuyDate(date)}</h6>
-        {!operationPage && <h5>Время покупки: {getBuyTime(date)}</h5>}
-        {!operationPage && <h5 className="card-title">Банковский счёт: {bankAccountName}</h5>}
-        {!operationPage && <p className="card-text">Комментарий: {comment}</p>}
+        {!isOperationPage && <h5>Время покупки: {getBuyTime(date)}</h5>}
+        {!isOperationPage && <h5 className="card-title">Банковский счёт: {bankAccountName}</h5>}
+        {!isOperationPage && <p className={style.cardOperationComment}>Комментарий: {comment}</p>}
         <div className={style.cardOperationButtonWraper}>
-          {operationPage && (
+          {isOperationPage && (
             <Button
               spanStyle={style.spanGoToRecord}
               className={style.btnGoToRecord}
@@ -48,7 +52,7 @@ const CardOperation = ({ idBankAccount, category, comment, _id, sum, date, typeO
               handler={handleGoToRecord}
             />
           )}
-          {operationPage && (
+          {isOperationPage && (
             <Button
               className={style.btnDeleteRecord}
               spanStyle={style.spanDeleteRecord}

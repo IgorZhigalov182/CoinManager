@@ -18,22 +18,39 @@ html[data-theme='light'] {
     }
 }
 
-.spanToggleRegister {
-    margin: 10px 0px 0px 60px;
-}
-
 .formWrapper {
     display: flex;
     justify-content: space-around;
     height: 38rem;
+
+    .formInner {
+        // margin-top: 15rem;
+        // height: 100%;
+        margin-top: 19%;
+
+        .submitButton {
+            line-height: 2px;
+            width: 100%;
+            margin-top: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .toggleRegister {
+            margin-left: 60px;
+        }
+        
+        .toggleLogin {
+            margin-left: 115px;
+        }
+        
+        .toggleRegister:hover , .toggleLogin:hover {
+            cursor: pointer;
+            transition: 0.3s ease;
+            color: $hoverColorLight;
+        }
+        
+    }
 }
 
-.formInner {
-    margin-top: 15rem;
-}
 
-.submitButton {
-    line-height: 2px;
-    width: 100%;
-    margin-top: 1rem;
-}
+

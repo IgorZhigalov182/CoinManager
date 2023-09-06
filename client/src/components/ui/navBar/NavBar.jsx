@@ -27,6 +27,9 @@ function NavBar() {
     document.querySelector('body').style.overflow = 'hidden';
     // document.querySelector('.container').style.backdropFilter = 'blur(5px)';
   }
+  if (!isLoggedIn) {
+    return;
+  }
 
   return (
     <Context.Provider value={{ handleGoPage }}>
@@ -38,45 +41,34 @@ function NavBar() {
         />
         <nav className={burgerActive}>
           <ul className={style.navbar_ul}>
-            {isLoggedIn ? (
-              <>
-                <li className={style.nav_item}>
-                  <NavLink to="/" className="nav-link" onClick={handleGoPage}>
-                    Главная
-                  </NavLink>
-                </li>
-                <li className={style.nav_item}>
-                  <NavLink to="/categories" className="nav-link" onClick={handleGoPage}>
-                    Категории
-                  </NavLink>
-                </li>
-                <li className={style.nav_item}>
-                  <NavLink to="/bankAccounts" className="nav-link" onClick={handleGoPage}>
-                    Счета
-                  </NavLink>
-                </li>
-                <li className={style.nav_item}>
-                  <NavLink to="/operations" className="nav-link" onClick={handleGoPage}>
-                    Операции
-                  </NavLink>
-                </li>
-                <li className={style.nav_item}>
-                  <ThemeSwitcher />
-                </li>
-                <li className={style.nav_item}>
-                  <NavLink to={`/user/${userId}`} className="nav-link" onClick={handleGoPage}>
-                    <i className="fa-solid fa-user"></i>
-                  </NavLink>
-                </li>
-              </>
-            ) : (
-              <li>
-                <NavLink to="/login" className="nav-link navbar ms-2" onClick={handleGoPage}>
-                  Авторизация
-                  <i className="fa-solid fa-right-to-bracket ms-2"></i>
-                </NavLink>
-              </li>
-            )}
+            <li className={style.nav_item}>
+              <NavLink to="/" className="nav-link" onClick={handleGoPage}>
+                Главная
+              </NavLink>
+            </li>
+            <li className={style.nav_item}>
+              <NavLink to="/categories" className="nav-link" onClick={handleGoPage}>
+                Категории
+              </NavLink>
+            </li>
+            <li className={style.nav_item}>
+              <NavLink to="/bankAccounts" className="nav-link" onClick={handleGoPage}>
+                Счета
+              </NavLink>
+            </li>
+            <li className={style.nav_item}>
+              <NavLink to="/operations" className="nav-link" onClick={handleGoPage}>
+                Операции
+              </NavLink>
+            </li>
+            <li className={style.nav_item}>
+              <ThemeSwitcher />
+            </li>
+            <li className={style.nav_item}>
+              <NavLink to={`/user/${userId}`} className="nav-link" onClick={handleGoPage}>
+                <i className="fa-solid fa-user"></i>
+              </NavLink>
+            </li>
           </ul>
         </nav>
         <div className={style.burger}>

@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import Button from '../../components/ui/common/button/Button';
 import CategoryCard from '../../components/ui/categoryCard/CategoryCard';
 import ModalWindowCategory from '../../components/ui/ModalWindowCategory';
-import style from './categories.module.scss';
+import styles from './categories.module.scss';
 
 const Categories = () => {
   const categories = useSelector(getCategories());
@@ -25,10 +25,10 @@ const Categories = () => {
       <div className="container">
         <Button
           title={'Добавить категорию'}
-          className={'btn btn-dark mt-2'}
+          className={styles.btnAddCategory}
           handler={handleModal}
         />
-        <div className={style.grid_container}>
+        <div className={styles.grid_container}>
           {categories &&
             categories.map((category) => {
               return (

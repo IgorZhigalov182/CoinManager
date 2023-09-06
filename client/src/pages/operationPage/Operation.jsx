@@ -7,7 +7,7 @@ import { getOperationById } from '../../store/operations/operations.slice';
 import Button from '../../components/ui/common/button/Button';
 import NotFound from '../notFoundPage/NotFound';
 import ModalWindowOperation from '../../components/ui/ModalWindowOperation/ModalWindowOperation';
-import style from './operation.module.scss';
+import styles from './operation.module.scss';
 
 const Operation = () => {
   const [modalActive, setModalActive] = useState(false);
@@ -24,9 +24,13 @@ const Operation = () => {
     <>
       {operation ? (
         <div className="container">
-          <BackButton className={'btn btn-secondary mt-2 mb-2'} />
+          <BackButton className={styles.btnAddOperation} />
           <CardOperation {...operation} />
-          <Button title={'Изменить запись'} className={'btn btn-dark'} handler={handleModal} />
+          <Button
+            title={'Изменить запись'}
+            className={styles.btnChangeRecord}
+            handler={handleModal}
+          />
         </div>
       ) : (
         <NotFound />

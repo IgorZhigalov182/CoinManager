@@ -2,8 +2,8 @@
 
 .cardProfitWrapper {
     @include cardWrap;
-    width: 20rem;
-    height: 11rem;
+    width: 21.5rem;
+    height: 10rem;
 }
 
 .cardProfitTitle {
@@ -13,4 +13,17 @@
 .cardProfitButtonsWrapper {
     display: flex;
     justify-content: space-between;
+    width: max-content;
+    margin-top: 16px;
+    margin-left: -7px;
+}
+
+.btnCardProfit {
+    // width: max-content;
+    margin-left: 7px;
+}
+
+.spanStyle {
+    // text-align: center;
+    // width: max-content;
 }

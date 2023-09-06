@@ -24,8 +24,18 @@ const CardProfit = ({ title }) => {
       <p className="card-text">Количество операций: {countOperation}</p>
       <p className="card-text">Общая сумма: {sumOperation}Р</p>
       <div className={styles.cardProfitButtonsWrapper}>
-        <Button title={'Открыть список'} handler={handleOperationList} />
-        <Button title={'Добавить'} handler={handleAddOperation} />
+        <Button
+          title={'Открыть список'}
+          className={styles.btnCardProfit}
+          handler={handleOperationList}
+          spanStyle={styles.spanStyle}
+        />
+        <Button
+          title={'Добавить'}
+          className={styles.btnCardProfit}
+          spanStyle={styles.spanStyle}
+          handler={handleAddOperation}
+        />
       </div>
     </div>
   );
