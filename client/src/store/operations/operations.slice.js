@@ -111,7 +111,9 @@ export const loadOperationList = (userId) => async (dispatch) => {
     const operations = await operationService.getOperations(userId);
     dispatch(operationsRecieved(operations));
   } catch (error) {
-    console.log(error);
+    localStorage.clear();
+    // console.log(error);
+    // dispatch(operationsRequestFailed(error.message));
   }
 };
 

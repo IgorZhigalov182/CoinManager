@@ -80,7 +80,7 @@ const BankAccounts = () => {
 
   return (
     <div className="container">
-      <div className={'a'}>
+      <div className={style.card_inner}>
         <Button
           title={'Добавить счёт'}
           className={'btn btn-dark mt-2 mb-2'}

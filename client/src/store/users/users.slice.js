@@ -152,7 +152,7 @@ export const loadUserById = (userId) => async (dispatch) => {
     const data = await userService.getUser(userId);
     dispatch(usersReceived(data));
   } catch (error) {
-    console.log(error);
+    dispatch(usersRequestFailed(error.message));
   }
 };
 export const getUser = () => (state) => state.users.entities;
