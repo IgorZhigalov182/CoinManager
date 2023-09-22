@@ -7,6 +7,10 @@
 
 html {
     transition: background-color 200ms linear; // для изменения цветовой схемы
+    h1 {
+        font-size: 1.35rem;
+    }
+
 }
 
 html[data-theme='dark'] {
@@ -23,6 +27,7 @@ html[data-theme='dark'] {
     input {
         @include inputText;
         background-color: $backgroundLight;
+
     }
 }
 
@@ -47,6 +52,7 @@ html[data-theme='light'] {
 .col-sm-4{
     border: 2px, solid, burlywood;
 }
+
 
 .container {
     width: 100%;

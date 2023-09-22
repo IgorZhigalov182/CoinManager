@@ -1,5 +1,12 @@
 @import '../../../styles/mixins.scss';
 
-.card_wrapper {
-    @include cardWrap;
+// .card_wrapper {
+//     @include cardWrap;
+// }
+
+.bankAccountWrapper {
+    border: 1px solid white;
+    display: grid;
+    grid-template-rows: max-content;
 }
+

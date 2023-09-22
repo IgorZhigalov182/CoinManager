@@ -7,6 +7,25 @@
     height: 10rem;
 }
 
+.card_wrapper {
+    &:hover {
+        cursor: pointer;
+        animation: card-hover 500ms forwards;
+    }
+}
+
+@keyframes card-hover {
+    0%{
+        transition: 500ms;
+        transform: translateX(0px);
+    }
+    100% {
+        transition: 500ms;
+        box-shadow: rgba(149, 157, 165, 0.2) 2px 12px 26px;
+        transform: translateX(1px);
+    }
+}
+
 .card_wrapperOperationPage {
     height: 14rem;
 }
@@ -37,7 +56,7 @@
     display: flex;
     justify-content: space-between;
 
-    .btnDeleteRecord {
+    .btnDeleteRecord, .btnGoToRecord {
         min-width: 0px;
         width: 40px;
         height: 35px;

@@ -4,11 +4,14 @@
     @include cardWrap;
     width: 21.5rem;
     height: 10rem;
+    
+
+    .cardProfitTitle {
+        font-size: 1.25rem;
+    }   
 }
 
-.cardProfitTitle {
-    font-size: 1.25rem;
-}
+
 
 .cardProfitButtonsWrapper {
     display: flex;

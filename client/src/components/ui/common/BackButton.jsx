@@ -9,7 +9,7 @@ const BackButton = ({ className }) => {
   return (
     <Button
       className={className || 'btn btn-secondary'}
-      title={'Назад'}
+      title={<i class="fa-solid fa-reply"></i>}
       handler={() => navigate(-1)}
     />
   );

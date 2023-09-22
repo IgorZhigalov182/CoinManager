@@ -19,8 +19,13 @@ const CardOperation = ({ idBankAccount, category, comment, _id, sum, date, typeO
   const bankAccountName = useSelector(getBankAccountDisplayNameById(idBankAccount));
 
   const isOperationPage = pathname.length < 12;
+
   const styleCardWrapper = classNames(
     isOperationPage ? style.card_wrapper : style.card_wrapperOperationPage,
+  );
+
+  const styleBadge = classNames(
+    typeOperation === 'profit' ? style.profitBadge : style.expanseBadge,
   );
 
   const handleGoToRecord = () => navigate(`${_id}`, { state: 'pathname' });
@@ -28,12 +33,8 @@ const CardOperation = ({ idBankAccount, category, comment, _id, sum, date, typeO
   const handleDelete = () => dispatch(deleteOperationById(_id));
 
   return (
-    <div className={styleCardWrapper}>
-      {typeOperation === 'profit' ? (
-        <Badge title={`${sum}Р`} className={style.profitBadge} />
-      ) : (
-        <Badge title={`${sum}Р`} className={style.expanseBadge} />
-      )}
+    <div onClick={isOperationPage ? () => handleGoToRecord() : ''} className={styleCardWrapper}>
+      <Badge title={`${sum}Р`} className={styleBadge} />
       <div>
         <h5 className={style.profitH5}>Категория: {categoryName}</h5>
         {!isOperationPage && (
@@ -48,7 +49,7 @@ const CardOperation = ({ idBankAccount, category, comment, _id, sum, date, typeO
             <Button
               spanStyle={style.spanGoToRecord}
               className={style.btnGoToRecord}
-              title={'Открыть запись'}
+              title={<i class="fa-solid fa-arrow-up-right-from-square"></i>}
               handler={handleGoToRecord}
             />
           )}
@@ -61,6 +62,7 @@ const CardOperation = ({ idBankAccount, category, comment, _id, sum, date, typeO
             />
           )}
         </div>
+        {!isOperationPage && <h5>Время покупки: {getBuyTime(date)}</h5>}
       </div>
     </div>
   );

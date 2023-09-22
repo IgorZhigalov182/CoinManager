@@ -6,7 +6,7 @@ import style from './listBankAccount.module.scss';
 const ListBankAccounts = ({ bankAccounts, setModalActive, toggleFavourite }) => {
   return (
     <>
-      <div className="a">
+      <div className={style.bankAccountWrapper}>
         <div className="row row-cols-3">
           {bankAccounts &&
             bankAccounts.map((bankData) => {
