@@ -1,0 +1,9 @@
+
+
+.listWrapper{
+    display: grid;
+    // border: 1px solid white;
+    height: 100%;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+}

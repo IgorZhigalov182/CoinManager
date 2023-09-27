@@ -22,37 +22,35 @@ const Categories = () => {
 
   return (
     <>
-      <div className="container">
-        <Button
-          title={'Добавить категорию'}
-          className={styles.btnAddCategory}
-          handler={handleModal}
-        />
-        <div className={styles.grid_container}>
-          {categories &&
-            categories.map((category) => {
-              return (
-                <div className="col-sm-6 mt-2" key={category._id}>
-                  <div className="card" key={category._id}>
-                    <div className="card-body" key={category._id}>
-                      <div className="d-flex justify-content-between" key={category._id}>
-                        <CategoryCard
-                          category={category}
-                          handleModal={handleModal}
-                          modalActive={modalActive}
-                          setModalActive={setModalActive}
-                          color={category.color}
-                          id={category._id}
-                          key={category._id}
-                          name={category.name}
-                        />
-                      </div>
+      <Button
+        title={'Добавить категорию'}
+        className={styles.btnAddCategory}
+        handler={handleModal}
+      />
+      <div className={styles.grid_container}>
+        {categories &&
+          categories.map((category) => {
+            return (
+              <div className="col-sm-6 mt-2" key={category._id}>
+                <div className="card" key={category._id}>
+                  <div className="card-body" key={category._id}>
+                    <div className="d-flex justify-content-between" key={category._id}>
+                      <CategoryCard
+                        category={category}
+                        handleModal={handleModal}
+                        modalActive={modalActive}
+                        setModalActive={setModalActive}
+                        color={category.color}
+                        id={category._id}
+                        key={category._id}
+                        name={category.name}
+                      />
                     </div>
                   </div>
                 </div>
-              );
-            })}
-        </div>
+              </div>
+            );
+          })}
       </div>
       <ModalWindowCategory
         categories={categories}

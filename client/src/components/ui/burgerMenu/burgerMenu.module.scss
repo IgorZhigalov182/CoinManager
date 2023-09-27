@@ -38,7 +38,7 @@
 }
 
 .wrapper.my_node_exit {
-  opacity: 1;
+  transition: opacity 700ms;
 }
 
 .wrapper.my_node_exit_active {

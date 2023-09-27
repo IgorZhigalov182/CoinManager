@@ -18,17 +18,21 @@ const CardBankAccount = ({
   const buttonFavouriteStyle = classNames(
     active ? style.btnFavouriteActive : style.btnFavouriteActive,
   );
+
   return (
     <>
       <div className={style.card_wrapper}>
-        <h1>{name}</h1>
-        <h5 className="card-title">
-          <i className="fa-solid fa-building-columns me-2"></i>
-          {bank}
+        <h1>
+          {name}
+          {active ? <Badge title={`Активный`} className={style.profitBadge} /> : ''}
+        </h1>
+        <h5 className={style.cardTitle}>
+          <i className={`fa-solid fa-building-columns me-2 fa-xl`}></i>
+          <h5>{bank}</h5>
         </h5>
-        <h5 className="card-title">
-          <i className="fa-solid fa-font-awesome me-2"></i>
-          {setTitileTypeBankAccount(typeAccount)}
+        <h5 className={style.cardTitle}>
+          <i className="fa-solid fa-font-awesome me-2 fa-xl"></i>
+          <h5>{setTitileTypeBankAccount(typeAccount)}</h5>
         </h5>
         <div className={style.btnWrapper}>
           <Button
@@ -37,7 +41,6 @@ const CardBankAccount = ({
             title={<i className="fa-solid fa-gear"></i>}
             handler={() => setModalActive(_id)}
           />
-          {/* <div className="position-absolute top-0 end-0"> */}
           <Button
             handler={() => toggleFavourite(_id)}
             className={style.btnFavouriteActive}
@@ -46,7 +49,6 @@ const CardBankAccount = ({
               active ? <i className="fa-solid fa-star"></i> : <i className="fa-regular fa-star"></i>
             }
           />
-          {active ? <Badge title={`Активный`} className={style.profitBadge} /> : ''}
         </div>
       </div>
     </>

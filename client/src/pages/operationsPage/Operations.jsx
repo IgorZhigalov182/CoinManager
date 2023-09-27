@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ListOperations from '../../components/ui/ListOperations';
+import ListOperations from '../../components/ui/listOperations/ListOperations';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   filterTypeOperations,
@@ -23,7 +23,7 @@ const Operations = ({}) => {
   let operations = useSelector(getOperationList());
   const location = useLocation();
   const dispatch = useDispatch();
-  const pageSize = 3;
+  const pageSize = 6;
   const typeOperation = location.state?.title;
   const typeHandler = location.state?.handle;
   const userId = localStorageService.getUserId();
@@ -53,43 +53,41 @@ const Operations = ({}) => {
   const handleSortByDate = () => dispatch(sortOperationsByDate());
 
   return (
-    <div className="container">
-      <div className={style.operationWrap}>
+    <div className={style.operationWrap}>
+      <Button
+        handler={handleModal}
+        title={'Добавить операцию'}
+        spanStyle={style.spanAddOperation}
+        className={style.btnAddOperation}
+      />
+      <span className="me-2">Cортировка по:</span>
+      <div className={style.operationButtonsWrap}>
         <Button
-          handler={handleModal}
-          title={'Добавить операцию'}
-          spanStyle={style.spanAddOperation}
-          className={style.btnAddOperation}
+          title={'сумме'}
+          spanStyle={style.spanSortBy}
+          className={style.btnSortBy}
+          handler={() => handleSortBySum()}
         />
-        <span className="me-2">Cортировка по:</span>
-        <div className={style.operationButtonsWrap}>
-          <Button
-            title={'сумме'}
-            spanStyle={style.spanSortBy}
-            className={style.btnSortBy}
-            handler={() => handleSortBySum()}
-          />
-          <Button
-            title={'дате'}
-            spanStyle={style.spanSortBy}
-            className={style.btnSortBy}
-            handler={() => handleSortByDate()}
-          />
-        </div>
-        <ListOperations operations={operationsCrop} />
-        <ModalWindowOperation
-          typeOperationForModal={typeOperationForModal}
-          modalActive={modalActive}
-          setModalActive={setModalActive}
+        <Button
+          title={'дате'}
+          spanStyle={style.spanSortBy}
+          className={style.btnSortBy}
+          handler={() => handleSortByDate()}
         />
-        <div className="d-flex justify-content-center">
-          <Pagination
-            itemsCount={operations.length}
-            pageSize={pageSize}
-            currentPage={currentPage}
-            onPageChange={handlePageChange}
-          />
-        </div>
+      </div>
+      <ListOperations operations={operationsCrop} />
+      <ModalWindowOperation
+        typeOperationForModal={typeOperationForModal}
+        modalActive={modalActive}
+        setModalActive={setModalActive}
+      />
+      <div className="d-flex justify-content-center">
+        <Pagination
+          itemsCount={operations.length}
+          pageSize={pageSize}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
       </div>
     </div>
   );

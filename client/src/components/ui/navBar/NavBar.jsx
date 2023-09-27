@@ -15,18 +15,23 @@ function NavBar() {
   const isLoggedIn = useSelector(getIsLoggedIn());
   const userId = getUserId();
   const burgerActive = classNames(activeBurgerMenu ? style.nav_active : style.nav);
+
   const handleGoPage = (e) => {
-    if (e && !activeBurgerMenu) {
+    if (e) {
       const burgerMenu = document.querySelector('#check');
       burgerMenu.checked = !burgerMenu.checked;
+      // document.querySelector('body').style.overflow = 'hidden';
     }
     setActiveBurgerMenu(!activeBurgerMenu);
   };
 
-  if (activeBurgerMenu) {
+  if (activeBurgerMenu && document.documentElement.clientWidth < 576) {
     document.querySelector('body').style.overflow = 'hidden';
     // document.querySelector('.container').style.backdropFilter = 'blur(5px)';
+  } else {
+    document.querySelector('body').style.overflow = '';
   }
+
   if (!isLoggedIn) {
     return;
   }
@@ -72,7 +77,10 @@ function NavBar() {
           </ul>
         </nav>
         <div className={style.burger}>
-          <BurgerMenu activeBurgerMenu={activeBurgerMenu} />
+          <BurgerMenu
+            setActiveBurgerMenu={setActiveBurgerMenu}
+            activeBurgerMenu={activeBurgerMenu}
+          />
         </div>
       </header>
     </Context.Provider>

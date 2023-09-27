@@ -3,9 +3,10 @@ import style from './burger.module.scss';
 import PropTypes from 'prop-types';
 import { Context } from '../../../context/context';
 
-const Burger = () => {
+const Burger = ({ activeBurgerMenu, setActiveBurgerMenu }) => {
   const { handleGoPage } = useContext(Context);
   const toggleInput = () => handleGoPage();
+  // const toggleInput = () => setActiveBurgerMenu(!activeBurgerMenu);
 
   return (
     <div className={style.burgerWrapper}>
@@ -20,7 +21,8 @@ const Burger = () => {
 };
 
 Burger.propTypes = {
-  theme: PropTypes.func,
+  setActiveBurgerMenu: PropTypes.func,
+  activeBurgerMenu: PropTypes.bool,
 };
 
 export default Burger;

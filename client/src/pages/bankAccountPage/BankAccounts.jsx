@@ -79,101 +79,97 @@ const BankAccounts = () => {
   });
 
   return (
-    <div className="container">
-      <div className={style.card_inner}>
-        <Button
-          title={'Добавить счёт'}
-          className={'btn btn-dark mt-2 mb-2'}
-          handler={() => {
-            setModalActive(!modalActive);
-            setInitialValue(bankAccountData);
+    <div className={style.card_inner}>
+      <Button
+        title={'Добавить счёт'}
+        className={'btn btn-dark mt-2 mb-2'}
+        handler={() => {
+          setModalActive(!modalActive);
+          setInitialValue(bankAccountData);
+        }}
+      />
+      <ListBankAccounts
+        bankAccounts={bankAccounts}
+        setModalActive={handleModal}
+        toggleFavourite={handleFavourite}
+      />
+      <ModalWindow active={modalActive} setActive={setModalActive}>
+        <Formik
+          validationSchema={bankAccountSchema}
+          onSubmit={async (values, { resetForm }) => {
+            handleSubmit(values);
+            resetForm();
           }}
-        />
-        <ListBankAccounts
-          bankAccounts={bankAccounts}
-          setModalActive={handleModal}
-          toggleFavourite={handleFavourite}
-        />
-        <ModalWindow active={modalActive} setActive={setModalActive}>
-          <Formik
-            validationSchema={bankAccountSchema}
-            onSubmit={async (values, { resetForm }) => {
-              handleSubmit(values);
-              resetForm();
-            }}
-            enableReinitialize={true}
-            initialValues={initialValue}>
-            {({ errors, touched }) => (
-              <Form>
-                <Field
-                  type="text"
-                  name="name"
-                  className="form-control"
-                  placeholder="Название счёта"
-                />
-                {errors.name && touched.name ? <div>{errors.name}</div> : null}
-                <Field type="text" name="bank" className="form-control mt-2" placeholder="Банк" />
-                {errors.bank && touched.bank ? <div>{errors.bank}</div> : null}
-                <label className="mt-2 mb-2">
-                  Основной счёт
-                  <Field type="checkbox" name="active" className="form-check-input ms-2" />
-                </label>
+          enableReinitialize={true}
+          initialValues={initialValue}>
+          {({ errors, touched }) => (
+            <Form>
+              <Field
+                type="text"
+                name="name"
+                className="form-control"
+                placeholder="Название счёта"
+              />
+              {errors.name && touched.name ? <div>{errors.name}</div> : null}
+              <Field type="text" name="bank" className="form-control mt-2" placeholder="Банк" />
+              {errors.bank && touched.bank ? <div>{errors.bank}</div> : null}
+              <label className="mt-2 mb-2">
+                Основной счёт
+                <Field type="checkbox" name="active" className="form-check-input ms-2" />
+              </label>
 
-                <div>Тип счёта:</div>
-                <div role="group" aria-labelledby="my-radio-group" className="mt-1">
-                  <div>
-                    <Field
-                      type="radio"
-                      className="form-check-input"
-                      name="typeAccount"
-                      value="current"
-                    />
-                    <span className="ms-2">Текущий</span>
-                  </div>
-                  <div>
-                    <Field
-                      type="radio"
-                      className="form-check-input"
-                      name="typeAccount"
-                      value="credit"
-                    />
-                    <span className="ms-2">Кредитный</span>
-                  </div>
-                  <div>
-                    <Field
-                      type="radio"
-                      className="form-check-input"
-                      name="typeAccount"
-                      value="estimated"
-                    />
-
-                    <span className="ms-2">Расчётный (для ИП)</span>
-                  </div>
-                  {errors.typeAccount && touched.typeAccount ? (
-                    <div>{errors.typeAccount}</div>
-                  ) : null}
+              <div>Тип счёта:</div>
+              <div role="group" aria-labelledby="my-radio-group" className="mt-1">
+                <div>
+                  <Field
+                    type="radio"
+                    className="form-check-input"
+                    name="typeAccount"
+                    value="current"
+                  />
+                  <span className="ms-2">Текущий</span>
                 </div>
+                <div>
+                  <Field
+                    type="radio"
+                    className="form-check-input"
+                    name="typeAccount"
+                    value="credit"
+                  />
+                  <span className="ms-2">Кредитный</span>
+                </div>
+                <div>
+                  <Field
+                    type="radio"
+                    className="form-check-input"
+                    name="typeAccount"
+                    value="estimated"
+                  />
 
-                {initialValue._id ? (
-                  <div className="d-flex justify-content-between">
-                    <Button title="Изменить" type={'submit'} className={'btn btn-primary mt-3'} />
-                    <Button
-                      title="Удалить"
-                      type={'button'}
-                      handler={() => handleDelete(initialValue._id)}
-                      className={'btn btn-danger mt-3 ms-3'}
-                    />
-                  </div>
-                ) : (
-                  <div>
-                    <Button title="Добавить" type={'submit'} className={'btn btn-primary mt-3'} />
-                  </div>
-                )}
-              </Form>
-            )}
-          </Formik>
-        </ModalWindow>
-      </div>
+                  <span className="ms-2">Расчётный (для ИП)</span>
+                </div>
+                {errors.typeAccount && touched.typeAccount ? <div>{errors.typeAccount}</div> : null}
+              </div>
+
+              {initialValue._id ? (
+                <div className="d-flex justify-content-between">
+                  <Button title="Изменить" type={'submit'} className={'btn btn-primary mt-3'} />
+                  <Button
+                    title="Удалить"
+                    type={'button'}
+                    handler={() => handleDelete(initialValue._id)}
+                    className={'btn btn-danger mt-3 ms-3'}
+                  />
+                </div>
+              ) : (
+                <div>
+                  <Button title="Добавить" type={'submit'} className={'btn btn-primary mt-3'} />
+                </div>
+              )}
+            </Form>
+          )}
+        </Formik>
+      </ModalWindow>
     </div>
   );
 };
