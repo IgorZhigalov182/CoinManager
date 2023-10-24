@@ -1,0 +1,13 @@
+ul{
+    display: flex;
+
+    .btnCountPage {
+        min-width: 0px;
+        width: 4rem;
+    }
+
+    .spanBtnCountPage {
+        // width: 2rem;
+        list-style: none;
+    }
+}

@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import operationService from '../../services/operations.services';
 import { timeStampToMonth } from '../../services/date.services';
+import { toast } from 'react-toastify';
 
 export const operationsSlice = createSlice({
   name: 'operations',
@@ -180,7 +181,9 @@ export const createOperation = (data) => async (dispatch) => {
   try {
     const content = await operationService.createOperation(data);
     dispatch(operationCreated(content));
+    toast(`Операция на сумму ${content.sum} была создана`);
   } catch (error) {
+    toast(error.message)
     dispatch(operationsRequestFailed(error.message));
   }
 };

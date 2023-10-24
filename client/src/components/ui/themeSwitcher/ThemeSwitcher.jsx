@@ -6,9 +6,7 @@ import { useTheme } from '../../../hooks/useTheme';
 const ThemeSwitcher = () => {
   const { theme, setTheme } = useTheme();
 
-  const handleLightThemeClick = () => setTheme('light');
-  const handleDarkThemeClick = () => setTheme('dark');
-  const switchMode = () => (theme === 'dark' ? handleLightThemeClick() : handleDarkThemeClick());
+  const switchMode = () => (theme === 'dark' ? setTheme('light') : setTheme('dark'));
 
   return (
     <div className={style.toggle_switch}>

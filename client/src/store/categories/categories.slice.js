@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import categoryService from '../../services/category.services';
+import { toast } from 'react-toastify';
 
 export const categoriesSlice = createSlice({
   name: 'categories',
@@ -54,8 +55,10 @@ export const createCategory = (data) => async (dispatch) => {
   try {
     const content = await categoryService.createCategory(data);
     dispatch(categoriesCreated(content));
+    toast(`"${content.name}" был создан`);
     return content;
   } catch (error) {
+    toast(error.message);
     dispatch(categoriesRequestFailed(error.message));
   }
 };

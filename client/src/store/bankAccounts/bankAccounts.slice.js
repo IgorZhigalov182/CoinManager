@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import bankAccountService, {
   checkRemoveBankAccountForFavourite,
 } from '../../services/bankAccount.services';
+import { toast } from 'react-toastify';
 
 export const bankAccountsSlice = createSlice({
   name: 'bankAccounts',
@@ -93,9 +94,11 @@ export const createBankAccount = (data, bankAccounts) => async (dispatch) => {
     }
     const response = await bankAccountService.createBankAccount(data);
     if (response) {
+      toast(`"${response.content.name}" был создан`);
       return dispatch(bankAccountCreated(response.content));
     }
   } catch (error) {
+    toast(error.message);
     dispatch(bankAccountRequestFailed(error.message));
   }
 };

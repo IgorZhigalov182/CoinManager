@@ -16,7 +16,7 @@ const WidgetWithGraphs = () => {
   };
 
   return (
-    <div className="container h-25 mt-3">
+    <div>
       <div className={styles.buttonWraper}>
         <Button
           title={'Расходы'}

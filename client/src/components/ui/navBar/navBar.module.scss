@@ -24,13 +24,18 @@ html[data-theme='light'] {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+
+    img {
+        padding: 0.3rem;
+        width: 4rem;
+        height: 4rem;
+        vertical-align: middle;
+        text-align: center;
+        // margin-top: 50%;        
+    }
 }
 
-.logo {
-    padding: 0.3rem;
-    width: 4rem;
-    height: 4rem;
-}
+
 
 .nav {
     height: 100%;

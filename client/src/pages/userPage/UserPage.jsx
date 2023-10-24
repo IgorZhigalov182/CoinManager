@@ -11,6 +11,8 @@ import ModalWindowUser from '../../components/ui/ModalWindowUser';
 import style from './UserPage.module.scss';
 import classNames from 'classnames/bind';
 import mainStyle from '../../styles/app.module.scss';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const UserPage = () => {
   const [modalActive, setModalActive] = useState(false);
@@ -33,6 +35,10 @@ const UserPage = () => {
 
   const handleModal = () => setModalActive(!modalActive);
 
+  const handleToast = () => {
+    toast('Wow so easy!');
+  };
+
   // const [darkTheme, setDarkTheme] = useState(false);
   // const theme = classNames(darkTheme ? mainStyle.dark_theme : mainStyle.white_theme);
 
@@ -41,6 +47,7 @@ const UserPage = () => {
       {/* <div className={style}>SCSS</div> */}
       <div className={style.userCardWrap}>
         <img
+          onClick={handleToast}
           src="https://t4.ftcdn.net/jpg/04/10/42/63/360_F_410426381_YKYcz1SyGZXRWOYU63yddK02hb70yJTM.jpg"
           className={style.logo}
           alt="..."
