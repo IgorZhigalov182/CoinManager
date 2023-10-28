@@ -183,7 +183,7 @@ export const createOperation = (data) => async (dispatch) => {
     dispatch(operationCreated(content));
     toast(`Операция на сумму ${content.sum} была создана`);
   } catch (error) {
-    toast(error.message)
+    toast(error.message);
     dispatch(operationsRequestFailed(error.message));
   }
 };

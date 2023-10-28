@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Button from '../../components/ui/common/button/Button';
-import ModalWindow from '../../components/ui/ModalWindow';
+import ModalWindow from '../../components/ui/modalWindow/ModalWindow';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   createBankAccount,

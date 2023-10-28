@@ -1,6 +1,6 @@
 import React from 'react';
-import '../../styles/modal.css';
 import PropTypes from 'prop-types';
+import './ModalWindow.scss';
 
 const ModalWindow = ({ active, setActive, children }) => {
   return (

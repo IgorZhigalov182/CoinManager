@@ -55,7 +55,7 @@ export const createCategory = (data) => async (dispatch) => {
   try {
     const content = await categoryService.createCategory(data);
     dispatch(categoriesCreated(content));
-    toast(`"${content.name}" был создан`);
+    toast(`Категория "${content.name}" была создана`);
     return content;
   } catch (error) {
     toast(error.message);

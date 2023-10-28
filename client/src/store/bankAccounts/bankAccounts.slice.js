@@ -94,7 +94,7 @@ export const createBankAccount = (data, bankAccounts) => async (dispatch) => {
     }
     const response = await bankAccountService.createBankAccount(data);
     if (response) {
-      toast(`"${response.content.name}" был создан`);
+      toast(`Счёт "${response.content.name}" был создан`);
       return dispatch(bankAccountCreated(response.content));
     }
   } catch (error) {

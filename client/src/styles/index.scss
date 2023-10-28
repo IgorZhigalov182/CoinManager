@@ -23,10 +23,9 @@ html[data-theme='dark'] {
         font-family: 'Sora', sans-serif;
     }
 
-    input {
+    input, select {
         @include inputText;
         background-color: $backgroundLight;
-
     }
 }
 
@@ -42,9 +41,9 @@ html[data-theme='light'] {
         // font-family: 'Source Code Pro', monospace;
     }
 
-    input {
-        @include inputText;
-        background-color: $inputLightBackground;
+    input, select {
+        @include inputText; 
+        // background-color: $inputLightBackground;
         color: $colorDark;
     }
 }

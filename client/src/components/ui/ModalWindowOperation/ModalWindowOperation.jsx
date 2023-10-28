@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Button from '../common/button/Button';
 import PropTypes from 'prop-types';
 import '../../../styles/modal.css';
-import ModalWindow from '../ModalWindow';
+import ModalWindow from '../modalWindow/ModalWindow';
 import { Field, Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -120,7 +120,7 @@ const ModalWindowOperation = ({
               {errors.sum && touched.sum ? <div>{errors.sum}</div> : null}
               {!values.addNewCategory && (
                 <Field
-                  className="form-select mb-2 mt-2"
+                  className={styles.selectCategory}
                   as="select"
                   name="category"
                   validate={() => validateCategory(values.addNewCategory, values.category)}>
@@ -137,69 +137,82 @@ const ModalWindowOperation = ({
                     })}
                 </Field>
               )}
-              {errors.newCategory && touched.newCategory ? <div>{errors.newCategory}</div> : null}
-              {errors.category && touched.category ? <div>{errors.category}</div> : null}
-              <label className="ms-1 mb-2">
-                Добавить новую категорию
-                <Field
-                  type="checkbox"
-                  name="addNewCategory"
-                  checked={values.addNewCategory}
-                  onChange={handleChange}
-                  className="form-check-input ms-2"
-                />
-              </label>
               {values.addNewCategory && (
                 <Field
                   validate={() => validateNewCategory(values.addNewCategory, values.newCategory)}
                   name="newCategory"
                   type="text"
                   className="form-control mb-3"
-                  placeholder="Новая категория"></Field>
+                  placeholder="Новая категория"
+                />
               )}
-              <div>Тип операции</div>
-              <div role="group" aria-labelledby="my-radio-group" className="mt-1">
-                <div>
-                  <Field
-                    type="radio"
-                    className="form-check-input"
-                    name="typeOperation"
-                    value="expense"
-                  />
-                  <span className="ms-2">Расходы</span>
+              {errors.newCategory && touched.newCategory ? <div>{errors.newCategory}</div> : null}
+              {errors.category && touched.category ? <div>{errors.category}</div> : null}
+              <label className={styles.labelNewCategory}>
+                {values.addNewCategory
+                  ? 'Выбрать существующую категорию'
+                  : 'Добавить новую категорию'}
+                <Field
+                  type="checkbox"
+                  name="addNewCategory"
+                  checked={values.addNewCategory}
+                  onChange={handleChange}
+                  className={styles.addNewCategory}
+                />
+              </label>
+              {/* {values.addNewCategory && (
+                <Field
+                  validate={() => validateNewCategory(values.addNewCategory, values.newCategory)}
+                  name="newCategory"
+                  type="text"
+                  className="form-control mb-3"
+                  placeholder="Новая категория"
+                />
+              )} */}
+              <div role="group" aria-labelledby="my-radio-group" className={styles.typeOperation}>
+                <span>Тип операции</span>
+                <div className={styles.radioTypeOperation}>
+                  <label className={styles.labelTypeOperation}>
+                    <Field
+                      type="radio"
+                      className={styles.radioInput}
+                      name="typeOperation"
+                      value="expense"
+                    />
+                    <span className="ms-2">Расходы</span>
+                  </label>
                 </div>
-                <div>
-                  <Field
-                    type="radio"
-                    className="form-check-input"
-                    name="typeOperation"
-                    value="profit"
-                  />
-                  <span className="ms-2">Доходы</span>
+                <div className={styles.radioTypeOperation}>
+                  <label className={styles.labelTypeOperation}>
+                    <Field
+                      type="radio"
+                      className={styles.radioInput}
+                      name="typeOperation"
+                      value="profit"
+                    />
+                    <span className="ms-2">Доходы</span>
+                  </label>
                 </div>
 
                 {errors.typeAccount && touched.typeAccount ? <div>{errors.typeAccount}</div> : null}
               </div>
-
               <Field
                 as="textarea"
                 className="form-control mt-3"
                 placeholder="Комментарий"
                 name="comment"
               />
-              <div>
-                {operation && (
-                  <Button
-                    title="Изменить"
-                    type={'button'}
-                    className={'btn btn-success mt-3'}
-                    handler={() => handleUpdate(values)}
-                  />
-                )}
-                {!operation && (
-                  <Button title="Добавить" type={'submit'} className={'btn btn-primary mt-3'} />
-                )}
-              </div>
+              {operation && (
+                <Button
+                  title="Изменить"
+                  type={'button'}
+                  className={'btn btn-success mt-3'}
+                  handler={() => handleUpdate(values)}
+                />
+              )}
+              {!operation && (
+                <Button title="Добавить" type={'submit'} className={styles.btnSubmit} />
+              )}
             </Form>
           )}
         </Formik>

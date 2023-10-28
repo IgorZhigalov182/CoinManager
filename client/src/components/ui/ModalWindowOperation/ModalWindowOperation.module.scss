@@ -1,21 +1,58 @@
+@import '../../../styles/mixins.scss';
 
 
-// .numberField {
-//     background-color: green;
 
+// input {
+//     color: #8707ff;
+//     border: 1px solid #8707ff;
+//     border-radius: 10px;
+//     padding: 10px 25px;
+//     background: transparent;
+//     max-width: 190px;
 // }
 
+.selectCategory {
+    width: 100%;
+}
 
-.input {
-    color: #8707ff;
+.labelNewCategory {
+    margin-top: 1rem;
+    display: block;
+    height: 1.5rem;
+    // width: 70%;
     border: 1px solid #8707ff;
     border-radius: 10px;
-    padding: 10px 25px;
-    background: transparent;
-    max-width: 190px;
+    padding: 3px;
+    align-self: center;
+    align-items: center;
 }
-   
-// .input:active {
-//     // box-shadow: 2px 2px 15px #8707ff inset;
-// }
-   
+
+.addNewCategory {
+    width: 100%;
+}
+
+.typeOperation {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    
+    .radioTypeOperation{
+
+        .labelTypeOperation {
+            display: flex;
+            align-items: center;
+        }
+
+        :last-child{
+            margin-left: 0.25rem;
+        }
+        .radioInput {
+            margin-top: 2px;
+            width: 15px;
+        }
+    }
+}
+
+.btnSubmit {
+    @include btnSubmit;
+}

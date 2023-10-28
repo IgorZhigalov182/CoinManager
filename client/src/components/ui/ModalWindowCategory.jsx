@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ModalWindow from './ModalWindow';
+import ModalWindow from './modalWindow/ModalWindow';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import Button from './common/button/Button';
