@@ -7,14 +7,15 @@ import styles from './main.module.scss';
 const MainPage = () => {
   return (
     <>
-      <div className="container">
-        <div className={styles.infoWrapper}>
-          <CardProfit title={'Доходы'} />
-          <CardProfit title={'Расходы'} />
-          <WidgetBankAccount />
-        </div>
-        <WidgetWithGraphs />
+      <div className={styles.infoWrapper}>
+        <CardProfit title={'Доходы'} />
+        <CardProfit title={'Расходы'} />
+        <WidgetBankAccount />
       </div>
+      <WidgetWithGraphs />
+      <form>
+        <input />
+      </form>
     </>
   );
 };

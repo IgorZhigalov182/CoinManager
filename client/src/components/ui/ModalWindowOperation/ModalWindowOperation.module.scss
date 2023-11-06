@@ -1,7 +1,5 @@
 @import '../../../styles/mixins.scss';
 
-
-
 // input {
 //     color: #8707ff;
 //     border: 1px solid #8707ff;
@@ -10,6 +8,10 @@
 //     background: transparent;
 //     max-width: 190px;
 // }
+
+.formOperation {
+    @include form;
+}
 
 .selectCategory {
     width: 100%;
@@ -55,4 +57,26 @@
 
 .btnSubmit {
     @include btnSubmit;
+}
+
+@media (max-width: 1200px) {
+    // .formOperation {
+    //     @include form;
+    // }
+}
+
+@media (max-width: 992px) {
+
+}
+
+@media (max-width: 768px) {
+  .modalWindow__content.active {
+    width: 70vw; 
+  }
+}
+
+@media (max-width: 576px) {
+  .modalWindow__content.active {
+    width: 90vw; 
+  }
 }

@@ -23,7 +23,7 @@ const Operation = () => {
   return (
     <>
       {operation ? (
-        <div className="container">
+        <>
           <BackButton className={styles.btnAddOperation} />
           <CardOperation {...operation} />
           <Button
@@ -31,7 +31,7 @@ const Operation = () => {
             className={styles.btnChangeRecord}
             handler={handleModal}
           />
-        </div>
+        </>
       ) : (
         <NotFound />
       )}

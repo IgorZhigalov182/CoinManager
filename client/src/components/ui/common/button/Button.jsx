@@ -8,15 +8,6 @@ const Button = ({ title, className, handler, spanStyle }) => {
   const spanStyles = classNames(spanStyle, style.span);
 
   return (
-    // <button
-    //   type={type}
-    //   // className={className || 'btn btn-primary'}
-    //   className={buttonStyle}
-    //   onClick={handler}
-    //   style={style}>
-    //   {title}
-    // </button>
-
     <button className={buttonStyle} onClick={handler}>
       <span className={spanStyles}>{title}</span>
     </button>

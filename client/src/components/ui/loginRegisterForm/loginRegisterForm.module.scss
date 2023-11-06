@@ -7,9 +7,7 @@ html[data-theme='dark'] {
     }
 
 
-    .spanToggleRegister {
-        right: 0;
-    }
+    
 }
 
 html[data-theme='light'] {
@@ -21,36 +19,38 @@ html[data-theme='light'] {
 .formWrapper {
     display: flex;
     justify-content: space-around;
-    height: 38rem;
 
-    .formInner {
-        // margin-top: 15rem;
-        // height: 100%;
-        margin-top: 19%;
+        .formLogin {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 13rem;
+            height: 100vh;
+            input {
+                width: 100%;
+            }
+
+            // Toggles login/signup
+            :last-child {
+                align-items: flex-end;
+            }
+        }
 
         .submitButton {
-            line-height: 2px;
             width: 100%;
             margin-top: 1rem;
             margin-bottom: 0.75rem;
         }
 
-        .toggleRegister {
-            margin-left: 60px;
-        }
-        
-        .toggleLogin {
-            margin-left: 115px;
-        }
-        
         .toggleRegister:hover , .toggleLogin:hover {
             cursor: pointer;
             transition: 0.3s ease;
             color: $hoverColorLight;
         }
-        
+        .toggleLogin, .toggleRegister {
+            align-self: end;
+        }
     }
-}
 
 
 

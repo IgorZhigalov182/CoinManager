@@ -34,54 +34,53 @@ const LoginForm = ({ setIsSingUp }) => {
 
   return (
     <div className={styles.formWrapper}>
-      <div className={styles.formInner}>
-        <Formik
-          onSubmit={async (values, actions) => {
-            handleSubmit(values);
-          }}
-          validationSchema={loginSchema}
-          initialValues={initialValue}
-          enableReinitialize={true}>
-          {({ errors, touched, values }) => (
-            <Form>
-              <Field
-                innerRef={inputEmail}
-                type="email"
-                name="email"
-                className={styles.inputText}
-                placeholder="Email"
-              />
-              {errors.email && touched.email ? (
-                <div className={styles.inputError}>{errors.email}</div>
-              ) : null}
-              <Field
-                type="password"
-                className={styles.inputText}
-                placeholder="Пароль"
-                name="password"
-              />
-              {errors.password && touched.password ? (
-                <div className={styles.inputError}>{errors.password}</div>
-              ) : null}
-              {authError === 'Request failed with status code 400' ? (
-                <div className={styles.inputError}>Неверный логин или пароль</div>
-              ) : (
-                ''
-              )}
-              <Button
-                title="Войти"
-                type={'submit'}
-                spanStyles={styles.spanStyles}
-                className={styles.submitButton}
-              />
-              <a role="button" className={styles.toggleRegister} onClick={handleRegister}>
-                Зарегистрироваться
-              </a>
-            </Form>
-          )}
-        </Formik>
-        {isLoggedIn && <Navigate to="/" />}
-      </div>
+      <Formik
+        onSubmit={async (values, actions) => {
+          handleSubmit(values);
+        }}
+        validationSchema={loginSchema}
+        initialValues={initialValue}
+        enableReinitialize={true}>
+        {({ errors, touched, values }) => (
+          <Form className={styles.formLogin}>
+            <Field
+              innerRef={inputEmail}
+              type="email"
+              name="email"
+              className={styles.inputText}
+              placeholder="Email"
+            />
+            {errors.email && touched.email ? (
+              <div className={styles.inputError}>{errors.email}</div>
+            ) : null}
+            <Field
+              type="password"
+              className={styles.inputText}
+              placeholder="Пароль"
+              name="password"
+            />
+            {errors.password && touched.password ? (
+              <div className={styles.inputError}>{errors.password}</div>
+            ) : null}
+            {authError === 'Request failed with status code 400' ? (
+              <div className={styles.inputError}>Неверный логин или пароль</div>
+            ) : (
+              ''
+            )}
+            <Button
+              title="Войти"
+              type={'submit'}
+              spanStyles={styles.spanStyles}
+              className={styles.submitButton}
+            />
+            <a className={styles.toggleRegister} onClick={handleRegister}>
+              Зарегистрироваться
+            </a>
+          </Form>
+        )}
+      </Formik>
+      {isLoggedIn && <Navigate to="/" />}
+      {/* </div> */}
     </div>
   );
 };

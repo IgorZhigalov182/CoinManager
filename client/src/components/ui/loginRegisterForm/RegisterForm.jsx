@@ -33,71 +33,63 @@ const RegisterForm = ({ setIsSingUp }) => {
 
   return (
     <div className={styles.formWrapper}>
-      <div className={styles.formInner}>
-        <Formik
-          onSubmit={async (values, actions) => {
-            handleSubmit(values);
-          }}
-          validationSchema={registerSchema}
-          initialValues={initialValue}
-          enableReinitialize={true}>
-          {({ errors, touched, values }) => (
-            <Form>
-              <Field
-                innerRef={inputName}
-                type="text"
-                name="firstName"
-                placeholder="Имя"
-                className="form-control"
-              />
-              {errors.firstName && touched.firstName ? (
-                <div className={styles.inputError}>{errors.firstName}</div>
-              ) : null}
-              <Field
-                type="text"
-                name="lastName"
-                placeholder="Фамилия"
-                className="form-control mt-3"
-              />
-              {errors.lastName && touched.lastName ? (
-                <div className={styles.inputError}>{errors.lastName}</div>
-              ) : null}
-              <Field type="email" name="email" className="form-control mt-3" placeholder="Email" />
-              {errors.email && touched.email ? (
-                <div className={styles.inputError}>{errors.email}</div>
-              ) : null}
-              <Field
-                type="password"
-                className="form-control w-100 mt-3"
-                placeholder="Пароль"
-                name="password"
-              />
-              {errors.password && touched.password ? (
-                <div className={styles.inputError}>{errors.password}</div>
-              ) : null}
-              <Field
-                type="password"
-                className="form-control w-100 mt-3"
-                placeholder="Повторите пароль"
-                name="confirmPassword"
-              />
-              {errors.confirmPassword && touched.confirmPassword ? (
-                <div className={styles.inputError}>{errors.confirmPassword}</div>
-              ) : null}
-              <div className="d-flex flex-column">
-                <Button
-                  title="Зарегистрироваться"
-                  type={'submit'}
-                  className={styles.submitButton}
-                />
-                <a className={styles.toggleLogin} role="button" onClick={handleRegister}>
-                  Есть аккаунт
-                </a>
-              </div>
-            </Form>
-          )}
-        </Formik>
-      </div>
+      <Formik
+        onSubmit={async (values, actions) => {
+          handleSubmit(values);
+        }}
+        validationSchema={registerSchema}
+        initialValues={initialValue}
+        enableReinitialize={true}>
+        {({ errors, touched, values }) => (
+          <Form className={styles.formLogin}>
+            <Field
+              innerRef={inputName}
+              type="text"
+              name="firstName"
+              placeholder="Имя"
+              className="form-control"
+            />
+            {errors.firstName && touched.firstName ? (
+              <div className={styles.inputError}>{errors.firstName}</div>
+            ) : null}
+            <Field
+              type="text"
+              name="lastName"
+              placeholder="Фамилия"
+              className="form-control mt-3"
+            />
+            {errors.lastName && touched.lastName ? (
+              <div className={styles.inputError}>{errors.lastName}</div>
+            ) : null}
+            <Field type="email" name="email" className="form-control mt-3" placeholder="Email" />
+            {errors.email && touched.email ? (
+              <div className={styles.inputError}>{errors.email}</div>
+            ) : null}
+            <Field
+              type="password"
+              className="form-control w-100 mt-3"
+              placeholder="Пароль"
+              name="password"
+            />
+            {errors.password && touched.password ? (
+              <div className={styles.inputError}>{errors.password}</div>
+            ) : null}
+            <Field
+              type="password"
+              className="form-control w-100 mt-3"
+              placeholder="Повторите пароль"
+              name="confirmPassword"
+            />
+            {errors.confirmPassword && touched.confirmPassword ? (
+              <div className={styles.inputError}>{errors.confirmPassword}</div>
+            ) : null}
+            <Button title="Зарегистрироваться" type={'submit'} className={styles.submitButton} />
+            <a className={styles.toggleLogin} role="button" onClick={handleRegister}>
+              Есть аккаунт
+            </a>
+          </Form>
+        )}
+      </Formik>
       {isLoggedIn && <Navigate to="/user/1" />}
     </div>
   );

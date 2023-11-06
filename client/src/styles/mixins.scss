@@ -18,3 +18,10 @@
 @mixin btnSubmit {
     width: 100%;
 }
+
+@mixin form {
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}

@@ -115,7 +115,7 @@ const ModalWindowOperation = ({
           initialValues={initialValue}
           enableReinitialize={true}>
           {({ errors, touched, handleChange, values }) => (
-            <Form>
+            <Form className={styles.formOperation}>
               <Field type="number" name="sum" className={styles.input} placeholder="Сумма" />
               {errors.sum && touched.sum ? <div>{errors.sum}</div> : null}
               {!values.addNewCategory && (

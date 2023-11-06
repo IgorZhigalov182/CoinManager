@@ -18,24 +18,22 @@ function App() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <>
-      <OperationLoader>
-        <NavBar />
-        <div className="container">{elements}</div>
-        <ToastContainer
-          position="bottom-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme={theme}
-        />
-      </OperationLoader>
-    </>
+    <OperationLoader>
+      <NavBar />
+      <div className="container">{elements}</div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme={theme}
+      />
+    </OperationLoader>
   );
 }
 
