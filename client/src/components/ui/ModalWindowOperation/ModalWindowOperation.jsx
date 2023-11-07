@@ -115,7 +115,7 @@ const ModalWindowOperation = ({
           initialValues={initialValue}
           enableReinitialize={true}>
           {({ errors, touched, handleChange, values }) => (
-            <Form className={styles.formOperation}>
+            <Form className="modalFormWrapper">
               <Field type="number" name="sum" className={styles.input} placeholder="Сумма" />
               {errors.sum && touched.sum ? <div>{errors.sum}</div> : null}
               {!values.addNewCategory && (
@@ -206,13 +206,11 @@ const ModalWindowOperation = ({
                 <Button
                   title="Изменить"
                   type={'button'}
-                  className={'btn btn-success mt-3'}
+                  className="modalFormBtn"
                   handler={() => handleUpdate(values)}
                 />
               )}
-              {!operation && (
-                <Button title="Добавить" type={'submit'} className={styles.btnSubmit} />
-              )}
+              {!operation && <Button title="Добавить" type={'submit'} className="modalFormBtn" />}
             </Form>
           )}
         </Formik>

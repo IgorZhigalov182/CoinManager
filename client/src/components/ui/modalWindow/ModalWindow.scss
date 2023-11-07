@@ -1,3 +1,6 @@
+@import '../../../styles/mixins.scss';
+
+
 .modalWindow {
     height: 100vh;
     width: 100vw;
@@ -12,28 +15,36 @@
     transform: (0);
     transition: 0.5s;
     pointer-events: none;
-  }
+}
   
-  .modalWindow.active {
-    opacity: 1;
-    pointer-events: all;
-    z-index: 4;
-  }
+.modalWindow.active {
+  opacity: 1;
+  pointer-events: all;
+  z-index: 4;
+}
   
-  .modalWindow__content {
-    padding: 20px;
-    border-radius: 12px;
-    background-color: white;
-    width: 50vw;
-    transform: scale(0.5);
-    transition: 0.4s all;
-  }
+.modalWindow__content {
+  padding: 20px;
+  border-radius: 12px;
+  background-color: white;
+  width: 50vw;
+  transform: scale(0.5);
+  transition: 0.4s all;
+}
   
-  .modalWindow__content.active {
-    transform: scale(1);
-    transition: 0.5s;
-  }
+.modalWindow__content.active {
+  transform: scale(1);
+  transition: 0.5s;
+}
   
+.modalFormWrapper {
+  @include modalFormWrapper;
+}
+
+.modalFormBtn {
+  margin-top: 1.5rem;
+}
+
 @media (max-width: 1200px) {
 
 }

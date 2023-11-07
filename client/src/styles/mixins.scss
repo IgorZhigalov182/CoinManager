@@ -19,9 +19,10 @@
     width: 100%;
 }
 
-@mixin form {
-    width: 60%;
-    margin: 0 auto;
+@mixin modalFormWrapper {
     display: flex;
     flex-direction: column;
+    align-self: center;
+    width: 60%;
+    margin: 0 auto;
 }

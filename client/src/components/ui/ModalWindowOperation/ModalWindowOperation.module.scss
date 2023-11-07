@@ -10,7 +10,7 @@
 // }
 
 .formOperation {
-    @include form;
+    @include modalFormWrapper;
 }
 
 .selectCategory {
@@ -55,9 +55,9 @@
     }
 }
 
-.btnSubmit {
-    @include btnSubmit;
-}
+// .btnSubmit {
+    // @include btnSubmit;
+// }
 
 @media (max-width: 1200px) {
     // .formOperation {

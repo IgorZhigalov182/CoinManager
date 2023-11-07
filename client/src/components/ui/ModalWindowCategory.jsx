@@ -63,7 +63,7 @@ const ModalWindowCategory = ({ categories, selectedCategory, modalActive, setMod
           initialValues={initialValue}
           enableReinitialize={true}>
           {({ errors, touched, handleChange, values }) => (
-            <Form>
+            <Form className="modalFormWrapper">
               <Field
                 type="text"
                 name="name"
@@ -76,7 +76,7 @@ const ModalWindowCategory = ({ categories, selectedCategory, modalActive, setMod
                 className="form-control form-control-color mt-2"></Field>
               <Button
                 type={'submit'}
-                className={'btn btn-success mt-2'}
+                className="modalFormBtn"
                 title={!values?._id ? 'Добавить' : 'Изменить'}
               />
             </Form>

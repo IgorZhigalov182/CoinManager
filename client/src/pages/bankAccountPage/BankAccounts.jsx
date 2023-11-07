@@ -103,7 +103,7 @@ const BankAccounts = () => {
           enableReinitialize={true}
           initialValues={initialValue}>
           {({ errors, touched }) => (
-            <Form>
+            <Form className="modalFormWrapper">
               <Field
                 type="text"
                 name="name"
@@ -162,9 +162,7 @@ const BankAccounts = () => {
                   />
                 </div>
               ) : (
-                <div>
-                  <Button title="Добавить" type={'submit'} className={'btn btn-primary mt-3'} />
-                </div>
+                <Button title="Добавить" type={'submit'} className="modalFormBtn" />
               )}
             </Form>
           )}

@@ -33,7 +33,7 @@ const ModalWindowUser = ({ modalActive, setModalActive }) => {
           initialValues={initialValue}
           enableReinitialize={true}>
           {({ errors, touched, handleChange, values }) => (
-            <Form>
+            <Form className="modalFormWrapper">
               <Field
                 type="text"
                 name="firstName"
@@ -47,7 +47,7 @@ const ModalWindowUser = ({ modalActive, setModalActive }) => {
                 placeholder="Фамилия"></Field>
               {errors.lastName && touched.lastName ? <div>{errors.lastName}</div> : null}
               <Field as="input" type="file" className="form-control mt-2" name="logo"></Field>
-              <Button type={'submit'} className={'btn btn-success mt-2'} title={'Изменить'} />
+              <Button type={'submit'} className="modalFormBtn" title={'Изменить'} />
             </Form>
           )}
         </Formik>

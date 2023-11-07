@@ -13,9 +13,6 @@ const MainPage = () => {
         <WidgetBankAccount />
       </div>
       <WidgetWithGraphs />
-      <form>
-        <input />
-      </form>
     </>
   );
 };
