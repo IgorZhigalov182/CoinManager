@@ -12,7 +12,7 @@ const userService = {
     return data.content;
   },
   updateUser: async (userData) => {
-    const { data } = await httpService.patch(userEndpoint + userData._id, userData);
+    const { data } = await httpService.put(userEndpoint + userData._id, userData);
     return data;
   },
   /*****for JSON-server******/

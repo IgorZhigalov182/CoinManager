@@ -30,7 +30,10 @@ const CardOperation = ({ idBankAccount, category, comment, _id, sum, date, typeO
 
   const handleGoToRecord = () => navigate(`${_id}`, { state: 'pathname' });
 
-  const handleDelete = () => dispatch(deleteOperationById(_id));
+  const handleDelete = (e) => {
+    e.stopPropagation();
+    dispatch(deleteOperationById(_id));
+  };
 
   return (
     <div onClick={isOperationPage ? () => handleGoToRecord() : ''} className={styleCardWrapper}>
@@ -49,7 +52,7 @@ const CardOperation = ({ idBankAccount, category, comment, _id, sum, date, typeO
             <Button
               spanStyle={style.spanGoToRecord}
               className={style.btnGoToRecord}
-              title={<i class="fa-solid fa-arrow-up-right-from-square"></i>}
+              title={<i className="fa-solid fa-arrow-up-right-from-square"></i>}
               handler={handleGoToRecord}
             />
           )}

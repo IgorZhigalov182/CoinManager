@@ -9,9 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { getBuyDate } from '../../services/date.services';
 import ModalWindowUser from '../../components/ui/ModalWindowUser';
 import style from './UserPage.module.scss';
-import classNames from 'classnames/bind';
-import mainStyle from '../../styles/app.module.scss';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const UserPage = () => {
@@ -39,12 +37,13 @@ const UserPage = () => {
     toast('Wow so easy!');
   };
 
+  // console.log(userData);
+
   // const [darkTheme, setDarkTheme] = useState(false);
   // const theme = classNames(darkTheme ? mainStyle.dark_theme : mainStyle.white_theme);
 
   return (
     <>
-      {/* <div className={style}>SCSS</div> */}
       <div className={style.userCardWrap}>
         <img
           onClick={handleToast}
