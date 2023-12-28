@@ -37,11 +37,6 @@ const UserPage = () => {
     toast('Wow so easy!');
   };
 
-  // console.log(userData);
-
-  // const [darkTheme, setDarkTheme] = useState(false);
-  // const theme = classNames(darkTheme ? mainStyle.dark_theme : mainStyle.white_theme);
-
   return (
     <>
       <div className={style.userCardWrap}>

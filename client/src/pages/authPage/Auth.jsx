@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import LoginForm from '../../components/ui/loginRegisterForm/LoginForm';
 import RegisterForm from '../../components/ui/loginRegisterForm/RegisterForm';
 import { useTheme } from '../../hooks/useTheme';

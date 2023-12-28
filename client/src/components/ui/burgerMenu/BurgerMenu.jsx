@@ -2,7 +2,6 @@ import React from 'react';
 import style from './burgerMenu.module.scss';
 import { CSSTransition } from 'react-transition-group';
 import Burger from '../burger/Burger';
-import NavBar from '../navBar/NavBar';
 
 const BurgerMenu = ({ activeBurgerMenu }) => {
   return (
@@ -16,7 +15,7 @@ const BurgerMenu = ({ activeBurgerMenu }) => {
           enter: style.my_node_enter,
           enterActive: style.my_node_enter_active,
           exit: style.node_exit,
-          exitActive: style.my_node_exit_active,
+          exitActive: style.my_node_exit_active
         }}>
         <div className={style.wrapper}>{/* <NavBar /> */}</div>
       </CSSTransition>

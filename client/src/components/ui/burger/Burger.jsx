@@ -6,7 +6,6 @@ import { Context } from '../../../context/context';
 const Burger = ({ activeBurgerMenu, setActiveBurgerMenu }) => {
   const { handleGoPage } = useContext(Context);
   const toggleInput = () => handleGoPage();
-  // const toggleInput = () => setActiveBurgerMenu(!activeBurgerMenu);
 
   return (
     <div className={style.burgerWrapper}>
@@ -22,7 +21,7 @@ const Burger = ({ activeBurgerMenu, setActiveBurgerMenu }) => {
 
 Burger.propTypes = {
   setActiveBurgerMenu: PropTypes.func,
-  activeBurgerMenu: PropTypes.bool,
+  activeBurgerMenu: PropTypes.bool
 };
 
 export default Burger;

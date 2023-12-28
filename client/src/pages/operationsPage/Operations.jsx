@@ -9,13 +9,11 @@ import {
 } from '../../store/operations/operations.slice';
 import Button from '../../components/ui/common/button/Button';
 import { useLocation } from 'react-router-dom';
-// import NewOperation from '../../../components/ui/ModalWindowOperation';
 import { paginate } from '../../utils/paginate';
 import Pagination from '../../components/ui/pagination/Pagination';
 import ModalWindowOperation from '../../components/ui/ModalWindowOperation/ModalWindowOperation';
 import localStorageService from '../../services/localStorage.services';
 import style from './opertaions.module.scss';
-import classNames from 'classnames';
 
 const Operations = ({}) => {
   const [modalActive, setModalActive] = useState(false);
