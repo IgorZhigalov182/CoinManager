@@ -8,20 +8,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   createCategory,
   getCategories,
-  getCategoryDisplayNameById,
+  getCategoryDisplayNameById
 } from '../../../store/categories/categories.slice';
 import * as Yup from 'yup';
 import { getActiveBankAccount } from '../../../store/bankAccounts/bankAccounts.slice';
 import { createOperation, updateOperationById } from '../../../store/operations/operations.slice';
 import { getRandomColor } from '../../../utils/getRandomColor';
 import localStorageService from '../../../services/localStorage.services';
+import { toast } from 'react-toastify';
 import styles from './ModalWindowOperation.module.scss';
 
 const ModalWindowOperation = ({
   operation,
   typeOperationForModal,
   modalActive,
-  setModalActive,
+  setModalActive
 }) => {
   const actualBankAccount = useSelector(getActiveBankAccount());
   const dispatch = useDispatch();
@@ -39,7 +40,7 @@ const ModalWindowOperation = ({
     addNewCategory: false,
     newCategory: '',
     userId: localStorageService.getUserId(),
-    typeOperation: typeOperationForModal || 'expense',
+    typeOperation: typeOperationForModal || 'expense'
   });
 
   const findTargetOperation = () => {
@@ -53,7 +54,7 @@ const ModalWindowOperation = ({
           addNewCategory: false,
           newCategory: '',
           userId: localStorageService.getUserId(),
-          typeOperation: typeOperationForModal || 'expense',
+          typeOperation: typeOperationForModal || 'expense'
         };
   };
 
@@ -70,8 +71,9 @@ const ModalWindowOperation = ({
       const categoryData = {
         name: data.newCategory,
         color: getRandomColor(),
-        userId: localStorageService.getUserId(),
+        userId: localStorageService.getUserId()
       };
+
       const response = await dispatch(createCategory(categoryData));
       data.category = response._id;
     }
@@ -84,7 +86,7 @@ const ModalWindowOperation = ({
   };
 
   const operationSchema = Yup.object().shape({
-    sum: Yup.string().required('Обязательное поле'),
+    sum: Yup.string().required('Обязательное поле')
   });
 
   const validateNewCategory = (addNewCategory, nameNewCategory) => {
@@ -108,6 +110,10 @@ const ModalWindowOperation = ({
       <ModalWindow active={modalActive} setActive={setModalActive}>
         <Formik
           onSubmit={async (values, { resetForm }) => {
+            if (values.sum <= 0) {
+              return toast('Сумма должна быть положительна и больше нуля');
+            }
+
             handleSubmit(values);
             resetForm();
           }}
@@ -160,15 +166,6 @@ const ModalWindowOperation = ({
                   className={styles.addNewCategory}
                 />
               </label>
-              {/* {values.addNewCategory && (
-                <Field
-                  validate={() => validateNewCategory(values.addNewCategory, values.newCategory)}
-                  name="newCategory"
-                  type="text"
-                  className="form-control mb-3"
-                  placeholder="Новая категория"
-                />
-              )} */}
               <div role="group" aria-labelledby="my-radio-group" className={styles.typeOperation}>
                 <span>Тип операции</span>
                 <div className={styles.radioTypeOperation}>
@@ -223,7 +220,7 @@ ModalWindowOperation.propTypes = {
   operation: PropTypes.object,
   typeOperationForModal: PropTypes.string,
   modalActive: PropTypes.bool,
-  ModalWindowOperation: PropTypes.func,
+  ModalWindowOperation: PropTypes.func
 };
 
 export default ModalWindowOperation;
