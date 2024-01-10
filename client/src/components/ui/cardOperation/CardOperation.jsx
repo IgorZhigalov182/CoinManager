@@ -21,11 +21,11 @@ const CardOperation = ({ idBankAccount, category, comment, _id, sum, date, typeO
   const isOperationPage = pathname.length < 12;
 
   const styleCardWrapper = classNames(
-    isOperationPage ? style.card_wrapper : style.card_wrapperOperationPage,
+    isOperationPage ? style.card_wrapper : style.card_wrapperOperationPage
   );
 
   const styleBadge = classNames(
-    typeOperation === 'profit' ? style.profitBadge : style.expanseBadge,
+    typeOperation === 'profit' ? style.profitBadge : style.expanseBadge
   );
 
   const handleGoToRecord = () => navigate(`${_id}`, { state: 'pathname' });
@@ -80,5 +80,5 @@ CardOperation.propTypes = {
   _id: PropTypes.string,
   sum: PropTypes.number,
   date: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-  typeOperation: PropTypes.string,
+  typeOperation: PropTypes.string
 };
