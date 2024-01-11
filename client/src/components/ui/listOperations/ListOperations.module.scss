@@ -24,6 +24,7 @@
 
 @media (max-width: 576px) {
     .listWrapper{
-        grid-template-columns: 1fr ; 
+        grid-template-columns: 1fr;
+        width: 100%;
     }
 }

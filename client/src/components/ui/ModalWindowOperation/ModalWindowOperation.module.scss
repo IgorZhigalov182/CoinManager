@@ -1,13 +1,23 @@
 @import '../../../styles/mixins.scss';
 
-// input {
-//     color: #8707ff;
-//     border: 1px solid #8707ff;
-//     border-radius: 10px;
-//     padding: 10px 25px;
-//     background: transparent;
-//     max-width: 190px;
-// }
+.categoryWrapper {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    gap: 0.75rem;
+    
+    .btnNewCategory {
+        min-width: 3rem;
+    }
+    
+    .btnSpanCategory {
+        padding: 0;
+        line-height: 28px;
+    }
+}
+
+
+
 
 .formOperation {
     @include modalFormWrapper;
@@ -53,6 +63,10 @@
             width: 15px;
         }
     }
+}
+
+.commentField {
+    // @include inputText
 }
 
 // .btnSubmit {

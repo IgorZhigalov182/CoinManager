@@ -3,7 +3,7 @@ import { getCategories } from '../../store/categories/categories.slice';
 import { useSelector } from 'react-redux';
 import Button from '../../components/ui/common/button/Button';
 import CategoryCard from '../../components/ui/categoryCard/CategoryCard';
-import ModalWindowCategory from '../../components/ui/ModalWindowCategory';
+import ModalWindowCategory from '../../components/ui/modalWindowCategory/ModalWindowCategory';
 import styles from './categories.module.scss';
 
 const Categories = () => {

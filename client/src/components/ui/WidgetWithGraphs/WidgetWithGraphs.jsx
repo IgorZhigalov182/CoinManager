@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Button from '../common/button/Button';
-import LineChart from '../LineChart';
+import LineChart from '../lineChart/LineChart';
 import PieChart from '../PieChart/PieChart';
 import styles from './WidgetWithGraphs.module.scss';
 
@@ -16,7 +16,7 @@ const WidgetWithGraphs = () => {
   };
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <div className={styles.buttonWraper}>
         <Button
           title={'Расходы'}

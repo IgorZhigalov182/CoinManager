@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getOperationsLoadingStatus,
-  loadOperationList,
+  loadOperationList
 } from '../../../store/operations/operations.slice';
 import SpinnerLoader from '../SpinnerLoader';
 import { getIsLoggedIn, loadUserById } from '../../../store/users/users.slice';
@@ -17,12 +17,6 @@ const OperationLoader = ({ children }) => {
   const navigate = useNavigate();
   const isLoading = useSelector(getOperationsLoadingStatus());
   const isLoggedIn = useSelector(getIsLoggedIn());
-
-  // useEffect(() => {
-  //   if (!isLoggedIn) {
-  //     return;
-  //   }
-  // }, []);
 
   const userId = localStorageService.getUserId();
 
@@ -44,5 +38,5 @@ const OperationLoader = ({ children }) => {
 export default OperationLoader;
 
 OperationLoader.propTypes = {
-  title: PropTypes.any,
+  title: PropTypes.any
 };

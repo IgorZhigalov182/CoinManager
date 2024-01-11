@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import ModalWindow from './modalWindow/ModalWindow';
+import ModalWindow from '../modalWindow/ModalWindow';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import Button from './common/button/Button';
+import Button from '../common/button/Button';
 // import { getRandomColor } from '../../utils/getRandomColor';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { createCategory, updateCategoryById } from '../../store/categories/categories.slice';
-import localStorageService from '../../services/localStorage.services';
+import { createCategory, updateCategoryById } from '../../../store/categories/categories.slice';
+import localStorageService from '../../../services/localStorage.services';
+import styles from './ModalWindowCategory.module.scss';
 
 const ModalWindowCategory = ({ categories, selectedCategory, modalActive, setModalActive }) => {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const ModalWindowCategory = ({ categories, selectedCategory, modalActive, setMod
     // color: getRandomColor(),
     color: '#000000',
     userId: '',
-    name: '',
+    name: ''
   });
 
   const findTargetCategory = () => {
@@ -28,7 +29,7 @@ const ModalWindowCategory = ({ categories, selectedCategory, modalActive, setMod
           // color: getRandomColor(),
           color: '#000000',
           userId: '',
-          name: '',
+          name: ''
         };
   };
 
@@ -37,7 +38,7 @@ const ModalWindowCategory = ({ categories, selectedCategory, modalActive, setMod
   }, [modalActive]);
 
   const categorySchema = Yup.object().shape({
-    name: Yup.string().required('Обязательное поле'),
+    name: Yup.string().required('Обязательное поле')
   });
 
   const handleSubmit = async (data) => {
@@ -91,7 +92,7 @@ ModalWindowCategory.propTypes = {
   categories: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   selectedCategory: PropTypes.string,
   modalActive: PropTypes.bool,
-  setModalActive: PropTypes.func,
+  setModalActive: PropTypes.func
 };
 
 export default ModalWindowCategory;

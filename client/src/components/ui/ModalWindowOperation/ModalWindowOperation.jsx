@@ -61,21 +61,30 @@ const ModalWindowOperation = ({
   const categories = useSelector(getCategories());
   const userId = localStorageService.getUserId();
 
-  const handleUpdate = (data) => {
+  const createCategoryInOperation = async (data) => {
+    const response = await dispatch(
+      createCategory({
+        name: data.newCategory,
+        color: getRandomColor(),
+        userId: localStorageService.getUserId()
+      })
+    );
+
+    return response._id;
+  };
+
+  const handleUpdate = async (data) => {
+    if (data.addNewCategory && data.newCategory) {
+      data.category = await createCategoryInOperation(data);
+    }
+
     dispatch(updateOperationById(data));
     setModalActive(false);
   };
 
   const handleSubmit = async (data) => {
     if (data.addNewCategory && data.newCategory) {
-      const categoryData = {
-        name: data.newCategory,
-        color: getRandomColor(),
-        userId: localStorageService.getUserId()
-      };
-
-      const response = await dispatch(createCategory(categoryData));
-      data.category = response._id;
+      data.category = await createCategoryInOperation(data);
     }
     data.userId = userId;
     data.date = Date.now();
@@ -120,52 +129,48 @@ const ModalWindowOperation = ({
           validationSchema={operationSchema}
           initialValues={initialValue}
           enableReinitialize={true}>
-          {({ errors, touched, handleChange, values }) => (
+          {({ errors, touched, values, setFieldValue }) => (
             <Form className="modalFormWrapper">
               <Field type="number" name="sum" className={styles.input} placeholder="Сумма" />
               {errors.sum && touched.sum ? <div>{errors.sum}</div> : null}
-              {!values.addNewCategory && (
-                <Field
-                  className={styles.selectCategory}
-                  as="select"
-                  name="category"
-                  validate={() => validateCategory(values.addNewCategory, values.category)}>
-                  <option disabled value="">
-                    (Выберите категорию)
-                  </option>
-                  {categories &&
-                    categories.map((category) => {
-                      return (
-                        <option key={category._id} value={category._id}>
-                          {category.name}
-                        </option>
-                      );
-                    })}
-                </Field>
-              )}
-              {values.addNewCategory && (
-                <Field
-                  validate={() => validateNewCategory(values.addNewCategory, values.newCategory)}
-                  name="newCategory"
-                  type="text"
-                  className="form-control mb-3"
-                  placeholder="Новая категория"
+              <div className={styles.categoryWrapper}>
+                {!values.addNewCategory && (
+                  <Field
+                    className={styles.selectCategory}
+                    as="select"
+                    name="category"
+                    validate={() => validateCategory(values.addNewCategory, values.category)}>
+                    <option disabled value="">
+                      (Выберите категорию)
+                    </option>
+                    {categories &&
+                      categories.map((category) => {
+                        return (
+                          <option key={category._id} value={category._id}>
+                            {category.name}
+                          </option>
+                        );
+                      })}
+                  </Field>
+                )}
+                {values.addNewCategory && (
+                  <Field
+                    validate={() => validateNewCategory(values.addNewCategory, values.newCategory)}
+                    name="newCategory"
+                    type="text"
+                    className={styles.selectCategory}
+                    placeholder="Новая категория"
+                  />
+                )}
+                <Button
+                  title={values.addNewCategory ? '☰' : '+'}
+                  spanStyle={styles.btnSpanCategory}
+                  className={styles.btnNewCategory}
+                  handler={() => setFieldValue('addNewCategory', !values.addNewCategory)}
                 />
-              )}
+              </div>
               {errors.newCategory && touched.newCategory ? <div>{errors.newCategory}</div> : null}
               {errors.category && touched.category ? <div>{errors.category}</div> : null}
-              <label className={styles.labelNewCategory}>
-                {values.addNewCategory
-                  ? 'Выбрать существующую категорию'
-                  : 'Добавить новую категорию'}
-                <Field
-                  type="checkbox"
-                  name="addNewCategory"
-                  checked={values.addNewCategory}
-                  onChange={handleChange}
-                  className={styles.addNewCategory}
-                />
-              </label>
               <div role="group" aria-labelledby="my-radio-group" className={styles.typeOperation}>
                 <span>Тип операции</span>
                 <div className={styles.radioTypeOperation}>
@@ -195,7 +200,7 @@ const ModalWindowOperation = ({
               </div>
               <Field
                 as="textarea"
-                className="form-control mt-3"
+                className={styles.commentField}
                 placeholder="Комментарий"
                 name="comment"
               />

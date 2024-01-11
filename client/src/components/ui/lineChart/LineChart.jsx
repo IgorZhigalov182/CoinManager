@@ -7,12 +7,13 @@ import {
   LineElement,
   Title,
   Tooltip,
-  Legend,
+  Legend
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import { getCountOperationByMounth } from '../../store/operations/operations.slice';
+import { getCountOperationByMounth } from '../../../store/operations/operations.slice';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
+import styles from './LineChart.module.scss';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -23,13 +24,13 @@ const LineChart = ({ borderColor, title, backgroundColor }) => {
     responsive: true,
     plugins: {
       legend: {
-        position: 'top',
+        position: 'top'
       },
       title: {
         display: false,
-        text: 'Даты',
-      },
-    },
+        text: 'Даты'
+      }
+    }
   };
 
   const labels = [
@@ -44,7 +45,7 @@ const LineChart = ({ borderColor, title, backgroundColor }) => {
     'Сентябрь',
     'Октябрь',
     'Ноябрь',
-    'Декабрь',
+    'Декабрь'
   ];
 
   const data = {
@@ -54,12 +55,12 @@ const LineChart = ({ borderColor, title, backgroundColor }) => {
         label: title,
         data: [...countOperationByMounth],
         borderColor: borderColor,
-        backgroundColor: backgroundColor,
-      },
-    ],
+        backgroundColor: backgroundColor
+      }
+    ]
   };
   return (
-    <div style={{ width: '39rem', height: '20rem', margin: '1rem', marginLeft: '6rem' }}>
+    <div className={styles.wrapper}>
       <Line options={options} data={data} />
     </div>
   );
@@ -68,7 +69,7 @@ const LineChart = ({ borderColor, title, backgroundColor }) => {
 LineChart.propTypes = {
   title: PropTypes.string,
   borderColor: PropTypes.string,
-  handler: PropTypes.string,
+  handler: PropTypes.string
 };
 
 export default LineChart;
