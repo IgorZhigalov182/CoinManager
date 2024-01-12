@@ -131,7 +131,7 @@ const ModalWindowOperation = ({
           enableReinitialize={true}>
           {({ errors, touched, values, setFieldValue }) => (
             <Form className="modalFormWrapper">
-              <Field type="number" name="sum" className={styles.input} placeholder="Сумма" />
+              <Field type="number" name="sum" placeholder="Сумма" />
               {errors.sum && touched.sum ? <div>{errors.sum}</div> : null}
               <div className={styles.categoryWrapper}>
                 {!values.addNewCategory && (
@@ -172,38 +172,42 @@ const ModalWindowOperation = ({
               {errors.newCategory && touched.newCategory ? <div>{errors.newCategory}</div> : null}
               {errors.category && touched.category ? <div>{errors.category}</div> : null}
               <div role="group" aria-labelledby="my-radio-group" className={styles.typeOperation}>
-                <span>Тип операции</span>
-                <div className={styles.radioTypeOperation}>
-                  <label className={styles.labelTypeOperation}>
-                    <Field
-                      type="radio"
-                      className={styles.radioInput}
-                      name="typeOperation"
-                      value="expense"
-                    />
-                    <span className="ms-2">Расходы</span>
-                  </label>
-                </div>
-                <div className={styles.radioTypeOperation}>
-                  <label className={styles.labelTypeOperation}>
-                    <Field
-                      type="radio"
-                      className={styles.radioInput}
-                      name="typeOperation"
-                      value="profit"
-                    />
-                    <span className="ms-2">Доходы</span>
-                  </label>
+                <span className={styles.spanTypeOperation}>Тип операции</span>
+                <div className={styles.radioWrapper}>
+                  <div className={styles.radioTypeOperation}>
+                    <label className={styles.labelTypeOperation}>
+                      <Field
+                        type="radio"
+                        className={styles.radioInput}
+                        name="typeOperation"
+                        value="expense"
+                      />
+                      <span className="ms-2">Расходы</span>
+                    </label>
+                  </div>
+                  <div className={styles.radioTypeOperation}>
+                    <label className={styles.labelTypeOperation}>
+                      <Field
+                        type="radio"
+                        className={styles.radioInput}
+                        name="typeOperation"
+                        value="profit"
+                      />
+                      <span className="ms-2">Доходы</span>
+                    </label>
+                  </div>
                 </div>
 
                 {errors.typeAccount && touched.typeAccount ? <div>{errors.typeAccount}</div> : null}
               </div>
-              <Field
-                as="textarea"
-                className={styles.commentField}
-                placeholder="Комментарий"
-                name="comment"
-              />
+              <div className={styles.textareaWrapper}>
+                <Field
+                  as="textarea"
+                  className={styles.commentField}
+                  placeholder="Комментарий"
+                  name="comment"
+                />
+              </div>
               {operation && (
                 <Button
                   title="Изменить"

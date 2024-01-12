@@ -26,6 +26,7 @@ html[data-theme='dark'] {
     input, select, textarea {
         @include inputText;
         background-color: $backgroundLight;
+        margin-top: 10px;
     }
 }
 
@@ -44,6 +45,7 @@ html[data-theme='light'] {
     input, select, textarea {
         @include inputText; 
         // background-color: $inputLightBackground;
+        margin-top: 10px;
         color: $colorDark;
     }
 }

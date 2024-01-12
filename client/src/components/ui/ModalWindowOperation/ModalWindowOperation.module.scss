@@ -8,6 +8,7 @@
     
     .btnNewCategory {
         min-width: 3rem;
+        margin-top: 10px;
     }
     
     .btnSpanCategory {
@@ -16,15 +17,19 @@
     }
 }
 
-
-
-
 .formOperation {
     @include modalFormWrapper;
 }
 
 .selectCategory {
     width: 100%;
+}
+
+.textareaWrapper {
+    .commentField {
+        width: 100%;
+        height: 60px;
+    }
 }
 
 .labelNewCategory {
@@ -47,26 +52,48 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+
+    .spanTypeOperation {
+        color: black;
+        opacity: 0.9;
+        font-size: 0.95rem;
+        margin-top: 1rem;  
+    }
+
     
-    .radioTypeOperation{
+    .radioWrapper {
+        display: flex;
+        gap: 10px;
 
-        .labelTypeOperation {
-            display: flex;
-            align-items: center;
+        span {
+            color: black;
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+    
+        .radioTypeOperation{
+
+            .labelTypeOperation {
+                display: flex;
+                align-items: center;
+            }
+
+            :last-child{
+                margin-left: 0.25rem;
+            }
+            .radioInput {
+                margin-top: 2px;
+                width: 15px;
+                color: black;
+            }
         }
 
-        :last-child{
-            margin-left: 0.25rem;
-        }
-        .radioInput {
-            margin-top: 2px;
-            width: 15px;
-        }
     }
 }
 
 .commentField {
     // @include inputText
+    height: 350px;
 }
 
 // .btnSubmit {
