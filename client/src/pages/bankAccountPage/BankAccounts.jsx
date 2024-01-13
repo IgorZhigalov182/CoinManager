@@ -7,19 +7,20 @@ import {
   deleteBankAccountById,
   favouritedBankAccountById,
   getBankAccountList,
-  updatedBankAccountById,
+  updatedBankAccountById
 } from '../../store/bankAccounts/bankAccounts.slice';
 import bankAccountService from '../../services/bankAccount.services';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import ListBankAccounts from '../../components/ui/listBankAccounts/ListBankAccounts';
 import style from './bankAccount.module.scss';
+import ModalWindowBankAccount from '../../components/ui/modalWindowBankAccount/ModalWindowBankAccount';
 
 let bankAccountData = {
   name: '',
   bank: '',
   active: false,
-  typeAccount: '',
+  typeAccount: ''
 };
 
 const BankAccounts = () => {
@@ -75,7 +76,7 @@ const BankAccounts = () => {
       .min(2, 'Минимум 2 буквы')
       .max(50, 'Максимум 50 букв')
       .required('Обязательное поле'),
-    typeAccount: Yup.string().required('Обязательное поле'),
+    typeAccount: Yup.string().required('Обязательное поле')
   });
 
   return (
@@ -93,7 +94,15 @@ const BankAccounts = () => {
         setModalActive={handleModal}
         toggleFavourite={handleFavourite}
       />
-      <ModalWindow active={modalActive} setActive={setModalActive}>
+
+      <ModalWindowBankAccount
+        initialValue={initialValue}
+        setInitialValue={setInitialValue}
+        active={modalActive}
+        setActive={setModalActive}
+      />
+
+      {/* <ModalWindow active={modalActive} setActive={setModalActive}>
         <Formik
           validationSchema={bankAccountSchema}
           onSubmit={async (values, { resetForm }) => {
@@ -167,7 +176,7 @@ const BankAccounts = () => {
             </Form>
           )}
         </Formik>
-      </ModalWindow>
+      </ModalWindow> */}
     </div>
   );
 };

@@ -10,7 +10,7 @@ export const operationsSlice = createSlice({
     isLoading: true,
     error: null,
     lastFetch: null,
-    sort: null,
+    sort: null
   },
 
   reducers: {
@@ -88,8 +88,8 @@ export const operationsSlice = createSlice({
       state.entities = state.entities.filter((operation) => {
         return operation._id !== action.payload;
       });
-    },
-  },
+    }
+  }
 });
 
 const { reducer: operationReducer, actions } = operationsSlice;
@@ -102,7 +102,7 @@ const {
   operationUpdated,
   operationDeleted,
   operationSortedBySum,
-  operationSortedByDate,
+  operationSortedByDate
 } = actions;
 
 export const loadOperationList = (userId) => async (dispatch) => {
@@ -201,6 +201,7 @@ export const deleteOperationById = (id) => async (dispatch) => {
   try {
     await operationService.removeOperation(id);
     dispatch(operationDeleted(id));
+    toast(`Операция на сумму ${content.sum} была удалена`);
   } catch (error) {
     dispatch(operationsRequestFailed(error.message));
   }

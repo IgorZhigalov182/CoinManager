@@ -23,6 +23,9 @@
   .checkbox {
     position: absolute;
     display: none;
+    -webkit-appearance: none;
+    display: none;
+    visibility: hidden;
   }
   
   .slider {

@@ -1,0 +1,59 @@
+
+
+.labelActive {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    
+    .checkboxActive {
+        visibility: visible;
+        width: 14px;
+        height: 14px;
+        margin-bottom: 10px;
+        margin-left: 10px;
+    }
+}
+
+.radioGroup {
+    margin-top: 5px;
+
+    .radioWrapper {
+        display: flex;
+        align-items: center;
+        margin-top: 0;
+        gap: 5px;
+
+        .radioSpan {
+            color: black;
+        }
+
+        .radioInput {
+            margin-top: 0;
+        }
+    }
+}
+
+.buttonWrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+
+    // .btnChange {
+    //     text-align: center;
+    //     line-height: 0.35rem;
+    // }
+
+    // .btnSpanChange {
+    //     padding: 0;
+    // }
+
+    // .btnRemove {
+    //     min-width: 20px;
+    //     line-height: 0.35rem;
+
+    // }
+
+    // .btnSpanRemove {
+    //     padding: 5;
+    // }
+}

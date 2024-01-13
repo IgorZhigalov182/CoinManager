@@ -10,7 +10,7 @@ const Burger = ({ activeBurgerMenu, setActiveBurgerMenu }) => {
   return (
     <div className={style.burgerWrapper}>
       <label className={style.bar} htmlFor="check">
-        <input type="checkbox" id="check" onChange={toggleInput} />
+        <input className={style.checkbox} type="checkbox" id="check" onChange={toggleInput} />
         <span className={style.top}></span>
         <span className={style.middle}></span>
         <span className={style.bottom}></span>

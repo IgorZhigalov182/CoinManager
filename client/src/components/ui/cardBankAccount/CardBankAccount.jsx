@@ -13,10 +13,10 @@ const CardBankAccount = ({
   bank,
   active,
   _id,
-  toggleFavourite,
+  toggleFavourite
 }) => {
   const buttonFavouriteStyle = classNames(
-    active ? style.btnFavouriteActive : style.btnFavouriteActive,
+    active ? style.btnFavouriteActive : style.btnFavouriteActive
   );
 
   return (
@@ -28,11 +28,11 @@ const CardBankAccount = ({
         </h1>
         <h5 className={style.cardTitle}>
           <i className={`fa-solid fa-building-columns me-2 fa-xl`}></i>
-          <h5>{bank}</h5>
+          <h6>{bank}</h6>
         </h5>
         <h5 className={style.cardTitle}>
           <i className="fa-solid fa-font-awesome me-2 fa-xl"></i>
-          <h5>{setTitileTypeBankAccount(typeAccount)}</h5>
+          <h6>{setTitileTypeBankAccount(typeAccount)}</h6>
         </h5>
         <div className={style.btnWrapper}>
           <Button
@@ -64,5 +64,5 @@ CardBankAccount.propTypes = {
   bank: PropTypes.string,
   active: PropTypes.bool,
   _id: PropTypes.string,
-  toggleFavourite: PropTypes.func,
+  toggleFavourite: PropTypes.func
 };
