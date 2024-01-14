@@ -115,7 +115,7 @@ const ModalWindowBankAccount = ({ initialValue, setInitialValue, active, setActi
                   title="Изменить"
                   type={'submit'}
                   className={styles.btnChange}
-                  // spanStyle={styles.btnSpanChange}
+                  spanStyle={styles.btnSpanChange}
                 />
                 <Button
                   title={<i className="fa-solid fa-trash"></i>}

@@ -1,11 +1,11 @@
 
-.wrapper {
+.widgetWrapper {
     margin-top: 1rem;
+    // width: 92vw;
 
     .buttonWraper {
         display: flex;
-        justify-content: space-between;
-        width: 10rem;
+        gap: 10px;
     }
     
     .chartWrapper {
@@ -30,6 +30,7 @@
 @media (max-width: 576px) {
     .buttonWraper {
         margin-top: 10px;
+        justify-content: space-between;
         
     }
 

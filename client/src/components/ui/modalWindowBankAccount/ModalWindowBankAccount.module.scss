@@ -20,8 +20,9 @@
     .radioWrapper {
         display: flex;
         align-items: center;
-        margin-top: 0;
+        margin-top: 5px;
         gap: 5px;
+        font-size: 0.9rem;
 
         .radioSpan {
             color: black;
@@ -36,24 +37,18 @@
 .buttonWrapper {
     display: flex;
     justify-content: space-between;
+    height: 3.125rem;
     margin-top: 10px;
 
-    // .btnChange {
-    //     text-align: center;
-    //     line-height: 0.35rem;
-    // }
+    .btnChange {
+        width: 50%;
+    }
 
-    // .btnSpanChange {
-    //     padding: 0;
-    // }
+    .btnSpanChange {
+        line-height: 0.65rem;
+    }
 
-    // .btnRemove {
-    //     min-width: 20px;
-    //     line-height: 0.35rem;
-
-    // }
-
-    // .btnSpanRemove {
-    //     padding: 5;
-    // }
+    .btnSpanRemove {
+        line-height: 0.5rem;
+    }
 }

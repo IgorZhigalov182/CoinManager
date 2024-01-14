@@ -9,12 +9,14 @@ import PropTypes from 'prop-types';
 import ThemeSwitcher from '../themeSwitcher/ThemeSwitcher';
 import BurgerMenu from '../burgerMenu/BurgerMenu';
 import { Context } from '../../../context/context';
+import { useNavigate } from 'react-router-dom';
 
 function NavBar() {
   const [activeBurgerMenu, setActiveBurgerMenu] = useState(false);
   const isLoggedIn = useSelector(getIsLoggedIn());
   const userId = getUserId();
   const burgerActive = classNames(activeBurgerMenu ? style.nav_active : style.nav);
+  const navigate = useNavigate();
 
   const handleGoPage = (e) => {
     if (e) {
@@ -43,6 +45,7 @@ function NavBar() {
           src="https://cdn-icons-png.flaticon.com/512/584/584052.png"
           alt="logo"
           className={style.logo}
+          onClick={() => navigate('/')}
         />
         <nav className={burgerActive}>
           <ul className={style.navbar_ul}>
@@ -88,7 +91,7 @@ function NavBar() {
 }
 
 NavBar.propTypes = {
-  theme: PropTypes.object,
+  theme: PropTypes.object
 };
 
 export default NavBar;

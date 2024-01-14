@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useId } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOperationList } from '../../../store/operations/operations.slice';
 import {
   favouritedBankAccountById,
   getActiveBankAccount,
   getBankAccountDisplayNameById,
-  getBankAccountList,
+  getBankAccountList
 } from '../../../store/bankAccounts/bankAccounts.slice';
 import bankAccountService, { getMostUsedBankAccount } from '../../../services/bankAccount.services';
 import classNames from 'classnames';
@@ -19,6 +19,7 @@ const WidgetBankAccount = () => {
   const activeBankAccountName = useSelector(getBankAccountDisplayNameById(activeBankAccountId));
   const mostUsedBankAccountId = getMostUsedBankAccount(operations, activeBankAccountId);
   // const activeBankAccountNameClass = classNames();
+  const randomId = useId();
 
   const namesMostUsedBankAccount = mostUsedBankAccountId.map((bankAccount) => {
     let name = useSelector(getBankAccountDisplayNameById(bankAccount[0]));
@@ -49,7 +50,7 @@ const WidgetBankAccount = () => {
             }
 
             return (
-              <div className={styles.activeBankAccountWrapper}>
+              <div key={bankAccount.name} className={styles.activeBankAccountWrapper}>
                 <a
                   key={bankAccount._id}
                   className={
@@ -66,12 +67,13 @@ const WidgetBankAccount = () => {
                 </a>
                 {bankAccount.name === activeBankAccountName ? (
                   <i
+                    key={randomId}
                     className="fa-solid fa-star"
                     style={{
                       color: '#ffffff',
                       marginTop: '8px',
                       marginLeft: '5px',
-                      transition: '.9s',
+                      transition: '.9s'
                     }}></i>
                 ) : (
                   ''
