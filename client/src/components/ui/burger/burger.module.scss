@@ -1,12 +1,13 @@
 .checkbox {
-    -webkit-appearance: none;
+    --webkit-appearance: none;
     display: none;
     visibility: hidden;
 }
   
 .burgerWrapper {
   position: absolute;
-        top: 1.5rem;
+        // top: 1.5rem;
+        align-self: center;
         right: 10vw;
         display: flex;
 }

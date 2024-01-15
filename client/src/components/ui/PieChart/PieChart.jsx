@@ -1,5 +1,5 @@
 import React from 'react';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, layouts } from 'chart.js';
 import { sumByCategory } from '../../../services/category.services';
 import PropTypes from 'prop-types';
 import { Pie } from 'react-chartjs-2';
@@ -32,7 +32,7 @@ const PieChart = ({ typeOperation }) => {
           operationsWithCategories.push({
             ...operation,
             categoryLabel: category.name,
-            categoryColor: category.color,
+            categoryColor: category.color
           });
         }
       });
@@ -55,9 +55,9 @@ const PieChart = ({ typeOperation }) => {
         width: '100px',
         backgroundColor: [...colors],
         borderColor: [...colors],
-        borderWidth: 1,
-      },
-    ],
+        borderWidth: 1
+      }
+    ]
   };
 
   if (operations.length === 0) {
@@ -81,7 +81,7 @@ const PieChart = ({ typeOperation }) => {
 };
 
 Button.propTypes = {
-  typeOperation: PropTypes.string,
+  typeOperation: PropTypes.string
 };
 
 export default PieChart;

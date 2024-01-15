@@ -59,12 +59,12 @@ const UserPage = () => {
             <small className="text-body-secondary">Дата регистрации: {registerDate}</small>
           </p>
           <div className={style.userCardButtonWrapper}>
-            <Button handler={handleModal} className={'btn_dark'} title={'Редактировать'} />
             <Button
-              handler={handleLogout}
-              className={'btn btn-dark ms-3'}
-              title={'Выйти из аккаунта'}
+              handler={handleModal}
+              className={style.btnSetting}
+              title={<i className="fa-solid fa-gear"></i>}
             />
+            <Button handler={handleLogout} className={style.btnExit} title={'Выйти из аккаунта'} />
           </div>
         </div>
       </div>

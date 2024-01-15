@@ -15,6 +15,11 @@
     @include cardWrap;
     display: flex;
     justify-content: space-around;
+
+    .btnSetting, .btnExit {
+        line-height: normal;
+    }
+
     >.userCardInfo {
         margin-top: 1rem;
         >.userCardButtonWrapper {
@@ -30,4 +35,40 @@
             font-size: 1.3rem;
         }
     }
+}
+
+@media (max-width: 1200px) {
+
+}
+
+@media (max-width: 992px) {
+
+}
+
+@media (max-width: 768px) {
+  .userCardWrap {
+    flex-direction: column;
+
+    .logo {
+        align-self: center;
+    }
+
+    .btnSetting, .btnExit {
+        min-width: none;
+        line-height: normal;
+    }
+
+    .btnSetting {
+        min-width: 0;
+        width: 5rem;
+    }
+    
+    .btnExit {
+        width: 13rem;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  
 }

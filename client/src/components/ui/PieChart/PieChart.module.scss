@@ -2,7 +2,6 @@
 
 .pieChartWrapper {
     display: flex;
-    
 }
 
 @media (max-width: 1200px) {
@@ -17,5 +16,8 @@
 }
 
 @media (max-width: 576px) {
-    
+    .pieChartWrapper {
+        justify-content: center;
+
+    }
 }

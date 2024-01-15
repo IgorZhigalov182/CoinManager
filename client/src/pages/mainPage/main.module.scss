@@ -5,10 +5,14 @@
 }
 
 @media (max-width: 1200px) {
-
 }
 
 @media (max-width: 992px) {
+    .infoWrapper {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 1rem;
+    }
 }
 
 @media (max-width: 768px) {
@@ -16,10 +20,5 @@
 }
 
 @media (max-width: 576px) {
-    .infoWrapper {
-        display: flex;
-        flex-direction: column-reverse;
-        gap: 1rem;
-        
-    }
+    
 }

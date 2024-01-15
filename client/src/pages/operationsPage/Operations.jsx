@@ -5,7 +5,7 @@ import {
   filterTypeOperations,
   getOperationList,
   sortOperationsByDate,
-  sortOperationsBySum,
+  sortOperationsBySum
 } from '../../store/operations/operations.slice';
 import Button from '../../components/ui/common/button/Button';
 import { useLocation } from 'react-router-dom';
@@ -18,6 +18,7 @@ import style from './opertaions.module.scss';
 const Operations = ({}) => {
   const [modalActive, setModalActive] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [sortBy, setSortBy] = useState(false);
   let operations = useSelector(getOperationList());
   const location = useLocation();
   const dispatch = useDispatch();
@@ -47,7 +48,10 @@ const Operations = ({}) => {
   const operationsCrop = paginate(operations, currentPage, pageSize);
 
   const handlePageChange = (pageIndex) => setCurrentPage(pageIndex);
-  const handleSortBySum = () => dispatch(sortOperationsBySum());
+  const handleSortBySum = () => {
+    dispatch(sortOperationsBySum());
+    setSortBy(!sortBy);
+  };
   const handleSortByDate = () => dispatch(sortOperationsByDate());
 
   return (
@@ -58,10 +62,10 @@ const Operations = ({}) => {
         spanStyle={style.spanAddOperation}
         className={style.btnAddOperation}
       />
-      <span className="me-2">Cортировка по:</span>
+      <span className={style.sortSpan}>Cортировка по:</span>
       <div className={style.operationButtonsWrap}>
         <Button
-          title={'сумме'}
+          title={sortBy ? 'сумме ▲' : 'сумме ▼'}
           spanStyle={style.spanSortBy}
           className={style.btnSortBy}
           handler={() => handleSortBySum()}
