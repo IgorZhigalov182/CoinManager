@@ -55,6 +55,21 @@
     }
 }
 
+@media (max-width: 1200px) {
+   
+}
+
+@media (max-width: 992px) {
+    .card_wrapper {
+        max-width: 100%;
+        width: 80%;
+    }
+} 
+
+@media (max-width: 768px) {
+    
+}
+
 @media (max-width: 576px) {
     .card_wrapper {
         max-width: 100%;

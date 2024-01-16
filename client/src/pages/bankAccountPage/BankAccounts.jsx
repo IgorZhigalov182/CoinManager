@@ -10,7 +10,6 @@ import {
   updatedBankAccountById
 } from '../../store/bankAccounts/bankAccounts.slice';
 import bankAccountService from '../../services/bankAccount.services';
-import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import ListBankAccounts from '../../components/ui/listBankAccounts/ListBankAccounts';
 import style from './bankAccount.module.scss';

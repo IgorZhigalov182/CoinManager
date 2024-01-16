@@ -48,6 +48,7 @@ const Operations = ({}) => {
   const operationsCrop = paginate(operations, currentPage, pageSize);
 
   const handlePageChange = (pageIndex) => setCurrentPage(pageIndex);
+
   const handleSortBySum = () => {
     dispatch(sortOperationsBySum());
     setSortBy(!sortBy);

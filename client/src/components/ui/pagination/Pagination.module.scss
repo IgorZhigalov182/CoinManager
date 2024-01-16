@@ -1,5 +1,7 @@
-ul{
+
+.ulWrapper{
     display: flex;
+    justify-content: center;    
 
     .btnCountPage {
         min-width: 0px;
@@ -10,4 +12,29 @@ ul{
         // width: 2rem;
         list-style: none;
     }
+
+    .activePage {
+        background: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+        border-radius: 6px;
+    }
+
+    .forwardBtnWrapper, .backBtnWrapper {
+        display: flex;
+    }
+}
+
+@media (max-width: 1200px) {
+    
+}
+
+@media (max-width: 992px) {
+    
+}
+
+@media (max-width: 768px) {
+    
+}
+
+@media (max-width: 576px) {
+    
 }

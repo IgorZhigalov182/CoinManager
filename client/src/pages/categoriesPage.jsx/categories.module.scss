@@ -12,7 +12,9 @@
 
 
 @media (max-width: 1200px) {
-
+    .grid_container {
+        grid-template-columns: repeat(2, 2fr);
+    }
 }
 
 @media (max-width: 992px) {
