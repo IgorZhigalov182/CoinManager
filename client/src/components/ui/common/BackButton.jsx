@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Button from './button/Button';
 import { useNavigate } from 'react-router-dom';
 
-const BackButton = ({ className }) => {
+const BackButton = ({ className, handler }) => {
   const navigate = useNavigate();
 
   return (
@@ -18,5 +18,5 @@ const BackButton = ({ className }) => {
 export default BackButton;
 
 BackButton.propTypes = {
-  className: PropTypes.string,
+  className: PropTypes.string
 };

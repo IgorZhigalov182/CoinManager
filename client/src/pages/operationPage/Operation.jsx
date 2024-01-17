@@ -8,9 +8,11 @@ import Button from '../../components/ui/common/button/Button';
 import NotFound from '../notFoundPage/NotFound';
 import ModalWindowOperation from '../../components/ui/ModalWindowOperation/ModalWindowOperation';
 import styles from './operation.module.scss';
+import { useNavigate } from 'react-router-dom';
 
 const Operation = () => {
   const [modalActive, setModalActive] = useState(false);
+  const navigate = useNavigate();
 
   const { pathname } = useLocation();
   const operationId = pathname.split('/')[2];
@@ -24,7 +26,23 @@ const Operation = () => {
     <>
       {operation ? (
         <>
-          <BackButton className={styles.btnAddOperation} />
+          <Button
+            handler={() =>
+              navigate('/operations', {
+                state: {
+                  operationId
+                }
+              })
+            }
+            className={styles.btnAddOperation}
+            title={<i class="fa-solid fa-reply"></i>}
+          />
+          {/* <BackButton
+            className={styles.btnAddOperation}
+            handler={() => {
+              navigate('/operations', { operationId });
+            }}
+          /> */}
           <CardOperation {...operation} />
           <Button
             title={'Изменить запись'}

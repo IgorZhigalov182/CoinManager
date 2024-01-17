@@ -177,6 +177,16 @@ export const getOperationById = (id) => (state) => {
   }
 };
 
+export const getOperationByPagination = (operationId, paginationSize) => (state) => {
+  if (state.operations.entities && operationId) {
+    const operationIndex =
+      state.operations.entities.findIndex(({ _id }) => _id === operationId) / paginationSize;
+
+    return Math.floor(operationIndex) + 1;
+  }
+  return 1;
+};
+
 export const createOperation = (data) => async (dispatch) => {
   try {
     const content = await operationService.createOperation(data);

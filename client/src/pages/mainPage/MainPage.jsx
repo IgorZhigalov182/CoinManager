@@ -8,8 +8,8 @@ const MainPage = () => {
   return (
     <>
       <div className={styles.infoWrapper}>
-        <CardProfit title={'Доходы'} />
         <CardProfit title={'Расходы'} />
+        <CardProfit title={'Доходы'} />
         <WidgetBankAccount />
       </div>
       <WidgetWithGraphs />

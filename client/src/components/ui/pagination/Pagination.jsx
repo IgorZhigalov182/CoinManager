@@ -1,14 +1,25 @@
-import React, { useState } from 'react';
-import _ from 'lodash';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import _, { set } from 'lodash';
 import PropTypes from 'prop-types';
 import Button from '../common/button/Button';
 import styles from './Pagination.module.scss';
+import { useLocation } from 'react-router-dom';
+import { getOperationByPagination } from '../../../store/operations/operations.slice';
 
 const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
   let [startIndexPagination, setIndexPagination] = useState(currentPage);
   const pageCount = Math.ceil(itemsCount / pageSize);
   if (pageCount === 1) return null;
   let paginationWidth = 9;
+  let { state } = useLocation();
+
+  const backIndexOperation = useSelector(getOperationByPagination(state?.operationId, pageSize));
+
+  useEffect(() => {
+    setIndexPagination(backIndexOperation);
+    onPageChange(backIndexOperation);
+  }, [backIndexOperation]);
 
   if (document.documentElement.clientWidth < 992) {
     paginationWidth = 6;
