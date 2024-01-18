@@ -35,7 +35,7 @@ const Operation = () => {
               })
             }
             className={styles.btnAddOperation}
-            title={<i class="fa-solid fa-reply"></i>}
+            title={<i className="fa-solid fa-reply"></i>}
           />
           {/* <BackButton
             className={styles.btnAddOperation}

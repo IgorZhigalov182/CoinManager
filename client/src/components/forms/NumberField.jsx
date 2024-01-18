@@ -2,11 +2,11 @@ import React from 'react';
 
 const NumberField = ({ onChange, name, htmlFor, label }) => {
   return (
-    <div class="input-group mb-3">
-      <span class="input-group-text" id="inputGroup-sizing-default">
+    <div className="input-group mb-3">
+      <span className="input-group-text" id="inputGroup-sizing-default">
         {label}
       </span>
-      <input type="number" class="form-control" name={name} onChange={onChange} />
+      <input type="number" className="form-control" name={name} onChange={onChange} />
     </div>
   );
 };

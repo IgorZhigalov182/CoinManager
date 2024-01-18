@@ -36,7 +36,9 @@ const CardOperation = ({ idBankAccount, category, comment, _id, sum, date, typeO
   };
 
   return (
-    <div onClick={isOperationPage ? () => handleGoToRecord() : ''} className={styleCardWrapper}>
+    <div
+      onClick={isOperationPage ? () => handleGoToRecord() : () => {}}
+      className={styleCardWrapper}>
       <Badge title={`${sum}Р`} className={styleBadge} />
       <div>
         <h5 className={style.profitH5}>Категория: {categoryName}</h5>

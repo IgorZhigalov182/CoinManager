@@ -3,15 +3,15 @@ import React from 'react';
 const CheckField = () => {
   return (
     <>
-      <div class="form-check form-switch">
+      <div className="form-check form-switch">
         <input
-          class="form-check-input"
+          className="form-check-input"
           type="checkbox"
           role="switch"
           id="flexSwitchCheckChecked"
           checked
         />
-        <label class="form-check-label" for="flexSwitchCheckChecked">
+        <label className="form-check-label" for="flexSwitchCheckChecked">
           Checked switch checkbox input
         </label>
       </div>

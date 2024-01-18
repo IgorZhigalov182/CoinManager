@@ -28,11 +28,11 @@ const CardBankAccount = ({
         </h1>
         <h5 className={style.cardTitle}>
           <i className={`fa-solid fa-building-columns me-2 fa-xl`}></i>
-          <h6>{bank}</h6>
+          <p>{bank}</p>
         </h5>
         <h5 className={style.cardTitle}>
           <i className="fa-solid fa-font-awesome me-2 fa-xl"></i>
-          <h6>{setTitileTypeBankAccount(typeAccount)}</h6>
+          <p>{setTitileTypeBankAccount(typeAccount)}</p>
         </h5>
         <div className={style.btnWrapper}>
           <Button
