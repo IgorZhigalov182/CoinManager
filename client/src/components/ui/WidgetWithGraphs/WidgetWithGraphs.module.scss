@@ -6,6 +6,11 @@
     .buttonWraper {
         display: flex;
         gap: 10px;
+
+        .btnActive {
+            background: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+            border-radius: 6px;
+        }
     }
     
     .chartWrapper {
@@ -16,15 +21,14 @@
 }
 
 
+
 @media (max-width: 1200px) {
-    
 
 }
 
 @media (max-width: 992px) {
     .chartWrapper {
         display: flex;
-        // justify-content: space-between;
         flex-direction: column;
         align-items: center;
         margin-top: 1rem;

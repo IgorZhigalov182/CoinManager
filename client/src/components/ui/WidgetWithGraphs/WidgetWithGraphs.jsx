@@ -5,61 +5,31 @@ import PieChart from '../PieChart/PieChart';
 import styles from './WidgetWithGraphs.module.scss';
 
 const WidgetWithGraphs = () => {
-  const [isProfitTypeOperation, setIsProfitTypeOperation] = useState(false);
-
-  const handleChangeTypeOperation = (typeOperation) => {
-    if (!isProfitTypeOperation && typeOperation === 'profit') {
-      setIsProfitTypeOperation((prevState) => !prevState);
-    } else if (isProfitTypeOperation && typeOperation === 'expense') {
-      setIsProfitTypeOperation((prevState) => !prevState);
-    }
-  };
+  const [isProfitType, setIsProfitType] = useState(false);
 
   return (
     <div className={styles.widgetWrapper}>
       <div className={styles.buttonWraper}>
         <Button
+          spanStyle={isProfitType ? '' : styles.btnActive}
           title={'Расходы'}
-          handler={() => handleChangeTypeOperation('expense')}
-          className={
-            isProfitTypeOperation ? 'btn ms-1 btn-secondary' : 'btn ms-1 btn-secondary active'
-          }
+          handler={() => setIsProfitType(!isProfitType)}
         />
         <Button
           title={'Доходы'}
-          handler={() => handleChangeTypeOperation('profit')}
-          className={
-            isProfitTypeOperation
-              ? 'btn ms-3 mb-2 btn-secondary active'
-              : 'btn ms-3 mb-2 btn-secondary '
-          }
+          handler={() => setIsProfitType(!isProfitType)}
+          spanStyle={isProfitType ? styles.btnActive : ''}
         />
       </div>
 
-      {!isProfitTypeOperation && (
-        <div className={styles.chartWrapper}>
-          <PieChart typeOperation={'expense'} />
-          <LineChart
-            title={'Расходы'}
-            backgroundColor={'rgba(179, 20, 33, 1)'}
-            borderColor={'rgba(133,65, 52, 1)'}
-          />
-        </div>
-      )}
-
-      {isProfitTypeOperation && (
-        <div className={styles.chartWrapper}>
-          <PieChart
-            typeOperation={'profit'}
-            style={{ height: '10rem', width: '20rem', margin: '1rem', marginLeft: '2rem' }}
-          />
-          <LineChart
-            title={'Доходы'}
-            backgroundColor={'rgba(69, 204, 101, 1)'}
-            borderColor={'rgba(69, 190, 101, 1)'}
-          />
-        </div>
-      )}
+      <div className={styles.chartWrapper}>
+        <PieChart typeOperation={isProfitType ? 'profit' : 'expense'} />
+        <LineChart
+          title={isProfitType ? 'Доходы' : 'Расходы'}
+          backgroundColor={isProfitType ? 'rgba(69, 204, 101, 1)' : 'rgba(179, 20, 33, 1)'}
+          borderColor={isProfitType ? 'rgba(69, 190, 101, 1)' : 'rgba(133,65, 52, 1)'}
+        />
+      </div>
     </div>
   );
 };

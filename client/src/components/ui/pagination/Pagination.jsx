@@ -8,18 +8,22 @@ import { useLocation } from 'react-router-dom';
 import { getOperationByPagination } from '../../../store/operations/operations.slice';
 
 const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
-  let [startIndexPagination, setIndexPagination] = useState(currentPage);
+  let [startIndexPagination, setStartIndexPagination] = useState(currentPage);
   const pageCount = Math.ceil(itemsCount / pageSize);
   if (pageCount === 1) return null;
   let paginationWidth = 9;
   let { state } = useLocation();
 
-  const backIndexOperation = useSelector(getOperationByPagination(state?.operationId, pageSize));
+  let backIndexOperation = useSelector(getOperationByPagination(state?.operationId, pageSize));
 
   useEffect(() => {
-    setIndexPagination(backIndexOperation);
+    setStartIndexPagination(
+      backIndexOperation < paginationWidth
+        ? backIndexOperation
+        : backIndexOperation - paginationWidth + 1
+    );
     onPageChange(backIndexOperation);
-  }, [backIndexOperation]);
+  }, []);
 
   if (document.documentElement.clientWidth < 992) {
     paginationWidth = 6;
@@ -46,7 +50,7 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
                 spanStyle={styles.spanBtnCountPage}
                 className={styles.btnCountPage}
                 handler={() => {
-                  setIndexPagination(() => (startIndexPagination = 1));
+                  setStartIndexPagination(() => (startIndexPagination = 1));
                   onPageChange((currentPage = 1));
                 }}
                 title={'<<'}
@@ -55,7 +59,7 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
                 spanStyle={styles.spanBtnCountPage}
                 className={styles.btnCountPage}
                 handler={() => {
-                  setIndexPagination(() => startIndexPagination - 1);
+                  setStartIndexPagination(() => startIndexPagination - 1);
                   onPageChange(currentPage - 1);
                 }}
                 title={'<'}
@@ -81,7 +85,7 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
                 spanStyle={styles.spanBtnCountPage}
                 className={styles.btnCountPage}
                 handler={() => {
-                  setIndexPagination(() => startIndexPagination + 1);
+                  setStartIndexPagination(() => startIndexPagination + 1);
                   onPageChange(currentPage + 1);
                 }}
                 title={'>'}
@@ -90,7 +94,7 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
                 spanStyle={styles.spanBtnCountPage}
                 className={styles.btnCountPage}
                 handler={() => {
-                  setIndexPagination(
+                  setStartIndexPagination(
                     () => (startIndexPagination = pageCount - paginationWidth + 1)
                   );
                   onPageChange((currentPage = pageCount));
