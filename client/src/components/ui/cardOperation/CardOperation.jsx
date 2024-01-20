@@ -10,6 +10,7 @@ import Badge from '../common/badge/Badge';
 import { getBankAccountDisplayNameById } from '../../../store/bankAccounts/bankAccounts.slice';
 import style from './cardOperation.module.scss';
 import classNames from 'classnames';
+import { toast } from 'react-toastify';
 
 const CardOperation = ({ idBankAccount, category, comment, _id, sum, date, typeOperation }) => {
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ const CardOperation = ({ idBankAccount, category, comment, _id, sum, date, typeO
   const handleDelete = (e) => {
     e.stopPropagation();
     dispatch(deleteOperationById(_id));
+    toast(`Опреация на сумму ${sum} была удалена`);
   };
 
   return (

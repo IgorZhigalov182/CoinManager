@@ -5,10 +5,15 @@ import { useDispatch } from 'react-redux';
 import { deleteCategory } from '../../../store/categories/categories.slice';
 import style from './categoryCard.module.scss';
 import Badge from '../common/badge/Badge';
+import { toast } from 'react-toastify';
 
 const CategoryCard = ({ handleModal, name, color, id }) => {
   const dispatch = useDispatch();
-  const handleDelete = (id) => dispatch(deleteCategory(id));
+
+  const handleDelete = (id) => {
+    dispatch(deleteCategory(id));
+    toast(`Категория ${name} была удалена`);
+  };
 
   return (
     <div className={style.cardWrapper}>

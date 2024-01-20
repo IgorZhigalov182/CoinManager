@@ -211,7 +211,6 @@ export const deleteOperationById = (id) => async (dispatch) => {
   try {
     await operationService.removeOperation(id);
     dispatch(operationDeleted(id));
-    toast(`Операция была удалена`);
   } catch (error) {
     toast(error.message);
     dispatch(operationsRequestFailed(error.message));

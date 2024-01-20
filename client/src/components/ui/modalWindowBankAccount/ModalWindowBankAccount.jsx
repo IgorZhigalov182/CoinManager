@@ -12,18 +12,20 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import ModalWindow from '../modalWindow/ModalWindow';
 import styles from './ModalWindowBankAccount.module.scss';
+import { toast } from 'react-toastify';
 
 const ModalWindowBankAccount = ({ initialValue, setInitialValue, active, setActive }) => {
   const dispatch = useDispatch();
   let bankAccounts = useSelector(getBankAccountList());
 
-  const handleDelete = async (id) => {
+  const handleDelete = async ({ _id, name }) => {
     try {
       const dicision = confirm('Точно удалить?');
       if (dicision) {
-        dispatch(deleteBankAccountById(id, bankAccounts));
+        dispatch(deleteBankAccountById(_id, bankAccounts));
         setActive(!active);
       }
+      toast(`Банковский аккаунт "${name}" был удалён`);
     } catch (error) {
       console.log(error);
     }
@@ -120,7 +122,7 @@ const ModalWindowBankAccount = ({ initialValue, setInitialValue, active, setActi
                 <Button
                   title={<i className="fa-solid fa-trash"></i>}
                   type={'button'}
-                  handler={() => handleDelete(initialValue._id)}
+                  handler={() => handleDelete(initialValue)}
                   className={styles.btnRemove}
                   spanStyle={styles.btnSpanRemove}
                 />
