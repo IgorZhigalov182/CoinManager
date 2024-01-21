@@ -1,4 +1,5 @@
 @import '../../../styles/mixins.scss';
+@import '../../../styles/variables.scss';
 
 .card_wrapper, .card_wrapperOperationPage {
     @include cardWrap;
@@ -36,6 +37,20 @@
 
 .cardOperationComment {
     font-size: large;
+}
+
+html[data-theme='light'] {
+    .profitBadge, .expanseBadge {
+        color: $colorLight;
+    }
+
+    .profitBadge {
+        background-image: linear-gradient(144deg,#8669a2, #5B42F3 50%,#00eb89);
+    }
+
+    .expanseBadge {
+        background-image: linear-gradient(144deg,#b40839, #e308be 50%,#770886);
+    }
 }
 
 .profitBadge, .expanseBadge  {
