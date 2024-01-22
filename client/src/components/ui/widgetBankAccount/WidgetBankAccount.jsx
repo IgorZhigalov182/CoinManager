@@ -5,7 +5,8 @@ import {
   favouritedBankAccountById,
   getActiveBankAccount,
   getBankAccountDisplayNameById,
-  getBankAccountList
+  getBankAccountList,
+  getMostUsedBankAccounts
 } from '../../../store/bankAccounts/bankAccounts.slice';
 import bankAccountService, { getMostUsedBankAccount } from '../../../services/bankAccount.services';
 import classNames from 'classnames';
@@ -18,16 +19,9 @@ const WidgetBankAccount = () => {
   const activeBankAccountId = useSelector(getActiveBankAccount());
   const activeBankAccountName = useSelector(getBankAccountDisplayNameById(activeBankAccountId));
   const mostUsedBankAccountId = getMostUsedBankAccount(operations, activeBankAccountId);
-  // const activeBankAccountNameClass = classNames();
   const randomId = useId();
 
-  const namesMostUsedBankAccount = mostUsedBankAccountId.map((bankAccount) => {
-    let name = useSelector(getBankAccountDisplayNameById(bankAccount[0]));
-
-    if (name != '') {
-      return { name: name, _id: bankAccount[0] };
-    }
-  });
+  const mostUsedBankAccounts = useSelector(getMostUsedBankAccounts(operations));
 
   const handleActiveBankAccount = async (bankAccountId) => {
     try {
@@ -43,35 +37,35 @@ const WidgetBankAccount = () => {
     <div className={styles.widgetBankAccountWrapper}>
       <h5>Активный банковский аккаунт</h5>
       <div className={styles.listWrapper} id="list-tab" role="tablist">
-        {namesMostUsedBankAccount &&
-          namesMostUsedBankAccount.map((bankAccount) => {
-            if (!bankAccount) {
+        {mostUsedBankAccounts &&
+          mostUsedBankAccounts.map(({ name, id }) => {
+            if (!name) {
               return;
             }
 
             return (
-              <div key={bankAccount.name} className={styles.activeBankAccountWrapper}>
+              <div key={name} className={styles.activeBankAccountWrapper}>
                 <a
-                  key={bankAccount._id}
+                  key={id}
                   className={
-                    bankAccount.name === activeBankAccountName
+                    name === activeBankAccountName
                       ? styles.activeBankAccountName
                       : styles.noActiveBankAccountName
                   }
                   id="list-home-list"
                   data-bs-toggle="list"
                   role="button"
-                  onClick={() => handleActiveBankAccount(bankAccount._id)}
+                  onClick={() => handleActiveBankAccount(id)}
                   aria-controls="list-home">
-                  {bankAccount.name}
+                  {name}
                 </a>
-                {bankAccount.name === activeBankAccountName ? (
+                {name === activeBankAccountName ? (
                   <i
                     key={randomId}
                     className="fa-solid fa-star"
                     style={{
                       color: '#ffffff',
-                      marginTop: '8px',
+                      marginTop: '6px',
                       marginLeft: '5px',
                       transition: '.9s'
                     }}></i>

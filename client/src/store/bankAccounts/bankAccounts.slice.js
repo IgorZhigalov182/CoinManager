@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import bankAccountService, {
-  checkRemoveBankAccountForFavourite,
+  checkRemoveBankAccountForFavourite
 } from '../../services/bankAccount.services';
+import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
 export const bankAccountsSlice = createSlice({
@@ -10,7 +11,7 @@ export const bankAccountsSlice = createSlice({
     entities: null,
     isLoading: true,
     error: null,
-    lastFetch: null,
+    lastFetch: null
   },
 
   reducers: {
@@ -34,7 +35,7 @@ export const bankAccountsSlice = createSlice({
     },
     bankAccountUpdated: (state, action) => {
       const index = state.entities.findIndex(
-        (bankAccount) => bankAccount._id === action.payload._id,
+        (bankAccount) => bankAccount._id === action.payload._id
       );
       state.entities[index] = action.payload;
     },
@@ -58,8 +59,8 @@ export const bankAccountsSlice = createSlice({
       state.entities = [...state.entities].filter((bankAccount) => {
         return bankAccount._id !== action.payload;
       });
-    },
-  },
+    }
+  }
 });
 
 const { reducer: bankAccountsReducer, actions } = bankAccountsSlice;
@@ -72,7 +73,7 @@ const {
   bankAccountUpdated,
   bankAccountFavourited,
   resetBankAccountFavourite,
-  bankAccountCreated,
+  bankAccountCreated
 } = actions;
 
 export const loadBankAccountList = (userId) => async (dispatch) => {
@@ -161,6 +162,8 @@ export const getActiveBankAccount = () => (state) => {
 };
 
 export const getBankAccountDisplayNameById = (id) => (state) => {
+  // return state?.bankAccounts?.entities.filter(({ _id, name }) => (_id === id ? name : _id));
+
   let name = '';
   if (state.bankAccounts.entities) {
     state.bankAccounts.entities.filter((bankAccount) => {
@@ -180,6 +183,32 @@ export const filterTypeBankAccounts = (type) => (state) => {
   if (state.bankAccounts.entities) {
     return state.bankAccounts.entities.filter((o) => o.type === type);
   }
+};
+
+export const getMostUsedBankAccounts = (operations) => (state) => {
+  const activeBankAccountId = useSelector(getActiveBankAccount());
+
+  const activeBankAccount = {
+    id: activeBankAccountId,
+    name: useSelector(getBankAccountDisplayNameById(activeBankAccountId))
+  };
+
+  let groupByOperations = Object.groupBy(operations, ({ idBankAccount }) => idBankAccount);
+
+  const mostUsedBankAccounts = [];
+
+  for (let key in groupByOperations) {
+    if (key !== activeBankAccount) {
+      mostUsedBankAccounts.push({ id: key, count: groupByOperations[key].length });
+    }
+  }
+
+  const sortMostUsedBankAccounts = mostUsedBankAccounts
+    .filter(({ id }) => id !== activeBankAccount.id)
+    .map((el) => ({ ...el, id: el.id, name: useSelector(getBankAccountDisplayNameById(el.id)) }))
+    .filter(({ name }) => name);
+
+  return [activeBankAccount, ...sortMostUsedBankAccounts];
 };
 
 export default bankAccountsReducer;

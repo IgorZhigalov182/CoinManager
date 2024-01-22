@@ -11,8 +11,8 @@ const bankAccountService = {
     const { data } = await httpService.get(bankAccountEndpoint, {
       params: {
         orderBy: 'userId',
-        equalTo: `${userId}`,
-      },
+        equalTo: `${userId}`
+      }
     });
     return data;
   },
@@ -23,20 +23,18 @@ const bankAccountService = {
   updateBankAccount: async (bankAccountData) => {
     const { data } = await httpService.patch(
       bankAccountEndpoint + '/' + bankAccountData._id,
-      bankAccountData,
+      bankAccountData
     );
     return data;
   },
   resetFavouritesBankAccount: async (bankAccounts) => {
-    bankAccounts.forEach(async (bankAccount) => {
-      const updatedData = { ...bankAccount, active: false };
+    const activeBankAccount = bankAccounts.filter((bankAccount) => bankAccount.active)[0];
 
-      try {
-        await bankAccountService.updateBankAccount(updatedData);
-      } catch (error) {
-        console.log(error);
-      }
-    });
+    try {
+      await bankAccountService.updateBankAccount({ ...activeBankAccount, active: false });
+    } catch (error) {
+      console.log(error);
+    }
   },
   doBankAccountFavourite: async (id, bankAccounts) => {
     let favouriteBankAccount = bankAccounts.filter((bankAccount) => bankAccount._id === id)[0];
@@ -47,7 +45,7 @@ const bankAccountService = {
     } catch (error) {
       console.log(error);
     }
-  },
+  }
 };
 
 export const setTitileTypeBankAccount = (title) => {
@@ -96,98 +94,3 @@ export const getMostUsedBankAccount = (operations) => {
 };
 
 export default bankAccountService;
-
-/*****for JSON-server******/
-
-// export const doBankAccountFavourite = async (id, bankAccounts) => {
-//   let favouriteBankAccount = bankAccounts.filter((bankAccount) => bankAccount.id === id)[0];
-//   favouriteBankAccount = { ...favouriteBankAccount, active: true };
-
-//   try {
-//     await fetch(`http://localhost:3000/bankAccounts/${id}`, {
-//       method: 'PUT',
-//       headers: {
-//         'Content-Type': 'application/json;charset=utf-8',
-//       },
-//       body: JSON.stringify(favouriteBankAccount),
-//     });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// export const resetFavouritesBankAccount = async (bankAccounts) => {
-//   bankAccounts.forEach(async (bankAccount) => {
-//     const updatedData = { ...bankAccount, active: false };
-
-//     try {
-//       await fetch(`http://localhost:3000/bankAccounts/${bankAccount.id}`, {
-//         method: 'PUT',
-//         headers: {
-//           'Content-Type': 'application/json;charset=utf-8',
-//         },
-//         body: JSON.stringify(updatedData),
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   });
-// };
-
-// export const updateBankAccount = async (bankAccountData) => {
-//   try {
-//     await fetch(`http://localhost:3000/bankAccounts/${bankAccountData.id}`, {
-//       method: 'PUT',
-//       headers: {
-//         'Content-Type': 'application/json;charset=utf-8',
-//       },
-//       body: JSON.stringify(bankAccountData),
-//     });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// export const deleteBankAccount = async (id) => {
-//   try {
-//     const response = await fetch(`http://localhost:3000/bankAccounts/${id}`, {
-//       method: 'DELETE',
-//     });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// export const getDataBankAccounts = async () => {
-//   try {
-//     const response = await fetch('http://localhost:3000/bankAccounts');
-//     const bankAccounts = await response.json();
-//     return bankAccounts;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// export const addBankAccount = async (bankAccountData) => {
-//   try {
-//     await fetch('http://localhost:3000/bankAccounts', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json;charset=utf-8',
-//       },
-//       body: JSON.stringify(bankAccountData),
-//     });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// export const getBankAccount = async (id) => {
-//   try {
-//     const response = await fetch(`http://localhost:3000/bankAccounts/${id}`);
-//     const bankAccount = await response.json();
-//     return bankAccount;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
