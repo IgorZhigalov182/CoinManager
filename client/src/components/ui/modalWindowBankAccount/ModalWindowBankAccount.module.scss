@@ -4,6 +4,7 @@
     display: flex;
     align-items: center;
     margin-top: 5px;
+    color: black;
     
     .checkboxActive {
         visibility: visible;
@@ -16,6 +17,10 @@
 
 .radioGroup {
     margin-top: 5px;
+
+    &>label {
+        color: black;
+    }
 
     .radioWrapper {
         display: flex;

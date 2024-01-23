@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import ThemeSwitcher from '../themeSwitcher/ThemeSwitcher';
 import BurgerMenu from '../burgerMenu/BurgerMenu';
 import { Context } from '../../../context/context';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useHref } from 'react-router-dom';
 
 function NavBar() {
   const [activeBurgerMenu, setActiveBurgerMenu] = useState(false);
@@ -17,6 +17,10 @@ function NavBar() {
   const userId = getUserId();
   const burgerActive = classNames(activeBurgerMenu ? style.nav_active : style.nav);
   const navigate = useNavigate();
+  // const location = useLocation();
+  const location = useHref();
+
+  console.log(location);
 
   const handleGoPage = (e) => {
     if (e) {
@@ -50,7 +54,11 @@ function NavBar() {
         <nav className={burgerActive}>
           <ul className={style.navbar_ul}>
             <li className={style.nav_item}>
-              <NavLink to="/" className="nav-link" onClick={handleGoPage}>
+              <NavLink
+                to="/"
+                // className={({ isActive }) => (isActive ? style.nav_link : 'nav-link')}
+                className="nav-link"
+                onClick={handleGoPage}>
                 Главная
               </NavLink>
             </li>

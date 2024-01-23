@@ -17,6 +17,7 @@
     }
 }
 
+
 .formOperation {
     @include modalFormWrapper;
 }
@@ -60,7 +61,6 @@
         margin-top: 1rem;  
     }
 
-    
     .radioWrapper {
         display: flex;
         gap: 10px;

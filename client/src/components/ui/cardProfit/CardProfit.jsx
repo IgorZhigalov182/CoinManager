@@ -22,7 +22,7 @@ const CardProfit = ({ title }) => {
     <div className={styles.cardProfitWrapper}>
       <h5 className={styles.cardProfitTitle}>{title}</h5>
       <p className="card-text">Количество операций: {countOperation}</p>
-      <p className="card-text">Общая сумма: {sumOperation}Р</p>
+      <p className="card-text">Общая сумма: {sumOperation}₽</p>
       <div className={styles.cardProfitButtonsWrapper}>
         <Button
           title={'Открыть список'}
@@ -44,5 +44,5 @@ const CardProfit = ({ title }) => {
 export default CardProfit;
 
 CardProfit.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.string
 };

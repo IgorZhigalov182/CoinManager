@@ -34,14 +34,14 @@ const CardOperation = ({ idBankAccount, category, comment, _id, sum, date, typeO
   const handleDelete = (e) => {
     e.stopPropagation();
     dispatch(deleteOperationById(_id));
-    toast(`Опреация на сумму ${sum} была удалена`);
+    toast(`Опреация на сумму ${sum}₽ была удалена`);
   };
 
   return (
     <div
       onClick={isOperationPage ? () => handleGoToRecord() : () => {}}
       className={styleCardWrapper}>
-      <Badge title={`${sum}Р`} className={styleBadge} />
+      <Badge title={`${sum}₽`} className={styleBadge} />
       <div>
         <h5 className={style.profitH5}>Категория: {categoryName}</h5>
         {!isOperationPage && (

@@ -30,12 +30,13 @@ html[data-theme='light'] {
         padding: 0.3rem;
         width: 4rem;
         height: 4rem;
-        // vertical-align: middle;
         align-self: center;   
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 }
-
-
 
 .nav {
     height: 100%;
@@ -60,8 +61,6 @@ html[data-theme='light'] {
         }
     }
 }
-
-
 
 .burger {
     display: none;    
@@ -102,20 +101,22 @@ html[data-theme='light'] {
     .logo{
         position: absolute;
         left: 10vw;
-        // top: 0;
     }
+
     .burger {
         display: flex;
-        // top: 0;
         right: 5rem;
     }
+
     .nav {
         display: none;
         position: relative;
     }
+
     .nav_active {
         display: block;
     }
+
     .navbar_ul {
         position: absolute; 
         top: 10vh;
@@ -126,6 +127,7 @@ html[data-theme='light'] {
         flex-direction: column;
         z-index: 20;
     }
+
     nav{
         li{
             font-size: 1.25rem;

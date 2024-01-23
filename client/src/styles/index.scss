@@ -35,7 +35,8 @@ html[data-theme='light'] {
         transition: 700ms;
         background-color: $backgroundLight;
     }
-    color: $colorLight;
+    // color: $colorLight;
+    color: black;
     h1,h2,h3,h4,h5,h6,li,p,a, span, button, small  {
         color: $colorDark;
         font-family: 'Sora', sans-serif;
@@ -44,9 +45,13 @@ html[data-theme='light'] {
 
     input, select, textarea {
         @include inputText; 
-        // background-color: $inputLightBackground;
+        background-color: #f0efef;
         margin-top: 10px;
         color: $colorDark;
+        &::-moz-placeholder { color:rgb(0, 0, 0)d; }
+        &::-webkit-input-placeholder { color: rgb(0, 0, 0); }
+        &::-ms-input-placeholder { color: rgb(0, 0, 0); }
+        &::placeholder { color: rgb(0, 0, 0); }
     }
 
     --toastify-color-light: #fff; 
@@ -64,6 +69,11 @@ html[data-theme='light'] {
     margin-right: auto;
     margin-left: auto;
 } 
+
+.nav-link.active {
+    color:$hoverColorLight
+    // text-decoration: underline,
+}
 
 @media (min-width: 576px) {
     .container {

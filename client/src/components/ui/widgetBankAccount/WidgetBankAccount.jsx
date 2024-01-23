@@ -11,6 +11,7 @@ import {
 import bankAccountService, { getMostUsedBankAccount } from '../../../services/bankAccount.services';
 import classNames from 'classnames';
 import styles from './widgetBankAccount.module.scss';
+import { useTheme } from '../../../hooks/useTheme';
 
 const WidgetBankAccount = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const WidgetBankAccount = () => {
   const activeBankAccountName = useSelector(getBankAccountDisplayNameById(activeBankAccountId));
   const mostUsedBankAccountId = getMostUsedBankAccount(operations, activeBankAccountId);
   const randomId = useId();
+  const { theme } = useTheme();
 
   const mostUsedBankAccounts = useSelector(getMostUsedBankAccounts(operations));
 
@@ -64,7 +66,7 @@ const WidgetBankAccount = () => {
                     key={randomId}
                     className="fa-solid fa-star"
                     style={{
-                      color: '#ffffff',
+                      color: theme === 'light' ? 'black' : '#ffffff',
                       marginTop: '6px',
                       marginLeft: '5px',
                       transition: '.9s'

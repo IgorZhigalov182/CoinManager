@@ -132,7 +132,9 @@ const ModalWindowOperation = ({
           {({ errors, touched, values, setFieldValue }) => (
             <Form className="modalFormWrapper">
               <Field type="number" name="sum" placeholder="Сумма" />
-              {errors.sum && touched.sum ? <div>{errors.sum}</div> : null}
+              {errors.sum && touched.sum ? (
+                <div className={styles.errorText}>{errors.sum}</div>
+              ) : null}
               <div className={styles.categoryWrapper}>
                 {!values.addNewCategory && (
                   <Field

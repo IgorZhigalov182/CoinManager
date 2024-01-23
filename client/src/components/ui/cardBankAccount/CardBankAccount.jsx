@@ -41,14 +41,20 @@ const CardBankAccount = ({
             title={<i className="fa-solid fa-gear"></i>}
             handler={() => setModalActive(_id)}
           />
-          <Button
-            handler={() => toggleFavourite(_id)}
-            className={style.btnFavouriteActive}
-            spanStyle={style.spanButtonFavourite}
-            title={
-              active ? <i className="fa-solid fa-star"></i> : <i className="fa-regular fa-star"></i>
-            }
-          />
+          {!active && (
+            <Button
+              handler={() => toggleFavourite(_id)}
+              className={style.btnFavouriteActive}
+              spanStyle={style.spanButtonFavourite}
+              title={
+                active ? (
+                  <i className="fa-solid fa-star"></i>
+                ) : (
+                  <i className="fa-regular fa-star"></i>
+                )
+              }
+            />
+          )}
         </div>
       </div>
     </>
