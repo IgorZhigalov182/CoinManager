@@ -169,6 +169,25 @@ export const getCountOperationByMounth = (title) => (state) => {
   }
 };
 
+export const getSumOperationByMounth = (title) => (state) => {
+  const typeOperation = title === 'Доходы' ? 'profit' : 'expense';
+
+  let resultArray = new Array(12).fill(0);
+
+  if (state.operations.entities) {
+    [...state.operations.entities]
+      .filter((operation) => {
+        return operation.typeOperation === typeOperation;
+      })
+      .map((operation) => {
+        const index = timeStampToMonth(operation.date);
+        resultArray[index - 1] += operation.sum;
+      });
+
+    return resultArray;
+  }
+};
+
 export const getOperationsLoadingStatus = () => (state) => state.operations.isLoading;
 
 export const getOperationById = (id) => (state) => {

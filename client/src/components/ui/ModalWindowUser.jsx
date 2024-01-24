@@ -14,7 +14,7 @@ const ModalWindowUser = ({ modalActive, setModalActive }) => {
 
   const userSchema = Yup.object().shape({
     firstName: Yup.string().required('Обязательное поле'),
-    lastName: Yup.string().required('Обязательное поле'),
+    lastName: Yup.string().required('Обязательное поле')
   });
 
   const handleSubmit = async (data) => {
@@ -22,87 +22,89 @@ const ModalWindowUser = ({ modalActive, setModalActive }) => {
     setModalActive(!modalActive);
   };
 
-  const convertToBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  };
+  // const convertToBase64 = (file) => {
+  //   return new Promise((resolve, reject) => {
+  //     const fileReader = new FileReader();
+  //     fileReader.readAsDataURL(file);
+  //     fileReader.onload = () => {
+  //       resolve(fileReader.result);
+  //     };
+  //     fileReader.onerror = (error) => {
+  //       reject(error);
+  //     };
+  //   });
+  // };
 
-  var LZW = {
-    compress: function (uncompressed) {
-      'use strict';
+  // var LZW = {
+  //   compress: function (uncompressed) {
+  //     'use strict';
 
-      var i,
-        l,
-        dictionary = {},
-        w = '',
-        k,
-        wk,
-        result = [],
-        dictSize = 256;
+  //     var i,
+  //       l,
+  //       dictionary = {},
+  //       w = '',
+  //       k,
+  //       wk,
+  //       result = [],
+  //       dictSize = 256;
 
-      // initial dictionary
-      for (i = 0; i < dictSize; i++) {
-        dictionary[String.fromCharCode(i)] = i;
-      }
+  //     // initial dictionary
+  //     for (i = 0; i < dictSize; i++) {
+  //       dictionary[String.fromCharCode(i)] = i;
+  //     }
 
-      for (i = 0, l = uncompressed.length; i < l; i++) {
-        k = uncompressed.charAt(i);
-        wk = w + k;
-        if (dictionary.hasOwnProperty(wk)) {
-          w = wk;
-        } else {
-          result.push(dictionary[w]);
-          dictionary[wk] = dictSize++;
-          w = k;
-        }
-      }
+  //     for (i = 0, l = uncompressed.length; i < l; i++) {
+  //       k = uncompressed.charAt(i);
+  //       wk = w + k;
+  //       if (dictionary.hasOwnProperty(wk)) {
+  //         w = wk;
+  //       } else {
+  //         result.push(dictionary[w]);
+  //         dictionary[wk] = dictSize++;
+  //         w = k;
+  //       }
+  //     }
 
-      if (w !== '') {
-        result.push(dictionary[w]);
-      }
+  //     if (w !== '') {
+  //       result.push(dictionary[w]);
+  //     }
 
-      result.dictionarySize = dictSize;
-      return result;
-    },
-  };
+  //     result.dictionarySize = dictSize;
+  //     return result;
+  //   },
+  // };
 
   return (
     <ModalWindow active={modalActive} setActive={setModalActive}>
       <Formik
         onSubmit={async (values, actions) => {
-          // console.log({ ...values, file: JSON.stringify(LZW.compress(values.file)) });
-          handleSubmit({ ...values, file: JSON.stringify(LZW.compress(values.file)) });
+          // handleSubmit({ ...values, firstName: values.firstName, lastName: values.lastName });
+          handleSubmit(values);
         }}
         validationSchema={userSchema}
         initialValues={initialValue}
         enableReinitialize={true}>
         {({ errors, touched, handleChange, values, setFieldValue }) => (
           <Form className="modalFormWrapper">
-            <Field type="text" name="firstName" className="form-control" placeholder="Имя"></Field>
+            <Field type="text" name="firstName" className="form-control" placeholder="Имя" />
             {errors.firstName && touched.firstName ? <div>{errors.firstName}</div> : null}
             <Field
               type="text"
               name="lastName"
               className="form-control mt-2"
-              placeholder="Фамилия"></Field>
+              placeholder="Фамилия"
+            />
             {errors.lastName && touched.lastName ? <div>{errors.lastName}</div> : null}
-            <input
+            {/* <Field type="text" name="image" placeholder="URL изображения" /> */}
+            {/* <input
               id="file"
               name="file"
               type="file"
               accept="image/*"
               onChange={async (event) => {
-                setFieldValue('file', await convertToBase64(event.currentTarget.files[0]));
+                // setFieldValue('file', await convertToBase64(event.currentTarget.files[0]));
               }}
-            />
+            /> */}
             <Button type={'submit'} className="modalFormBtn" title={'Изменить'} />
           </Form>
         )}
@@ -113,7 +115,7 @@ const ModalWindowUser = ({ modalActive, setModalActive }) => {
 
 ModalWindowUser.propTypes = {
   modalActive: PropTypes.bool,
-  setModalActive: PropTypes.func,
+  setModalActive: PropTypes.func
 };
 
 export default ModalWindowUser;

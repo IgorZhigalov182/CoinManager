@@ -1,8 +1,8 @@
 import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, layouts } from 'chart.js';
+import { Pie } from 'react-chartjs-2';
 import { sumByCategory } from '../../../services/category.services';
 import PropTypes from 'prop-types';
-import { Pie } from 'react-chartjs-2';
 import '../../../styles/chartjs.css';
 import { useSelector } from 'react-redux';
 import { getCategories } from '../../../store/categories/categories.slice';

@@ -10,7 +10,7 @@ import {
   Legend
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import { getCountOperationByMounth } from '../../../store/operations/operations.slice';
+import { getSumOperationByMounth } from '../../../store/operations/operations.slice';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import styles from './LineChart.module.scss';
@@ -18,7 +18,7 @@ import styles from './LineChart.module.scss';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const LineChart = ({ borderColor, title, backgroundColor }) => {
-  const countOperationByMounth = useSelector(getCountOperationByMounth(title));
+  const sumOperationByMounth = useSelector(getSumOperationByMounth(title));
 
   const options = {
     responsive: true,
@@ -53,7 +53,7 @@ const LineChart = ({ borderColor, title, backgroundColor }) => {
     datasets: [
       {
         label: title,
-        data: [...countOperationByMounth],
+        data: [...sumOperationByMounth],
         borderColor: borderColor,
         backgroundColor: backgroundColor
       }

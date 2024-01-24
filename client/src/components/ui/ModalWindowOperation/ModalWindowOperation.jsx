@@ -162,6 +162,7 @@ const ModalWindowOperation = ({
                     type="text"
                     className={styles.selectCategory}
                     placeholder="Новая категория"
+                    value={values.newCategory || ''}
                   />
                 )}
                 <Button

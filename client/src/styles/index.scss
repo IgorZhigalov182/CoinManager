@@ -48,14 +48,16 @@ html[data-theme='light'] {
         background-color: #f0efef;
         margin-top: 10px;
         color: $colorDark;
-        &::-moz-placeholder { color:rgb(0, 0, 0)d; }
-        &::-webkit-input-placeholder { color: rgb(0, 0, 0); }
-        &::-ms-input-placeholder { color: rgb(0, 0, 0); }
-        &::placeholder { color: rgb(0, 0, 0); }
+        &::-moz-placeholder { color:rgb(153, 140, 140); }
+        &::-webkit-input-placeholder { color: rgb(153, 140, 140); }
+        &::-ms-input-placeholder { color: rgb(153, 140, 140); }
+        &::placeholder { color: rgb(153, 140, 140); }
     }
 
     --toastify-color-light: #fff; 
 }
+
+
 
 .col-sm-4{
     border: 2px, solid, burlywood;

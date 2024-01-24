@@ -10,7 +10,7 @@ const initialState = localStorageService.getAccessToken()
       error: null,
       auth: { userId: localStorageService.getUserId() },
       isLoggedIn: true,
-      dataLoaded: false,
+      dataLoaded: false
     }
   : {
       entities: null,
@@ -18,7 +18,7 @@ const initialState = localStorageService.getAccessToken()
       error: null,
       auth: null,
       isLoggedIn: false,
-      dataLoaded: false,
+      dataLoaded: false
     };
 
 export const usersSlice = createSlice({
@@ -62,8 +62,8 @@ export const usersSlice = createSlice({
     },
     authRequested: (state) => {
       state.error = null;
-    },
-  },
+    }
+  }
 });
 
 const { reducer: usersReducer, actions } = usersSlice;
@@ -74,7 +74,7 @@ const {
   authRequestSuccess,
   authRequestFailed,
   userLoggedOut,
-  userUpdateSuccess,
+  userUpdateSuccess
 } = actions;
 
 const authRequested = createAction('users/authRequested');
@@ -156,7 +156,6 @@ export const loadUserById = (userId) => async (dispatch) => {
   }
 };
 export const getUser = () => (state) => state.users.entities;
-
 export const getIsLoggedIn = () => (state) => state.users.isLoggedIn;
 export const getDataStatus = () => (state) => state.users.dataLoaded;
 export const getUsersLoadingStatus = () => (state) => state.users.isLoading;

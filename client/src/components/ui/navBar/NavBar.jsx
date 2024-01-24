@@ -20,8 +20,6 @@ function NavBar() {
   // const location = useLocation();
   const location = useHref();
 
-  console.log(location);
-
   const handleGoPage = (e) => {
     if (e) {
       const burgerMenu = document.querySelector('#check');
