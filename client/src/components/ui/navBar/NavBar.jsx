@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getIsLoggedIn } from '../../../store/users/users.slice';
 import { getUserId } from '../../../services/localStorage.services';
@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
 import ThemeSwitcher from '../themeSwitcher/ThemeSwitcher';
 import BurgerMenu from '../burgerMenu/BurgerMenu';
 import { Context } from '../../../context/context';
-import { useNavigate, useHref } from 'react-router-dom';
 
 function NavBar() {
   const [activeBurgerMenu, setActiveBurgerMenu] = useState(false);
@@ -17,21 +16,17 @@ function NavBar() {
   const userId = getUserId();
   const burgerActive = classNames(activeBurgerMenu ? style.nav_active : style.nav);
   const navigate = useNavigate();
-  // const location = useLocation();
-  const location = useHref();
 
   const handleGoPage = (e) => {
     if (e) {
       const burgerMenu = document.querySelector('#check');
       burgerMenu.checked = !burgerMenu.checked;
-      // document.querySelector('body').style.overflow = 'hidden';
     }
     setActiveBurgerMenu(!activeBurgerMenu);
   };
 
   if (activeBurgerMenu && document.documentElement.clientWidth < 576) {
     document.querySelector('body').style.overflow = 'hidden';
-    // document.querySelector('.container').style.backdropFilter = 'blur(5px)';
   } else {
     document.querySelector('body').style.overflow = '';
   }
@@ -52,11 +47,7 @@ function NavBar() {
         <nav className={burgerActive}>
           <ul className={style.navbar_ul}>
             <li className={style.nav_item}>
-              <NavLink
-                to="/"
-                // className={({ isActive }) => (isActive ? style.nav_link : 'nav-link')}
-                className="nav-link"
-                onClick={handleGoPage}>
+              <NavLink to="/" className="nav-link" onClick={handleGoPage}>
                 Главная
               </NavLink>
             </li>

@@ -24,7 +24,8 @@ const LineChart = ({ borderColor, title, backgroundColor }) => {
     responsive: true,
     plugins: {
       legend: {
-        position: 'top'
+        position: 'bottom',
+        display: false
       },
       title: {
         display: false,

@@ -1,14 +1,16 @@
 import React from 'react';
 import Button from '../common/button/Button';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteCategory } from '../../../store/categories/categories.slice';
 import style from './categoryCard.module.scss';
-import Badge from '../common/badge/Badge';
 import { toast } from 'react-toastify';
+import { countOperationsByCategory } from '../../../store/operations/operations.slice';
+import { declensionOfNumerals } from '../../../utils/declensionOfNumerals';
 
 const CategoryCard = ({ handleModal, name, color, id }) => {
   const dispatch = useDispatch();
+  const countOperations = useSelector(countOperationsByCategory(id));
 
   const handleDelete = (id) => {
     dispatch(deleteCategory(id));
@@ -28,6 +30,13 @@ const CategoryCard = ({ handleModal, name, color, id }) => {
           marginTop: '1rem',
           boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px'
         }}></div>
+      <h3 className={style.countOperations}>
+        {`${countOperations} ${declensionOfNumerals(countOperations, [
+          'операция',
+          'операции',
+          'операций'
+        ])}`}
+      </h3>
       <div className={style.button_wrap}>
         <Button
           style={{ width: '3rem' }}

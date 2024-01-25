@@ -1,55 +1,43 @@
 import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, layouts } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
-import { sumByCategory } from '../../../services/category.services';
 import PropTypes from 'prop-types';
 import '../../../styles/chartjs.css';
 import { useSelector } from 'react-redux';
 import { getCategories } from '../../../store/categories/categories.slice';
-import { getOperationList } from '../../../store/operations/operations.slice';
+import { getOperationList, getSumOperations } from '../../../store/operations/operations.slice';
 import Button from '../common/button/Button';
 import { useNavigate } from 'react-router-dom';
 import styles from './PieChart.module.scss';
+import operationService from '../../../services/operations.services';
+import categoryService from '../../../services/category.services';
+import { externalTooltipHandler } from './customTooltip';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PieChart = ({ typeOperation }) => {
   const navigate = useNavigate();
+  const operations = useSelector(getOperationList(typeOperation));
   const categories = useSelector(getCategories());
-  const operationsArray = useSelector(getOperationList());
-  let operations = '';
-  if (operationsArray.length !== 0) {
-    operations = operationsArray.filter((operation) => {
-      return operation.typeOperation === typeOperation;
-    });
-  }
+  const totalSum = useSelector(getSumOperations(typeOperation));
 
-  const operationsWithCategories = [];
-  if (categories && operations.length !== 0) {
-    operations.forEach((operation) => {
-      categories.forEach((category) => {
-        if (operation?.category === category._id) {
-          operationsWithCategories.push({
-            ...operation,
-            categoryLabel: category.name,
-            categoryColor: category.color
-          });
-        }
-      });
-    });
-  }
+  const operationsWithCategories = operationService.getOperationsWithCategories(
+    operations,
+    categories
+  );
 
-  const arrSumByCategory = sumByCategory(operationsWithCategories);
-  const labels = arrSumByCategory.map((oper) => oper.label);
-  const colors = arrSumByCategory.map((oper) => oper.color);
-  const sums = arrSumByCategory.map((oper) => oper.sum);
+  const sumByCategory = categoryService.sumByCategory(operationsWithCategories);
+  const labels = sumByCategory.map(({ label }) => label);
+  const colors = sumByCategory.map(({ color }) => color);
+  const sums = sumByCategory.map(({ sum }) => sum);
+  // const count = sumByCategory.map(({ count }) => count);
 
-  const newData = {
+  const data = {
     labels: [...labels],
 
     datasets: [
       {
-        label: '',
+        label: 'Сумма',
         data: [...sums],
         height: '100px',
         width: '100px',
@@ -60,22 +48,41 @@ const PieChart = ({ typeOperation }) => {
     ]
   };
 
+  const options = {
+    plugins: {
+      tooltip: {
+        // title: '132',
+        enabled: false,
+        external: externalTooltipHandler,
+        callbacks: {
+          label: function (context) {
+            const countOper = sumByCategory.find(({ sum }) => sum === context.raw).count;
+            console.log(countOper);
+
+            return [
+              `${context.raw}`,
+              `${Math.ceil((context.raw * 100) / totalSum)}`,
+              typeOperation,
+              countOper
+            ];
+          }
+        }
+      }
+    }
+  };
+
   if (operations.length === 0) {
     return (
-      <div className="me-1 mt-3">
+      <div className={styles.newOperation}>
         <h3>Добавьте первую операцию</h3>
-        <Button
-          className="btn btn-success mt-4"
-          title={'Добавить операцию'}
-          handler={() => navigate('/operations')}
-        />
+        <Button title={'Добавить операцию'} handler={() => navigate('/operations')} />
       </div>
     );
   }
 
   return (
     <div className={styles.pieChartWrapper}>
-      <Pie data={newData} />
+      <Pie options={options} data={data} />
     </div>
   );
 };

@@ -118,7 +118,15 @@ export const loadOperationList = (userId) => async (dispatch) => {
   }
 };
 
-export const getOperationList = () => (state) => state.operations.entities;
+export const getOperationList = (type) => (state) => {
+  if (!type) {
+    return state.operations.entities;
+  }
+
+  if (state.operations.entities) {
+    return state.operations.entities.filter(({ typeOperation }) => type === typeOperation);
+  }
+};
 
 export const sortOperationsBySum = () => (dispatch) => dispatch(operationSortedBySum());
 
@@ -128,7 +136,7 @@ export const getCountOperations = (title) => (state) => {
   const typeOperation = title === 'Доходы' ? 'profit' : 'expense';
   let length = 0;
   if (state.operations.entities) {
-    let arr = [...state?.operations?.entities].filter((operation) => {
+    let arr = state?.operations?.entities.filter((operation) => {
       return operation.typeOperation === typeOperation;
     });
     length = arr.length;
@@ -137,7 +145,8 @@ export const getCountOperations = (title) => (state) => {
 };
 
 export const getSumOperations = (title) => (state) => {
-  const typeOperation = title === 'Доходы' ? 'profit' : 'expense';
+  const typeOperation = title === 'Доходы' || title === 'profit' ? 'profit' : 'expense';
+
   if (state.operations.entities) {
     let sum = [...state.operations.entities]
       .filter((operation) => {
@@ -245,5 +254,17 @@ export const filterTypeOperations = (type) => (state) => {
     return state.operations.entities.filter((o) => o.typeOperation === type);
   }
 };
+
+export const countOperationsByCategory = (id) => (state) => {
+  if (state.operations.entities) {
+    return state.operations.entities.filter(({ category }) => category === id).length;
+  }
+};
+
+// export const getTotalSum = () => (state) => {
+//   if (state.operations.entities) {
+//     return [...state.operations.entities].reduce((acc, cur) => acc + cur.sum, 0);
+//   }
+// };
 
 export default operationReducer;

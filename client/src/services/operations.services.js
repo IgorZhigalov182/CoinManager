@@ -27,6 +27,25 @@ const operationService = {
   updateOperation: async (operationData) => {
     const { data } = await httpService.patch(operationEndpoint + operationData._id, operationData);
     return data.content;
+  },
+  getOperationsWithCategories: (operations, categories) => {
+    const operationsWithCategories = [];
+
+    if (categories && operations.length !== 0) {
+      operations.forEach((operation) => {
+        categories.forEach((category) => {
+          if (operation?.category === category._id) {
+            operationsWithCategories.push({
+              ...operation,
+              categoryLabel: category.name,
+              categoryColor: category.color
+            });
+          }
+        });
+      });
+    }
+
+    return operationsWithCategories;
   }
 };
 

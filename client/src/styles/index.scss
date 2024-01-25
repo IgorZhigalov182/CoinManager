@@ -28,6 +28,11 @@ html[data-theme='dark'] {
         background-color: $backgroundLight;
         margin-top: 10px;
     }
+
+    .nav-link.active {
+        color:#8c8c8c
+        // text-decoration: underline,
+    }
 }
 
 html[data-theme='light'] {
@@ -55,9 +60,12 @@ html[data-theme='light'] {
     }
 
     --toastify-color-light: #fff; 
+
+    .nav-link.active {
+        color:$hoverColorLight
+        // text-decoration: underline,
+    }
 }
-
-
 
 .col-sm-4{
     border: 2px, solid, burlywood;
@@ -72,10 +80,7 @@ html[data-theme='light'] {
     margin-left: auto;
 } 
 
-.nav-link.active {
-    color:$hoverColorLight
-    // text-decoration: underline,
-}
+
 
 @media (min-width: 576px) {
     .container {

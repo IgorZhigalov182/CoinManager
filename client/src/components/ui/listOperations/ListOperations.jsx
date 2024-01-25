@@ -4,6 +4,7 @@ import CardOperation from '../cardOperation/CardOperation';
 import style from './ListOperations.module.scss';
 
 const ListOperations = ({ operations }) => {
+  console.log(operations);
   return (
     <div className={style.listWrapper}>
       {operations &&
@@ -15,7 +16,7 @@ const ListOperations = ({ operations }) => {
 };
 
 ListOperations.propTypes = {
-  operations: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  operations: PropTypes.oneOfType([PropTypes.array, PropTypes.object])
 };
 
 export default ListOperations;
