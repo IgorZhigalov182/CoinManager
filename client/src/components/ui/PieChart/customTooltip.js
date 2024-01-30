@@ -59,7 +59,6 @@ export const externalTooltipHandler = (context, typeOperation) => {
 
     const tableBody = document.createElement('tbody');
     bodyLines.forEach((body, i) => {
-      console.log(bodyLines);
       const colors = tooltip.labelColors[i];
 
       const span = document.createElement('span');

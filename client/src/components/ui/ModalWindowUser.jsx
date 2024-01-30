@@ -22,58 +22,6 @@ const ModalWindowUser = ({ modalActive, setModalActive }) => {
     setModalActive(!modalActive);
   };
 
-  // const convertToBase64 = (file) => {
-  //   return new Promise((resolve, reject) => {
-  //     const fileReader = new FileReader();
-  //     fileReader.readAsDataURL(file);
-  //     fileReader.onload = () => {
-  //       resolve(fileReader.result);
-  //     };
-  //     fileReader.onerror = (error) => {
-  //       reject(error);
-  //     };
-  //   });
-  // };
-
-  // var LZW = {
-  //   compress: function (uncompressed) {
-  //     'use strict';
-
-  //     var i,
-  //       l,
-  //       dictionary = {},
-  //       w = '',
-  //       k,
-  //       wk,
-  //       result = [],
-  //       dictSize = 256;
-
-  //     // initial dictionary
-  //     for (i = 0; i < dictSize; i++) {
-  //       dictionary[String.fromCharCode(i)] = i;
-  //     }
-
-  //     for (i = 0, l = uncompressed.length; i < l; i++) {
-  //       k = uncompressed.charAt(i);
-  //       wk = w + k;
-  //       if (dictionary.hasOwnProperty(wk)) {
-  //         w = wk;
-  //       } else {
-  //         result.push(dictionary[w]);
-  //         dictionary[wk] = dictSize++;
-  //         w = k;
-  //       }
-  //     }
-
-  //     if (w !== '') {
-  //       result.push(dictionary[w]);
-  //     }
-
-  //     result.dictionarySize = dictSize;
-  //     return result;
-  //   },
-  // };
-
   return (
     <ModalWindow active={modalActive} setActive={setModalActive}>
       <Formik

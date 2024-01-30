@@ -7,6 +7,26 @@ html[data-theme='dark'] {
         background-color: $backgroundDark;
         transition: 700ms;
         border-bottom: 1px solid rgb(52, 52, 52);
+
+        .navbar_ul {
+            >li{
+                >a{
+                    text-decoration: none;
+        
+                    background: linear-gradient(to right, $hoverColorLight, $hoverColorLight 50%, $colorLight 50%);
+                    background-clip: text;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-size: 200% 100%;
+                    background-position: 100%;
+                    transition: background-position 300ms ease;
+        
+                    &:hover {
+                      background-position: 0 100%;
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -15,6 +35,26 @@ html[data-theme='light'] {
         background-color: $colorLight;
         transition: 700ms;
         border-bottom: 1px solid rgb(199, 198, 198);
+
+        .navbar_ul {
+            >li{
+                >a{
+                    text-decoration: none;
+        
+                    background: linear-gradient(to right, $hoverColorLight, $hoverColorLight 50%, $colorDark 50%);
+                    background-clip: text;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-size: 200% 100%;
+                    background-position: 100%;
+                    transition: background-position 300ms ease;
+        
+                    &:hover {
+                      background-position: 0 100%;
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -25,15 +65,16 @@ html[data-theme='light'] {
     flex-direction: row;
     justify-content: space-around;
 
-
     img {
         padding: 0.3rem;
         width: 4rem;
         height: 4rem;
         align-self: center;   
+        transition: 1.5s;
 
         &:hover {
             cursor: pointer;
+            transform: rotate(-10deg);
         }
     }
 }
@@ -54,10 +95,6 @@ html[data-theme='light'] {
     >li{
         >a{
             text-decoration: none;
-        }
-        >a:hover{
-            color: #979595;
-            transition: 300ms;
         }
     }
 }

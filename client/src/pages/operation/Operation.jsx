@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getOperationById } from '../../store/operations/operations.slice';
 import Button from '../../components/ui/common/button/Button';
-import NotFound from '../notFoundPage/NotFound';
+import NotFound from '../notFound/NotFound';
 import ModalWindowOperation from '../../components/ui/ModalWindowOperation/ModalWindowOperation';
 import styles from './operation.module.scss';
 import { useNavigate } from 'react-router-dom';

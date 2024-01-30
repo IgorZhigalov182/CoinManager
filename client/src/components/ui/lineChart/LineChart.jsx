@@ -60,6 +60,7 @@ const LineChart = ({ borderColor, title, backgroundColor }) => {
       }
     ]
   };
+
   return (
     <div className={styles.wrapper}>
       <Line options={options} data={data} />

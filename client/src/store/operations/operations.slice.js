@@ -128,6 +128,12 @@ export const getOperationList = (type) => (state) => {
   }
 };
 
+export const getCountOperation = () => (state) => {
+  if (state.operations.entities) {
+    return state.operations.entities.length;
+  }
+};
+
 export const sortOperationsBySum = () => (dispatch) => dispatch(operationSortedBySum());
 
 export const sortOperationsByDate = () => (dispatch) => dispatch(operationSortedByDate());

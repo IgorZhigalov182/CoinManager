@@ -13,7 +13,6 @@ import {
 import * as Yup from 'yup';
 import { getActiveBankAccount } from '../../../store/bankAccounts/bankAccounts.slice';
 import { createOperation, updateOperationById } from '../../../store/operations/operations.slice';
-import { getRandomColor } from '../../../utils/getRandomColor';
 import localStorageService from '../../../services/localStorage.services';
 import { toast } from 'react-toastify';
 import styles from './ModalWindowOperation.module.scss';
@@ -65,7 +64,7 @@ const ModalWindowOperation = ({
     const response = await dispatch(
       createCategory({
         name: data.newCategory,
-        color: getRandomColor(),
+        color: 'rgb(0, 0, 0)',
         userId: localStorageService.getUserId()
       })
     );

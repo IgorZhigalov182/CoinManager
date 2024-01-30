@@ -91,7 +91,7 @@ export const login =
       dispatch(authRequestSuccess({ userId: data.userId }));
       localStorageService.setTokens(data);
     } catch (error) {
-      const { code, message } = error?.response?.data?.error;
+      const { code, message } = error;
       if (code === 400) {
         const errorMessage = '400 error';
         dispatch(authRequestFailed(error.message));

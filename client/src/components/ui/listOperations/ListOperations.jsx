@@ -4,7 +4,6 @@ import CardOperation from '../cardOperation/CardOperation';
 import style from './ListOperations.module.scss';
 
 const ListOperations = ({ operations }) => {
-  console.log(operations);
   return (
     <div className={style.listWrapper}>
       {operations &&

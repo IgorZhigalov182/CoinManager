@@ -30,7 +30,6 @@ const PieChart = ({ typeOperation }) => {
   const labels = sumByCategory.map(({ label }) => label);
   const colors = sumByCategory.map(({ color }) => color);
   const sums = sumByCategory.map(({ sum }) => sum);
-  // const count = sumByCategory.map(({ count }) => count);
 
   const data = {
     labels: [...labels],
@@ -51,13 +50,11 @@ const PieChart = ({ typeOperation }) => {
   const options = {
     plugins: {
       tooltip: {
-        // title: '132',
         enabled: false,
         external: externalTooltipHandler,
         callbacks: {
           label: function (context) {
             const countOper = sumByCategory.find(({ sum }) => sum === context.raw).count;
-            console.log(countOper);
 
             return [
               `${context.raw}`,
@@ -71,11 +68,15 @@ const PieChart = ({ typeOperation }) => {
     }
   };
 
-  if (operations.length === 0) {
+  if (!operations.length) {
     return (
       <div className={styles.newOperation}>
         <h3>Добавьте первую операцию</h3>
-        <Button title={'Добавить операцию'} handler={() => navigate('/operations')} />
+        <Button
+          className={styles.newOperationBtn}
+          title={'Добавить операцию'}
+          handler={() => navigate('/operations')}
+        />
       </div>
     );
   }

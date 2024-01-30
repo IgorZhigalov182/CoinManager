@@ -8,7 +8,7 @@ export const categoriesSlice = createSlice({
     entities: null,
     isLoading: true,
     error: null,
-    lastFetch: null,
+    lastFetch: null
   },
 
   reducers: {
@@ -38,8 +38,8 @@ export const categoriesSlice = createSlice({
       state.entities = state.entities.filter((category) => {
         return category._id !== action.payload;
       });
-    },
-  },
+    }
+  }
 });
 const { reducer: categoriesReducer, actions } = categoriesSlice;
 const {
@@ -48,7 +48,7 @@ const {
   categoriesRequestFailed,
   categoriesCreated,
   categoriesDeleted,
-  categoryUpdated,
+  categoryUpdated
 } = actions;
 
 export const createCategory = (data) => async (dispatch) => {
@@ -128,6 +128,12 @@ export const updateCategoryById = (data) => async (dispatch) => {
     dispatch(categoryUpdated(data));
   } catch (error) {
     dispatch(categoriesRequestFailed(error.message));
+  }
+};
+
+export const getCountCategories = () => (state) => {
+  if (state.categories.entities) {
+    return state.categories.entities.length;
   }
 };
 

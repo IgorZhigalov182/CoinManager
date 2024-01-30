@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Button from '../../components/ui/common/button/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCategories } from '../../store/categories/categories.slice';
-import { getBankAccountList } from '../../store/bankAccounts/bankAccounts.slice';
-import { getOperationList } from '../../store/operations/operations.slice';
+import { getCountCategories } from '../../store/categories/categories.slice';
+import { getCountBankAccounts } from '../../store/bankAccounts/bankAccounts.slice';
+import { getCountOperation, getOperationList } from '../../store/operations/operations.slice';
 import { getUser, logOut } from '../../store/users/users.slice';
 import { useNavigate } from 'react-router-dom';
 import { getBuyDate } from '../../services/date.services';
@@ -18,13 +18,9 @@ const UserPage = () => {
   const navigate = useNavigate();
   const userData = useSelector(getUser())[0];
   const registerDate = getBuyDate(new Date(userData.createdAt));
-
-  let countOfOperations = useSelector(getOperationList()) || 0;
-  countOfOperations ? (countOfOperations = countOfOperations.length) : 0;
-  let countOfCategories = useSelector(getCategories()) || 0;
-  countOfCategories ? (countOfCategories = countOfCategories.length) : 0;
-  let countOfBankAccount = useSelector(getBankAccountList()) || 0;
-  countOfBankAccount ? (countOfBankAccount = countOfBankAccount.length) : 0;
+  const countOfOperations = useSelector(getCountOperation());
+  const countOfCategories = useSelector(getCountCategories());
+  const countOfBankAccount = useSelector(getCountBankAccounts());
 
   const handleLogout = () => {
     dispatch(logOut());

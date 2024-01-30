@@ -211,4 +211,10 @@ export const getMostUsedBankAccounts = (operations) => (state) => {
   return [activeBankAccount, ...sortMostUsedBankAccounts];
 };
 
+export const getCountBankAccounts = () => (state) => {
+  if (state.bankAccounts.entities) {
+    return state.bankAccounts.entities.length;
+  }
+};
+
 export default bankAccountsReducer;
